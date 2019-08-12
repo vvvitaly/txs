@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Parser\Data;
+namespace App\Bills;
 
 /**
  * Amount of transaction with currency
  */
-final class TransactionAmount
+final class Amount
 {
     /**
      * @var float
@@ -23,7 +23,7 @@ final class TransactionAmount
      * @param float $value
      * @param string|null $currency
      */
-    public function __construct(float $value, ?string $currency)
+    public function __construct(float $value, ?string $currency = null)
     {
         $this->value = $value;
         $this->currency = $currency;

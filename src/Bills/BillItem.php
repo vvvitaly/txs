@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Parser\Data;
+namespace App\Bills;
 
 /**
  * One transaction part
  */
-final class ParsedTransactionPart
+final class BillItem
 {
     /**
      * @var string|null
@@ -15,15 +15,15 @@ final class ParsedTransactionPart
     private $description;
 
     /**
-     * @var TransactionAmount
+     * @var Amount
      */
     private $amount;
 
     /**
      * @param string|null $description
-     * @param TransactionAmount $amount
+     * @param Amount $amount
      */
-    public function __construct(?string $description, TransactionAmount $amount)
+    public function __construct(?string $description, Amount $amount)
     {
         $this->description = $description;
         $this->amount = $amount;
@@ -38,9 +38,9 @@ final class ParsedTransactionPart
     }
 
     /**
-     * @return TransactionAmount
+     * @return Amount
      */
-    public function getAmount(): TransactionAmount
+    public function getAmount(): Amount
     {
         return $this->amount;
     }
