@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\GnuCash\Export\Data;
+namespace App\Core\Export\Data;
 
 use DateTimeImmutable;
 
 /**
- * Exported transaction DTO. Obtained from exporter and used in writers.
+ * Exported GnuCash-like transaction DTO. Obtained from exporter and used in writers.
  */
 final class Transaction
 {

@@ -4,14 +4,14 @@
 
 declare(strict_types=1);
 
-namespace tests\GnuCash\Export\Exporter;
+namespace tests\Exporters;
 
-use App\Bills\Amount;
-use App\Bills\Bill;
-use App\Bills\BillInfo;
-use App\Bills\BillItem;
-use App\GnuCash\Export\Contract\InvalidBillException;
-use App\GnuCash\Export\Exporter\BillExporter;
+use App\Core\Bills\Amount;
+use App\Core\Bills\Bill;
+use App\Core\Bills\BillInfo;
+use App\Core\Bills\BillItem;
+use App\Core\Export\InvalidBillException;
+use App\Exporters\BillExporter;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 

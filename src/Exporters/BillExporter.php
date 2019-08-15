@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\GnuCash\Export\Exporter;
+namespace App\Exporters;
 
-use App\Bills\Bill;
-use App\GnuCash\Export\Contract\InvalidBillException;
-use App\GnuCash\Export\Contract\BillExporterInterface;
-use App\GnuCash\Export\Data\Transaction;
-use App\GnuCash\Export\Data\TransactionSplit;
+use App\Core\Bills\Bill;
+use App\Core\Export\Data\Transaction;
+use App\Core\Export\Data\TransactionSplit;
+use App\Core\Export\InvalidBillException;
+use App\Core\Export\BillExporterInterface;
 
 /**
- * Export the most information from bill to transaction object.
+ * Export the most information from bill to GnuCash-like transactions objects.
  */
 final class BillExporter implements BillExporterInterface
 {

@@ -4,15 +4,15 @@
 
 declare(strict_types=1);
 
-namespace tests\GnuCash\Export\Exporter;
+namespace tests\Core\Export;
 
-use App\Bills\Amount;
-use App\Bills\Bill;
-use App\Bills\BillsCollection;
-use App\GnuCash\Export\Contract\BillExporterInterface;
-use App\GnuCash\Export\Data\Transaction;
-use App\GnuCash\Export\Exporter\CollectionExporter;
-use App\GnuCash\Export\Exporter\CollectionExportException;
+use App\Core\Bills\Amount;
+use App\Core\Bills\Bill;
+use App\Core\Bills\BillsCollection;
+use App\Core\Export\BillExporterInterface;
+use App\Core\Export\CollectionExporter;
+use App\Core\Export\CollectionExportException;
+use App\Core\Export\Data\Transaction;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 

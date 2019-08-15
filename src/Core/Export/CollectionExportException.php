@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\GnuCash\Export\Exporter;
+namespace App\Core\Export;
 
-use App\Bills\Bill;
+use App\Core\Bills\Bill;
 use DomainException;
 use Throwable;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\GnuCash\Export\Data;
+namespace App\Core\Export\Data;
 
 use ArrayObject;
 use IteratorIterator;

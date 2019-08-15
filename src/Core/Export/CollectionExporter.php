@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\GnuCash\Export\Exporter;
+namespace App\Core\Export;
 
-use App\Bills\BillsCollection;
-use App\GnuCash\Export\Contract\BillExporterInterface;
-use App\GnuCash\Export\Data\TransactionCollection;
+use App\Core\Bills\BillsCollection;
+use App\Core\Export\Data\TransactionCollection;
 use Exception;
 
 /**

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\GnuCash\Export\Contract;
+namespace App\Core\Export;
 
-use App\Bills\Bill;
-use App\GnuCash\Export\Data\Transaction;
+use App\Core\Bills\Bill;
+use App\Core\Export\Data\Transaction;
 
 /**
  * Export parsed bill into transaction DTO

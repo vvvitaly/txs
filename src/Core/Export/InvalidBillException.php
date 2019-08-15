@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\GnuCash\Export\Contract;
+namespace App\Core\Export;
 
 use DomainException;
 
