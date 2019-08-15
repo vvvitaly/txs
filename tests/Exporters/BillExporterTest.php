@@ -12,6 +12,7 @@ use App\Core\Bills\BillInfo;
 use App\Core\Bills\BillItem;
 use App\Core\Export\InvalidBillException;
 use App\Exporters\BillExporter;
+use App\Exporters\Processors\ProcessorInterface;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
@@ -109,5 +110,21 @@ final class BillExporterTest extends TestCase
 
         $this->expectException(InvalidBillException::class);
         (new BillExporter())->exportBill($bill);
+    }
+
+    public function testExportBillWithProcessors(): void
+    {
+        $bill = new Bill(
+            new Amount(1.2, 'RUB'),
+            'deposit',
+            new BillInfo(new DateTimeImmutable('2019-08-13'), 'monthly deposit', '#1')
+        );
+
+        $processor = $this->createMock(ProcessorInterface::class);
+        $processor
+            ->expects($this->once())
+            ->method('process');
+
+        (new BillExporter($processor))->exportBill($bill);
     }
 }

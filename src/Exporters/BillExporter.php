@@ -9,12 +9,23 @@ use App\Core\Export\Data\Transaction;
 use App\Core\Export\Data\TransactionSplit;
 use App\Core\Export\InvalidBillException;
 use App\Core\Export\BillExporterInterface;
+use App\Exporters\Processors\ProcessorInterface;
 
 /**
  * Export the most information from bill to GnuCash-like transactions objects.
  */
 final class BillExporter implements BillExporterInterface
 {
+    private $processorsChain;
+
+    /**
+     * @param ProcessorInterface|null $processor
+     */
+    public function __construct(?ProcessorInterface $processor = null)
+    {
+        $this->processorsChain = $processor;
+    }
+
     /**
      * @inheritDoc
      */
@@ -34,6 +45,10 @@ final class BillExporter implements BillExporterInterface
         $transaction->currency = $amount->getCurrency();
 
         $this->splitTransaction($transaction, $bill->getItems());
+
+        if ($this->processorsChain) {
+            $this->processorsChain->process($transaction);
+        }
 
         return $transaction;
     }
