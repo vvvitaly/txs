@@ -52,9 +52,9 @@ final class Bill
     }
 
     /**
-     * @return Amount|null
+     * @return Amount
      */
-    public function getAmount(): ?Amount
+    public function getAmount(): Amount
     {
         return $this->amount;
     }

@@ -1,0 +1,84 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\GnuCash\Export\Exporter;
+
+use App\Bills\Bill;
+use App\GnuCash\Export\Contract\InvalidBillException;
+use App\GnuCash\Export\Contract\BillExporterInterface;
+use App\GnuCash\Export\Data\Transaction;
+use App\GnuCash\Export\Data\TransactionSplit;
+
+/**
+ * Export the most information from bill to transaction object.
+ */
+final class BillExporter implements BillExporterInterface
+{
+    /**
+     * @inheritDoc
+     */
+    public function exportBill(Bill $bill): Transaction
+    {
+        $this->validateBill($bill);
+
+        $billInfo = $bill->getInfo();
+        $amount = $bill->getAmount();
+
+        $transaction = new Transaction();
+        $transaction->date = $billInfo->getDate();
+        $transaction->num = $billInfo->getNumber();
+        $transaction->account = $bill->getAccount();
+        $transaction->description = $billInfo->getDescription();
+        $transaction->amount = $amount->getValue();
+        $transaction->currency = $amount->getCurrency();
+
+        $this->splitTransaction($transaction, $bill->getItems());
+
+        return $transaction;
+    }
+
+    /**
+     * If the bill has items, then split transaction by this items. Otherwise add inverse transaction as split.
+     *
+     * @param Transaction $transaction
+     * @param array $billItems
+     */
+    private function splitTransaction(Transaction $transaction, array $billItems): void
+    {
+        if (!$billItems) {
+            $split = new TransactionSplit();
+            $split->amount = $transaction->amount * -1;
+            $transaction->splits[] = $split;
+
+            return;
+        }
+
+        foreach ($billItems as $billItem) {
+            $split = new TransactionSplit();
+            $split->amount = $billItem->getAmount()->getValue();
+            $split->memo = $billItem->getDescription();
+            $transaction->splits[] = $split;
+        }
+    }
+
+    /**
+     * Check mandatory fields: date, account and description.
+     *
+     * @param Bill $bill
+     */
+    private function validateBill(Bill $bill): void
+    {
+        if (!$bill->getInfo()->getDate()) {
+            throw new InvalidBillException('Date is mandatory');
+        }
+
+        if (!$bill->getAccount()) {
+            throw new InvalidBillException('Account is mandatory');
+        }
+
+        if (!$bill->getInfo()->getDescription()) {
+            throw new InvalidBillException('Transaction description is mandatory');
+        }
+    }
+}
