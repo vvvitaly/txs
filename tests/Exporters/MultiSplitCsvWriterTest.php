@@ -6,20 +6,19 @@ declare(strict_types=1);
 
 namespace tests\Exporters;
 
-use App\Core\Export\Data\Transaction;
 use App\Core\Export\Data\TransactionCollection;
-use App\Core\Export\Data\TransactionSplit;
 use App\Exporters\CsvWriterConfig;
 use App\Exporters\MultiSplitCsvWriter;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use SplFileObject;
+use tests\Helpers\TransactionHelper;
 
 final class MultiSplitCsvWriterTest extends TestCase
 {
     public function testWrite(): void
     {
-        $singleTx = $this->createTransaction([
+        $singleTx = TransactionHelper::createTransaction([
             'date' => new DateTimeImmutable('2019-08-13'),
             'id' => 'tx1',
             'num' => '#1',
@@ -35,7 +34,7 @@ final class MultiSplitCsvWriterTest extends TestCase
             ],
         ]);
 
-        $splitTx = $this->createTransaction([
+        $splitTx = TransactionHelper::createTransaction([
             'date' => new DateTimeImmutable('2019-08-15'),
             'id' => 'tx2',
             'num' => '#2',
@@ -83,7 +82,7 @@ EOS;
 
     public function testWriteWithConfiguration(): void
     {
-        $singleTx = $this->createTransaction([
+        $singleTx = TransactionHelper::createTransaction([
             'date' => new DateTimeImmutable('2019-08-13'),
             'id' => 'tx1',
             'num' => '#1',
@@ -120,37 +119,5 @@ EOS;
         $contents = implode('', iterator_to_array($file, false));
 
         $this->assertEquals($expectedCsv, $contents);
-    }
-
-    /**
-     * Create testing transactions
-     *
-     * @param array $fields
-     *
-     * @return Transaction
-     */
-    private function createTransaction(array $fields): Transaction
-    {
-        $tx = new Transaction();
-        foreach ($fields as $key => $value) {
-            if ($key === 'splits') {
-                foreach ($value as $split) {
-                    if (!$split instanceof TransactionSplit) {
-                        $splitObj = new TransactionSplit();
-                        foreach ($split as $splitKey => $splitValue) {
-                            $splitObj->$splitKey = $splitValue;
-                        }
-                    } else {
-                        $splitObj = $split;
-                    }
-
-                    $tx->splits[] = $splitObj;
-                }
-            } else {
-                $tx->$key = $value;
-            }
-        }
-
-        return $tx;
     }
 }
