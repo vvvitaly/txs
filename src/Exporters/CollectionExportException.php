@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Export;
+namespace App\Exporters;
 
 use App\Core\Bills\Bill;
 use DomainException;

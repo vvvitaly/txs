@@ -4,15 +4,15 @@
 
 declare(strict_types=1);
 
-namespace tests\Core\Export;
+namespace tests\Exporters;
 
 use App\Core\Bills\Amount;
 use App\Core\Bills\Bill;
 use App\Core\Bills\BillsCollection;
 use App\Core\Export\BillExporterInterface;
-use App\Core\Export\CollectionExporter;
-use App\Core\Export\CollectionExportException;
+use App\Exporters\CollectionExporter;
 use App\Core\Export\Data\Transaction;
+use App\Exporters\CollectionExportException;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 

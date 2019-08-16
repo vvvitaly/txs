@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Export;
+namespace App\Exporters;
 
 use App\Core\Bills\BillsCollection;
+use App\Core\Export\BillExporterInterface;
 use App\Core\Export\Data\TransactionCollection;
 use Exception;
 
