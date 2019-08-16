@@ -8,6 +8,7 @@ use App\Core\Export\Data\Transaction;
 
 /**
  * Process exported transaction
+ * @todo refactor
  */
 interface ProcessorInterface
 {
