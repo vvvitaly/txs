@@ -33,12 +33,12 @@ final class BillExporterTest extends TestCase
         $this->assertEquals('#1', $tx->num);
         $this->assertEquals('deposit', $tx->account);
         $this->assertEquals('monthly deposit', $tx->description);
-        $this->assertEquals(1.2, $tx->amount);
+        $this->assertEquals(-1.2, $tx->amount);
         $this->assertEquals('RUB', $tx->currency);
 
         $this->assertCount(1, $tx->splits);
 
-        $this->assertEquals(-1.2, $tx->splits[0]->amount);
+        $this->assertEquals(1.2, $tx->splits[0]->amount);
         $this->assertEquals(null, $tx->splits[0]->memo);
         $this->assertEquals(null, $tx->splits[0]->account);
     }
@@ -46,7 +46,7 @@ final class BillExporterTest extends TestCase
     public function testExportBillWithItems(): void
     {
         $bill = new Bill(
-            new Amount(-1.2, 'RUB'),
+            new Amount(1.2, 'RUB'),
             'cash',
             new BillInfo(new DateTimeImmutable('2019-08-13'), 'bill #1', '#1'),
             [

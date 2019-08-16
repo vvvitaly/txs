@@ -41,7 +41,7 @@ final class BillExporter implements BillExporterInterface
         $transaction->num = $billInfo->getNumber();
         $transaction->account = $bill->getAccount();
         $transaction->description = $billInfo->getDescription();
-        $transaction->amount = $amount->getValue();
+        $transaction->amount = -1 * $amount->getValue();
         $transaction->currency = $amount->getCurrency();
 
         $this->splitTransaction($transaction, $bill->getItems());
