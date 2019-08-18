@@ -12,12 +12,11 @@ use App\Core\Bills\Bill;
 interface MessageParserInterface
 {
     /**
-     * Parse the given sms. Throws an `UnknownSmsTypeException` exception if parser can't process this SMS.
+     * Parse the given sms. Returns NULL if there no bill in the given SMS.
      *
      * @param Sms $sms
      *
      * @return Bill
-     * @throws UnknownSmsTypeException
      */
-    public function parse(Sms $sms): Bill;
+    public function parse(Sms $sms): ?Bill;
 }

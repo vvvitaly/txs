@@ -28,15 +28,14 @@ final class CompositeMessageParser implements MessageParserInterface
     /**
      * @inheritDoc
      */
-    public function parse(Sms $sms): Bill
+    public function parse(Sms $sms): ?Bill
     {
         foreach ($this->parsers as $parser) {
-            try {
-                return $parser->parse($sms);
-            } catch (UnknownSmsTypeException $exception) {
+            if (($bill = $parser->parse($sms)) !== null) {
+                return $bill;
             }
         }
 
-        throw new UnknownSmsTypeException('Can not parse the SMS with any of parsers.');
+        return null;
     }
 }

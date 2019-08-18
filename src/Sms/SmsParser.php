@@ -35,14 +35,16 @@ final class SmsParser
      * Parse all SMS from the given source.
      *
      * @return BillsCollection
-     * @throws UnknownSmsTypeException
      */
     public function parse(): BillsCollection
     {
         $bills = [];
 
         foreach ($this->source->read() as $sms) {
-            $bills[] = $this->parser->parse($sms);
+            $bill = $this->parser->parse($sms);
+            if ($bill) {
+                $bills[] = $bill;
+            }
         }
 
         return new BillsCollection(...$bills);

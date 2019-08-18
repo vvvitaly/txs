@@ -46,6 +46,32 @@ final class SmsParserTest extends TestCase
         $this->assertSame($bill2, $actualList[1]);
     }
 
+    public function testParseShouldSkipSmsIfNoBill(): void
+    {
+        $sms1 = new Sms('test', new DateTimeImmutable('now'), 'text1');
+        $sms2 = new Sms('test', new DateTimeImmutable('now'), 'text2');
+        $bill2 = new Bill(new Amount(2));
+
+        $smsSource = $this->createMock(SmsSourceInterface::class);
+        $smsSource->expects($this->once())
+            ->method('read')
+            ->willReturnOnConsecutiveCalls($this->arrayToGenerator([$sms1, $sms2]));
+
+        $innerParser = $this->createMock(MessageParserInterface::class);
+        $innerParser->expects($this->exactly(2))
+            ->method('parse')
+            ->withConsecutive($this->identicalTo($sms1), $this->identicalTo($sms2))
+            ->willReturnOnConsecutiveCalls(null, $bill2);
+
+        $parser = new SmsParser($smsSource, $innerParser);
+
+        $actual = $parser->parse();
+        $actualList = iterator_to_array($actual, false);
+
+        $this->assertCount(1, $actualList);
+        $this->assertSame($bill2, $actualList[0]);
+    }
+
     /**
      * @param array $data
      *

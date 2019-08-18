@@ -9,7 +9,6 @@ use App\Core\Bills\Bill;
 use App\Sms\CompositeMessageParser;
 use App\Sms\MessageParserInterface;
 use App\Sms\Sms;
-use App\Sms\UnknownSmsTypeException;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
@@ -29,7 +28,7 @@ final class CompositeMessageParserTest extends TestCase
         $inner1->expects($this->once())
             ->method('parse')
             ->with($this->identicalTo($sms))
-            ->willThrowException(new UnknownSmsTypeException('test inner1'));
+            ->willReturn(null);
 
         $inner2->expects($this->once())
             ->method('parse')
@@ -45,7 +44,7 @@ final class CompositeMessageParserTest extends TestCase
         $this->assertSame($bill, $actual);
     }
 
-    public function testParseShouldExceptionIfNoParsers(): void
+    public function testParseShouldReturnNullIfNoParsersCanParse(): void
     {
         $sms = new Sms('test', new DateTimeImmutable('now'), 'test');
 
@@ -55,15 +54,16 @@ final class CompositeMessageParserTest extends TestCase
         $inner1->expects($this->once())
             ->method('parse')
             ->with($this->identicalTo($sms))
-            ->willThrowException(new UnknownSmsTypeException('test inner1'));
+            ->willReturn(null);
 
         $inner2->expects($this->once())
             ->method('parse')
             ->with($this->identicalTo($sms))
-            ->willThrowException(new UnknownSmsTypeException('test inner2'));
+            ->willReturn(null);
 
         $parser = new CompositeMessageParser($inner1, $inner2);
-        $this->expectException(UnknownSmsTypeException::class);
-        $parser->parse($sms);
+        $actual = $parser->parse($sms);
+
+        $this->assertNull($actual);
     }
 }
