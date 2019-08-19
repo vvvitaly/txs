@@ -18,4 +18,14 @@ final class TransactionItem
      * @var string
      */
     public $description;
+
+    /**
+     * @param float $amount
+     * @param string $description
+     */
+    public function __construct(float $amount, string $description)
+    {
+        $this->amount = $amount;
+        $this->description = $description;
+    }
 }

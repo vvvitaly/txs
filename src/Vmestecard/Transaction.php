@@ -29,5 +29,5 @@ final class Transaction
     /**
      * @var TransactionItem[]
      */
-    public $items;
+    public $items = [];
 }

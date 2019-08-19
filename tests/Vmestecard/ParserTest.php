@@ -19,19 +19,14 @@ final class ParserTest extends TestCase
 {
     public function testParse(): void
     {
-        $item1 = new TransactionItem();
-        $item1->amount = 100;
-        $item1->description = 'purchase #1';
-
-        $item2 = new TransactionItem();
-        $item2->amount = 99.8;
-        $item2->description = 'purchase #2';
-
         $tx1 = new Transaction();
         $tx1->date = new DateTimeImmutable('2019-08-19 23:00:12');
         $tx1->amount = 199.8;
         $tx1->chequeNumber = '900.1000.001';
-        $tx1->items = [$item1, $item2];
+        $tx1->items = [
+            new TransactionItem(100, 'purchase #1'),
+            new TransactionItem(99.8, 'purchase #2'),
+        ];
 
         $source = $this->createMock(TransactionsSourceInterface::class);
         $source->expects($this->once())
