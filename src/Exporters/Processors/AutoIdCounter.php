@@ -11,8 +11,6 @@ use App\Core\Export\Data\Transaction;
  */
 final class AutoIdCounter implements ProcessorInterface
 {
-    use ProcessorChainTrait;
-
     /**
      * @var string
      */
@@ -44,8 +42,6 @@ final class AutoIdCounter implements ProcessorInterface
     public function process(Transaction $transaction): void
     {
         $transaction->id = $this->prefix . $this->getNextId();
-
-        $this->next($transaction);
     }
 
     /**

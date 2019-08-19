@@ -6,9 +6,7 @@ declare(strict_types=1);
 
 namespace tests\Exporters\Processors;
 
-use App\Core\Export\Data\Transaction;
 use App\Exporters\Processors\DescriptionAsAccount;
-use App\Exporters\Processors\ProcessorInterface;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use tests\Helpers\TransactionHelper;
@@ -87,18 +85,5 @@ final class DescriptionAsAccountTest extends TestCase
         $this->assertEquals('expense:tomatoes', $splitTx->splits[0]->account);
         $this->assertEquals('apples', $splitTx->splits[1]->account);
         $this->assertEquals('coffee', $splitTx->splits[2]->account);
-    }
-
-    public function testProcessNext(): void
-    {
-        $tx = new Transaction();
-
-        $next = $this->createMock(ProcessorInterface::class);
-        $next->expects($this->once())->method('process')->with($this->identicalTo($tx));
-
-        $processor = new DescriptionAsAccount();
-        $processor->setNext($next);
-
-        $processor->process($tx);
     }
 }

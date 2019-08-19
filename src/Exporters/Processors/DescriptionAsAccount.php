@@ -32,8 +32,6 @@ use App\Core\Export\Data\Transaction;
  */
 final class DescriptionAsAccount implements ProcessorInterface
 {
-    use ProcessorChainTrait;
-
     /**
      * @inheritDoc
      */
@@ -47,7 +45,5 @@ final class DescriptionAsAccount implements ProcessorInterface
             }
             $split->account = $isSplit ? $split->memo : $transaction->description;
         }
-
-        $this->next($transaction);
     }
 }

@@ -16,14 +16,14 @@ use App\Exporters\Processors\ProcessorInterface;
  */
 final class BillExporter implements BillExporterInterface
 {
-    private $processorsChain;
+    private $processor;
 
     /**
      * @param ProcessorInterface|null $processor
      */
     public function __construct(?ProcessorInterface $processor = null)
     {
-        $this->processorsChain = $processor;
+        $this->processor = $processor;
     }
 
     /**
@@ -46,8 +46,8 @@ final class BillExporter implements BillExporterInterface
 
         $this->splitTransaction($transaction, $bill->getItems());
 
-        if ($this->processorsChain) {
-            $this->processorsChain->process($transaction);
+        if ($this->processor) {
+            $this->processor->process($transaction);
         }
 
         return $transaction;

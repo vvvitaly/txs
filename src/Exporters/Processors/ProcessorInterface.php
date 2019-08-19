@@ -8,19 +8,9 @@ use App\Core\Export\Data\Transaction;
 
 /**
  * Process exported transaction
- * @todo refactor
  */
 interface ProcessorInterface
 {
-    /**
-     * Set the next processor in chain.
-     *
-     * @param ProcessorInterface $processor
-     *
-     * @return mixed
-     */
-    public function setNext(ProcessorInterface $processor): void;
-    
     /**
      * Process transaction.
      *

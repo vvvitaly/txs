@@ -8,7 +8,6 @@ namespace tests\Exporters\Processors;
 
 use App\Core\Export\Data\Transaction;
 use App\Exporters\Processors\AutoIdCounter;
-use App\Exporters\Processors\ProcessorInterface;
 use PHPUnit\Framework\TestCase;
 
 final class AutoIdCounterTest extends TestCase
@@ -28,18 +27,5 @@ final class AutoIdCounterTest extends TestCase
         $this->assertEquals('test.100', $tx1->id);
         $this->assertEquals('test.101', $tx2->id);
         $this->assertEquals('test.102', $tx3->id);
-    }
-
-    public function testProcessNext(): void
-    {
-        $tx = new Transaction();
-
-        $next = $this->createMock(ProcessorInterface::class);
-        $next->expects($this->once())->method('process')->with($this->identicalTo($tx));
-
-        $processor = new AutoIdCounter();
-        $processor->setNext($next);
-
-        $processor->process($tx);
     }
 }
