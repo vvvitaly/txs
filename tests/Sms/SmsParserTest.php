@@ -13,6 +13,7 @@ use App\Sms\SmsSourceInterface;
 use DateTimeImmutable;
 use Generator;
 use PHPUnit\Framework\TestCase;
+use tests\Helpers\GeneratorHelper;
 
 /** @noinspection PhpMissingDocCommentInspection */
 
@@ -55,7 +56,7 @@ final class SmsParserTest extends TestCase
         $smsSource = $this->createMock(SmsSourceInterface::class);
         $smsSource->expects($this->once())
             ->method('read')
-            ->willReturnOnConsecutiveCalls($this->arrayToGenerator([$sms1, $sms2]));
+            ->willReturn(GeneratorHelper::fromArray([$sms1, $sms2]));
 
         $innerParser = $this->createMock(MessageParserInterface::class);
         $innerParser->expects($this->exactly(2))
