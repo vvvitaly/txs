@@ -29,7 +29,7 @@ final class SberWithdrawal implements MessageParserInterface
 {
     use SberValidationTrait, SberDatesTrait;
 
-    private const REGULAR_WITHDRAWAL_REGEX = '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?(?:\d{2}:\d{2})?) Выдача (?<amount>[0-9.]+)(?<currency>[а-яa-z]+) (?<description>.*?) Баланс/u';
+    private const REGULAR_WITHDRAWAL_REGEX = '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?(?:\d{2}:\d{2})?) Выдача (?<amount>[0-9.]+)(?<currency>[а-яa-z]+) (?<description>.*?) Баланс/ui';
 
     /**
      * @inheritDoc

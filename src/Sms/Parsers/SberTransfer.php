@@ -33,7 +33,7 @@ final class SberTransfer implements MessageParserInterface
 {
     use SberValidationTrait, SberDatesTrait;
 
-    private const REGULAR_REFILL_REGEX = '/^С Ваше(?:й|го) (?:карты|счета) (?<account>.+?) произведен перевод на (?:счет|карту) № (?<description>.+?) на сумму (?<amount>[0-9.,]+) (?<currency>[A-Z]{3}).$/u';
+    private const REGULAR_REFILL_REGEX = '/^С Ваше(?:й|го) (?:карты|счета) (?<account>.+?) произведен перевод на (?:счет|карту) № (?<description>.+?) на сумму (?<amount>[0-9.,]+) (?<currency>[A-Z]{3}).$/ui';
 
     /**
      * @inheritDoc

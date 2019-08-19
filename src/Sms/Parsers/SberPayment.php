@@ -39,9 +39,9 @@ final class SberPayment implements MessageParserInterface
 {
     use SberValidationTrait, SberDatesTrait;
 
-    private const REGULAR_PAYMENT_REGEX = '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?(?:\d{2}:\d{2})?) Оплата (?<amount>[0-9.]+)(?<currency>[а-яa-z]+) (?<description>.*?) Баланс/u';
-    private const ANNUAL_MAINTENANCE_PAYMENT_REGEX = '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?\d{2}:\d{2}) (?<description>оплата годового обслуживания карты) (?<amount>[0-9.,]+)(?<currency>[а-яa-z]+) Баланс/u';
-    private const MONTHLY_PAYMENT_REGEX = '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?\d{2}:\d{2}) (?<description>мобильный банк) за [0-9.-]+ (?<amount>[0-9.,]+)(?<currency>[а-яa-z]+) Баланс/u';
+    private const REGULAR_PAYMENT_REGEX = '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?(?:\d{2}:\d{2})?) Оплата (?<amount>[0-9.]+)(?<currency>[а-яa-z]+) (?<description>.*?) Баланс/ui';
+    private const ANNUAL_MAINTENANCE_PAYMENT_REGEX = '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?\d{2}:\d{2}) (?<description>оплата годового обслуживания карты) (?<amount>[0-9.,]+)(?<currency>[а-яa-z]+) Баланс/ui';
+    private const MONTHLY_PAYMENT_REGEX = '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?\d{2}:\d{2}) (?<description>мобильный банк) за [0-9.-]+ (?<amount>[0-9.,]+)(?<currency>[а-яa-z]+) Баланс/ui';
 
     /**
      * @inheritDoc
