@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Sms;
 
+use DateTimeImmutable;
 use Generator;
 
 /**
@@ -12,10 +13,12 @@ use Generator;
 interface SmsSourceInterface
 {
     /**
-     * Read the next SMS from source. Should return `Sms` instance
+     * Read the next SMS from source. Should return `Sms` instance. Each SMS has to be in dates interval [dateBegin, dateEnd].
+     *
+     * @param DateTimeImmutable $dateBegin
+     * @param DateTimeImmutable $dateEnd
      *
      * @return Generator|Sms
-     * @throws SourceReadErrorException
      */
-    public function read(): Generator;
+    public function read(DateTimeImmutable $dateBegin, DateTimeImmutable $dateEnd): Generator;
 }

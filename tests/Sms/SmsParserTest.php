@@ -38,7 +38,7 @@ final class SmsParserTest extends TestCase
 
         $parser = new SmsParser($smsSource, $innerParser);
 
-        $actual = $parser->parse();
+        $actual = $parser->parse(new DateTimeImmutable('-1 year'), new DateTimeImmutable('now'));
         $actualList = iterator_to_array($actual, false);
 
         $this->assertCount(2, $actualList);
@@ -65,7 +65,7 @@ final class SmsParserTest extends TestCase
 
         $parser = new SmsParser($smsSource, $innerParser);
 
-        $actual = $parser->parse();
+        $actual = $parser->parse(new DateTimeImmutable('-1 year'), new DateTimeImmutable('now'));
         $actualList = iterator_to_array($actual, false);
 
         $this->assertCount(1, $actualList);

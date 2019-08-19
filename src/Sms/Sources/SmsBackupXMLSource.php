@@ -34,7 +34,7 @@ final class SmsBackupXMLSource implements SmsSourceInterface
     /**
      * @inheritDoc
      */
-    public function read(): Generator
+    public function read(DateTimeImmutable $dateBegin, DateTimeImmutable $dateEnd): Generator
     {
         foreach ($this->xml->sms as $node) {
             $time = floor((int)(string)$node['date'] / 1000);
@@ -42,6 +42,10 @@ final class SmsBackupXMLSource implements SmsSourceInterface
                 $date = (new DateTimeImmutable('@' . $time))->setTimezone(new DateTimeZone('Europe/Moscow'));
             } catch (Exception $e) {
                 throw new SourceReadErrorException('Can not read message date: "' . $node['date'] . '"', 0, $e);
+            }
+
+            if (!($date >= $dateBegin && $date <= $dateEnd)) {
+                continue;
             }
 
             yield new Sms(
