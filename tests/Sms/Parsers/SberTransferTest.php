@@ -47,7 +47,7 @@ final class SberTransferTest extends SberSmsTestCase
                 new Bill(
                     new Amount(430, 'RUB'),
                     '1234',
-                    new BillInfo(new DateTimeImmutable('2019-08-01 23:01:13'), '10000000000000000123')
+                    new BillInfo(new DateTimeImmutable('2019-08-01 23:01:13'), 'Перевод на 10000000000000000123')
                 ),
             ],
             'account => card' => [
@@ -56,7 +56,7 @@ final class SberTransferTest extends SberSmsTestCase
                 new Bill(
                     new Amount(19000, 'RUB'),
                     '11111111111111111857',
-                    new BillInfo(new DateTimeImmutable('2019-08-03 12:03:33'), '4321')
+                    new BillInfo(new DateTimeImmutable('2019-08-03 12:03:33'), 'Перевод на 4321')
                 ),
             ],
             'card => card' => [
@@ -65,7 +65,7 @@ final class SberTransferTest extends SberSmsTestCase
                 new Bill(
                     new Amount(6154.33, 'RUB'),
                     '7777',
-                    new BillInfo(new DateTimeImmutable('2019-07-16 13:05:48'), '0001')
+                    new BillInfo(new DateTimeImmutable('2019-07-16 13:05:48'), 'Перевод на 0001')
                 ),
             ],
         ];

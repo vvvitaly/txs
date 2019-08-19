@@ -70,7 +70,7 @@ final class SberTransfer implements MessageParserInterface
         return new Bill(
             new Amount($amount, $matches['currency']),
             $account,
-            new BillInfo($sms->date, $description)
+            new BillInfo($sms->date, 'Перевод на ' . $description)
         );
     }
 }

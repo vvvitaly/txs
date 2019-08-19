@@ -46,7 +46,7 @@ final class SberPaymentTest extends SberSmsTestCase
                 new Bill(
                     new Amount(100, 'р'),
                     'ECMC1234',
-                    new BillInfo(new DateTimeImmutable('2019-08-01 02:38:00'), 'TELE2 (9001234567)')
+                    new BillInfo(new DateTimeImmutable('2019-08-01 02:38:00'), 'Оплата TELE2 (9001234567)')
                 )
             ],
             'normal message with different dates' => [
@@ -54,7 +54,7 @@ final class SberPaymentTest extends SberSmsTestCase
                 new Bill(
                     new Amount(100, 'р'),
                     'ECMC1234',
-                    new BillInfo(new DateTimeImmutable('2019-07-31 02:38:00'), 'TELE2 (9001234567)')
+                    new BillInfo(new DateTimeImmutable('2019-07-31 02:38:00'), 'Оплата TELE2 (9001234567)')
                 )
             ],
             'normal message, date only' => [
@@ -62,7 +62,7 @@ final class SberPaymentTest extends SberSmsTestCase
                 new Bill(
                     new Amount(100, 'р'),
                     'ECMC1234',
-                    new BillInfo(new DateTimeImmutable('2019-07-31 00:00:00'), 'TELE2 (9001234567)')
+                    new BillInfo(new DateTimeImmutable('2019-07-31 00:00:00'), 'Оплата TELE2 (9001234567)')
                 )
             ],
             'annual payment' => [

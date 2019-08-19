@@ -53,15 +53,15 @@ final class SberPayment implements MessageParserInterface
         }
 
         $regexes = [
-            self::REGULAR_PAYMENT_REGEX,
-            self::ANNUAL_MAINTENANCE_PAYMENT_REGEX,
-            self::MONTHLY_PAYMENT_REGEX,
+            [self::REGULAR_PAYMENT_REGEX, true],
+            [self::ANNUAL_MAINTENANCE_PAYMENT_REGEX, false],
+            [self::MONTHLY_PAYMENT_REGEX, false],
         ];
 
-        foreach ($regexes as $regex) {
+        foreach ($regexes as [$regex, $addPrefix]) {
             $matches = [];
             if (preg_match($regex, $sms->message, $matches, PREG_UNMATCHED_AS_NULL)) {
-                return $this->parseMatches($sms, $matches);
+                return $this->parseMatches($sms, $matches, $addPrefix);
             }
         }
 
@@ -73,17 +73,19 @@ final class SberPayment implements MessageParserInterface
      *
      * @param Sms $sms
      * @param array $matches
+     * @param bool $addPrefix add message prefix
      *
      * @return Bill
      */
-    private function parseMatches(Sms $sms, array $matches): Bill
+    private function parseMatches(Sms $sms, array $matches, bool $addPrefix): Bill
     {
         $amount = (float)str_replace(',', '.', $matches['amount']);
+        $description = ($addPrefix ? 'Оплата ' : '') . $matches['description'];
 
         return new Bill(
             new Amount($amount, $matches['currency']),
             $matches['account'],
-            new BillInfo($this->resolveDate($sms, $matches['time']), $matches['description'])
+            new BillInfo($this->resolveDate($sms, $matches['time']), $description)
         );
     }
 }
