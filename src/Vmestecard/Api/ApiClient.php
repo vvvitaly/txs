@@ -26,13 +26,24 @@ final class ApiClient implements ApiClientInterface
     private $requestFactory;
 
     /**
+     * @var TokenProviderInterface
+     */
+    private $tokenProvider;
+
+    /**
+     * @param TokenProviderInterface $tokenProvider
      * @param HttpClient $httpClient
      * @param RequestFactory $requestFactory
      */
-    public function __construct(HttpClient $httpClient, RequestFactory $requestFactory = null)
+    public function __construct(
+        TokenProviderInterface $tokenProvider,
+        HttpClient $httpClient,
+        RequestFactory $requestFactory = null
+    )
     {
         $this->httpClient = $httpClient;
         $this->requestFactory = $requestFactory;
+        $this->tokenProvider = $tokenProvider;
     }
 
     /**
@@ -40,6 +51,11 @@ final class ApiClient implements ApiClientInterface
      */
     public function getHistory(DateRange $dateRange, Pagination $pagination): array
     {
+        $token = $this->tokenProvider->getToken();
+        if (!$token->isValid()) {
+            throw new ApiErrorException('Can not send request because access token is invalid');
+        }
+
         $httpRequest = $this->requestFactory->createRequest(
             'GET',
             '/api/History?' . http_build_query([
@@ -47,7 +63,10 @@ final class ApiClient implements ApiClientInterface
                 'filter.from' => $pagination->getOffset(),
                 'filter.fromDate' => $dateRange->getBegin() ? $dateRange->getBegin()->format('Y-m-d\TH:i:s.000\Z') : null,
                 'filter.toDate' => $dateRange->getEnd() ? $dateRange->getEnd()->format('Y-m-d\TH:i:s.999\Z') : null,
-            ])
+            ]),
+            [
+                'Authorization' => 'Bearer ' . $token->getToken(),
+            ]
         );
 
         try {

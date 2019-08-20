@@ -7,7 +7,9 @@ namespace tests\Vmestecard\Api;
 use App\Libs\Date\DateRange;
 use App\Vmestecard\Api\ApiClient;
 use App\Vmestecard\Api\ApiErrorException;
+use App\Vmestecard\Api\ApiToken;
 use App\Vmestecard\Api\Pagination;
+use App\Vmestecard\Api\TokenProviderInterface;
 use DateTimeImmutable;
 use GuzzleHttp\Psr7\Response;
 use Http\Client\Exception\TransferException;
@@ -31,7 +33,12 @@ final class ApiClientTest extends TestCase
         $http = new Client();
         $http->addResponse($response);
 
-        $client = new ApiClient($http, MessageFactoryDiscovery::find());
+        $tokenProvider = $this->createMock(TokenProviderInterface::class);
+        $tokenProvider->expects($this->once())
+            ->method('getToken')
+            ->willReturn(new ApiToken('test.token', 3600));
+
+        $client = new ApiClient($tokenProvider, $http, MessageFactoryDiscovery::find());
         $response = $client->getHistory($dates, $pagination);
         $this->assertEquals(json_decode(self::successfulResponse(), true), $response);
 
@@ -39,6 +46,8 @@ final class ApiClientTest extends TestCase
         $actualRequest = $http->getLastRequest();
         $this->assertEquals('GET', $actualRequest->getMethod());
         $this->assertEquals('/api/History', $actualRequest->getUri()->getPath());
+        $this->assertEquals('Bearer test.token', $actualRequest->getHeaderLine('Authorization'));
+
         $query = [];
         parse_str($actualRequest->getUri()->getQuery(), $query);
         $this->assertEquals([ // parse_str replaces '.' to '_'
@@ -59,7 +68,11 @@ final class ApiClientTest extends TestCase
         $http = new Client();
         $http->addResponse($response);
 
-        $client = new ApiClient($http, MessageFactoryDiscovery::find());
+        $client = new ApiClient(
+            $this->createConfiguredMock(TokenProviderInterface::class, ['getToken' => new ApiToken('test', 1)]),
+            $http,
+            MessageFactoryDiscovery::find()
+        );
         $this->expectException(ApiErrorException::class);
         $this->expectExceptionMessageRegExp('/testGetHistoryWrongResponse/');
         $client->getHistory($dates, $pagination);
@@ -73,7 +86,11 @@ final class ApiClientTest extends TestCase
         $http = new Client();
         $http->addException(new TransferException('testGetHistoryWrongResponse'));
 
-        $client = new ApiClient($http, MessageFactoryDiscovery::find());
+        $client = new ApiClient(
+            $this->createConfiguredMock(TokenProviderInterface::class, ['getToken' => new ApiToken('test', 1)]),
+            $http,
+            MessageFactoryDiscovery::find()
+        );
         $this->expectException(ApiErrorException::class);
         $client->getHistory($dates, $pagination);
     }
@@ -88,7 +105,11 @@ final class ApiClientTest extends TestCase
         $http = new Client();
         $http->addResponse($response);
 
-        $client = new ApiClient($http, MessageFactoryDiscovery::find());
+        $client = new ApiClient(
+            $this->createConfiguredMock(TokenProviderInterface::class, ['getToken' => new ApiToken('test', 1)]),
+            $http,
+            MessageFactoryDiscovery::find()
+        );
         $this->expectException(ApiErrorException::class);
         $client->getHistory($dates, $pagination);
     }
