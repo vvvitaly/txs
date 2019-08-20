@@ -15,10 +15,12 @@
         "ext-simplexml": "*",
         "ext-json": "*",
         "webmozart/assert": "^1.4",
-        "php-http/socket-client": "^1.4",
+        "php-http/guzzle6-adapter": "^2.0",
         "php-http/discovery": "^1.7",
         "php-http/message": "^1.8",
-        "guzzlehttp/psr7": "^1.6"
+        "php-http/logger-plugin": "^1.1",
+        "guzzlehttp/psr7": "^1.6",
+        "monolog/monolog": "^1.24"
     },
 
     "require-dev": {
