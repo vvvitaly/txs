@@ -50,6 +50,10 @@ final class ApiSource implements TransactionsSourceInterface
         }
 
         foreach ($response['data']['rows'] as $row) {
+            if ($row['type'] !== 'PurchaseData') {
+                continue;
+            }
+
             try {
                 $transaction = $this->parseRow($row);
             } catch (Exception $exception) {
