@@ -57,7 +57,8 @@ final class ApiSource implements TransactionsSourceInterface
             try {
                 $transaction = $this->parseRow($row);
             } catch (Exception $exception) {
-                throw new SourceReadErrorException('Can not read API response', 0, $exception);
+                throw new SourceReadErrorException('Can not read API response: ' . $exception->getMessage(), 0,
+                    $exception);
             }
 
             yield $transaction;
