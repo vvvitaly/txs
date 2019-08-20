@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace App\Vmestecard\Api;
 
 use App\Libs\Date\DateRange;
+use DateTimeImmutable;
 use Exception;
-use Http\Client\Exception as HttpClientException;
 use Http\Client\Exception\HttpException;
 use Http\Client\HttpClient;
 use Http\Message\RequestFactory;
+use Psr\Http\Client\ClientExceptionInterface;
 
 /**
  * API implementation based on HTTP client
@@ -57,13 +58,14 @@ final class ApiClient implements ApiClientInterface
             throw new ApiErrorException('Can not send request because access token is invalid');
         }
 
+        $toDate = $dateRange->getEnd() ?? new DateTimeImmutable('now');
         $httpRequest = $this->requestFactory->createRequest(
             'GET',
             '/api/History?' . http_build_query([
                 'filter.count' => $pagination->getLimit(),
                 'filter.from' => $pagination->getOffset(),
                 'filter.fromDate' => $dateRange->getBegin() ? $dateRange->getBegin()->format('Y-m-d\TH:i:s.000\Z') : null,
-                'filter.toDate' => $dateRange->getEnd() ? $dateRange->getEnd()->format('Y-m-d\TH:i:s.999\Z') : null,
+                'filter.toDate' => $toDate->format('Y-m-d\TH:i:s.999\Z'),
             ]),
             [
                 'Authorization' => 'Bearer ' . $token->getToken(),
@@ -72,7 +74,7 @@ final class ApiClient implements ApiClientInterface
 
         try {
             $response = $this->httpClient->sendRequest($httpRequest);
-        } catch (HttpClientException $e) {
+        } catch (ClientExceptionInterface $e) {
             throw new ApiErrorException('API call error', 0, $e);
         } catch (Exception $e) {
             throw new ApiErrorException('Can not process the request', 0, $e);
