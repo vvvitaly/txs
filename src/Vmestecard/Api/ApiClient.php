@@ -7,6 +7,7 @@ namespace App\Vmestecard\Api;
 use App\Libs\Date\DateRange;
 use Exception;
 use Http\Client\Exception as HttpClientException;
+use Http\Client\Exception\HttpException;
 use Http\Client\HttpClient;
 use Http\Message\RequestFactory;
 
@@ -75,6 +76,11 @@ final class ApiClient implements ApiClientInterface
             throw new ApiErrorException('API call error', 0, $e);
         } catch (Exception $e) {
             throw new ApiErrorException('Can not process the request', 0, $e);
+        }
+
+        if ($response->getStatusCode() !== 200) {
+            throw new ApiErrorException('HTTP error during API call', 0,
+                HttpException::create($httpRequest, $response));
         }
 
         $data = json_decode($response->getBody()->getContents(), true);
