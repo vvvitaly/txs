@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Vmestecard\Api;
 
 use App\Libs\Date\DateRange;
+use App\Vmestecard\Api\Client\Pagination;
 
 /**
  * Vmestecard API client

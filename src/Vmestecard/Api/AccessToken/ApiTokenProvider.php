@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Vmestecard\Api;
+namespace App\Vmestecard\Api\AccessToken;
 
 use Exception;
-use Http\Client\Exception as HttpClientException;
 use Http\Client\Exception\HttpException;
 use Http\Client\HttpClient;
 use Http\Message\RequestFactory;
+use Psr\Http\Client\ClientExceptionInterface;
 
 /**
  * Obtain access via API "/token"
@@ -60,10 +60,10 @@ final class ApiTokenProvider implements TokenProviderInterface
 
         try {
             $response = $this->httpClient->sendRequest($httpRequest);
-        } catch (HttpClientException $e) {
-            throw new ApiErrorException('API call error', 0, $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new TokenNotFoundException('API call error', 0, $e);
         } catch (Exception $e) {
-            throw new ApiErrorException('Can not process the request', 0, $e);
+            throw new TokenNotFoundException('Can not process the request', 0, $e);
         }
 
         $data = json_decode($response->getBody()->getContents(), true);
@@ -71,7 +71,7 @@ final class ApiTokenProvider implements TokenProviderInterface
         if ($response->getStatusCode() !== 200) {
             $message = $data['error_description'] ?? '(unknown error)';
 
-            throw new ApiErrorException(
+            throw new TokenNotFoundException(
                 "API error: \"$message\"",
                 0,
                 HttpException::create($httpRequest, $response)

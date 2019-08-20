@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace tests\Vmestecard\Api;
+namespace tests\Vmestecard\Api\AccessToken;
 
-use App\Vmestecard\Api\ApiCredentials;
-use App\Vmestecard\Api\ApiErrorException;
-use App\Vmestecard\Api\ApiTokenProvider;
+use App\Vmestecard\Api\AccessToken\ApiCredentials;
+use App\Vmestecard\Api\AccessToken\ApiTokenProvider;
+use App\Vmestecard\Api\AccessToken\TokenNotFoundException;
 use GuzzleHttp\Psr7\Response;
 use Http\Client\Exception\TransferException;
 use Http\Discovery\MessageFactoryDiscovery;
@@ -58,7 +58,7 @@ final class ApiTokenProviderTest extends TestCase
         $tokenProvider = new ApiTokenProvider(new ApiCredentials('test', 'pwd'), $http,
             MessageFactoryDiscovery::find());
 
-        $this->expectException(ApiErrorException::class);
+        $this->expectException(TokenNotFoundException::class);
         $this->expectExceptionMessageRegExp('/Some error/');
         $tokenProvider->getToken();
     }
@@ -70,7 +70,7 @@ final class ApiTokenProviderTest extends TestCase
 
         $tokenProvider = new ApiTokenProvider(new ApiCredentials('test', 'pwd'), $http,
             MessageFactoryDiscovery::find());
-        $this->expectException(ApiErrorException::class);
+        $this->expectException(TokenNotFoundException::class);
         $tokenProvider->getToken();
     }
 }

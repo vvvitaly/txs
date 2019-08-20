@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace tests\Vmestecard\Api;
+namespace tests\Vmestecard\Api\Client;
 
 use App\Libs\Date\DateRange;
-use App\Vmestecard\Api\ApiClient;
+use App\Vmestecard\Api\AccessToken\ApiToken;
+use App\Vmestecard\Api\AccessToken\TokenProviderInterface;
 use App\Vmestecard\Api\ApiErrorException;
-use App\Vmestecard\Api\ApiToken;
-use App\Vmestecard\Api\Pagination;
-use App\Vmestecard\Api\TokenProviderInterface;
+use App\Vmestecard\Api\Client\ApiClient;
+use App\Vmestecard\Api\Client\Pagination;
 use DateTimeImmutable;
 use GuzzleHttp\Psr7\Response;
 use Http\Client\Exception\TransferException;

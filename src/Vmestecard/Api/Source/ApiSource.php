@@ -2,9 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Vmestecard\Api;
+namespace App\Vmestecard\Api\Source;
 
 use App\Libs\Date\DateRange;
+use App\Vmestecard\Api\ApiClientInterface;
+use App\Vmestecard\Api\ApiErrorException;
+use App\Vmestecard\Api\Client\Pagination;
 use App\Vmestecard\SourceReadErrorException;
 use App\Vmestecard\Transaction;
 use App\Vmestecard\TransactionItem;

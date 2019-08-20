@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace tests\Vmestecard\Api;
+namespace tests\Vmestecard\Api\AccessToken;
 
-use App\Vmestecard\Api\ApiToken;
-use App\Vmestecard\Api\CachedTokenProvider;
-use App\Vmestecard\Api\TokenProviderInterface;
+use App\Vmestecard\Api\AccessToken\ApiToken;
+use App\Vmestecard\Api\AccessToken\CachedTokenProvider;
+use App\Vmestecard\Api\AccessToken\TokenProviderInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\SimpleCache\CacheInterface;
 

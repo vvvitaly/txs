@@ -2,9 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Vmestecard\Api;
+namespace App\Vmestecard\Api\Client;
 
 use App\Libs\Date\DateRange;
+use App\Vmestecard\Api\AccessToken\TokenProviderInterface;
+use App\Vmestecard\Api\ApiClientInterface;
+use App\Vmestecard\Api\ApiErrorException;
 use DateTimeImmutable;
 use Exception;
 use Http\Client\Exception\HttpException;

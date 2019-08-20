@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace tests\Vmestecard\Api;
+namespace tests\Vmestecard\Api\Source;
 
 use App\Libs\Date\DateRange;
 use App\Vmestecard\Api\ApiClientInterface;
 use App\Vmestecard\Api\ApiErrorException;
-use App\Vmestecard\Api\ApiSource;
-use App\Vmestecard\Api\Pagination;
+use App\Vmestecard\Api\Client\Pagination;
+use App\Vmestecard\Api\Source\ApiSource;
 use App\Vmestecard\SourceReadErrorException;
 use App\Vmestecard\Transaction;
 use DateTimeImmutable;

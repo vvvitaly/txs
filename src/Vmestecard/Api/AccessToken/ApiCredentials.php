@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Vmestecard\Api;
+namespace App\Vmestecard\Api\AccessToken;
 
 /**
  * Credentials for API
