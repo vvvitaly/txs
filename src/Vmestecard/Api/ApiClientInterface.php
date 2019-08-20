@@ -12,12 +12,12 @@ use App\Libs\Date\DateRange;
 interface ApiClientInterface
 {
     /**
-     * Load transactions history for the specified date range.
+     * Load transactions history for the specified date range and page settings.
      *
      * @param DateRange $dateRange
+     * @param Pagination $pagination
      *
      * @return array
-     * @throws ApiErrorException
      */
-    public function getHistory(DateRange $dateRange): array;
+    public function getHistory(DateRange $dateRange, Pagination $pagination): array;
 }

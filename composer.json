@@ -13,12 +13,18 @@
     "require": {
         "php": ">=7.2",
         "ext-simplexml": "*",
-        "webmozart/assert": "*"
+        "ext-json": "*",
+        "webmozart/assert": "^1.4",
+        "php-http/socket-client": "^1.4",
+        "php-http/discovery": "^1.7",
+        "php-http/message": "^1.8",
+        "guzzlehttp/psr7": "^1.6"
     },
 
     "require-dev": {
         "roave/security-advisories": "dev-master",
-        "phpunit/phpunit": "^8"
+        "phpunit/phpunit": "^8",
+        "php-http/mock-client": "^1.0"
     },
 
     "autoload": {

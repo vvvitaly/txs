@@ -53,4 +53,20 @@ final class DateRange
             ($this->begin === null || $testingDate >= $this->begin) &&
             ($this->end === null || $testingDate <= $this->end);
     }
+
+    /**
+     * @return DateTimeImmutable|null
+     */
+    public function getBegin(): ?DateTimeImmutable
+    {
+        return $this->begin;
+    }
+
+    /**
+     * @return DateTimeImmutable|null
+     */
+    public function getEnd(): ?DateTimeImmutable
+    {
+        return $this->end;
+    }
 }

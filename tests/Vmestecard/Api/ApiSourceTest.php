@@ -8,6 +8,7 @@ use App\Libs\Date\DateRange;
 use App\Vmestecard\Api\ApiClientInterface;
 use App\Vmestecard\Api\ApiErrorException;
 use App\Vmestecard\Api\ApiSource;
+use App\Vmestecard\Api\Pagination;
 use App\Vmestecard\SourceReadErrorException;
 use App\Vmestecard\Transaction;
 use DateTimeImmutable;
@@ -137,7 +138,7 @@ final class ApiSourceTest extends TestCase
         $client = $this->createMock(ApiClientInterface::class);
         $client->expects($this->once())
             ->method('getHistory')
-            ->with($this->identicalTo($dates))
+            ->with($this->identicalTo($dates), $this->isInstanceOf(Pagination::class))
             ->willReturn($response);
 
         $source = new ApiSource($client, $dates);

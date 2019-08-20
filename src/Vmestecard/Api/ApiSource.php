@@ -44,7 +44,7 @@ final class ApiSource implements TransactionsSourceInterface
     public function read(): Generator
     {
         try {
-            $response = $this->client->getHistory($this->dateRange);
+            $response = $this->client->getHistory($this->dateRange, new Pagination(1000));
         } catch (ApiErrorException $exception) {
             throw new SourceReadErrorException('Can not obtain history via API', 0, $exception);
         }
