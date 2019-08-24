@@ -7,9 +7,9 @@ namespace App\Vmestecard;
 use RuntimeException;
 
 /**
- * Can not read source.
+ * Can not parse operations history
  */
-final class SourceReadErrorException extends RuntimeException
+final class ParseException extends RuntimeException
 {
 
 }

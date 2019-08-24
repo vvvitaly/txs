@@ -5,53 +5,106 @@ declare(strict_types=1);
 namespace tests\Vmestecard;
 
 use App\Core\Bills\Bill;
-use App\Vmestecard\Parser;
-use App\Vmestecard\Transaction;
-use App\Vmestecard\TransactionItem;
-use App\Vmestecard\TransactionsSourceInterface;
+use App\Libs\Date\DateRange;
+use App\Vmestecard\Api\ApiClientInterface;
+use App\Vmestecard\Api\ApiErrorException;
+use App\Vmestecard\Api\Client\Pagination;
+use App\Vmestecard\ApiParser;
+use App\Vmestecard\ParseException;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
-use tests\Helpers\GeneratorHelper;
 
 /** @noinspection PhpMissingDocCommentInspection */
 
 final class ParserTest extends TestCase
 {
-    public function testParse(): void
+    public function testParseSuccessfulResponse(): void
     {
-        $tx1 = new Transaction();
-        $tx1->date = new DateTimeImmutable('2019-08-19 23:00:12');
-        $tx1->amount = 199.8;
-        $tx1->chequeNumber = '900.1000.001';
-        $tx1->items = [
-            new TransactionItem(100, 'purchase #1'),
-            new TransactionItem(99.8, 'purchase #2'),
-        ];
+        $response = require __DIR__ . '/successful-response.php';
+        $dates = new DateRange(new DateTimeImmutable('-1 year'), null);
+        $defaultAccount = 'default';
 
-        $source = $this->createMock(TransactionsSourceInterface::class);
-        $source->expects($this->once())
-            ->method('read')
-            ->willReturn(GeneratorHelper::fromArray([$tx1]));
+        $client = $this->createMock(ApiClientInterface::class);
+        $client->expects($this->once())
+            ->method('getHistory')
+            ->with($this->identicalTo($dates), $this->isInstanceOf(Pagination::class))
+            ->willReturn($response);
+
+        $parser = new ApiParser($client, $dates, $defaultAccount);
 
         /** @var Bill[] $bills */
-        $bills = iterator_to_array((new Parser($source, 'default account'))->parse(), false);
+        $bills = iterator_to_array($parser->parse(), false);
 
         $this->assertCount(1, $bills);
-        $this->assertEquals('default account', $bills[0]->getAccount());
-        $this->assertEquals(199.8, $bills[0]->getAmount()->getValue());
+
+        $this->assertEquals(new DateTimeImmutable('2019-08-03 21:21:41'), $bills[0]->getInfo()->getDate());
+        $this->assertEquals(171.9, $bills[0]->getAmount()->getValue());
         $this->assertNull($bills[0]->getAmount()->getCurrency());
-        $this->assertEquals(new DateTimeImmutable('2019-08-19 23:00:12'), $bills[0]->getInfo()->getDate());
-        $this->assertNull($bills[0]->getInfo()->getDescription());
-        $this->assertEquals('900.1000.001', $bills[0]->getInfo()->getNumber());
+        $this->assertEquals('804.1030.200', $bills[0]->getInfo()->getNumber());
 
-        $items = $bills[0]->getItems();
-        $this->assertCount(2, $items);
-        $this->assertEquals(100, $items[0]->getAmount()->getValue());
-        $this->assertNull($items[0]->getAmount()->getCurrency());
-        $this->assertEquals('purchase #1', $items[0]->getDescription());
+        $this->assertCount(2, $bills[0]->getItems());
+        $this->assertEquals('Пакет АТЛАС 36+18*60 20мкр*1000', $bills[0]->getItems()[0]->getDescription());
+        $this->assertEquals(6, $bills[0]->getItems()[0]->getAmount()->getValue());
 
-        $this->assertEquals(99.8, $items[1]->getAmount()->getValue());
-        $this->assertNull($items[1]->getAmount()->getCurrency());
-        $this->assertEquals('purchase #2', $items[1]->getDescription());
+        $this->assertEquals('Газ.вода Кока-кола ЧЕРРИ 0,5л.*24 пл.б.', $bills[0]->getItems()[1]->getDescription());
+        $this->assertEquals(47.9, $bills[0]->getItems()[1]->getAmount()->getValue());
+    }
+
+    public function testParseShouldSkipNonPurchase(): void
+    {
+        $response = [
+            'data' => [
+                'allCount' => 1,
+                'rows' => [
+                    [
+                        'id' => 'ac49fe7d-2455-4b9f-aef9-8c30c732021f',
+                        'dateTime' => '2019-08-03T21:21:41Z',
+                        'type' => 'RewardData',
+                        'userId' => 467463,
+                        'identity' => '8018156838613605',
+                        'description' => 'XXX YYY',
+                        'location' => [],
+                        'partnerId' => '97597cfd-2a3b-4a7a-90fe-b304860f7a67',
+                        'brandId' => 'e5d73498-a193-43a0-2054-97c6526587bf',
+                        'brand' => [],
+                        'data' => [],
+                    ],
+                ],
+            ],
+            'result' => [
+                'state' => 'Success',
+                'message' => null,
+                'validationErrors' => null,
+            ],
+        ];
+        $dates = new DateRange(new DateTimeImmutable('-1 year'), null);
+
+        $client = $this->createMock(ApiClientInterface::class);
+        $client
+            ->method('getHistory')
+            ->willReturn($response);
+
+        $parser = new ApiParser($client, $dates, 'default');
+
+        /** @var Bill[] $bills */
+        $bills = iterator_to_array($parser->parse(), false);
+
+        $this->assertCount(0, $bills);
+    }
+
+    public function testParseWithError(): void
+    {
+        $dates = new DateRange(new DateTimeImmutable('-1 year'), null);
+
+        $client = $this->createMock(ApiClientInterface::class);
+        $client->expects($this->once())
+            ->method('getHistory')
+            ->with($this->identicalTo($dates))
+            ->willThrowException(new ApiErrorException('test'));
+
+        $parser = new ApiParser($client, $dates, 'default');
+
+        $this->expectException(ParseException::class);
+        iterator_to_array($parser->parse(), false);
     }
 }
