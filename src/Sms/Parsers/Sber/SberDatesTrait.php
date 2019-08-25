@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Sms\Parsers;
+namespace App\Sms\Parsers\Sber;
 
-use App\Sms\Sms;
+use App\Sms\Message;
 use DateTimeImmutable;
 
 /**
@@ -25,12 +25,12 @@ trait SberDatesTrait
      * This method uses the date from SMS metadata and correct it with the time from SMS (in case of "time format"),
      * or, in case of "date" format, it uses the full date from the text.
      *
-     * @param Sms $sms
+     * @param Message $sms
      * @param string $parsedDate text with date
      *
      * @return DateTimeImmutable
      */
-    private function resolveDate(Sms $sms, string $parsedDate): DateTimeImmutable
+    private function resolveDate(Message $sms, string $parsedDate): DateTimeImmutable
     {
         if (($date = DateTimeImmutable::createFromFormat('d.m.y H:i', $parsedDate)) !== false) {
             return $date;

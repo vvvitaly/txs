@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace tests\Sms;
+namespace tests\Sms\Parsers;
 
 use App\Core\Bills\Amount;
 use App\Core\Bills\Bill;
-use App\Sms\CompositeMessageParser;
-use App\Sms\MessageParserInterface;
-use App\Sms\Sms;
+use App\Sms\Message;
+use App\Sms\Parsers\CompositeMessageParser;
+use App\Sms\Parsers\MessageParserInterface;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
@@ -18,7 +18,7 @@ final class CompositeMessageParserTest extends TestCase
 {
     public function testParse(): void
     {
-        $sms = new Sms('test', new DateTimeImmutable('now'), 'test');
+        $sms = new Message('test', new DateTimeImmutable('now'), 'test');
         $bill = new Bill(new Amount(1));
 
         $inner1 = $this->createMock(MessageParserInterface::class);
@@ -46,7 +46,7 @@ final class CompositeMessageParserTest extends TestCase
 
     public function testParseShouldReturnNullIfNoParsersCanParse(): void
     {
-        $sms = new Sms('test', new DateTimeImmutable('now'), 'test');
+        $sms = new Message('test', new DateTimeImmutable('now'), 'test');
 
         $inner1 = $this->createMock(MessageParserInterface::class);
         $inner2 = $this->createMock(MessageParserInterface::class);

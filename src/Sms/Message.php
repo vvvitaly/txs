@@ -9,7 +9,7 @@ use DateTimeImmutable;
 /**
  * SMS DTO
  */
-final class Sms
+final class Message
 {
     /**
      * Sender address
@@ -27,17 +27,17 @@ final class Sms
      * Message text
      * @var string
      */
-    public $message;
+    public $text;
 
     /**
      * @param string $from
      * @param DateTimeImmutable $date
-     * @param string $message
+     * @param string $text
      */
-    public function __construct(string $from, DateTimeImmutable $date, string $message)
+    public function __construct(string $from, DateTimeImmutable $date, string $text)
     {
         $this->from = $from;
         $this->date = $date;
-        $this->message = $message;
+        $this->text = $text;
     }
 }

@@ -5,14 +5,14 @@
 
 declare(strict_types=1);
 
-namespace tests\Sms\Parsers;
+namespace tests\Sms\Parsers\Sber;
 
 use App\Core\Bills\Amount;
 use App\Core\Bills\Bill;
 use App\Core\Bills\BillInfo;
-use App\Sms\MessageParserInterface;
-use App\Sms\Parsers\SberRefill;
-use App\Sms\Sms;
+use App\Sms\Message;
+use App\Sms\Parsers\MessageParserInterface;
+use App\Sms\Parsers\Sber\SberRefill;
 use DateTimeImmutable;
 
 final class SberRefillTest extends SberSmsTestCase
@@ -42,7 +42,7 @@ final class SberRefillTest extends SberSmsTestCase
     {
         return [
             'visa transfer' => [
-                new Sms('900', new DateTimeImmutable('2019-08-01 23:01:13'),
+                new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
                     'VISA0001 10:06 зачисление 70292.68р VISA MONEY TRANSFER Баланс: 81692р'),
                 new Bill(
                     new Amount(70292.68, 'р'),
@@ -51,7 +51,7 @@ final class SberRefillTest extends SberSmsTestCase
                 ),
             ],
             'salary' => [
-                new Sms('900', new DateTimeImmutable('2019-08-03 12:03:33'),
+                new Message('900', new DateTimeImmutable('2019-08-03 12:03:33'),
                     'VISA0001 16:30 зачисление зарплаты 35000р Баланс: 115795.17р'),
                 new Bill(
                     new Amount(35000, 'р'),
@@ -60,7 +60,7 @@ final class SberRefillTest extends SberSmsTestCase
                 ),
             ],
             'some payout' => [
-                new Sms('900', new DateTimeImmutable('2019-07-16 13:05:48'),
+                new Message('900', new DateTimeImmutable('2019-07-16 13:05:48'),
                     'VISA0001 19:58 зачисление страхового возмещения 6500р Баланс: 14763.42р'),
                 new Bill(
                     new Amount(6500, 'р'),
@@ -69,7 +69,7 @@ final class SberRefillTest extends SberSmsTestCase
                 ),
             ],
             'cash refill' => [
-                new Sms('900', new DateTimeImmutable('2019-07-29 10:10:28'),
+                new Message('900', new DateTimeImmutable('2019-07-29 10:10:28'),
                     'VISA0001 12:59 Зачисление 1000р ATM 60000111 Баланс: 10422.87р'),
                 new Bill(
                     new Amount(1000, 'р'),
@@ -78,7 +78,7 @@ final class SberRefillTest extends SberSmsTestCase
                 ),
             ],
             'refill with different date' => [
-                new Sms('900', new DateTimeImmutable('2019-07-29 10:10:28'),
+                new Message('900', new DateTimeImmutable('2019-07-29 10:10:28'),
                     'VISA0001 28.07.19 12:59 Зачисление 1000р ATM 60000111 Баланс: 10422.87р'),
                 new Bill(
                     new Amount(1000, 'р'),
@@ -87,7 +87,7 @@ final class SberRefillTest extends SberSmsTestCase
                 ),
             ],
             'refill, date only' => [
-                new Sms('900', new DateTimeImmutable('2019-07-29 10:10:28'),
+                new Message('900', new DateTimeImmutable('2019-07-29 10:10:28'),
                     'VISA0001 28.07.19 Зачисление 1000р ATM 60000111 Баланс: 10422.87р'),
                 new Bill(
                     new Amount(1000, 'р'),

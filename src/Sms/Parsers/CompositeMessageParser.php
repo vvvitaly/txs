@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Sms;
+namespace App\Sms\Parsers;
 
 use App\Core\Bills\Bill;
+use App\Sms\Message;
 
 /**
  * Try to parse SMS with list of parsers. If one of the parsers throws UnknownSmsTypeException, it tries parsing with
@@ -28,7 +29,7 @@ final class CompositeMessageParser implements MessageParserInterface
     /**
      * @inheritDoc
      */
-    public function parse(Sms $sms): ?Bill
+    public function parse(Message $sms): ?Bill
     {
         foreach ($this->parsers as $parser) {
             if (($bill = $parser->parse($sms)) !== null) {

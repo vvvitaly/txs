@@ -5,14 +5,14 @@
 
 declare(strict_types=1);
 
-namespace tests\Sms\Parsers;
+namespace tests\Sms\Parsers\Sber;
 
 use App\Core\Bills\Amount;
 use App\Core\Bills\Bill;
 use App\Core\Bills\BillInfo;
-use App\Sms\MessageParserInterface;
-use App\Sms\Parsers\SberPayment;
-use App\Sms\Sms;
+use App\Sms\Message;
+use App\Sms\Parsers\MessageParserInterface;
+use App\Sms\Parsers\Sber\SberPayment;
 use DateTimeImmutable;
 
 final class SberPaymentTest extends SberSmsTestCase
@@ -42,7 +42,8 @@ final class SberPaymentTest extends SberSmsTestCase
     {
         return [
             'normal message' => [
-                new Sms('900', new DateTimeImmutable('2019-08-01 23:01:13'), 'ECMC1234 02:38 Оплата 100р TELE2 (9001234567) Баланс: 14074.22р'),
+                new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
+                    'ECMC1234 02:38 Оплата 100р TELE2 (9001234567) Баланс: 14074.22р'),
                 new Bill(
                     new Amount(100, 'р'),
                     'ECMC1234',
@@ -50,7 +51,8 @@ final class SberPaymentTest extends SberSmsTestCase
                 )
             ],
             'normal message with different dates' => [
-                new Sms('900', new DateTimeImmutable('2019-08-01 23:01:13'), 'ECMC1234 31.07.19 02:38 Оплата 100р TELE2 (9001234567) Баланс: 14074.22р'),
+                new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
+                    'ECMC1234 31.07.19 02:38 Оплата 100р TELE2 (9001234567) Баланс: 14074.22р'),
                 new Bill(
                     new Amount(100, 'р'),
                     'ECMC1234',
@@ -58,7 +60,8 @@ final class SberPaymentTest extends SberSmsTestCase
                 )
             ],
             'normal message, date only' => [
-                new Sms('900', new DateTimeImmutable('2019-08-01 23:01:13'), 'ECMC1234 31.07.19 Оплата 100р TELE2 (9001234567) Баланс: 14074.22р'),
+                new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
+                    'ECMC1234 31.07.19 Оплата 100р TELE2 (9001234567) Баланс: 14074.22р'),
                 new Bill(
                     new Amount(100, 'р'),
                     'ECMC1234',
@@ -66,7 +69,8 @@ final class SberPaymentTest extends SberSmsTestCase
                 )
             ],
             'annual payment' => [
-                new Sms('900', new DateTimeImmutable('2019-08-03 12:03:33'), 'VISA4321 03:06 оплата годового обслуживания карты 450.50р Баланс: 12345.62р'),
+                new Message('900', new DateTimeImmutable('2019-08-03 12:03:33'),
+                    'VISA4321 03:06 оплата годового обслуживания карты 450.50р Баланс: 12345.62р'),
                 new Bill(
                     new Amount(450.5, 'р'),
                     'VISA4321',
@@ -74,7 +78,8 @@ final class SberPaymentTest extends SberSmsTestCase
                 )
             ],
             'mobile bank assistant' => [
-                new Sms('900', new DateTimeImmutable('2019-08-03 12:03:33'), 'VISA2288 10:10 мобильный банк за 06.04-05.05 60р Баланс: 11227.69'),
+                new Message('900', new DateTimeImmutable('2019-08-03 12:03:33'),
+                    'VISA2288 10:10 мобильный банк за 06.04-05.05 60р Баланс: 11227.69'),
                 new Bill(
                     new Amount(60, 'р'),
                     'VISA2288',

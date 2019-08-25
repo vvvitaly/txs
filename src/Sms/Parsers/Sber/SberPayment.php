@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Sms\Parsers;
+namespace App\Sms\Parsers\Sber;
 
 use App\Core\Bills\Amount;
 use App\Core\Bills\Bill;
 use App\Core\Bills\BillInfo;
-use App\Sms\MessageParserInterface;
-use App\Sms\Sms;
+use App\Sms\Message;
+use App\Sms\Parsers\MessageParserInterface;
 
 /**
  * Try to parse message about payments by card. Such messages have the following format:
@@ -46,7 +46,7 @@ final class SberPayment implements MessageParserInterface
     /**
      * @inheritDoc
      */
-    public function parse(Sms $sms): ?Bill
+    public function parse(Message $sms): ?Bill
     {
         if (!$this->isValid($sms)) {
             return null;
@@ -60,7 +60,7 @@ final class SberPayment implements MessageParserInterface
 
         foreach ($regexes as [$regex, $addPrefix]) {
             $matches = [];
-            if (preg_match($regex, $sms->message, $matches, PREG_UNMATCHED_AS_NULL)) {
+            if (preg_match($regex, $sms->text, $matches, PREG_UNMATCHED_AS_NULL)) {
                 return $this->parseMatches($sms, $matches, $addPrefix);
             }
         }
@@ -71,13 +71,13 @@ final class SberPayment implements MessageParserInterface
     /**
      * Create a bill instance from matches data.
      *
-     * @param Sms $sms
+     * @param Message $sms
      * @param array $matches
      * @param bool $addPrefix add message prefix
      *
      * @return Bill
      */
-    private function parseMatches(Sms $sms, array $matches, bool $addPrefix): Bill
+    private function parseMatches(Message $sms, array $matches, bool $addPrefix): Bill
     {
         $amount = (float)str_replace(',', '.', $matches['amount']);
         $description = ($addPrefix ? 'Оплата ' : '') . $matches['description'];

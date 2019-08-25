@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Sms\Parsers;
+namespace App\Sms\Parsers\Sber;
 
 use App\Core\Bills\Amount;
 use App\Core\Bills\Bill;
 use App\Core\Bills\BillInfo;
-use App\Sms\MessageParserInterface;
-use App\Sms\Sms;
+use App\Sms\Message;
+use App\Sms\Parsers\MessageParserInterface;
 
 /**
  * Try to parse message about purchases bu card. Such messages have the following format:
@@ -33,13 +33,13 @@ final class SberPurchase implements MessageParserInterface
     /**
      * @inheritDoc
      */
-    public function parse(Sms $sms): ?Bill
+    public function parse(Message $sms): ?Bill
     {
         if (!$this->isValid($sms)) {
             return null;
         }
 
-        if (preg_match(self::REGULAR_PURCHASE_REGEX, $sms->message, $matches, PREG_UNMATCHED_AS_NULL)) {
+        if (preg_match(self::REGULAR_PURCHASE_REGEX, $sms->text, $matches, PREG_UNMATCHED_AS_NULL)) {
             return $this->parseMatches($sms, $matches);
         }
 
@@ -49,12 +49,12 @@ final class SberPurchase implements MessageParserInterface
     /**
      * Create a bill instance from matches data.
      *
-     * @param Sms $sms
+     * @param Message $sms
      * @param array $matches
      *
      * @return Bill
      */
-    private function parseMatches(Sms $sms, array $matches): Bill
+    private function parseMatches(Message $sms, array $matches): Bill
     {
         $amount = (float)str_replace(',', '.', $matches['amount']);
 

@@ -5,14 +5,14 @@
 
 declare(strict_types=1);
 
-namespace tests\Sms\Parsers;
+namespace tests\Sms\Parsers\Sber;
 
 use App\Core\Bills\Amount;
 use App\Core\Bills\Bill;
 use App\Core\Bills\BillInfo;
-use App\Sms\MessageParserInterface;
-use App\Sms\Parsers\SberWithdrawal;
-use App\Sms\Sms;
+use App\Sms\Message;
+use App\Sms\Parsers\MessageParserInterface;
+use App\Sms\Parsers\Sber\SberWithdrawal;
 use DateTimeImmutable;
 
 final class SberWithdrawalTest extends SberSmsTestCase
@@ -42,7 +42,7 @@ final class SberWithdrawalTest extends SberSmsTestCase
     {
         return [
             'in atm' => [
-                new Sms('900', new DateTimeImmutable('2019-08-01 23:01:13'),
+                new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
                     'VISA1111 10:06 Выдача 150000р OSB 9999 9999 Баланс: 68892.69р'),
                 new Bill(
                     new Amount(150000, 'р'),
@@ -51,7 +51,7 @@ final class SberWithdrawalTest extends SberSmsTestCase
                 ),
             ],
             'in bank' => [
-                new Sms('900', new DateTimeImmutable('2019-08-03 12:03:33'),
+                new Message('900', new DateTimeImmutable('2019-08-03 12:03:33'),
                     'VISA1111 11:31 Выдача 3400р ATM 00000001 Баланс: 16639.63р'),
                 new Bill(
                     new Amount(3400, 'р'),
@@ -60,7 +60,7 @@ final class SberWithdrawalTest extends SberSmsTestCase
                 ),
             ],
             'withdrawal with different date' => [
-                new Sms('900', new DateTimeImmutable('2019-08-03 12:03:33'),
+                new Message('900', new DateTimeImmutable('2019-08-03 12:03:33'),
                     'VISA1111 01.08.19 11:31 Выдача 3400р ATM 00000001 Баланс: 16639.63р'),
                 new Bill(
                     new Amount(3400, 'р'),
@@ -69,7 +69,7 @@ final class SberWithdrawalTest extends SberSmsTestCase
                 ),
             ],
             'withdrawal, date only' => [
-                new Sms('900', new DateTimeImmutable('2019-08-03 12:03:33'),
+                new Message('900', new DateTimeImmutable('2019-08-03 12:03:33'),
                     'VISA1111 01.08.19 Выдача 3400р ATM 00000001 Баланс: 16639.63р'),
                 new Bill(
                     new Amount(3400, 'р'),

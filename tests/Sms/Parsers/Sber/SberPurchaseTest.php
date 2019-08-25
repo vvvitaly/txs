@@ -5,14 +5,14 @@
 
 declare(strict_types=1);
 
-namespace tests\Sms\Parsers;
+namespace tests\Sms\Parsers\Sber;
 
 use App\Core\Bills\Amount;
 use App\Core\Bills\Bill;
 use App\Core\Bills\BillInfo;
-use App\Sms\MessageParserInterface;
-use App\Sms\Parsers\SberPurchase;
-use App\Sms\Sms;
+use App\Sms\Message;
+use App\Sms\Parsers\MessageParserInterface;
+use App\Sms\Parsers\Sber\SberPurchase;
 use DateTimeImmutable;
 
 final class SberPurchaseTest extends SberSmsTestCase
@@ -42,7 +42,8 @@ final class SberPurchaseTest extends SberSmsTestCase
     {
         return [
             'purchase' => [
-                new Sms('900', new DateTimeImmutable('2019-08-01 23:01:13'), 'VISA8413 20:46 Покупка 30р ENERGY POINT Баланс: 2261.20р'),
+                new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
+                    'VISA8413 20:46 Покупка 30р ENERGY POINT Баланс: 2261.20р'),
                 new Bill(
                     new Amount(30, 'р'),
                     'VISA8413',
@@ -50,7 +51,8 @@ final class SberPurchaseTest extends SberSmsTestCase
                 )
             ],
             'purchase with different dates' => [
-                new Sms('900', new DateTimeImmutable('2019-08-01 23:01:13'), 'VISA9009 31.07.19 20:38 Покупка 256.51р XXXXX YY Баланс: 11905.22р'),
+                new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
+                    'VISA9009 31.07.19 20:38 Покупка 256.51р XXXXX YY Баланс: 11905.22р'),
                 new Bill(
                     new Amount(256.51, 'р'),
                     'VISA9009',
@@ -58,7 +60,8 @@ final class SberPurchaseTest extends SberSmsTestCase
                 )
             ],
             'purcahse, date only' => [
-                new Sms('900', new DateTimeImmutable('2019-08-01 23:01:13'), 'VISA9009 31.07.19 Покупка 256.51р XXXXX YY Баланс: 11905.22р'),
+                new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
+                    'VISA9009 31.07.19 Покупка 256.51р XXXXX YY Баланс: 11905.22р'),
                 new Bill(
                     new Amount(256.51, 'р'),
                     'VISA9009',

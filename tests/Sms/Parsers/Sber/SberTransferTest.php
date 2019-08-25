@@ -5,14 +5,14 @@
 
 declare(strict_types=1);
 
-namespace tests\Sms\Parsers;
+namespace tests\Sms\Parsers\Sber;
 
 use App\Core\Bills\Amount;
 use App\Core\Bills\Bill;
 use App\Core\Bills\BillInfo;
-use App\Sms\MessageParserInterface;
-use App\Sms\Parsers\SberTransfer;
-use App\Sms\Sms;
+use App\Sms\Message;
+use App\Sms\Parsers\MessageParserInterface;
+use App\Sms\Parsers\Sber\SberTransfer;
 use DateTimeImmutable;
 
 final class SberTransferTest extends SberSmsTestCase
@@ -42,7 +42,7 @@ final class SberTransferTest extends SberSmsTestCase
     {
         return [
             'card => account' => [
-                new Sms('900', new DateTimeImmutable('2019-08-01 23:01:13'),
+                new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
                     'С Вашей карты **** 1234 произведен перевод на счет № 10000000000000000123 на сумму 430,00 RUB.'),
                 new Bill(
                     new Amount(430, 'RUB'),
@@ -51,7 +51,7 @@ final class SberTransferTest extends SberSmsTestCase
                 ),
             ],
             'account => card' => [
-                new Sms('900', new DateTimeImmutable('2019-08-03 12:03:33'),
+                new Message('900', new DateTimeImmutable('2019-08-03 12:03:33'),
                     'С Вашего счета 11111111111111111857 произведен перевод на карту № **** 4321 на сумму 19000,00 RUB.'),
                 new Bill(
                     new Amount(19000, 'RUB'),
@@ -60,7 +60,7 @@ final class SberTransferTest extends SberSmsTestCase
                 ),
             ],
             'card => card' => [
-                new Sms('900', new DateTimeImmutable('2019-07-16 13:05:48'),
+                new Message('900', new DateTimeImmutable('2019-07-16 13:05:48'),
                     'С Вашей карты **** 7777 произведен перевод на карту № **** 0001 на сумму 6154,33 RUB.'),
                 new Bill(
                     new Amount(6154.33, 'RUB'),

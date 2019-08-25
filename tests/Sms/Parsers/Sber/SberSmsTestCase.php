@@ -5,11 +5,11 @@
 
 declare(strict_types=1);
 
-namespace tests\Sms\Parsers;
+namespace tests\Sms\Parsers\Sber;
 
 use App\Core\Bills\Bill;
-use App\Sms\MessageParserInterface;
-use App\Sms\Sms;
+use App\Sms\Message;
+use App\Sms\Parsers\MessageParserInterface;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
@@ -21,7 +21,7 @@ abstract class SberSmsTestCase extends TestCase
      */
     public function testParseWrongAddress(string $messageBody): void
     {
-        $sms = new Sms('0', new DateTimeImmutable('now'), $messageBody);
+        $sms = new Message('0', new DateTimeImmutable('now'), $messageBody);
         $this->assertNull($this->createParser()->parse($sms));
     }
 
@@ -31,14 +31,14 @@ abstract class SberSmsTestCase extends TestCase
      */
     public function testParseWrongBody(string $messageBody): void
     {
-        $sms = new Sms('900', new DateTimeImmutable('now'), $messageBody);
+        $sms = new Message('900', new DateTimeImmutable('now'), $messageBody);
         $this->assertNull($this->createParser()->parse($sms));
     }
 
     /**
      * @dataProvider providerParseRegularMessage
      */
-    public function testParseRegularMessage(Sms $sms, Bill $expectedBill): void
+    public function testParseRegularMessage(Message $sms, Bill $expectedBill): void
     {
         $this->assertEquals($expectedBill, $this->createParser()->parse($sms));
     }
@@ -46,7 +46,7 @@ abstract class SberSmsTestCase extends TestCase
     /**
      * Creates testing parser
      *
-     * @return MessageParserInterface
+     * @return \App\Sms\Parsers\MessageParserInterface
      */
     abstract protected function createParser(): MessageParserInterface;
 
