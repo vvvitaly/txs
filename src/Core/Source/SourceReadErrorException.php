@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Sms;
+namespace App\Core\Source;
 
 use RuntimeException;
 
 /**
- * Error reading SMS source.
+ * Occurs if source can't be read.
  */
 final class SourceReadErrorException extends RuntimeException
 {
-
 }
