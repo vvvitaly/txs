@@ -9,6 +9,8 @@ use App\Core\Bills\Bill;
 use App\Core\Bills\BillInfo;
 use App\Core\Bills\BillItem;
 use App\Core\Bills\BillsCollection;
+use App\Core\Source\BillSourceInterface;
+use App\Core\Source\SourceReadErrorException;
 use App\Libs\Date\DateRange;
 use App\Vmestecard\Api\ApiClientInterface;
 use App\Vmestecard\Api\ApiErrorException;
@@ -21,7 +23,7 @@ use Exception;
  * the given dates. As this API does not provide any account information, the default account name is passes by the
  * constructor.
  */
-final class ApiParser
+final class VmestecardSource implements BillSourceInterface
 {
     /**
      * @var ApiClientInterface
@@ -51,17 +53,14 @@ final class ApiParser
     }
 
     /**
-     * Parse operations history obtained with API for the given dates range.
-     *
-     * @return BillsCollection
-     * @throws ParseException
+     * @inheritDoc
      */
-    public function parse(): BillsCollection
+    public function read(): BillsCollection
     {
         try {
             $response = $this->apiClient->getHistory($this->dateRange, new Pagination(1000));
         } catch (ApiErrorException $exception) {
-            throw new ParseException('Can not obtain history via API', 0, $exception);
+            throw new SourceReadErrorException('Can not obtain history via API', 0, $exception);
         }
 
         $bills = [];
@@ -73,7 +72,7 @@ final class ApiParser
             try {
                 $bills[] = $this->createBill($row);
             } catch (Exception $e) {
-                throw new ParseException('Can not parse response', 0, $e);
+                throw new SourceReadErrorException('Can not parse response', 0, $e);
             }
         }
 

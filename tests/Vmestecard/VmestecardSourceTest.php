@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace tests\Vmestecard;
 
 use App\Core\Bills\Bill;
+use App\Core\Source\SourceReadErrorException;
 use App\Libs\Date\DateRange;
 use App\Vmestecard\Api\ApiClientInterface;
 use App\Vmestecard\Api\ApiErrorException;
 use App\Vmestecard\Api\Client\Pagination;
-use App\Vmestecard\ApiParser;
-use App\Vmestecard\ParseException;
+use App\Vmestecard\VmestecardSource;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
 /** @noinspection PhpMissingDocCommentInspection */
 
-final class ParserTest extends TestCase
+final class VmestecardSourceTest extends TestCase
 {
     public function testParseSuccessfulResponse(): void
     {
@@ -30,10 +30,10 @@ final class ParserTest extends TestCase
             ->with($this->identicalTo($dates), $this->isInstanceOf(Pagination::class))
             ->willReturn($response);
 
-        $parser = new ApiParser($client, $dates, $defaultAccount);
+        $source = new VmestecardSource($client, $dates, $defaultAccount);
 
         /** @var Bill[] $bills */
-        $bills = iterator_to_array($parser->parse(), false);
+        $bills = iterator_to_array($source->read(), false);
 
         $this->assertCount(1, $bills);
 
@@ -84,10 +84,10 @@ final class ParserTest extends TestCase
             ->method('getHistory')
             ->willReturn($response);
 
-        $parser = new ApiParser($client, $dates, 'default');
+        $source = new VmestecardSource($client, $dates, 'default');
 
         /** @var Bill[] $bills */
-        $bills = iterator_to_array($parser->parse(), false);
+        $bills = iterator_to_array($source->read(), false);
 
         $this->assertCount(0, $bills);
     }
@@ -102,9 +102,9 @@ final class ParserTest extends TestCase
             ->with($this->identicalTo($dates))
             ->willThrowException(new ApiErrorException('test'));
 
-        $parser = new ApiParser($client, $dates, 'default');
+        $source = new VmestecardSource($client, $dates, 'default');
 
-        $this->expectException(ParseException::class);
-        iterator_to_array($parser->parse(), false);
+        $this->expectException(SourceReadErrorException::class);
+        iterator_to_array($source->read(), false);
     }
 }
