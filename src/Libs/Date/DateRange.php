@@ -47,7 +47,7 @@ final class DateRange
      *
      * @return bool
      */
-    public function inRange(DateTimeImmutable $testingDate): bool
+    public function contains(DateTimeImmutable $testingDate): bool
     {
         return
             ($this->begin === null || $testingDate >= $this->begin) &&

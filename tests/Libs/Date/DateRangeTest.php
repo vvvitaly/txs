@@ -20,14 +20,14 @@ final class DateRangeTest extends TestCase
      * @param DateTimeImmutable|null $end
      * @param bool $expectedIsIn
      */
-    public function testInRange(
+    public function testContains(
         DateTimeImmutable $testingDate,
         ?DateTimeImmutable $begin,
         ?DateTimeImmutable $end,
         bool $expectedIsIn
     ): void {
         $range = new DateRange($begin, $end);
-        $this->assertEquals($expectedIsIn, $range->inRange($testingDate));
+        $this->assertEquals($expectedIsIn, $range->contains($testingDate));
     }
 
     public function providerInRange(): array
