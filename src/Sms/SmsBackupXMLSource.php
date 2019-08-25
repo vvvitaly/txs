@@ -2,21 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Sms\Sources;
+namespace App\Sms;
 
-use App\Sms\Sms;
-use App\Sms\SmsSourceInterface;
-use App\Sms\SourceReadErrorException;
+use App\Core\Bills\BillsCollection;
+use App\Core\Source\BillSourceInterface;
+use App\Core\Source\SourceReadErrorException;
+use App\Libs\Date\DateRange;
+use App\Sms\Parsers\MessageParserInterface;
 use DateTimeImmutable;
 use DateTimeZone;
 use Exception;
-use Generator;
 use SimpleXMLElement;
 
 /**
  * Read SMS from XML file created by "SMS Backup & Restore" application (com.riteshsahu.SMSBackupRestore)
  */
-final class SmsBackupXMLSource implements SmsSourceInterface
+final class SmsBackupXMLSource implements BillSourceInterface
 {
     /**
      * @var SimpleXMLElement
@@ -24,18 +25,31 @@ final class SmsBackupXMLSource implements SmsSourceInterface
     private $xml;
 
     /**
+     * @var DateRange
+     */
+    private $dateRange;
+
+    /**
+     * @var MessageParserInterface
+     */
+    private $smsParser;
+
+    /**
      * @param SimpleXMLElement $xml
      */
-    public function __construct(SimpleXMLElement $xml)
+    public function __construct(SimpleXMLElement $xml, DateRange $dateRange, MessageParserInterface $smsParser)
     {
         $this->xml = $xml;
+        $this->dateRange = $dateRange;
+        $this->smsParser = $smsParser;
     }
 
     /**
      * @inheritDoc
      */
-    public function read(DateTimeImmutable $dateBegin, DateTimeImmutable $dateEnd): Generator
+    public function read(): BillsCollection
     {
+        $bills = [];
         foreach ($this->xml->sms as $node) {
             $time = floor((int)(string)$node['date'] / 1000);
             try {
@@ -44,16 +58,23 @@ final class SmsBackupXMLSource implements SmsSourceInterface
                 throw new SourceReadErrorException('Can not read message date: "' . $node['date'] . '"', 0, $e);
             }
 
-            if (!($date >= $dateBegin && $date <= $dateEnd)) {
+            if (!$this->dateRange->contains($date)) {
                 continue;
             }
 
-            yield new Sms(
+            $sms = new Message(
                 (string)$node['address'],
                 $date,
                 (string)$node['body']
             );
+
+            $bill = $this->smsParser->parse($sms);
+            if ($bill) {
+                $bills[] = $bill;
+            }
         }
+
+        return new BillsCollection(...$bills);
     }
 
 }
