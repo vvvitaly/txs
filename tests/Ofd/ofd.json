@@ -1,0 +1,46 @@
+[
+    {
+        "document": {
+            "receipt": {
+                "requestNumber": 5,
+                "operator": "XX YYYY",
+                "shiftNumber": 232,
+                "cashTotalSum": 0,
+                "ndsNo": 0,
+                "dateTime": "2019-08-10T10:53:00",
+                "userInn": "1000000001",
+                "totalSum": 61802,
+                "fiscalDocumentNumber": 21606,
+                "nds10": 1027,
+                "receiptCode": 3,
+                "taxationType": 1,
+                "ndsCalculated10": 0,
+                "fiscalSign": 635676884,
+                "nds0": 0,
+                "operationType": 1,
+                "user": "COMPANY LTD",
+                "nds18": 12783,
+                "kktRegId": "0000000000000001    ",
+                "fiscalDriveNumber": "1000000000000001",
+                "rawData": "test",
+                "items": [
+                    {
+                        "name": "item #1",
+                        "sum": 58900,
+                        "price": 29450,
+                        "quantity": 2
+                    },
+                    {
+                        "name": "item #2",
+                        "sum": 2902,
+                        "price": 2902,
+                        "quantity": 1
+                    }
+                ],
+                "ecashTotalSum": 61802,
+                "ndsCalculated18": 0,
+                "retailPlaceAddress": "XXXX yyy ZZZZ, 111"
+            }
+        }
+    }
+]
