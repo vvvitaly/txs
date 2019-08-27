@@ -10,7 +10,7 @@ use App\Core\Bills\BillInfo;
 use App\Core\Bills\BillItem;
 use App\Core\Bills\BillsCollection;
 use App\Core\Source\BillSourceInterface;
-use App\Core\Source\SourceReadErrorException;
+use App\Core\Source\SourceReadException;
 use DateTimeImmutable;
 use Exception;
 
@@ -66,7 +66,7 @@ final class OfdJsonSource implements BillSourceInterface
         try {
             $date = new DateTimeImmutable($response['dateTime']);
         } catch (Exception $e) {
-            throw new SourceReadErrorException('Can not read receipt date', 0, $e);
+            throw new SourceReadException('Can not read receipt date', 0, $e);
         }
 
         $items = [];

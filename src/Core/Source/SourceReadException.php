@@ -9,6 +9,6 @@ use RuntimeException;
 /**
  * Occurs if source can't be read.
  */
-final class SourceReadErrorException extends RuntimeException
+final class SourceReadException extends RuntimeException
 {
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace tests\Vmestecard;
 
 use App\Core\Bills\Bill;
-use App\Core\Source\SourceReadErrorException;
+use App\Core\Source\SourceReadException;
 use App\Libs\Date\DateRange;
 use App\Vmestecard\Api\ApiClientInterface;
 use App\Vmestecard\Api\ApiErrorException;
@@ -105,7 +105,7 @@ final class VmestecardSourceTest extends TestCase
 
         $source = new VmestecardSource($client, $dates, 'default');
 
-        $this->expectException(SourceReadErrorException::class);
+        $this->expectException(SourceReadException::class);
         iterator_to_array($source->read(), false);
     }
 }

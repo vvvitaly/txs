@@ -6,7 +6,7 @@ namespace App\Sms;
 
 use App\Core\Bills\BillsCollection;
 use App\Core\Source\BillSourceInterface;
-use App\Core\Source\SourceReadErrorException;
+use App\Core\Source\SourceReadException;
 use App\Libs\Date\DateRange;
 use App\Sms\Parsers\MessageParserInterface;
 use DateTimeImmutable;
@@ -55,7 +55,7 @@ final class SmsBackupXMLSource implements BillSourceInterface
             try {
                 $date = (new DateTimeImmutable('@' . $time))->setTimezone(new DateTimeZone('Europe/Moscow'));
             } catch (Exception $e) {
-                throw new SourceReadErrorException('Can not read message date: "' . $node['date'] . '"', 0, $e);
+                throw new SourceReadException('Can not read message date: "' . $node['date'] . '"', 0, $e);
             }
 
             if (!$this->dateRange->contains($date)) {

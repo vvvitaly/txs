@@ -15,7 +15,7 @@ interface BillSourceInterface
      * Read source and obtain bills collection
      *
      * @return BillsCollection
-     * @throws SourceReadErrorException
+     * @throws SourceReadException
      */
     public function read(): BillsCollection;
 }
