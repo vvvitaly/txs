@@ -32,7 +32,7 @@ final class FdoCheque
     public $place;
 
     /**
-     * @var array List of cheque items in format [name, amount]
+     * @var FdoChequeItem[] List of cheque items
      */
     public $items = [];
 }

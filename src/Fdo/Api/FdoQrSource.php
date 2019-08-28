@@ -84,7 +84,7 @@ final class FdoQrSource implements BillSourceInterface
     {
         $items = [];
         foreach ($cheque->items as $item) {
-            $items[] = new BillItem($item[0], new Amount($item[1]));
+            $items[] = new BillItem($item->name, new Amount($item->amount));
         }
 
         return new Bill(

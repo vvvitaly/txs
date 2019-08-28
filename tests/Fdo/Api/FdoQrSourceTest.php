@@ -11,6 +11,7 @@ use App\Core\Source\SourceReadException;
 use App\Fdo\Api\ApiClientInterface;
 use App\Fdo\Api\ApiRequestException;
 use App\Fdo\Api\FdoCheque;
+use App\Fdo\Api\FdoChequeItem;
 use App\Fdo\Api\FdoQrSource;
 use App\Fdo\Api\FdoRequest;
 use DateTimeImmutable;
@@ -30,8 +31,8 @@ final class FdoQrSourceTest extends TestCase
         $cheque->place = 'test';
         $cheque->number = '1.2.3';
         $cheque->items = [
-            ['item1', 40.23],
-            ['item2', 60],
+            new FdoChequeItem('item1', 40.23),
+            new FdoChequeItem('item2', 60),
         ];
 
         $apiClient = $this->createMock(ApiClientInterface::class);
