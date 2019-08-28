@@ -10,13 +10,13 @@ use App\Core\Bills\Bill;
 use App\Core\Source\SourceReadException;
 use App\Fdo\Api\ApiClientInterface;
 use App\Fdo\Api\ApiRequestException;
-use App\Fdo\Api\FdoApiSource;
 use App\Fdo\Api\FdoCheque;
+use App\Fdo\Api\FdoQrSource;
 use App\Fdo\Api\FdoRequest;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
-final class FdoApiSourceTest extends TestCase
+final class FdoQrSourceTest extends TestCase
 {
     public function testReadWithSuccessfulApiRequest(): void
     {
@@ -40,13 +40,13 @@ final class FdoApiSourceTest extends TestCase
             ->with($this->identicalTo($requests[0]))
             ->willReturn($cheque);
 
-        $source = new FdoApiSource($requests, $apiClient, 'FdoApiSourceTest');
+        $source = new FdoQrSource($requests, $apiClient, 'FdoQrSourceTest');
         /** @var Bill[] $actual */
         $actual = iterator_to_array($source->read(), false);
 
         $this->assertCount(1, $actual);
 
-        $this->assertEquals('FdoApiSourceTest', $actual[0]->getAccount());
+        $this->assertEquals('FdoQrSourceTest', $actual[0]->getAccount());
         $this->assertEquals(100.23, $actual[0]->getAmount()->getValue());
         $this->assertNull($actual[0]->getAmount()->getCurrency());
         $this->assertEquals(new DateTimeImmutable('2019-08-27 23:45:11'), $actual[0]->getInfo()->getDate());
@@ -73,7 +73,7 @@ final class FdoApiSourceTest extends TestCase
             ->method('getCheque')
             ->willThrowException(new ApiRequestException('test'));
 
-        $source = new FdoApiSource($requests, $apiClient, 'FdoApiSourceTest');
+        $source = new FdoQrSource($requests, $apiClient, 'FdoQrSourceTest');
 
         $this->expectException(SourceReadException::class);
         $source->read();
@@ -106,7 +106,7 @@ final class FdoApiSourceTest extends TestCase
                 $chequeForRequest2
             );
 
-        $source = new FdoApiSource($requests, $apiClient, 'FdoApiSourceTest');
+        $source = new FdoQrSource($requests, $apiClient, 'FdoQrSourceTest');
         /** @var Bill[] $actual */
         $actual = iterator_to_array($source->read(), false);
 

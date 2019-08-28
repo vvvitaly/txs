@@ -21,7 +21,7 @@ use Webmozart\Assert\Assert;
  * @see FdoRequest
  * @see SourceReadException
  */
-final class FdoApiSource implements BillSourceInterface
+final class FdoQrSource implements BillSourceInterface
 {
     /**
      * @var string[]
