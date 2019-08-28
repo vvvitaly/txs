@@ -4,15 +4,15 @@
 
 declare(strict_types=1);
 
-namespace tests\Ofd\Api;
+namespace tests\Fdo\Api;
 
-use App\Ofd\Api\OfdRequest;
+use App\Fdo\Api\FdoRequest;
 use DateTimeImmutable;
 use Exception;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-final class OfdRequestTest extends TestCase
+final class FdoRequestTest extends TestCase
 {
     /**
      * @param string $qr
@@ -33,7 +33,7 @@ final class OfdRequestTest extends TestCase
         string $expectedFd,
         string $expectedFpd
     ): void {
-        $actual = OfdRequest::fromQr($qr);
+        $actual = FdoRequest::fromQr($qr);
 
         $this->assertEquals(new DateTimeImmutable($expectedDate), $actual->date);
         $this->assertEquals($expectedAmount, $actual->amount);
@@ -52,7 +52,7 @@ final class OfdRequestTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessageRegExp("/{$expectedError}/i");
-        OfdRequest::fromQr($qr);
+        FdoRequest::fromQr($qr);
     }
 
     public function providerFromQr(): array

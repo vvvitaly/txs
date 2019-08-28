@@ -4,20 +4,20 @@
 
 declare(strict_types=1);
 
-namespace tests\Ofd\Api;
+namespace tests\Fdo\Api;
 
-use App\Ofd\Api\ApiClientInterface;
-use App\Ofd\Api\CascadeApiClient;
-use App\Ofd\Api\OfdCheque;
-use App\Ofd\Api\OfdRequest;
+use App\Fdo\Api\ApiClientInterface;
+use App\Fdo\Api\CascadeApiClient;
+use App\Fdo\Api\FdoCheque;
+use App\Fdo\Api\FdoRequest;
 use PHPUnit\Framework\TestCase;
 
 final class CascadeApiClientTest extends TestCase
 {
     public function testGetChequeShouldStopOnFound(): void
     {
-        $req = OfdRequest::fromQr('t=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1');
-        $cheque = new OfdCheque();
+        $req = FdoRequest::fromQr('t=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1');
+        $cheque = new FdoCheque();
 
         $inner1 = $this->createMock(ApiClientInterface::class);
         $inner1->expects($this->once())

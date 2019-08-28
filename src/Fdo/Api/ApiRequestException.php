@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Ofd\Api;
+namespace App\Fdo\Api;
 
 use DomainException;
 

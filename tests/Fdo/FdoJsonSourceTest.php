@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace tests\Ofd;
+namespace tests\Fdo;
 
 use App\Core\Bills\Bill;
-use App\Ofd\OfdJsonSource;
+use App\Fdo\FdoJsonSource;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
 /** @noinspection PhpMissingDocCommentInspection */
 
-final class OfdJsonSourceTest extends TestCase
+final class FdoJsonSourceTest extends TestCase
 {
     public function testRead(): void
     {
         $account = 'test123';
-        $json = json_decode(file_get_contents(__DIR__ . '/ofd.json'), true);
+        $json = json_decode(file_get_contents(__DIR__ . '/fdo.json'), true);
 
-        $source = new OfdJsonSource($json, $account);
+        $source = new FdoJsonSource($json, $account);
 
         /** @var Bill[] $bills */
         $bills = iterator_to_array($source->read(), false);

@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Ofd\Api;
+namespace App\Fdo\Api;
 
 use DateTimeImmutable;
 use Exception;
 use InvalidArgumentException;
 
 /**
- * OFD request based on QR contents in format:
+ * FDO request based on QR contents in format:
  *  t=<date:YYYYMMDDTHHSS>&s=<amount with decimals>&fn=<ФН, 16 digits>&i=<ФД, 1-10 digits>&fp=<ФПД, 1-10 digits>&n=1
  *
  * For example,
  *  t=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1
  */
-final class OfdRequest
+final class FdoRequest
 {
     /**
      * @var DateTimeImmutable
@@ -69,7 +69,7 @@ final class OfdRequest
      *
      * @param string $content
      *
-     * @return OfdRequest
+     * @return FdoRequest
      * @throws InvalidArgumentException
      */
     public static function fromQr(string $content): self

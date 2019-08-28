@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Ofd\Api;
+namespace App\Fdo\Api;
 
 /**
- * Obtain bill by the OFD request
+ * Obtain bill by the FDO API request.
  */
 interface ApiClientInterface
 {
     /**
      * Get cheque instance by the corresponding request. Returns null if can not obtain bill with this API.
      *
-     * @param OfdRequest $request
+     * @param FdoRequest $request
      *
-     * @return OfdCheque|null
+     * @return FdoCheque|null
      * @throw ApiRequestException
      */
-    public function getCheque(OfdRequest $request): ?OfdCheque;
+    public function getCheque(FdoRequest $request): ?FdoCheque;
 }

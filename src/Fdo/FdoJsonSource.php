@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Ofd;
+namespace App\Fdo;
 
 use App\Core\Bills\Amount;
 use App\Core\Bills\Bill;
@@ -18,7 +18,7 @@ use Exception;
 /**
  * Parse transactions from the reports of bill checker application.
  */
-final class OfdJsonSource implements BillSourceInterface
+final class FdoJsonSource implements BillSourceInterface
 {
     /**
      * @var string

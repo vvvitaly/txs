@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Ofd\Api;
+namespace App\Fdo\Api;
 
 /**
  * Try to find cheque with several APIs.
@@ -25,7 +25,7 @@ final class CascadeApiClient implements ApiClientInterface
     /**
      * @inheritDoc
      */
-    public function getCheque(OfdRequest $request): ?OfdCheque
+    public function getCheque(FdoRequest $request): ?FdoCheque
     {
         foreach ($this->apiList as $apiClient) {
             $cheque = $apiClient->getCheque($request);

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Ofd\Api;
+namespace App\Fdo\Api;
 
 use DateTimeImmutable;
 
 /**
- * OFD cheque DTO
+ * FDO cheque DTO
  */
-final class OfdCheque
+final class FdoCheque
 {
     /**
      * @var DateTimeImmutable

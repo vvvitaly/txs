@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Ofd\Api;
+namespace App\Fdo\Api;
 
 use App\Core\Bills\Amount;
 use App\Core\Bills\Bill;
@@ -14,14 +14,14 @@ use App\Core\Source\SourceReadException;
 use Webmozart\Assert\Assert;
 
 /**
- * Get the bills by the list of QR codes content. This class requests one of the OFD API.
+ * Get the bills by the list of QR codes content. This class requests one of the Fiscal Data Operator (FDO) API.
  * If the given API client can not perform request, the source reading exception is thrown.
  *
  * @see ApiClientInterface
- * @see OfdRequest
+ * @see FdoRequest
  * @see SourceReadException
  */
-final class OfdApiSource implements BillSourceInterface
+final class FdoApiSource implements BillSourceInterface
 {
     /**
      * @var string[]
@@ -39,13 +39,13 @@ final class OfdApiSource implements BillSourceInterface
     private $defaultAccount;
 
     /**
-     * @param OfdRequest[] $requestsList
+     * @param FdoRequest[] $requestsList
      * @param ApiClientInterface $apiClient
      * @param string $defaultAccount
      */
     public function __construct(array $requestsList, ApiClientInterface $apiClient, string $defaultAccount)
     {
-        Assert::allIsInstanceOf($requestsList, OfdRequest::class);
+        Assert::allIsInstanceOf($requestsList, FdoRequest::class);
 
         $this->requestsList = $requestsList;
         $this->apiClient = $apiClient;
@@ -74,13 +74,13 @@ final class OfdApiSource implements BillSourceInterface
     }
 
     /**
-     * Create bill instance based on OFD response.
+     * Create bill instance based on FDO response.
      *
-     * @param OfdCheque $cheque
+     * @param FdoCheque $cheque
      *
      * @return Bill
      */
-    private function parseCheque(OfdCheque $cheque): Bill
+    private function parseCheque(FdoCheque $cheque): Bill
     {
         $items = [];
         foreach ($cheque->items as $item) {

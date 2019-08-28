@@ -4,27 +4,27 @@
 
 declare(strict_types=1);
 
-namespace tests\Ofd\Api;
+namespace tests\Fdo\Api;
 
 use App\Core\Bills\Bill;
 use App\Core\Source\SourceReadException;
-use App\Ofd\Api\ApiClientInterface;
-use App\Ofd\Api\ApiRequestException;
-use App\Ofd\Api\OfdApiSource;
-use App\Ofd\Api\OfdCheque;
-use App\Ofd\Api\OfdRequest;
+use App\Fdo\Api\ApiClientInterface;
+use App\Fdo\Api\ApiRequestException;
+use App\Fdo\Api\FdoApiSource;
+use App\Fdo\Api\FdoCheque;
+use App\Fdo\Api\FdoRequest;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
-final class OfdApiSourceTest extends TestCase
+final class FdoApiSourceTest extends TestCase
 {
     public function testReadWithSuccessfulApiRequest(): void
     {
         $requests = [
-            OfdRequest::fromQr('t=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1'),
+            FdoRequest::fromQr('t=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1'),
         ];
 
-        $cheque = new OfdCheque();
+        $cheque = new FdoCheque();
         $cheque->date = new DateTimeImmutable('2019-08-27 23:45:11');
         $cheque->totalAmount = 100.23;
         $cheque->place = 'test';
@@ -40,13 +40,13 @@ final class OfdApiSourceTest extends TestCase
             ->with($this->identicalTo($requests[0]))
             ->willReturn($cheque);
 
-        $source = new OfdApiSource($requests, $apiClient, 'OfdApiSourceTest');
+        $source = new FdoApiSource($requests, $apiClient, 'FdoApiSourceTest');
         /** @var Bill[] $actual */
         $actual = iterator_to_array($source->read(), false);
 
         $this->assertCount(1, $actual);
 
-        $this->assertEquals('OfdApiSourceTest', $actual[0]->getAccount());
+        $this->assertEquals('FdoApiSourceTest', $actual[0]->getAccount());
         $this->assertEquals(100.23, $actual[0]->getAmount()->getValue());
         $this->assertNull($actual[0]->getAmount()->getCurrency());
         $this->assertEquals(new DateTimeImmutable('2019-08-27 23:45:11'), $actual[0]->getInfo()->getDate());
@@ -65,7 +65,7 @@ final class OfdApiSourceTest extends TestCase
     public function testReadWithApiError(): void
     {
         $requests = [
-            OfdRequest::fromQr('t=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1'),
+            FdoRequest::fromQr('t=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1'),
         ];
 
         $apiClient = $this->createMock(ApiClientInterface::class);
@@ -73,7 +73,7 @@ final class OfdApiSourceTest extends TestCase
             ->method('getCheque')
             ->willThrowException(new ApiRequestException('test'));
 
-        $source = new OfdApiSource($requests, $apiClient, 'OfdApiSourceTest');
+        $source = new FdoApiSource($requests, $apiClient, 'FdoApiSourceTest');
 
         $this->expectException(SourceReadException::class);
         $source->read();
@@ -82,14 +82,14 @@ final class OfdApiSourceTest extends TestCase
     public function testReadShouldSkipUnknownRequests(): void
     {
         $requests = [
-            OfdRequest::fromQr('t=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1'),
-            OfdRequest::fromQr('t=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1'),
-            OfdRequest::fromQr('t=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1'),
+            FdoRequest::fromQr('t=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1'),
+            FdoRequest::fromQr('t=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1'),
+            FdoRequest::fromQr('t=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1'),
         ];
 
-        $chequeForRequest0 = new OfdCheque();
+        $chequeForRequest0 = new FdoCheque();
         $chequeForRequest0->totalAmount = 100;
-        $chequeForRequest2 = new OfdCheque();
+        $chequeForRequest2 = new FdoCheque();
         $chequeForRequest2->totalAmount = 101;
 
         $apiClient = $this->createMock(ApiClientInterface::class);
@@ -106,7 +106,7 @@ final class OfdApiSourceTest extends TestCase
                 $chequeForRequest2
             );
 
-        $source = new OfdApiSource($requests, $apiClient, 'OfdApiSourceTest');
+        $source = new FdoApiSource($requests, $apiClient, 'FdoApiSourceTest');
         /** @var Bill[] $actual */
         $actual = iterator_to_array($source->read(), false);
 
