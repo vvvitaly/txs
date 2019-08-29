@@ -22,8 +22,6 @@ final class ApiToken
     /**
      * @param string $token
      * @param int $lifetime
-     * @param string $refreshToken
-     * @param string $type
      */
     public function __construct(string $token, int $lifetime)
     {

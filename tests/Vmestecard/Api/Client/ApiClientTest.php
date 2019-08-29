@@ -74,7 +74,7 @@ final class ApiClientTest extends TestCase
             MessageFactoryDiscovery::find()
         );
         $this->expectException(ApiErrorException::class);
-        $this->expectExceptionMessageRegExp('/testGetHistoryWrongResponse/');
+        $this->expectExceptionMessageMatches('/testGetHistoryWrongResponse/');
         $client->getHistory($dates, $pagination);
     }
 
@@ -111,7 +111,7 @@ final class ApiClientTest extends TestCase
             MessageFactoryDiscovery::find()
         );
         $this->expectException(ApiErrorException::class);
-        $this->expectExceptionMessageRegExp('/http error/i');
+        $this->expectExceptionMessageMatches('/http error/i');
         $client->getHistory($dates, $pagination);
     }
 

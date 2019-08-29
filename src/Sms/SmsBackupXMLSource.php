@@ -36,6 +36,8 @@ final class SmsBackupXMLSource implements BillSourceInterface
 
     /**
      * @param SimpleXMLElement $xml
+     * @param DateRange $dateRange
+     * @param MessageParserInterface $smsParser
      */
     public function __construct(SimpleXMLElement $xml, DateRange $dateRange, MessageParserInterface $smsParser)
     {

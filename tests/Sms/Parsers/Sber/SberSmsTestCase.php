@@ -1,5 +1,6 @@
 <?php
 
+/** @noinspection PhpDocSignatureInspection */
 /** @noinspection PhpDocMissingThrowsInspection */
 /** @noinspection PhpMissingDocCommentInspection */
 
@@ -46,7 +47,7 @@ abstract class SberSmsTestCase extends TestCase
     /**
      * Creates testing parser
      *
-     * @return \App\Sms\Parsers\MessageParserInterface
+     * @return MessageParserInterface
      */
     abstract protected function createParser(): MessageParserInterface;
 

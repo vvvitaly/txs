@@ -51,7 +51,7 @@ final class FdoRequestTest extends TestCase
     public function testFromQrInvalidContent(string $qr, string $expectedError): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessageRegExp("/{$expectedError}/i");
+        $this->expectExceptionMessageMatches("/{$expectedError}/i");
         FdoRequest::fromQr($qr);
     }
 

@@ -59,7 +59,7 @@ final class ApiTokenProviderTest extends TestCase
             MessageFactoryDiscovery::find());
 
         $this->expectException(TokenNotFoundException::class);
-        $this->expectExceptionMessageRegExp('/Some error/');
+        $this->expectExceptionMessageMatches('/Some error/');
         $tokenProvider->getToken();
     }
 
