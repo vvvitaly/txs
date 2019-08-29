@@ -1,0 +1,1241 @@
+<!--suppress ALL -->
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OFD.RU - Кассовый чек #120685</title>
+
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', 'Arial', sans-serif;
+            min-width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            background: #d5d5d5;
+        }
+
+        .full-bill {
+            margin: 50px auto !important;
+            max-width: 460px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .color-white {
+            color: #FFF;
+        }
+
+        .color-primary {
+            color: #00BE6A;
+        }
+
+        .color-info-light {
+            color: #56a9f7;
+        }
+
+        .color-info-light_imp {
+            color: #56a9f7 !important;
+        }
+
+        .color-info {
+            color: #00306F;
+        }
+
+        .color-warning {
+            color: #FFAE21;
+        }
+
+        .color-danger {
+            color: #FF5C14;
+        }
+
+        .color-fade {
+            color: #86abc1;
+        }
+
+        .clear {
+            margin: 0;
+        }
+
+        .clear-both:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .margin-top-10 {
+            margin-top: 10px !important;
+        }
+
+        .margin-top-30 {
+            margin-top: 30px !important;
+        }
+
+        .font-size-8 {
+            font-size: 8px;
+        }
+
+        .font-size-10 {
+            font-size: 10px;
+        }
+
+        .font-size-12 {
+            font-size: 12px;
+        }
+
+        .font-size-14 {
+            font-size: 14px;
+        }
+
+        .font-size-16 {
+            font-size: 16px;
+        }
+
+        .font-size-18 {
+            font-size: 18px;
+        }
+
+        .font-size-20 {
+            font-size: 20px;
+        }
+
+        .font-size-22 {
+            font-size: 22px;
+        }
+
+        .font-size-24 {
+            font-size: 24px;
+        }
+
+        .font-size-26 {
+            font-size: 26px;
+        }
+
+        .font-size-30 {
+            font-size: 30px;
+        }
+
+        .text-align-left {
+            text-align: left;
+        }
+
+        .text-align-center {
+            text-align: center;
+        }
+
+        .text-align-right {
+            text-align: right;
+        }
+
+        .pull-left {
+            float: left;
+        }
+
+        .pull-right {
+            float: right;
+        }
+
+        .ifw-cols {
+            margin: 0;
+            word-break: break-word;
+        }
+
+        .ifw-cols:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .ifw-cols-1 > .ifw-col {
+            float: left;
+            width: 100%;
+        }
+
+        .ifw-cols-1 > .ifw-col-1 {
+            width: 100%;
+        }
+
+        .ifw-cols-1 > .ifw-col-2 {
+            width: 200%;
+        }
+
+        .ifw-cols-1 > .ifw-col-3 {
+            width: 300%;
+        }
+
+        .ifw-cols-1 > .ifw-col-4 {
+            width: 400%;
+        }
+
+        .ifw-cols-1 > .ifw-col-5 {
+            width: 500%;
+        }
+
+        .ifw-cols-1 > .ifw-col-6 {
+            width: 600%;
+        }
+
+        .ifw-cols-1 > .ifw-col-7 {
+            width: 700%;
+        }
+
+        .ifw-cols-1 > .ifw-col-8 {
+            width: 800%;
+        }
+
+        .ifw-cols-1 > .ifw-col-9 {
+            width: 900%;
+        }
+
+        .ifw-cols-1 > .ifw-col-10 {
+            width: 1000%;
+        }
+
+        .ifw-cols-1 > .ifw-col-11 {
+            width: 1100%;
+        }
+
+        .ifw-cols-1 > .ifw-col-12 {
+            width: 1200%;
+        }
+
+        .ifw-cols-2 > .ifw-col {
+            float: left;
+            width: 50%;
+        }
+
+        .ifw-cols-2 > .ifw-col-1 {
+            width: 50%;
+        }
+
+        .ifw-cols-2 > .ifw-col-2 {
+            width: 100%;
+        }
+
+        .ifw-cols-2 > .ifw-col-3 {
+            width: 150%;
+        }
+
+        .ifw-cols-2 > .ifw-col-4 {
+            width: 200%;
+        }
+
+        .ifw-cols-2 > .ifw-col-5 {
+            width: 250%;
+        }
+
+        .ifw-cols-2 > .ifw-col-6 {
+            width: 300%;
+        }
+
+        .ifw-cols-2 > .ifw-col-7 {
+            width: 350%;
+        }
+
+        .ifw-cols-2 > .ifw-col-8 {
+            width: 400%;
+        }
+
+        .ifw-cols-2 > .ifw-col-9 {
+            width: 450%;
+        }
+
+        .ifw-cols-2 > .ifw-col-10 {
+            width: 500%;
+        }
+
+        .ifw-cols-2 > .ifw-col-11 {
+            width: 550%;
+        }
+
+        .ifw-cols-2 > .ifw-col-12 {
+            width: 600%;
+        }
+
+        .ifw-cols-3 > .ifw-col {
+            float: left;
+            width: 33.33333333%;
+        }
+
+        .ifw-cols-3 > .ifw-col-1 {
+            width: 33.33333333%;
+        }
+
+        .ifw-cols-3 > .ifw-col-2 {
+            width: 66.66666667%;
+        }
+
+        .ifw-cols-3 > .ifw-col-3 {
+            width: 100%;
+        }
+
+        .ifw-cols-3 > .ifw-col-4 {
+            width: 133.33333333%;
+        }
+
+        .ifw-cols-3 > .ifw-col-5 {
+            width: 166.66666667%;
+        }
+
+        .ifw-cols-3 > .ifw-col-6 {
+            width: 200%;
+        }
+
+        .ifw-cols-3 > .ifw-col-7 {
+            width: 233.33333333%;
+        }
+
+        .ifw-cols-3 > .ifw-col-8 {
+            width: 266.66666667%;
+        }
+
+        .ifw-cols-3 > .ifw-col-9 {
+            width: 300%;
+        }
+
+        .ifw-cols-3 > .ifw-col-10 {
+            width: 333.33333333%;
+        }
+
+        .ifw-cols-3 > .ifw-col-11 {
+            width: 366.66666667%;
+        }
+
+        .ifw-cols-3 > .ifw-col-12 {
+            width: 400%;
+        }
+
+        .ifw-cols-4 > .ifw-col {
+            float: left;
+            width: 25%;
+        }
+
+        .ifw-cols-4 > .ifw-col-1 {
+            width: 25%;
+        }
+
+        .ifw-cols-4 > .ifw-col-2 {
+            width: 50%;
+        }
+
+        .ifw-cols-4 > .ifw-col-3 {
+            width: 75%;
+        }
+
+        .ifw-cols-4 > .ifw-col-4 {
+            width: 100%;
+        }
+
+        .ifw-cols-4 > .ifw-col-5 {
+            width: 125%;
+        }
+
+        .ifw-cols-4 > .ifw-col-6 {
+            width: 150%;
+        }
+
+        .ifw-cols-4 > .ifw-col-7 {
+            width: 175%;
+        }
+
+        .ifw-cols-4 > .ifw-col-8 {
+            width: 200%;
+        }
+
+        .ifw-cols-4 > .ifw-col-9 {
+            width: 225%;
+        }
+
+        .ifw-cols-4 > .ifw-col-10 {
+            width: 250%;
+        }
+
+        .ifw-cols-4 > .ifw-col-11 {
+            width: 275%;
+        }
+
+        .ifw-cols-4 > .ifw-col-12 {
+            width: 300%;
+        }
+
+        .ifw-cols-5 > .ifw-col {
+            float: left;
+            width: 20%;
+        }
+
+        .ifw-cols-5 > .ifw-col-1 {
+            width: 20%;
+        }
+
+        .ifw-cols-5 > .ifw-col-2 {
+            width: 40%;
+        }
+
+        .ifw-cols-5 > .ifw-col-3 {
+            width: 60%;
+        }
+
+        .ifw-cols-5 > .ifw-col-4 {
+            width: 80%;
+        }
+
+        .ifw-cols-5 > .ifw-col-5 {
+            width: 100%;
+        }
+
+        .ifw-cols-5 > .ifw-col-6 {
+            width: 120%;
+        }
+
+        .ifw-cols-5 > .ifw-col-7 {
+            width: 140%;
+        }
+
+        .ifw-cols-5 > .ifw-col-8 {
+            width: 160%;
+        }
+
+        .ifw-cols-5 > .ifw-col-9 {
+            width: 180%;
+        }
+
+        .ifw-cols-5 > .ifw-col-10 {
+            width: 200%;
+        }
+
+        .ifw-cols-5 > .ifw-col-11 {
+            width: 220%;
+        }
+
+        .ifw-cols-5 > .ifw-col-12 {
+            width: 240%;
+        }
+
+        .ifw-cols-6 > .ifw-col {
+            float: left;
+            width: 16.66666667%;
+        }
+
+        .ifw-cols-6 > .ifw-col-1 {
+            width: 16.66666667%;
+        }
+
+        .ifw-cols-6 > .ifw-col-2 {
+            width: 33.33333333%;
+        }
+
+        .ifw-cols-6 > .ifw-col-3 {
+            width: 50%;
+        }
+
+        .ifw-cols-6 > .ifw-col-4 {
+            width: 66.66666667%;
+        }
+
+        .ifw-cols-6 > .ifw-col-5 {
+            width: 83.33333333%;
+        }
+
+        .ifw-cols-6 > .ifw-col-6 {
+            width: 100%;
+        }
+
+        .ifw-cols-6 > .ifw-col-7 {
+            width: 116.66666667%;
+        }
+
+        .ifw-cols-6 > .ifw-col-8 {
+            width: 133.33333333%;
+        }
+
+        .ifw-cols-6 > .ifw-col-9 {
+            width: 150%;
+        }
+
+        .ifw-cols-6 > .ifw-col-10 {
+            width: 166.66666667%;
+        }
+
+        .ifw-cols-6 > .ifw-col-11 {
+            width: 183.33333333%;
+        }
+
+        .ifw-cols-6 > .ifw-col-12 {
+            width: 200%;
+        }
+
+        .ifw-cols-7 > .ifw-col {
+            float: left;
+            width: 14.28571429%;
+        }
+
+        .ifw-cols-7 > .ifw-col-1 {
+            width: 14.28571429%;
+        }
+
+        .ifw-cols-7 > .ifw-col-2 {
+            width: 28.57142857%;
+        }
+
+        .ifw-cols-7 > .ifw-col-3 {
+            width: 42.85714286%;
+        }
+
+        .ifw-cols-7 > .ifw-col-4 {
+            width: 57.14285714%;
+        }
+
+        .ifw-cols-7 > .ifw-col-5 {
+            width: 71.42857143%;
+        }
+
+        .ifw-cols-7 > .ifw-col-6 {
+            width: 85.71428571%;
+        }
+
+        .ifw-cols-7 > .ifw-col-7 {
+            width: 100%;
+        }
+
+        .ifw-cols-7 > .ifw-col-8 {
+            width: 114.28571429%;
+        }
+
+        .ifw-cols-7 > .ifw-col-9 {
+            width: 128.57142857%;
+        }
+
+        .ifw-cols-7 > .ifw-col-10 {
+            width: 142.85714286%;
+        }
+
+        .ifw-cols-7 > .ifw-col-11 {
+            width: 157.14285714%;
+        }
+
+        .ifw-cols-7 > .ifw-col-12 {
+            width: 171.42857143%;
+        }
+
+        .ifw-cols-8 > .ifw-col {
+            float: left;
+            width: 12.5%;
+        }
+
+        .ifw-cols-8 > .ifw-col-1 {
+            width: 12.5%;
+        }
+
+        .ifw-cols-8 > .ifw-col-2 {
+            width: 25%;
+        }
+
+        .ifw-cols-8 > .ifw-col-3 {
+            width: 37.5%;
+        }
+
+        .ifw-cols-8 > .ifw-col-4 {
+            width: 50%;
+        }
+
+        .ifw-cols-8 > .ifw-col-5 {
+            width: 62.5%;
+        }
+
+        .ifw-cols-8 > .ifw-col-6 {
+            width: 75%;
+        }
+
+        .ifw-cols-8 > .ifw-col-7 {
+            width: 87.5%;
+        }
+
+        .ifw-cols-8 > .ifw-col-8 {
+            width: 100%;
+        }
+
+        .ifw-cols-8 > .ifw-col-9 {
+            width: 112.5%;
+        }
+
+        .ifw-cols-8 > .ifw-col-10 {
+            width: 125%;
+        }
+
+        .ifw-cols-8 > .ifw-col-11 {
+            width: 137.5%;
+        }
+
+        .ifw-cols-8 > .ifw-col-12 {
+            width: 150%;
+        }
+
+        .ifw-cols-9 > .ifw-col {
+            float: left;
+            width: 11.11111111%;
+        }
+
+        .ifw-cols-9 > .ifw-col-1 {
+            width: 11.11111111%;
+        }
+
+        .ifw-cols-9 > .ifw-col-2 {
+            width: 22.22222222%;
+        }
+
+        .ifw-cols-9 > .ifw-col-3 {
+            width: 33.33333333%;
+        }
+
+        .ifw-cols-9 > .ifw-col-4 {
+            width: 44.44444444%;
+        }
+
+        .ifw-cols-9 > .ifw-col-5 {
+            width: 55.55555556%;
+        }
+
+        .ifw-cols-9 > .ifw-col-6 {
+            width: 66.66666667%;
+        }
+
+        .ifw-cols-9 > .ifw-col-7 {
+            width: 77.77777778%;
+        }
+
+        .ifw-cols-9 > .ifw-col-8 {
+            width: 88.88888889%;
+        }
+
+        .ifw-cols-9 > .ifw-col-9 {
+            width: 100%;
+        }
+
+        .ifw-cols-9 > .ifw-col-10 {
+            width: 111.11111111%;
+        }
+
+        .ifw-cols-9 > .ifw-col-11 {
+            width: 122.22222222%;
+        }
+
+        .ifw-cols-9 > .ifw-col-12 {
+            width: 133.33333333%;
+        }
+
+        .ifw-cols-10 > .ifw-col {
+            float: left;
+            width: 10%;
+        }
+
+        .ifw-cols-10 > .ifw-col-1 {
+            width: 10%;
+        }
+
+        .ifw-cols-10 > .ifw-col-2 {
+            width: 20%;
+        }
+
+        .ifw-cols-10 > .ifw-col-3 {
+            width: 30%;
+        }
+
+        .ifw-cols-10 > .ifw-col-4 {
+            width: 40%;
+        }
+
+        .ifw-cols-10 > .ifw-col-5 {
+            width: 50%;
+        }
+
+        .ifw-cols-10 > .ifw-col-6 {
+            width: 60%;
+        }
+
+        .ifw-cols-10 > .ifw-col-7 {
+            width: 70%;
+        }
+
+        .ifw-cols-10 > .ifw-col-8 {
+            width: 80%;
+        }
+
+        .ifw-cols-10 > .ifw-col-9 {
+            width: 90%;
+        }
+
+        .ifw-cols-10 > .ifw-col-10 {
+            width: 100%;
+        }
+
+        .ifw-cols-10 > .ifw-col-11 {
+            width: 110%;
+        }
+
+        .ifw-cols-10 > .ifw-col-12 {
+            width: 120%;
+        }
+
+        .ifw-cols-11 > .ifw-col {
+            float: left;
+            width: 9.09090909%;
+        }
+
+        .ifw-cols-11 > .ifw-col-1 {
+            width: 9.09090909%;
+        }
+
+        .ifw-cols-11 > .ifw-col-2 {
+            width: 18.18181818%;
+        }
+
+        .ifw-cols-11 > .ifw-col-3 {
+            width: 27.27272727%;
+        }
+
+        .ifw-cols-11 > .ifw-col-4 {
+            width: 36.36363636%;
+        }
+
+        .ifw-cols-11 > .ifw-col-5 {
+            width: 45.45454545%;
+        }
+
+        .ifw-cols-11 > .ifw-col-6 {
+            width: 54.54545455%;
+        }
+
+        .ifw-cols-11 > .ifw-col-7 {
+            width: 63.63636364%;
+        }
+
+        .ifw-cols-11 > .ifw-col-8 {
+            width: 72.72727273%;
+        }
+
+        .ifw-cols-11 > .ifw-col-9 {
+            width: 81.81818182%;
+        }
+
+        .ifw-cols-11 > .ifw-col-10 {
+            width: 90.90909091%;
+        }
+
+        .ifw-cols-11 > .ifw-col-11 {
+            width: 100%;
+        }
+
+        .ifw-cols-11 > .ifw-col-12 {
+            width: 109.09090909%;
+        }
+
+        .ifw-cols-12 > .ifw-col {
+            float: left;
+            width: 8.33333333%;
+        }
+
+        .ifw-cols-12 > .ifw-col-1 {
+            width: 8.33333333%;
+        }
+
+        .ifw-cols-12 > .ifw-col-2 {
+            width: 16.66666667%;
+        }
+
+        .ifw-cols-12 > .ifw-col-3 {
+            width: 25%;
+        }
+
+        .ifw-cols-12 > .ifw-col-4 {
+            width: 33.33333333%;
+        }
+
+        .ifw-cols-12 > .ifw-col-5 {
+            width: 41.66666667%;
+        }
+
+        .ifw-cols-12 > .ifw-col-6 {
+            width: 50%;
+        }
+
+        .ifw-cols-12 > .ifw-col-7 {
+            width: 58.33333333%;
+        }
+
+        .ifw-cols-12 > .ifw-col-8 {
+            width: 66.66666667%;
+        }
+
+        .ifw-cols-12 > .ifw-col-9 {
+            width: 75%;
+        }
+
+        .ifw-cols-12 > .ifw-col-10 {
+            width: 83.33333333%;
+        }
+
+        .ifw-cols-12 > .ifw-col-11 {
+            width: 91.66666667%;
+        }
+
+        .ifw-cols-12 > .ifw-col-12 {
+            width: 100%;
+        }
+
+        .ifw-card {
+            display: block;
+            position: relative;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0 0 2px 0 rgba(20, 41, 54, 0.3);
+            border-radius: 2px;
+            margin: 0;
+        }
+
+        .ifw-card:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .ifw-card_shadow-xs {
+            box-shadow: 0 0 2px 0 rgba(20, 41, 54, 0.3);
+        }
+
+        .ifw-card_shadow-sm {
+            box-shadow: 0 0 2px 0 rgba(20, 41, 54, 0.3);
+        }
+
+        .ifw-card_shadow-md {
+            box-shadow: 0 0 2px 0 rgba(20, 41, 54, 0.3), 0 15px 20px -10px rgba(20, 41, 54, 0.3);
+        }
+
+        .ifw-card_shadow-lg {
+            box-shadow: 0 0 2px 0 rgba(20, 41, 54, 0.3), 0 25px 30px -15px rgba(20, 41, 54, 0.3);
+        }
+
+        .ifw-card-header,
+        .ifw-card-body,
+        .ifw-card-footer {
+            background: #fff;
+            padding: 15px 35px;
+            margin: 0;
+        }
+
+        .ifw-card-header:after,
+        .ifw-card-body:after,
+        .ifw-card-footer:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .ifw-card-body {
+            padding-top: 0px;
+        }
+
+        .ifw-card-footer {
+            border-top: 2px solid #c7dbe8;
+        }
+
+        .ifw-card-header {
+            border-bottom: 2px solid #c7dbe8;
+        }
+
+        .ifw-card-header_unbordered {
+            border-bottom: none;
+        }
+
+        .ifw-card.bill__gap__top .ifw-card-header:before {
+            background: -webkit-linear-gradient(-45deg, transparent 15px, #fff 0), linear-gradient(45deg, transparent 15px, #fff 0);
+            background: linear-gradient(-225deg, transparent 15px, #fff 0), linear-gradient(225deg, transparent 15px, #fff 0);
+            background-position: left bottom;
+            background-repeat: repeat-x;
+            background-size: 10px 20px;
+            content: '';
+            display: block;
+            position: absolute;
+            top: -20px;
+            left: 0px;
+            width: 100%;
+            height: 20px;
+        }
+
+        .ifw-card.bill__gap__bottom .ifw-card-body:after {
+            background: -webkit-linear-gradient(-45deg, transparent 15px, #fff 0), linear-gradient(45deg, transparent 15px, #fff 0);
+            background: linear-gradient(-45deg, transparent 15px, #fff 0), linear-gradient(45deg, transparent 15px, #fff 0);
+            background-position: left bottom;
+            background-repeat: repeat-x;
+            background-size: 10px 20px;
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: -20px;
+            left: 0px;
+            width: 100%;
+            height: 20px;
+        }
+
+        .ifw-bill-item {
+            border-top: 2px solid #e4e9ef;
+            padding: 15px 0px;
+            margin: 0px !important;
+        }
+
+        .ifw-bill-item:first-child {
+            margin-top: 25px !important;
+        }
+
+        .ifw-bill-item:last-child {
+            border-bottom: 2px solid #e4e9ef;
+        }
+
+        .hidden-log {
+            color: white;
+        }
+    </style>
+
+
+</head>
+<body style="font-family: Arial, sans-serif; font-size: 14px;">
+
+<div class="ifw-card ifw-card_shadow-lg  bill__gap__top bill__gap__bottom full-bill">
+    <div class="document-container">
+
+        <div class="ifw-card-header" style="border-bottom: none;">
+
+            <h2 class="text-center font-size-20 color-fade">Кассовый чек / Приход</h2>
+        </div>
+        <div class="ifw-card-body">
+            <div class="color-info font-size-14" style="letter-spacing: -0.4px;">
+
+
+                <!-- Details -->
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols-2">
+                        <div class="text-align-center"><span>ООО Ритейл</span></div>
+                    </div>
+                </div>
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">ФИСКАЛЬНЫЙ ДОКУМЕНТ</div>
+                        <div class="ifw-col ifw-col-1 text-right"><span>#</span><span>120685</span></div>
+                    </div>
+                </div>
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">ДАТА ВЫДАЧИ</div>
+                        <div class="ifw-col ifw-col-1 text-right">11.08.19 20:12</div>
+                    </div>
+                </div>
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">АДРЕС РАСЧЁТОВ</div>
+                        <div class="ifw-col ifw-col-1 text-right" style="word-wrap: break-word;">
+                            <span>XXXX YYYY, ZZZ</span></div>
+                    </div>
+                </div>
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">МЕСТО РАСЧЁТОВ</div>
+                        <div class="ifw-col ifw-col-1 text-right" style="word-wrap: break-word;"><span>SOME</span></div>
+                    </div>
+                </div>
+
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">КАССИР</div>
+                        <div class="ifw-col ifw-col-1 text-right">XXXXXX</div>
+                    </div>
+                </div>
+                <!-- /Details -->
+
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">НОМЕР СМЕНЫ</div>
+                        <div class="ifw-col ifw-col-1 text-right">#382</div>
+                    </div>
+                </div>
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">ДОКУМЕНТ В СМЕНЕ</div>
+                        <div class="ifw-col ifw-col-1 text-right">#221</div>
+                    </div>
+                </div>
+
+
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">ВЕРСИЯ ФФД</div>
+                        <div class="ifw-col ifw-col-1 text-right">1.05</div>
+                    </div>
+                </div>
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">
+                            признак ККТ для расчетов только в Интернет
+                        </div>
+                        <div class="ifw-col ifw-col-1 text-right">Нет</div>
+                    </div>
+                </div>
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">
+                            адрес электронной почты отправителя чека
+                        </div>
+                        <div class="ifw-col ifw-col-1 text-right">ofd@ofd.ru</div>
+                    </div>
+                </div>
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">
+                            адрес сайта ФНС
+                        </div>
+                        <div class="ifw-col ifw-col-1 text-right">www.nalog.ru</div>
+                    </div>
+                </div>
+
+
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">
+                            ИНН пользователя
+                        </div>
+                        <div class="ifw-col ifw-col-1 text-right">1000000001</div>
+                    </div>
+                </div>
+
+
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left"><span>РН </span><span>000055555555555    </span>&nbsp;
+                        </div>
+                        <div class="ifw-col ifw-col-1 text-right"><span>ИНН </span><span>3000000000</span></div>
+                    </div>
+                </div>
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left"><span>ФН </span><span>999999999999999</span>&nbsp;
+                        </div>
+                        <div class="ifw-col ifw-col-1 text-right"><span>ФПД </span><span>377777777</span></div>
+                    </div>
+                </div>
+
+
+                <!-- OfdInfo -->
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">ОФД</div>
+                        <div class="ifw-col ifw-col-1 text-right">ООО ПС СТ</div>
+                    </div>
+                </div>
+                <div class="margin-top-10 clear-both">
+                    <div class="ifw-cols ifw-cols-2">
+                        <div class="ifw-col ifw-col-1 text-left">Сайт ОФД</div>
+                        <div class="ifw-col ifw-col-1 text-right">ofd.ru</div>
+                    </div>
+                </div>
+                <!-- /OfdInfo -->
+
+
+                <!-- Products -->
+                <div class="margin-top-10 clear-both">
+                    <div class="margin-top-10 clear-both ifw-bill-item">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">Item 1, 1</div>
+                            <div class="ifw-col ifw-col-1 text-right">
+                                <div><span>2</span><span> X </span><span>59.00</span></div>
+                                <div><span>в т.ч. </span><span>СУММА НДС 10%</span><span> = </span><span>10.73</span>
+                                </div>
+                                <div><span> = </span><span>118.00</span></div>
+                            </div>
+                        </div>
+                        <div class="margin-top-10 clear-both">
+                            <div class="ifw-cols ifw-cols-2">
+                                <div class="ifw-col ifw-col-1 text-left">ПРИЗНАК СПОСОБА РАСЧЕТА</div>
+                                <div class="ifw-col ifw-col-1 text-right">ПОЛНЫЙ РАСЧЕТ</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="margin-top-10 clear-both ifw-bill-item">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">Item 2 (2)</div>
+                            <div class="ifw-col ifw-col-1 text-right">
+                                <div><span>1</span><span> X </span><span>98.50</span></div>
+                                <div><span>в т.ч. </span><span>СУММА НДС 10%</span><span> = </span><span>8.95</span>
+                                </div>
+                                <div><span> = </span><span>98.50</span></div>
+                            </div>
+                        </div>
+                        <div class="margin-top-10 clear-both">
+                            <div class="ifw-cols ifw-cols-2">
+                                <div class="ifw-col ifw-col-1 text-left">ПРИЗНАК СПОСОБА РАСЧЕТА</div>
+                                <div class="ifw-col ifw-col-1 text-right">ПОЛНЫЙ РАСЧЕТ</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="margin-top-10 clear-both ifw-bill-item">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">Item 3, and some text</div>
+                            <div class="ifw-col ifw-col-1 text-right">
+                                <div><span>1</span><span> X </span><span>42.00</span></div>
+                                <div><span>в т.ч. </span><span>СУММА НДС 20%</span><span> = </span><span>7.00</span>
+                                </div>
+                                <div><span> = </span><span>42.00</span></div>
+                            </div>
+                        </div>
+                        <div class="margin-top-10 clear-both">
+                            <div class="ifw-cols ifw-cols-2">
+                                <div class="ifw-col ifw-col-1 text-left">ПРИЗНАК СПОСОБА РАСЧЕТА</div>
+                                <div class="ifw-col ifw-col-1 text-right">ПОЛНЫЙ РАСЧЕТ</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!-- /Products -->
+                    <!-- Amount -->
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left font-size-30">ИТОГ</div>
+                            <div class="ifw-col ifw-col-1 text-right font-size-30">258.50</div>
+                        </div>
+                    </div>
+
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">ПРЕДВАРИТЕЛЬНАЯ ОПЛАТА (АВАНС)</div>
+                            <div class="ifw-col ifw-col-1 text-right">0.00</div>
+                        </div>
+                    </div>
+
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">ПОСЛЕДУЮЩАЯ ОПЛАТА (КРЕДИТ)</div>
+                            <div class="ifw-col ifw-col-1 text-right">0.00</div>
+                        </div>
+                    </div>
+
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">ИНАЯ ФОРМА ОПЛАТЫ</div>
+                            <div class="ifw-col ifw-col-1 text-right">0.00</div>
+                        </div>
+                    </div>
+
+
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">Наличными</div>
+                            <div class="ifw-col ifw-col-1 text-right">0.00</div>
+                        </div>
+                    </div>
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">Безналичными</div>
+                            <div class="ifw-col ifw-col-1 text-right">258.50</div>
+                        </div>
+                    </div>
+                    <!-- /Amount -->
+                    <!-- NDS -->
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2 ">
+                            <div class="ifw-col ifw-col-1 text-left">&nbsp;&nbsp;в т.ч. налоги</div>
+                        </div>
+                    </div>
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">&nbsp;&nbsp;НДС НЕ ОБЛАГАЕТСЯ</div>
+                            <div class="ifw-col ifw-col-1 text-right">0.00</div>
+                        </div>
+                    </div>
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">&nbsp;&nbsp;СУММА НДС 10/110</div>
+                            <div class="ifw-col ifw-col-1 text-right">0.00</div>
+                        </div>
+                    </div>
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">&nbsp;&nbsp;СУММА НДС 20/120</div>
+                            <div class="ifw-col ifw-col-1 text-right">0.00</div>
+                        </div>
+                    </div>
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">&nbsp;&nbsp;СУММА С&nbsp;НДС 0%</div>
+                            <div class="ifw-col ifw-col-1 text-right">0.00</div>
+                        </div>
+                    </div>
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">&nbsp;&nbsp;СУММА НДС 10%</div>
+                            <div class="ifw-col ifw-col-1 text-right">19.68</div>
+                        </div>
+                    </div>
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2">
+                            <div class="ifw-col ifw-col-1 text-left">&nbsp;&nbsp;СУММА НДС 20%</div>
+                            <div class="ifw-col ifw-col-1 text-right">7.00</div>
+                        </div>
+                    </div>    <!-- /NDS -->
+                    <!-- Taxation -->
+                    <div class="margin-top-10 clear-both">
+                        <div class="ifw-cols ifw-cols-2 ">
+                            <div class="ifw-col ifw-col-1 text-left">Система налогообложения</div>
+                            <div class="ifw-col ifw-col-1 text-right">ОСН</div>
+                        </div>
+                    </div>
+                    <div class="hidden-log"></div>
+                    <!-- /Taxation -->
+                    <!-- Extras -->
+
+                    <!-- /Extras -->
+
+
+                    <div class="margin-top-10 clear-both">
+                        <div class="margin-top-10 clear-both ifw-bill-item" style="text-align: center;">
+                            <img
+                                src="data:image/png;base64, /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAPUA9QDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAPgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK+gP2Zf+Zp/7dP/AGtXz/X0B+zL/wAzT/26f+1qAPf6KKKAPgCiiigAooooAKKKKACvoD9mX/maf+3T/wBrV8/19Afsy/8AM0/9un/tagD3+iiigD4AooooA+gP2Zf+Zp/7dP8A2tXv9eAfsy/8zT/26f8Atavf6ACvgCvv+vgCgAr6A/Zl/wCZp/7dP/a1fP8AX0B+zL/zNP8A26f+1qAPf6KKKAPgCiiigAooooAK+/6+AK+/6ACvAP2mv+ZW/wC3v/2jXv8AXgH7TX/Mrf8Ab3/7RoA+f6KKKACiiigD6A/Zl/5mn/t0/wDa1e/14B+zL/zNP/bp/wC1q9/oAK+AK+/6+AKACiiigAooooAKKKKACiiigAooooAK+gP2Zf8Amaf+3T/2tXz/AF9Afsy/8zT/ANun/tagD3+iiigAooooAKKKKACiiigArwD9pr/mVv8At7/9o17/AF4B+01/zK3/AG9/+0aAPn+iiigD7/ooooAKKKKACvgCvv8Ar4AoAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD6A/Zl/5mn/t0/wDa1e/14B+zL/zNP/bp/wC1q9/oAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAPgCiiigD0D4ZfDL/hY39qf8Tf+z/sHlf8ALt5u/fv/ANtcY2e/WvQP+GZf+pu/8pv/ANto/Zl/5mn/ALdP/a1e/wBAHgH/AAzL/wBTd/5Tf/ttH/DMv/U3f+U3/wC217/RQB4B/wAMy/8AU3f+U3/7bR/wzL/1N3/lN/8Atte/0UAeAf8ADMv/AFN3/lN/+20f8My/9Td/5Tf/ALbXv9FAHgH/AAzL/wBTd/5Tf/ttH/DMv/U3f+U3/wC217/RQB4B/wAMy/8AU3f+U3/7bR/wzL/1N3/lN/8Atte/0UAeAf8ADMv/AFN3/lN/+218/wBff9fAFABX0B+zL/zNP/bp/wC1q+f6+gP2Zf8Amaf+3T/2tQB7/RRRQB4B/wAMy/8AU3f+U3/7bR/wzL/1N3/lN/8Atte/0UAfIHxN+GX/AArn+y/+Jv8A2h9v83/l28rZs2f7bZzv9ulef19AftNf8yt/29/+0a+f6ACiiigAr0D4ZfE3/hXP9qf8Sj+0Pt/lf8vPlbNm/wD2Gznf7dK8/ooA+gP+Gmv+pR/8qX/2qj/hpr/qUf8Aypf/AGqvn+igD6A/4Zl/6m7/AMpv/wBto/4Zl/6m7/ym/wD22vf6KAPAP+Tc/wDqYf7d/wC3TyPI/wC/m7d53tjb3zwf8NNf9Sj/AOVL/wC1UftNf8yt/wBvf/tGvn+gD6A/4aa/6lH/AMqX/wBqr5/oooAK9A+GXxN/4Vz/AGp/xKP7Q+3+V/y8+Vs2b/8AYbOd/t0rz+igD6A/4aa/6lH/AMqX/wBqo/4aa/6lH/ypf/aq+f6KACiiigD0D4ZfDL/hY39qf8Tf+z/sHlf8u3m79+//AG1xjZ79a9A/4Zl/6m7/AMpv/wBto/Zl/wCZp/7dP/a1e/0AeAf8My/9Td/5Tf8A7bXv9FFABXgH7TX/ADK3/b3/AO0a9/rwD9pr/mVv+3v/ANo0AfP9FFFABRRRQB9Afsy/8zT/ANun/tavf68A/Zl/5mn/ALdP/a1e/wBABXwBX3/XwBQAUUUUAFFFFABRRRQB6B8Mvhl/wsb+1P8Aib/2f9g8r/l283fv3/7a4xs9+tegf8My/wDU3f8AlN/+20fsy/8AM0/9un/tavf6APAP+GZf+pu/8pv/ANtr5/r7/r4AoAK9A+GXxN/4Vz/an/Eo/tD7f5X/AC8+Vs2b/wDYbOd/t0rz+igD6A/4aa/6lH/ypf8A2qj/AIaa/wCpR/8AKl/9qr5/ooA+/wCiiigDz/4m/E3/AIVz/Zf/ABKP7Q+3+b/y8+Vs2bP9hs53+3SuA/4aa/6lH/ypf/aqP2mv+ZW/7e//AGjXz/QB9Af8NNf9Sj/5Uv8A7VR/w01/1KP/AJUv/tVfP9FAH0B/w01/1KP/AJUv/tVH/Jxn/Uvf2F/29+f5/wD3727fJ987u2Ofn+voD9mX/maf+3T/ANrUAH/DMv8A1N3/AJTf/ttH/DMv/U3f+U3/AO217/RQB4B/w01/1KP/AJUv/tVH/DTX/Uo/+VL/AO1V8/0UAfX/AMMvib/wsb+1P+JR/Z/2Dyv+Xnzd+/f/ALC4xs9+tegV4B+zL/zNP/bp/wC1q9/oAK+AK+/6+AKACvQPhl8Mv+Fjf2p/xN/7P+weV/y7ebv37/8AbXGNnv1rz+voD9mX/maf+3T/ANrUAH/DMv8A1N3/AJTf/ttH/DMv/U3f+U3/AO217/RQB4B/wzL/ANTd/wCU3/7bR/wzL/1N3/lN/wDtte/0UAeAf8My/wDU3f8AlN/+20f8My/9Td/5Tf8A7bXv9FAHgH/DMv8A1N3/AJTf/ttH/DMv/U3f+U3/AO217/RQB4B/wzL/ANTd/wCU3/7bR/wzL/1N3/lN/wDtte/0UAeAf8My/wDU3f8AlN/+20f8My/9Td/5Tf8A7bXv9FAHwBRRRQB9Afsy/wDM0/8Abp/7Wr3+vAP2Zf8Amaf+3T/2tXv9ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB8AUUUUAfQH7Mv/M0/9un/ALWr3+vAP2Zf+Zp/7dP/AGtXv9ABRRXwBQB9/wBFfAFFAH3/AEV8AUUAff8ARXwBRQB9/wBFeAfsy/8AM0/9un/tavf6ACvgCvv+vgCgAr6A/Zl/5mn/ALdP/a1fP9fQH7Mv/M0/9un/ALWoA9/ooooAKKKKAPAP2mv+ZW/7e/8A2jXz/X3/AEUAfAFFff8ARQB8AUV9/wBeAftNf8yt/wBvf/tGgD5/ooooA+/6K+AKKAPoD9pr/mVv+3v/ANo18/19Afsy/wDM0/8Abp/7Wr3+gD4Aor7/AK+AKACiivoD9mX/AJmn/t0/9rUAfP8ARX3/AEUAfAFFff8ARQB4B+zL/wAzT/26f+1q9/oooAKKK+AKAPv+vAP2mv8AmVv+3v8A9o18/wBFABRRRQAUUUUAfQH7Mv8AzNP/AG6f+1q9/rwD9mX/AJmn/t0/9rV7/QAV8AV9/wBfAFABRRRQAUUUUAFFFFAH0B+zL/zNP/bp/wC1q9/rwD9mX/maf+3T/wBrV7/QAV8AV9/18AUAFFFfQH7Mv/M0/wDbp/7WoA+f6K+/6KACivgCigD6A/aa/wCZW/7e/wD2jXz/AF9Afsy/8zT/ANun/tavf6APgCivv+vgCgAr6A/Zl/5mn/t0/wDa1fP9fQH7Mv8AzNP/AG6f+1qAPf6KKKAPgCivv+igDwD9mX/maf8At0/9rV7/AEUUAFfAFff9fAFABX0B+zL/AMzT/wBun/tavn+voD9mX/maf+3T/wBrUAe/0UUUAFFfAFFAH3/RXwBRQB9/0V8AUUAff9FfAFfQH7Mv/M0/9un/ALWoA9/ooooA+AKKKKAPoD9mX/maf+3T/wBrV7/XgH7Mv/M0/wDbp/7Wr3+gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA+AKKKKAPoD9mX/AJmn/t0/9rV7/XgH7Mv/ADNP/bp/7Wr3+gAr4Ar7/r4AoAKKKKACiiigAooooA+gP2Zf+Zp/7dP/AGtXv9eAfsy/8zT/ANun/tavf6ACvgCvv+vgCgAr6A/Zl/5mn/t0/wDa1fP9fQH7Mv8AzNP/AG6f+1qAPf6KKKACiiigAooooAKKKKACvAP2mv8AmVv+3v8A9o17/Xn/AMTfhl/wsb+y/wDib/2f9g83/l283fv2f7a4xs9+tAHyBRX0B/wzL/1N3/lN/wDttH/DMv8A1N3/AJTf/ttAHz/RRRQB9Afsy/8AM0/9un/tavf6+QPhl8Tf+Fc/2p/xKP7Q+3+V/wAvPlbNm/8A2Gznf7dK9A/4aa/6lH/ypf8A2qgD3+vgCvoD/hpr/qUf/Kl/9qo/4Zl/6m7/AMpv/wBtoA+f6+gP2Zf+Zp/7dP8A2tR/wzL/ANTd/wCU3/7bR/ybn/1MP9u/9unkeR/383bvO9sbe+eAD3+ivAP+Gmv+pR/8qX/2qj/hpr/qUf8Aypf/AGqgD3+iiigAorz/AOJvxN/4Vz/Zf/Eo/tD7f5v/AC8+Vs2bP9hs53+3SuA/4aa/6lH/AMqX/wBqoA9/r4Ar6A/4aa/6lH/ypf8A2qj/AIZl/wCpu/8AKb/9toA+f6K+gP8AhmX/AKm7/wApv/22j/hmX/qbv/Kb/wDbaAPn+ivoD/hmX/qbv/Kb/wDbaP8AhmX/AKm7/wApv/22gD5/ooooA+gP2Zf+Zp/7dP8A2tXv9fIHwy+Jv/Cuf7U/4lH9ofb/ACv+Xnytmzf/ALDZzv8AbpXoH/DTX/Uo/wDlS/8AtVAHv9fAFfQH/DTX/Uo/+VL/AO1Uf8My/wDU3f8AlN/+20AfP9FfQH/DMv8A1N3/AJTf/ttH/DMv/U3f+U3/AO20AfP9FfQH/DMv/U3f+U3/AO20f8My/wDU3f8AlN/+20AfP9FfQH/DMv8A1N3/AJTf/ttH/DMv/U3f+U3/AO20AH7Mv/M0/wDbp/7Wr3+vAP8Ak3P/AKmH+3f+3TyPI/7+bt3ne2NvfPB/w01/1KP/AJUv/tVAHv8AXwBX0B/w01/1KP8A5Uv/ALVR/wAMy/8AU3f+U3/7bQB8/wBfQH7Mv/M0/wDbp/7Wo/4Zl/6m7/ym/wD22j/k3P8A6mH+3f8At08jyP8Av5u3ed7Y2988AHv9FeAf8NNf9Sj/AOVL/wC1Uf8ADTX/AFKP/lS/+1UAfP8ARRRQB9Afsy/8zT/26f8Atavf6+QPhl8Tf+Fc/wBqf8Sj+0Pt/lf8vPlbNm//AGGznf7dK9A/4aa/6lH/AMqX/wBqoA9/r4Ar6A/4aa/6lH/ypf8A2qvn+gAr6A/Zl/5mn/t0/wDa1fP9egfDL4m/8K5/tT/iUf2h9v8AK/5efK2bN/8AsNnO/wBulAH1/RXgH/DTX/Uo/wDlS/8AtVH/AA01/wBSj/5Uv/tVAHv9FeAf8NNf9Sj/AOVL/wC1Uf8ADTX/AFKP/lS/+1UAe/0V5/8ADL4m/wDCxv7U/wCJR/Z/2Dyv+Xnzd+/f/sLjGz3616BQAV8AV9/18AUAFfQH7Mv/ADNP/bp/7Wr5/r6A/Zl/5mn/ALdP/a1AHv8ARRRQB8AUUUUAFFFFABRRRQAV9Afsy/8AM0/9un/tavn+voD9mX/maf8At0/9rUAe/wBFFFAHwBRRRQB9Afsy/wDM0/8Abp/7Wr3+vAP2Zf8Amaf+3T/2tXv9ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB8AUUUUAfQH7Mv/M0/9un/ALWr3+vAP2Zf+Zp/7dP/AGtXv9ABXwBX3/XwBQAUUUUAFFFFABRRRQB9Afsy/wDM0/8Abp/7Wr3+vAP2Zf8Amaf+3T/2tXv9ABXwBX3/AF8AUAFfQH7Mv/M0/wDbp/7Wr5/r6A/Zl/5mn/t0/wDa1AHv9FFFABRRRQAUUUUAFFFFABRRRQAUUUUAfAFFFFABRRRQAV9/18AV9/0AFeAftNf8yt/29/8AtGvf68A/aa/5lb/t7/8AaNAHz/RRRQB9/wBFFFAHgH7TX/Mrf9vf/tGvn+voD9pr/mVv+3v/ANo18/0AFff9fAFff9ABRRRQAUUUUAfAFFFFABRRRQAV9/18AV9/0AFFFFABRRRQAUUUUAeAftNf8yt/29/+0a+f6+gP2mv+ZW/7e/8A2jXz/QAV9/18AV9/0AFeAftNf8yt/wBvf/tGvf68A/aa/wCZW/7e/wD2jQB8/wBFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH0B+zL/zNP/bp/wC1q9/rwD9mX/maf+3T/wBrV7/QAV8AV9/18AUAFfQH7Mv/ADNP/bp/7Wr5/r6A/Zl/5mn/ALdP/a1AHv8ARRRQB8AUUUUAFFFFABRRRQAV9Afsy/8AM0/9un/tavn+voD9mX/maf8At0/9rUAe/wBFFFAHwBRRRQB9Afsy/wDM0/8Abp/7Wr3+vAP2Zf8Amaf+3T/2tXv9ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB8AUUUUAfQH7Mv/M0/9un/ALWr3+vAP2Zf+Zp/7dP/AGtXv9ABXwBX3/XwBQAUUUUAFFFFABRRRQB9Afsy/wDM0/8Abp/7Wr3+vAP2Zf8Amaf+3T/2tXv9ABXwBX3/AF8AUAFfQH7Mv/M0/wDbp/7Wr5/r6A/Zl/5mn/t0/wDa1AHv9FFFAHwBRRRQAUUUUAFFFFABX0B+zL/zNP8A26f+1q+f6+gP2Zf+Zp/7dP8A2tQB7/RRRQAUUUUAeAftNf8AMrf9vf8A7Rr5/r6A/aa/5lb/ALe//aNfP9ABX3/XwBX3/QAUUUUAFFFFABRRRQAUUUUAFfAFff8AXwBQAUUUUAFFFFABRRRQB9Afsy/8zT/26f8Atavf68A/Zl/5mn/t0/8Aa1e/0AFfAFff9fAFABX0B+zL/wAzT/26f+1q+f6+gP2Zf+Zp/wC3T/2tQB7/AEUUUAfAFFFFAH0B+zL/AMzT/wBun/tavf68A/Zl/wCZp/7dP/a1e/0AFfAFff8AXwBQAV9Afsy/8zT/ANun/tavn+voD9mX/maf+3T/ANrUAe/0UUUAFFFFABRRRQAUUUUAFeAftNf8yt/29/8AtGvf68A/aa/5lb/t7/8AaNAHz/RRRQB9/wBFFFABRRRQAV8AV9/18AUAFfQH7Mv/ADNP/bp/7Wr5/r6A/Zl/5mn/ALdP/a1AHv8ARRRQB8AUUUUAFFFFABRRRQAV9Afsy/8AM0/9un/tavn+voD9mX/maf8At0/9rUAe/wBFFFAHwBRRRQB9Afsy/wDM0/8Abp/7Wr3+vAP2Zf8Amaf+3T/2tXv9ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB8AUUUUAfQH7Mv/M0/9un/ALWr3+vAP2Zf+Zp/7dP/AGtXv9ABXgH/AAzL/wBTd/5Tf/tte/0UAeAf8My/9Td/5Tf/ALbR/wAMy/8AU3f+U3/7bXv9FAHgH/DMv/U3f+U3/wC20f8ADMv/AFN3/lN/+217/RQB4B/wzL/1N3/lN/8AttH/AAzL/wBTd/5Tf/tte/0UAef/AAy+GX/Cuf7U/wCJv/aH2/yv+Xbytmzf/ttnO/26V6BRRQAV8AV9/wBfAFABX0B+zL/zNP8A26f+1q+f6+gP2Zf+Zp/7dP8A2tQB7/RRRQB8AUUUUAegfDL4Zf8ACxv7U/4m/wDZ/wBg8r/l283fv3/7a4xs9+tegf8ADMv/AFN3/lN/+20fsy/8zT/26f8Atavf6APAP+GZf+pu/wDKb/8AbaP+GZf+pu/8pv8A9tr3+igDwD/hmX/qbv8Aym//AG2u/wDhl8Mv+Fc/2p/xN/7Q+3+V/wAu3lbNm/8A22znf7dK9AooAKKKKACiiigDwD9pr/mVv+3v/wBo18/19AftNf8AMrf9vf8A7Rr5/oAK+gP+Gmv+pR/8qX/2qvn+igD6A/4aa/6lH/ypf/aqP+Gmv+pR/wDKl/8Aaq+f6KAPoD/hpr/qUf8Aypf/AGqj/hpr/qUf/Kl/9qr5/ooA+/6KKKAPP/ib8Tf+Fc/2X/xKP7Q+3+b/AMvPlbNmz/YbOd/t0rgP+Gmv+pR/8qX/ANqo/aa/5lb/ALe//aNfP9AH0B/w01/1KP8A5Uv/ALVXz/RRQAV6B8Mvhl/wsb+1P+Jv/Z/2Dyv+Xbzd+/f/ALa4xs9+tef19Afsy/8AM0/9un/tagA/4Zl/6m7/AMpv/wBto/4Zl/6m7/ym/wD22vf6KAPAP+GZf+pu/wDKb/8AbaP+GZf+pu/8pv8A9tr3+igDwD/k3P8A6mH+3f8At08jyP8Av5u3ed7Y2988H/DTX/Uo/wDlS/8AtVH7TX/Mrf8Ab3/7Rr5/oA+gP+Gmv+pR/wDKl/8AaqP+GZf+pu/8pv8A9tr5/r7/AKAPAP8AhmX/AKm7/wApv/22u/8Ahl8Mv+Fc/wBqf8Tf+0Pt/lf8u3lbNm//AG2znf7dK9AooAKKKKAPAP8AhmX/AKm7/wApv/22j/hmX/qbv/Kb/wDba9/ooA8/+GXwy/4Vz/an/E3/ALQ+3+V/y7eVs2b/APbbOd/t0r0CiigArwD/AIZl/wCpu/8AKb/9tr3+igDwD/hmX/qbv/Kb/wDbaP8Ak3P/AKmH+3f+3TyPI/7+bt3ne2NvfPHv9eAftNf8yt/29/8AtGgA/wCGmv8AqUf/ACpf/aqP+Gmv+pR/8qX/ANqr5/ooA+gP+Gmv+pR/8qX/ANqo/wCGmv8AqUf/ACpf/aq+f6KAPr/4ZfE3/hY39qf8Sj+z/sHlf8vPm79+/wD2FxjZ79a9ArwD9mX/AJmn/t0/9rV7/QAV4B/w01/1KP8A5Uv/ALVXv9fAFAH0B/w01/1KP/lS/wDtVH/Jxn/Uvf2F/wBvfn+f/wB+9u3yffO7tjn5/r6A/Zl/5mn/ALdP/a1AB/wzL/1N3/lN/wDttH/DMv8A1N3/AJTf/tte/wBFABRRRQAUUUUAFfAFff8AXwBQAV9Afsy/8zT/ANun/tavn+voD9mX/maf+3T/ANrUAe/0UUUAeAf8My/9Td/5Tf8A7bR/wzL/ANTd/wCU3/7bXv8ARQB4B/wzL/1N3/lN/wDttH/DMv8A1N3/AJTf/tte/wBFAHgH/DMv/U3f+U3/AO20f8My/wDU3f8AlN/+217/AEUAeAf8My/9Td/5Tf8A7bXf/DL4Zf8ACuf7U/4m/wDaH2/yv+Xbytmzf/ttnO/26V6BRQAUUUUAfAFFFFAH0B+zL/zNP/bp/wC1q9/rwD9mX/maf+3T/wBrV7/QAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAfAFFFFAH0B+zL/AMzT/wBun/tavf6+AKKAPv8Aor4AooA+/wCivgCigD7/AKK+AKKAPv8Aor4AooA+/wCivgCigD7/AK+AKKKACvoD9mX/AJmn/t0/9rV8/wBfQH7Mv/M0/wDbp/7WoA9/ooooA+AKKKKAPoD9mX/maf8At0/9rV7/AF4B+zL/AMzT/wBun/tavf6ACiivgCgD7/or4Ar6A/Zl/wCZp/7dP/a1AHv9FFFABRXwBRQB9AftNf8AMrf9vf8A7Rr5/r6A/Zl/5mn/ALdP/a1e/wBAHwBRX3/XwBQAUUV9Afsy/wDM0/8Abp/7WoA+f6K+/wCigAor4AooA+gP2mv+ZW/7e/8A2jXz/X0B+zL/AMzT/wBun/tavf6APgCivv8Ar4AoAK+gP2Zf+Zp/7dP/AGtXz/X0B+zL/wAzT/26f+1qAPf6KKKACivgCigD6A/aa/5lb/t7/wDaNfP9fQH7Mv8AzNP/AG6f+1q9/oA+AK+/6K+AKAPv+ivgCvoD9mX/AJmn/t0/9rUAe/0UUUAFFfAFFAH3/RXgH7Mv/M0/9un/ALWr3+gAoor4AoA+/wCvAP2mv+ZW/wC3v/2jXz/X0B+zL/zNP/bp/wC1qAPn+ivv+igD4AooooA+gP2Zf+Zp/wC3T/2tXv8AXgH7Mv8AzNP/AG6f+1q9/oAK+AK+/wCvgCgAr6A/Zl/5mn/t0/8Aa1fP9fQH7Mv/ADNP/bp/7WoA9/ooooAKK+AKKAPv+ivAP2Zf+Zp/7dP/AGtXv9ABXwBX3/XwBQAV9Afsy/8AM0/9un/tavn+igD7/or4AooA+/6K+AKKAPv+ivgCigD7/or4AooA+/6K+AKKAPv+ivgCigAooooA+gP2Zf8Amaf+3T/2tXv9eAfsy/8AM0/9un/tavf6ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD4Aor6A/4Zl/6m7/ym/wD22j/hmX/qbv8Aym//AG2gD5/or6A/4Zl/6m7/AMpv/wBto/4Zl/6m7/ym/wD22gD5/or6A/4Zl/6m7/ym/wD22j/hmX/qbv8Aym//AG2gD5/or6A/4Zl/6m7/AMpv/wBto/4Zl/6m7/ym/wD22gD5/or6A/4Zl/6m7/ym/wD22j/hmX/qbv8Aym//AG2gD5/or6A/4Zl/6m7/AMpv/wBto/4Zl/6m7/ym/wD22gD5/or6A/4Zl/6m7/ym/wD22j/hmX/qbv8Aym//AG2gD5/or6A/4Zl/6m7/AMpv/wBto/4Zl/6m7/ym/wD22gD5/r6A/Zl/5mn/ALdP/a1H/DMv/U3f+U3/AO213/wy+GX/AArn+1P+Jv8A2h9v8r/l28rZs3/7bZzv9ulAHoFFFFAHwBRX0B/wzL/1N3/lN/8AttH/AAzL/wBTd/5Tf/ttAB+zL/zNP/bp/wC1q9/rwD/k3P8A6mH+3f8At08jyP8Av5u3ed7Y2988H/DTX/Uo/wDlS/8AtVAHv9fAFfQH/DTX/Uo/+VL/AO1Uf8My/wDU3f8AlN/+20AfP9fQH7Mv/M0/9un/ALWo/wCGZf8Aqbv/ACm//baP+Tc/+ph/t3/t08jyP+/m7d53tjb3zwAe/wBFeAf8NNf9Sj/5Uv8A7VR/w01/1KP/AJUv/tVAHz/RRRQB9Afsy/8AM0/9un/tavf68A/Zl/5mn/t0/wDa1e/0AFfAFff9eAf8My/9Td/5Tf8A7bQB8/19Afsy/wDM0/8Abp/7Wo/4Zl/6m7/ym/8A22j/AJNz/wCph/t3/t08jyP+/m7d53tjb3zwAe/0V4B/w01/1KP/AJUv/tVH/DTX/Uo/+VL/AO1UAfP9FfQH/DMv/U3f+U3/AO20f8My/wDU3f8AlN/+20AH7Mv/ADNP/bp/7Wr3+vP/AIZfDL/hXP8Aan/E3/tD7f5X/Lt5WzZv/wBts53+3SvQKACvgCvv+vgCgAr6A/Zl/wCZp/7dP/a1fP8AXoHwy+Jv/Cuf7U/4lH9ofb/K/wCXnytmzf8A7DZzv9ulAH1/RXgH/DTX/Uo/+VL/AO1Uf8NNf9Sj/wCVL/7VQB8/0V9Af8My/wDU3f8AlN/+20f8My/9Td/5Tf8A7bQAfsy/8zT/ANun/tavf68/+GXwy/4Vz/an/E3/ALQ+3+V/y7eVs2b/APbbOd/t0r0CgAr4Ar7/AK8A/wCGZf8Aqbv/ACm//baAPn+voD9mX/maf+3T/wBrUf8ADMv/AFN3/lN/+20f8m5/9TD/AG7/ANunkeR/383bvO9sbe+eAD3+ivAP+Gmv+pR/8qX/ANqo/wCGmv8AqUf/ACpf/aqAPn+iiigD6A/Zl/5mn/t0/wDa1e/14B+zL/zNP/bp/wC1q9/oAK+AK+/6+AKACvoD9mX/AJmn/t0/9rV8/wBegfDL4m/8K5/tT/iUf2h9v8r/AJefK2bN/wDsNnO/26UAfX9FeAf8NNf9Sj/5Uv8A7VR/w01/1KP/AJUv/tVAHz/RRRQB9Afsy/8AM0/9un/tavf68A/Zl/5mn/t0/wDa1e/0AFfAFff9eAf8My/9Td/5Tf8A7bQB8/19Afsy/wDM0/8Abp/7Wo/4Zl/6m7/ym/8A22j/AJNz/wCph/t3/t08jyP+/m7d53tjb3zwAe/0V4B/w01/1KP/AJUv/tVH/DTX/Uo/+VL/AO1UAfP9FFFAH0B+zL/zNP8A26f+1q9/rwD9mX/maf8At0/9rV7/AEAFfAFff9eAf8My/wDU3f8AlN/+20AfP9FfQH/DMv8A1N3/AJTf/ttH/DMv/U3f+U3/AO20AfP9FfQH/DMv/U3f+U3/AO20f8My/wDU3f8AlN/+20AfP9FfQH/DMv8A1N3/AJTf/ttH/DMv/U3f+U3/AO20AfP9FfQH/DMv/U3f+U3/AO20f8My/wDU3f8AlN/+20AfP9FfQH/DMv8A1N3/AJTf/ttH/DMv/U3f+U3/AO20AfP9FfQH/DMv/U3f+U3/AO20f8My/wDU3f8AlN/+20AfP9FfQH/DMv8A1N3/AJTf/ttH/DMv/U3f+U3/AO20AfP9FfQH/DMv/U3f+U3/AO20f8My/wDU3f8AlN/+20AH7Mv/ADNP/bp/7Wr3+vP/AIZfDL/hXP8Aan/E3/tD7f5X/Lt5WzZv/wBts53+3SvQKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAPAP2mv+ZW/7e//AGjXz/X0B+01/wAyt/29/wDtGvn+gAr7/r4Ar7/oAK8A/aa/5lb/ALe//aNe/wBeAftNf8yt/wBvf/tGgD5/ooooAKKKKAPoD9mX/maf+3T/ANrV7/XgH7Mv/M0/9un/ALWr3+gAooooAK8A/aa/5lb/ALe//aNe/wBeAftNf8yt/wBvf/tGgD5/ooooA+/6KKKACiiigAr4Ar7/AK+AKACiiigAooooA+/6KKKACiiigAooooAK8A/aa/5lb/t7/wDaNe/14B+01/zK3/b3/wC0aAPn+iiigAooooA+gP2Zf+Zp/wC3T/2tXv8AXgH7Mv8AzNP/AG6f+1q9/oAK+AK+/wCvgCgAooooAKKKKACiiigD6A/Zl/5mn/t0/wDa1e/14B+zL/zNP/bp/wC1q9/oAKKKKACvAP2mv+ZW/wC3v/2jXv8AXgH7TX/Mrf8Ab3/7RoA+f6KKKACiiigD6A/Zl/5mn/t0/wDa1e/14B+zL/zNP/bp/wC1q9/oAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA8A/aa/5lb/t7/8AaNfP9fQH7TX/ADK3/b3/AO0a+f6ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA+/wCiiigAooooAKKKKACiiigAooooAKKKKAPAP2mv+ZW/7e//AGjXz/X0B+01/wAyt/29/wDtGvn+gAr7/r4Ar7/oAKKKKACiiigAooooA8A/aa/5lb/t7/8AaNfP9fQH7TX/ADK3/b3/AO0a+f6ACiiigAr6A/Zl/wCZp/7dP/a1fP8AX0B+zL/zNP8A26f+1qAPf6KKKAPgCiiigD6A/Zl/5mn/ALdP/a1e/wBeAfsy/wDM0/8Abp/7Wr3+gAooooAK8A/aa/5lb/t7/wDaNe/14B+01/zK3/b3/wC0aAPn+iiigAooooAKKKKACvv+vgCvv+gArwD9pr/mVv8At7/9o17/AF4B+01/zK3/AG9/+0aAPn+iiigAooooAKKKKACiiigAooooAKKKKACiiigD6A/Zl/5mn/t0/wDa1e/14B+zL/zNP/bp/wC1q9/oAKKKKACvAP2mv+ZW/wC3v/2jXv8AXgH7TX/Mrf8Ab3/7RoA+f6KKKACiiigD6A/Zl/5mn/t0/wDa1e/14B+zL/zNP/bp/wC1q9/oAKKKKACiiigAooooA+AKKKKAPoD9mX/maf8At0/9rV7/AF4B+zL/AMzT/wBun/tavf6ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigDwD/hpr/qUf/Kl/9qo/4aa/6lH/AMqX/wBqr5/ooA9A+JvxN/4WN/Zf/Eo/s/7B5v8Ay8+bv37P9hcY2e/WvP6KKACiiigAr0D4ZfDL/hY39qf8Tf8As/7B5X/Lt5u/fv8A9tcY2e/WvP6+gP2Zf+Zp/wC3T/2tQAf8My/9Td/5Tf8A7bR/wzL/ANTd/wCU3/7bXv8ARQB8AUUUUAFFFFABX0B/wzL/ANTd/wCU3/7bXz/X3/QB4B/wzL/1N3/lN/8AttH/AAzL/wBTd/5Tf/tte/0UAeAf8My/9Td/5Tf/ALbR/wAMy/8AU3f+U3/7bXv9FABRRRQB5/8AE34m/wDCuf7L/wCJR/aH2/zf+XnytmzZ/sNnO/26VwH/AA01/wBSj/5Uv/tVH7TX/Mrf9vf/ALRr5/oA+gP+Gmv+pR/8qX/2qvf6+AK+/wCgAooooAKKKKACiiigDz/4m/DL/hY39l/8Tf8As/7B5v8Ay7ebv37P9tcY2e/WuA/4Zl/6m7/ym/8A22vf6KAPAP8AhmX/AKm7/wApv/22vf6KKACiiigAooooA8A/4aa/6lH/AMqX/wBqo/4aa/6lH/ypf/aq+f6KAPoD/k4z/qXv7C/7e/P8/wD797dvk++d3bHJ/wAMy/8AU3f+U3/7bR+zL/zNP/bp/wC1q9/oA8A/4Zl/6m7/AMpv/wBto/4Zl/6m7/ym/wD22vf6KAPAP+GZf+pu/wDKb/8AbaP+Tc/+ph/t3/t08jyP+/m7d53tjb3zx7/XgH7TX/Mrf9vf/tGgA/4aa/6lH/ypf/aqP+Gmv+pR/wDKl/8Aaq+f6KACiiigD0D4ZfE3/hXP9qf8Sj+0Pt/lf8vPlbNm/wD2Gznf7dK9A/4aa/6lH/ypf/aq+f6KAPoD/hpr/qUf/Kl/9qr3+vgCvv8AoAK8/wDib8Mv+Fjf2X/xN/7P+web/wAu3m79+z/bXGNnv1r0CigDwD/hmX/qbv8Aym//AG2j/hmX/qbv/Kb/APba9/ooA8A/4Zl/6m7/AMpv/wBto/4Zl/6m7/ym/wD22vf6KAPAP+GZf+pu/wDKb/8AbaP+GZf+pu/8pv8A9tr3+igDwD/hmX/qbv8Aym//AG2j/hpr/qUf/Kl/9qr3+vgCgD6A/wCGmv8AqUf/ACpf/aqP+TjP+pe/sL/t78/z/wDv3t2+T753dsc/P9fQH7Mv/M0/9un/ALWoAP8AhmX/AKm7/wApv/22j/hmX/qbv/Kb/wDba9/ooA8A/wCGZf8Aqbv/ACm//baP+GZf+pu/8pv/ANtr3+igD5A+Jvwy/wCFc/2X/wATf+0Pt/m/8u3lbNmz/bbOd/t0rz+voD9pr/mVv+3v/wBo18/0AFfQH/DMv/U3f+U3/wC218/19/0AeAf8My/9Td/5Tf8A7bXn/wATfhl/wrn+y/8Aib/2h9v83/l28rZs2f7bZzv9ulfX9eAftNf8yt/29/8AtGgD5/ooooA+gP8AhmX/AKm7/wApv/22j/hmX/qbv/Kb/wDba9/ooA8/+GXwy/4Vz/an/E3/ALQ+3+V/y7eVs2b/APbbOd/t0r0CiigArwD/AIaa/wCpR/8AKl/9qr3+vgCgD6A/4aa/6lH/AMqX/wBqo/5OM/6l7+wv+3vz/P8A+/e3b5Pvnd2xz8/19Afsy/8AM0/9un/tagA/4Zl/6m7/AMpv/wBto/4Zl/6m7/ym/wD22vf6KAPgCiiigD0D4ZfE3/hXP9qf8Sj+0Pt/lf8ALz5WzZv/ANhs53+3SvQP+Gmv+pR/8qX/ANqr5/ooA+gP+Gmv+pR/8qX/ANqr3+vgCvv+gAooooAKKKKAPgCiiigD6A/Zl/5mn/t0/wDa1e/14B+zL/zNP/bp/wC1q9/oAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAPgCivv+igD4Aor6A/aa/5lb/t7/wDaNfP9ABRRRQAV9Afsy/8AM0/9un/tavn+igD7/or4AooAKKKKACivoD9mX/maf+3T/wBrV7/QB8AV9/0V8AUAff8ARXwBRQB9/wBFfAFFAH3/AEUUUAeAftNf8yt/29/+0a+f6+gP2mv+ZW/7e/8A2jXz/QAV9/18AV9/0AFFFFABRRRQAUUUUAFFeAftNf8AMrf9vf8A7Rr5/oA+/wCivgCigD7/AKK+AKKAPv8Aor4AooAKKKKAPoD9mX/maf8At0/9rV7/AF8AUUAff9FfAFff9ABXgH7TX/Mrf9vf/tGvf6KAPgCivv8AooA+AKK+/wCigD4Aor7/AKKAPgCvv+ivgCgD7/or4AooA+/6K+AKKAPv+iiigAooooAK+AK+/wCigD4Ar6A/Zl/5mn/t0/8Aa1e/14B+01/zK3/b3/7RoA9/or4AooA+/wCiiigDwD9pr/mVv+3v/wBo18/19/0UAfAFff8ARRQAV4B+01/zK3/b3/7Rr3+igD4Aor7/AKKACiiigAooooAK+AK+/wCigD4Ar6A/Zl/5mn/t0/8Aa1e/0UAFFFFAHwBRX3/RQB8AUV9/0UAfAFff9FFABRRXgH7TX/Mrf9vf/tGgD3+ivgCigAor7/ooA8A/Zl/5mn/t0/8Aa1e/0UUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB4B+01/wAyt/29/wDtGvn+vr/4m/DL/hY39l/8Tf8As/7B5v8Ay7ebv37P9tcY2e/WuA/4Zl/6m7/ym/8A22gD5/or6A/4Zl/6m7/ym/8A22vn+gAoor0D4ZfDL/hY39qf8Tf+z/sHlf8ALt5u/fv/ANtcY2e/WgDz+ivoD/hmX/qbv/Kb/wDbaP8AhmX/AKm7/wApv/22gD5/or6A/wCGZf8Aqbv/ACm//baP+GZf+pu/8pv/ANtoAP2Zf+Zp/wC3T/2tXv8AXn/wy+GX/Cuf7U/4m/8AaH2/yv8Al28rZs3/AO22c7/bpXoFABXwBX3/AF4B/wAMy/8AU3f+U3/7bQB8/wBFfQH/AAzL/wBTd/5Tf/ttH/DMv/U3f+U3/wC20AfP9FfQH/DMv/U3f+U3/wC20f8ADMv/AFN3/lN/+20Ae/0UUUAeAftNf8yt/wBvf/tGvn+voD9pr/mVv+3v/wBo18/0AFff9fAFff8AQAUUV5/8Tfib/wAK5/sv/iUf2h9v83/l58rZs2f7DZzv9ulAHoFFeAf8NNf9Sj/5Uv8A7VR/w01/1KP/AJUv/tVAHv8ARXgH/DTX/Uo/+VL/AO1Uf8NNf9Sj/wCVL/7VQAftNf8AMrf9vf8A7Rr5/r0D4m/E3/hY39l/8Sj+z/sHm/8ALz5u/fs/2FxjZ79a8/oAKKK+gP8AhmX/AKm7/wApv/22gD5/or6A/wCGZf8Aqbv/ACm//ba8/wDib8Mv+Fc/2X/xN/7Q+3+b/wAu3lbNmz/bbOd/t0oA8/ooooAKKKKACivQPhl8Mv8AhY39qf8AE3/s/wCweV/y7ebv37/9tcY2e/WvQP8AhmX/AKm7/wApv/22gD5/r7/rwD/hmX/qbv8Aym//AG2j/hpr/qUf/Kl/9qoA9/orwD/hpr/qUf8Aypf/AGqj/hpr/qUf/Kl/9qoA9/orwD/hpr/qUf8Aypf/AGqj/hpr/qUf/Kl/9qoA9/orwD/hpr/qUf8Aypf/AGqj/hpr/qUf/Kl/9qoA9/orwD/hpr/qUf8Aypf/AGqj/hpr/qUf/Kl/9qoA9/r4Ar6A/wCGmv8AqUf/ACpf/aq+f6ACiivQPhl8Mv8AhY39qf8AE3/s/wCweV/y7ebv37/9tcY2e/WgDz+ivoD/AIZl/wCpu/8AKb/9to/4Zl/6m7/ym/8A22gD3+iiigAooooAKKKKACvAP2mv+ZW/7e//AGjXv9eAftNf8yt/29/+0aAPn+iiigD7/ooooAKKKKACiiigAooooAKKKKACiiigAorz/wCJvxN/4Vz/AGX/AMSj+0Pt/m/8vPlbNmz/AGGznf7dK4D/AIaa/wCpR/8AKl/9qoA9/orwD/hpr/qUf/Kl/wDaqP8Ahpr/AKlH/wAqX/2qgD3+ivAP+Gmv+pR/8qX/ANqo/wCGmv8AqUf/ACpf/aqAPf6K8A/4aa/6lH/ypf8A2qj/AIaa/wCpR/8AKl/9qoA9/orwD/hpr/qUf/Kl/wDaqP8Ahpr/AKlH/wAqX/2qgD3+ivP/AIZfE3/hY39qf8Sj+z/sHlf8vPm79+//AGFxjZ79a9AoAKKKKACvAP2mv+ZW/wC3v/2jXv8AXn/xN+GX/Cxv7L/4m/8AZ/2Dzf8Al283fv2f7a4xs9+tAHyBRX0B/wAMy/8AU3f+U3/7bR/wzL/1N3/lN/8AttAHv9FFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAV8AV9/18AUAFfQH7Mv8AzNP/AG6f+1q+f6+gP2Zf+Zp/7dP/AGtQB7/RRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB4B+01/zK3/b3/wC0a+f6+gP2mv8AmVv+3v8A9o18/wBABX3/AF8AV9/0AFeAftNf8yt/29/+0a9/rwD9pr/mVv8At7/9o0AfP9FFFABRRRQAUUUUAFff9fAFff8AQAV4B+01/wAyt/29/wDtGvf68A/aa/5lb/t7/wDaNAHz/RRRQAUUUUAfQH7Mv/M0/wDbp/7Wr3+vAP2Zf+Zp/wC3T/2tXv8AQAV8AV9/18AUAFFFFABRRRQAUUUUAFFFFABRRRQAV9Afsy/8zT/26f8Atavn+voD9mX/AJmn/t0/9rUAe/0UUUAFFFFABRRRQAUUUUAFeAftNf8AMrf9vf8A7Rr3+vAP2mv+ZW/7e/8A2jQB8/0UUUAff9FFFABRRRQAUUUUAFFFFABRRRQAUUUUAeAftNf8yt/29/8AtGvn+voD9pr/AJlb/t7/APaNfP8AQAUUUUAFFFFABRRRQAUUUUAfQH7Mv/M0/wDbp/7Wr3+vAP2Zf+Zp/wC3T/2tXv8AQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAeAftNf8yt/wBvf/tGvn+voD9pr/mVv+3v/wBo18/0AFFFFABRRRQAUUUUAFFFFAH0B+zL/wAzT/26f+1q9/rwD9mX/maf+3T/ANrV7/QAV8AV9/18AUAFFFFABRRRQAUUUUAFFFFABX3/AF8AV9/0AFeAftNf8yt/29/+0a9/rwD9pr/mVv8At7/9o0AfP9FFFAH3/RRRQB4B+01/zK3/AG9/+0a+f6+gP2mv+ZW/7e//AGjXz/QAV9/18AV9/wBABXgH7TX/ADK3/b3/AO0a9/rwD9pr/mVv+3v/ANo0AfP9FFFABRRRQAUUUUAFff8AXwBX3/QAUUUUAFFFFABRRRQB4B+01/zK3/b3/wC0a+f6+gP2mv8AmVv+3v8A9o18/wBABX3/AF8AV9/0AFFFFABRRRQB8AUUUUAFFFFABX3/AF8AV9/0AFeAftNf8yt/29/+0a9/rwD9pr/mVv8At7/9o0AfP9FFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAV9/18AV9/wBABXgH7TX/ADK3/b3/AO0a9/rwD9pr/mVv+3v/ANo0AfP9FFFAH3/RRRQB4B+01/zK3/b3/wC0a+f6+gP2mv8AmVv+3v8A9o18/wBABRRRQAV9Afsy/wDM0/8Abp/7Wr5/r6A/Zl/5mn/t0/8Aa1AHv9FFFAHwBRRRQB9Afsy/8zT/ANun/tavf68A/Zl/5mn/ALdP/a1e/wBABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAeAftNf8yt/wBvf/tGvn+voD9pr/mVv+3v/wBo18/0AFFFFABXoHwy+GX/AAsb+1P+Jv8A2f8AYPK/5dvN379/+2uMbPfrXn9fQH7Mv/M0/wDbp/7WoAP+GZf+pu/8pv8A9to/4Zl/6m7/AMpv/wBtr3+igDwD/hmX/qbv/Kb/APbaP+GZf+pu/wDKb/8Aba9/ooA8A/5Nz/6mH+3f+3TyPI/7+bt3ne2NvfPB/wANNf8AUo/+VL/7VR+01/zK3/b3/wC0a+f6APoD/hpr/qUf/Kl/9qo/4Zl/6m7/AMpv/wBtr5/r7/oA8A/4Zl/6m7/ym/8A22j/AIZl/wCpu/8AKb/9tr3+igDwD/hmX/qbv/Kb/wDbaP8AhmX/AKm7/wApv/22vf6KAPgCiiigAooooAK+/wCvgCvv+gArz/4m/DL/AIWN/Zf/ABN/7P8AsHm/8u3m79+z/bXGNnv1r0CigDwD/hmX/qbv/Kb/APbaP+GZf+pu/wDKb/8Aba9/ooA8A/4aa/6lH/ypf/aqP+Gmv+pR/wDKl/8Aaq+f6KAPoD/k4z/qXv7C/wC3vz/P/wC/e3b5Pvnd2xyf8My/9Td/5Tf/ALbR+zL/AMzT/wBun/tavf6APAP+GZf+pu/8pv8A9tr3+iigArz/AOJvwy/4WN/Zf/E3/s/7B5v/AC7ebv37P9tcY2e/WvQKKAPAP+GZf+pu/wDKb/8AbaP+GZf+pu/8pv8A9tr3+igDwD/hmX/qbv8Aym//AG2j/hmX/qbv/Kb/APba9/ooA+QPib8Mv+Fc/wBl/wDE3/tD7f5v/Lt5WzZs/wBts53+3SvP6+gP2mv+ZW/7e/8A2jXz/QAV9Af8NNf9Sj/5Uv8A7VXz/RQB9Af8NNf9Sj/5Uv8A7VR/w01/1KP/AJUv/tVfP9FAH0B/w01/1KP/AJUv/tVH/DTX/Uo/+VL/AO1V8/0UAff9FFFAHgH7TX/Mrf8Ab3/7Rr5/r6A/aa/5lb/t7/8AaNfP9ABX0B/w01/1KP8A5Uv/ALVXz/RQB9Af8NNf9Sj/AOVL/wC1V3/wy+Jv/Cxv7U/4lH9n/YPK/wCXnzd+/f8A7C4xs9+tfIFfQH7Mv/M0/wDbp/7WoA9/ooooA8A/4Zl/6m7/AMpv/wBto/4Zl/6m7/ym/wD22vf6KAPkD4m/DL/hXP8AZf8AxN/7Q+3+b/y7eVs2bP8AbbOd/t0rz+voD9pr/mVv+3v/ANo18/0AFfQH/DTX/Uo/+VL/AO1V8/0UAfQH/DTX/Uo/+VL/AO1Uf8nGf9S9/YX/AG9+f5//AH727fJ987u2Ofn+voD9mX/maf8At0/9rUAH/DMv/U3f+U3/AO20f8My/wDU3f8AlN/+217/AEUAeAf8My/9Td/5Tf8A7bR/wzL/ANTd/wCU3/7bXv8ARQB8gfE34Zf8K5/sv/ib/wBofb/N/wCXbytmzZ/ttnO/26V5/X0B+01/zK3/AG9/+0a+f6ACvoD/AIZl/wCpu/8AKb/9tr5/r7/oA8A/4Zl/6m7/AMpv/wBtrz/4m/DL/hXP9l/8Tf8AtD7f5v8Ay7eVs2bP9ts53+3Svr+vAP2mv+ZW/wC3v/2jQB8/0UUUAfQH/DMv/U3f+U3/AO20f8My/wDU3f8AlN/+217/AEUAeAf8My/9Td/5Tf8A7bR/wzL/ANTd/wCU3/7bXv8ARQB4B/wzL/1N3/lN/wDttH/DTX/Uo/8AlS/+1V7/AF8AUAfQH/DTX/Uo/wDlS/8AtVH/ACcZ/wBS9/YX/b35/n/9+9u3yffO7tjn5/r6A/Zl/wCZp/7dP/a1AB/wzL/1N3/lN/8AttH/AAzL/wBTd/5Tf/tte/0UAeAf8NNf9Sj/AOVL/wC1Uf8ADTX/AFKP/lS/+1V8/wBFAHoHxN+Jv/Cxv7L/AOJR/Z/2Dzf+Xnzd+/Z/sLjGz3615/RRQAV9Af8ADMv/AFN3/lN/+218/wBff9AHgH/DMv8A1N3/AJTf/ttd/wDDL4Zf8K5/tT/ib/2h9v8AK/5dvK2bN/8AttnO/wBulegUUAFFFFAHwBRRRQB9Afsy/wDM0/8Abp/7Wr3+vAP2Zf8Amaf+3T/2tXv9ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUV8AUUAfQH7TX/Mrf9vf/ALRr5/r6A/Zl/wCZp/7dP/a1e/0AfAFFff8AXwBQAV9Afsy/8zT/ANun/tavn+igD7/or4AooA+/6KKKAPAP2mv+ZW/7e/8A2jXz/X3/AEUAfAFff9FfAFAH3/RXwBX0B+zL/wAzT/26f+1qAPf6KKKAPgCiiigAor6A/Zl/5mn/ALdP/a1e/wBAHwBX3/RXwBQB9/0V8AUUAff9FfAFFABRRRQB9Afsy/8AM0/9un/tavf68A/Zl/5mn/t0/wDa1e/0AFFFfAFAH3/RXwBRQB9/0V8AUUAff9FfAFFAH0B+01/zK3/b3/7Rr5/r6A/Zl/5mn/t0/wDa1e/0AfAFFff9fAFABRRX0B+zL/zNP/bp/wC1qAPn+ivv+igAooooA8A/aa/5lb/t7/8AaNfP9fQH7TX/ADK3/b3/AO0a+f6ACiivv+gD4Ar6A/Zl/wCZp/7dP/a1e/14B+01/wAyt/29/wDtGgD3+ivgCigD7/or4AooA+gP2mv+ZW/7e/8A2jXz/X0B+zL/AMzT/wBun/tavf6APgCivv8AooA+AK+gP2Zf+Zp/7dP/AGtXv9eAftNf8yt/29/+0aAPf6K+AKKAPv8AooooA8A/aa/5lb/t7/8AaNfP9ff9FAHwBX3/AEUUAFeAftNf8yt/29/+0a9/ooA+AKK+/wCigAor4AooA+/6K+AKKAPv+vgCivv+gD4Ar6A/Zl/5mn/t0/8Aa1e/14B+01/zK3/b3/7RoA9/or4AooAKKKKACiiigAr7/r4Ar7/oAKKK8A/aa/5lb/t7/wDaNAHv9FfAFFABRX3/AEUAeAfsy/8AM0/9un/tavf6KKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD4AooooA+gP2Zf8Amaf+3T/2tXv9fIHwy+Jv/Cuf7U/4lH9ofb/K/wCXnytmzf8A7DZzv9ulegf8NNf9Sj/5Uv8A7VQB7/XwBX0B/wANNf8AUo/+VL/7VXz/AEAFFFFABRRRQB9/0UUUAFFFFABXwBX3/XgH/DMv/U3f+U3/AO20AfP9fQH7Mv8AzNP/AG6f+1qP+GZf+pu/8pv/ANtrv/hl8Mv+Fc/2p/xN/wC0Pt/lf8u3lbNm/wD22znf7dKAPQKKKKAPgCivoD/hmX/qbv8Aym//AG2j/hmX/qbv/Kb/APbaAD9mX/maf+3T/wBrV7/XgH/Juf8A1MP9u/8Abp5Hkf8Afzdu872xt754P+Gmv+pR/wDKl/8AaqAPf6+AK+gP+Gmv+pR/8qX/ANqo/wCGZf8Aqbv/ACm//baAPn+ivoD/AIZl/wCpu/8AKb/9to/4Zl/6m7/ym/8A22gD5/or6A/4Zl/6m7/ym/8A22j/AIZl/wCpu/8AKb/9toA+f6KKKAPoD9mX/maf+3T/ANrV7/XyB8Mvib/wrn+1P+JR/aH2/wAr/l58rZs3/wCw2c7/AG6V6B/w01/1KP8A5Uv/ALVQB7/XwBX0B/w01/1KP/lS/wDtVfP9ABRRRQAUUUUAFFFFAH0B+zL/AMzT/wBun/tavf68A/Zl/wCZp/7dP/a1e/0AFfAFff8AXwBQAV9Afsy/8zT/ANun/tavn+voD9mX/maf+3T/ANrUAe/0UUUAFFFFAHgH7TX/ADK3/b3/AO0a+f6+v/ib8Mv+Fjf2X/xN/wCz/sHm/wDLt5u/fs/21xjZ79a4D/hmX/qbv/Kb/wDbaAPn+vv+vAP+GZf+pu/8pv8A9tr3+gArwD9pr/mVv+3v/wBo17/XgH7TX/Mrf9vf/tGgD5/ooooAKK+gP+GZf+pu/wDKb/8AbaP+GZf+pu/8pv8A9toAP2Zf+Zp/7dP/AGtXv9ef/DL4Zf8ACuf7U/4m/wDaH2/yv+Xbytmzf/ttnO/26V6BQAUUUUAFeAftNf8AMrf9vf8A7Rr3+vP/AIm/DL/hY39l/wDE3/s/7B5v/Lt5u/fs/wBtcY2e/WgD5Aor6A/4Zl/6m7/ym/8A22j/AIZl/wCpu/8AKb/9toA9/orwD/hpr/qUf/Kl/wDaqP8Ahpr/AKlH/wAqX/2qgD3+ivP/AIZfE3/hY39qf8Sj+z/sHlf8vPm79+//AGFxjZ79a9AoAKKKKACiivP/AIm/E3/hXP8AZf8AxKP7Q+3+b/y8+Vs2bP8AYbOd/t0oA9AorwD/AIaa/wCpR/8AKl/9qo/4aa/6lH/ypf8A2qgD5/or6A/4Zl/6m7/ym/8A22j/AIZl/wCpu/8AKb/9toA+f6K+gP8AhmX/AKm7/wApv/22j/hmX/qbv/Kb/wDbaAPn+vv+vAP+GZf+pu/8pv8A9tr3+gArwD9pr/mVv+3v/wBo17/XgH7TX/Mrf9vf/tGgD5/ooooAKKKKACivQPhl8Mv+Fjf2p/xN/wCz/sHlf8u3m79+/wD21xjZ79a9A/4Zl/6m7/ym/wD22gD5/r7/AK8A/wCGZf8Aqbv/ACm//ba9/oAK8A/aa/5lb/t7/wDaNe/14B+01/zK3/b3/wC0aAPn+iiigD7/AKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA+AKKKKACiiigAooooAKKKKACiiigD7/AKKKKACiiigAooooAKKKKACiiigAooooA8A/aa/5lb/t7/8AaNfP9fQH7TX/ADK3/b3/AO0a+f6ACvv+vgCvv+gAooooAKKKKAPgCiiigAooooAKKKKACiiigAooooAKKKKAPoD9mX/maf8At0/9rV7/AF4B+zL/AMzT/wBun/tavf6ACvgCvv8Ar4AoAK+gP2Zf+Zp/7dP/AGtXz/X0B+zL/wAzT/26f+1qAPf6KKKACiiigAooooAKKKKACvAP2mv+ZW/7e/8A2jXv9eAftNf8yt/29/8AtGgD5/ooooA+/wCiiigAooooAKKKKACiiigAooooA+AKKKKAPoD9mX/maf8At0/9rV7/AF4B+zL/AMzT/wBun/tavf6ACiiigArwD9pr/mVv+3v/ANo17/XgH7TX/Mrf9vf/ALRoA+f6KKKAPv8AooooAKKKKACiiigArwD9pr/mVv8At7/9o17/AF4B+01/zK3/AG9/+0aAPn+iiigAooooA+gP2Zf+Zp/7dP8A2tXv9eAfsy/8zT/26f8Atavf6ACiiigArwD9pr/mVv8At7/9o17/AF4B+01/zK3/AG9/+0aAPn+iiigD7/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD4AooooA+gP2Zf+Zp/7dP8A2tXv9eAfsy/8zT/26f8Atavf6ACiiigArwD9pr/mVv8At7/9o17/AF4B+01/zK3/AG9/+0aAPn+iiigAooooAKKKKACiiigAr6A/Zl/5mn/t0/8Aa1fP9fQH7Mv/ADNP/bp/7WoA9/ooooA+AKKKKAPoD9mX/maf+3T/ANrV7/XgH7Mv/M0/9un/ALWr3+gAooooAKKKKACiiigAooooA8A/aa/5lb/t7/8AaNfP9fQH7TX/ADK3/b3/AO0a+f6ACvv+vgCvv+gAooooAKKKKACiiigAooooAKKKKACvAP2mv+ZW/wC3v/2jXv8AXgH7TX/Mrf8Ab3/7RoA+f6KKKAPv+iiigAooooAK+AK+/wCvgCgAooooAKKKKAPv+iiigDwD9pr/AJlb/t7/APaNfP8AX0B+01/zK3/b3/7Rr5/oAK+/6+AK+/6ACiiigAooooA+AKKKKACiiigAooooAK+gP2Zf+Zp/7dP/AGtXz/X0B+zL/wAzT/26f+1qAPf6KKKACiiigDwD9pr/AJlb/t7/APaNfP8AX0B+01/zK3/b3/7Rr5/oAK+/6+AK+/6ACvAP2mv+ZW/7e/8A2jXv9eAftNf8yt/29/8AtGgD5/ooooA+/wCiiigDwD9pr/mVv+3v/wBo18/19AftNf8AMrf9vf8A7Rr5/oAKKKKACiiigAooooA+/wCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAPAP+GZf+pu/wDKb/8AbaP+GZf+pu/8pv8A9tr3+igDz/4ZfDL/AIVz/an/ABN/7Q+3+V/y7eVs2b/9ts53+3SvQKKKACiiigArz/4m/DL/AIWN/Zf/ABN/7P8AsHm/8u3m79+z/bXGNnv1r0CigDwD/hmX/qbv/Kb/APbaP+GZf+pu/wDKb/8Aba9/ooA+AKKKKAPQPhl8Mv8AhY39qf8AE3/s/wCweV/y7ebv37/9tcY2e/WvQP8AhmX/AKm7/wApv/22j9mX/maf+3T/ANrV7/QB4B/wzL/1N3/lN/8AttH/AAzL/wBTd/5Tf/tte/0UAeAf8My/9Td/5Tf/ALbR/wAm5/8AUw/27/26eR5H/fzdu872xt7549/rwD9pr/mVv+3v/wBo0AH/AA01/wBSj/5Uv/tVH/DTX/Uo/wDlS/8AtVfP9FABRRRQB6B8Mvib/wAK5/tT/iUf2h9v8r/l58rZs3/7DZzv9ulegf8ADTX/AFKP/lS/+1V8/wBFAH0B/wANNf8AUo/+VL/7VR/w01/1KP8A5Uv/ALVXz/RQB9Af8NNf9Sj/AOVL/wC1Uf8ADTX/AFKP/lS/+1V8/wBFAH0B/wANNf8AUo/+VL/7VR/w01/1KP8A5Uv/ALVXz/RQB9/0UUUAef8AxN+GX/Cxv7L/AOJv/Z/2Dzf+Xbzd+/Z/trjGz361wH/DMv8A1N3/AJTf/tte/wBFAHgH/DMv/U3f+U3/AO217/RRQAV5/wDE34m/8K5/sv8A4lH9ofb/ADf+XnytmzZ/sNnO/wBulegV4B+01/zK3/b3/wC0aAD/AIaa/wCpR/8AKl/9qo/4aa/6lH/ypf8A2qvn+igD7/ooooA8/wDib8Tf+Fc/2X/xKP7Q+3+b/wAvPlbNmz/YbOd/t0rgP+Gmv+pR/wDKl/8AaqP2mv8AmVv+3v8A9o18/wBAH0B/w01/1KP/AJUv/tVH/DTX/Uo/+VL/AO1V8/0UAfQH/DTX/Uo/+VL/AO1V5/8AE34m/wDCxv7L/wCJR/Z/2Dzf+Xnzd+/Z/sLjGz3615/RQAUUUUAfQH/DTX/Uo/8AlS/+1Uf8NNf9Sj/5Uv8A7VXz/RQB9Af8NNf9Sj/5Uv8A7VR/w01/1KP/AJUv/tVfP9FAH0B/w01/1KP/AJUv/tVH/DMv/U3f+U3/AO218/19/wBAHgH/AAzL/wBTd/5Tf/ttef8AxN+GX/Cuf7L/AOJv/aH2/wA3/l28rZs2f7bZzv8AbpX1/XgH7TX/ADK3/b3/AO0aAPn+iiigD7/ooooA8/8Aib8Mv+Fjf2X/AMTf+z/sHm/8u3m79+z/AG1xjZ79a4D/AIZl/wCpu/8AKb/9tr3+igDwD/hmX/qbv/Kb/wDbaP8Ahpr/AKlH/wAqX/2qvf6+AKAPoD/hpr/qUf8Aypf/AGqu/wDhl8Tf+Fjf2p/xKP7P+weV/wAvPm79+/8A2FxjZ79a+QK+gP2Zf+Zp/wC3T/2tQB7/AEUUUAeAf8My/wDU3f8AlN/+20f8My/9Td/5Tf8A7bXv9FAHyB8Tfhl/wrn+y/8Aib/2h9v83/l28rZs2f7bZzv9ulef19AftNf8yt/29/8AtGvn+gAr6A/4Zl/6m7/ym/8A22vn+vv+gDwD/hmX/qbv/Kb/APbaP+Tc/wDqYf7d/wC3TyPI/wC/m7d53tjb3zx7/XgH7TX/ADK3/b3/AO0aAD/hpr/qUf8Aypf/AGqj/hpr/qUf/Kl/9qr5/ooA+gP+Gmv+pR/8qX/2qj/hpr/qUf8Aypf/AGqvn+igD6A/5OM/6l7+wv8At78/z/8Av3t2+T753dscn/DMv/U3f+U3/wC20fsy/wDM0/8Abp/7Wr3+gDwD/hmX/qbv/Kb/APbaP+Gmv+pR/wDKl/8Aaq9/r4AoA+gP+Gmv+pR/8qX/ANqo/wCTjP8AqXv7C/7e/P8AP/797dvk++d3bHPz/X0B+zL/AMzT/wBun/tagA/4Zl/6m7/ym/8A22j/AIZl/wCpu/8AKb/9tr3+igDwD/hpr/qUf/Kl/wDaqP8Ahpr/AKlH/wAqX/2qvn+igD6A/wCTjP8AqXv7C/7e/P8AP/797dvk++d3bHJ/wzL/ANTd/wCU3/7bR+zL/wAzT/26f+1q9/oA8A/4Zl/6m7/ym/8A22j/AIZl/wCpu/8AKb/9tr3+igDwD/hmX/qbv/Kb/wDbaP8AhmX/AKm7/wApv/22vf6KAPAP+GZf+pu/8pv/ANto/wCGZf8Aqbv/ACm//ba9/ooA8A/4aa/6lH/ypf8A2qj/AIaa/wCpR/8AKl/9qr5/ooA+v/hl8Tf+Fjf2p/xKP7P+weV/y8+bv37/APYXGNnv1r0CvAP2Zf8Amaf+3T/2tXv9ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFeAftNf8yt/29/+0a+f6APv+ivgCigD7/or4AooA+/6K+AKKACivv8AooA8A/Zl/wCZp/7dP/a1e/0UUAFFFfAFAH3/AF4B+01/zK3/AG9/+0a+f6KACiiigAooooAKKKKACiivv+gD4Aor7/ooA+AKK+/6KACiiigAooooAKKKKACvAP2mv+ZW/wC3v/2jXv8ARQB8AUV9/wBFABRRRQB4B+01/wAyt/29/wDtGvn+vv8AooA+AKK+/wCvgCgAooooAKKKKACiiigAooooAK+/6+AK+/6ACvAP2mv+ZW/7e/8A2jXv9FAHwBRX3/RQAUV8AUUAff8ARXgH7Mv/ADNP/bp/7Wr3+gAr4Ar7/ooA+AK+gP2Zf+Zp/wC3T/2tXv8AXgH7TX/Mrf8Ab3/7RoA9/or4AooA+/6KKKAPAP2mv+ZW/wC3v/2jXz/X3/RQB8AV9/0V8AUAff8AXgH7TX/Mrf8Ab3/7Rr5/r6A/Zl/5mn/t0/8Aa1AHz/RX3/RQB8AUV9/0UAeAfsy/8zT/ANun/tavf68A/aa/5lb/ALe//aNfP9AH3/XwBRX3/QB8AV9Afsy/8zT/ANun/tavf6KACiiigD4AooooA+gP2Zf+Zp/7dP8A2tXv9eAfsy/8zT/26f8Atavf6ACiiigAoorwD9pr/mVv+3v/ANo0Ae/0V8AUUAFFff8ARQB4B+zL/wAzT/26f+1q9/oooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACivAP+Gmv+pR/8qX/ANqo/wCGmv8AqUf/ACpf/aqAD9pr/mVv+3v/ANo18/19Af8AJxn/AFL39hf9vfn+f/3727fJ987u2OT/AIZl/wCpu/8AKb/9toA+f6K+gP8AhmX/AKm7/wApv/22vn+gAooooAKKKKAPv+ivAP8Ahpr/AKlH/wAqX/2qj/hpr/qUf/Kl/wDaqAPf6K8/+GXxN/4WN/an/Eo/s/7B5X/Lz5u/fv8A9hcY2e/WvQKACvgCvv8ArwD/AIZl/wCpu/8AKb/9toA+f6K+gP8AhmX/AKm7/wApv/22vP8A4m/DL/hXP9l/8Tf+0Pt/m/8ALt5WzZs/22znf7dKAPP6KKKACivoD/hmX/qbv/Kb/wDbaP8AhmX/AKm7/wApv/22gD5/or0D4m/DL/hXP9l/8Tf+0Pt/m/8ALt5WzZs/22znf7dK8/oAK+/6+AK+/wCgAooooAKKKKACivAP+Gmv+pR/8qX/ANqo/wCGmv8AqUf/ACpf/aqAPf6K8A/4aa/6lH/ypf8A2qj/AIaa/wCpR/8AKl/9qoA9/orwD/hpr/qUf/Kl/wDaq9/oAKKKKACiiigAooooAKKKKACvgCvv+vgCgAoor0D4ZfDL/hY39qf8Tf8As/7B5X/Lt5u/fv8A9tcY2e/WgDz+ivoD/hmX/qbv/Kb/APbaP+GZf+pu/wDKb/8AbaAPn+ivoD/hmX/qbv8Aym//AG2j/hmX/qbv/Kb/APbaAPn+ivoD/hmX/qbv/Kb/APbaP+GZf+pu/wDKb/8AbaAPn+vv+vAP+GZf+pu/8pv/ANto/wCGmv8AqUf/ACpf/aqAPf6K8A/4aa/6lH/ypf8A2qj/AIaa/wCpR/8AKl/9qoA9/orwD/hpr/qUf/Kl/wDaqP8Ahpr/AKlH/wAqX/2qgD5/or6A/wCGZf8Aqbv/ACm//baP+GZf+pu/8pv/ANtoAP2Zf+Zp/wC3T/2tXv8AXn/wy+GX/Cuf7U/4m/8AaH2/yv8Al28rZs3/AO22c7/bpXoFABRRXgH/AA01/wBSj/5Uv/tVAHv9eAftNf8AMrf9vf8A7Ro/4aa/6lH/AMqX/wBqrz/4m/E3/hY39l/8Sj+z/sHm/wDLz5u/fs/2FxjZ79aAPP6KKKAPv+iiigAooooAK+AK+/6+AKACvoD9mX/maf8At0/9rV8/16B8Mvib/wAK5/tT/iUf2h9v8r/l58rZs3/7DZzv9ulAH1/RXgH/AA01/wBSj/5Uv/tVH/DTX/Uo/wDlS/8AtVAHv9FeAf8ADTX/AFKP/lS/+1Uf8NNf9Sj/AOVL/wC1UAH7TX/Mrf8Ab3/7Rr5/r0D4m/E3/hY39l/8Sj+z/sHm/wDLz5u/fs/2FxjZ79a8/oAK+/6+AK+/6ACiiigAooooA+AKKKKAPoD9mX/maf8At0/9rV7/AF4B+zL/AMzT/wBun/tavf6ACiiigArwD9pr/mVv+3v/ANo17/XgH7TX/Mrf9vf/ALRoA+f6KKKAPv8AorwD/hpr/qUf/Kl/9qo/4aa/6lH/AMqX/wBqoA9/orz/AOGXxN/4WN/an/Eo/s/7B5X/AC8+bv37/wDYXGNnv1r0CgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA+AKKKKAPoD9mX/maf+3T/wBrV7/XgH7Mv/M0/wDbp/7Wr3+gAr4Ar7/r4AoAKKKKACiiigAooooA+gP2Zf8Amaf+3T/2tXv9eAfsy/8AM0/9un/tavf6ACiiigArwD9pr/mVv+3v/wBo17/XgH7TX/Mrf9vf/tGgD5/ooooA+/6KKKAPAP2mv+ZW/wC3v/2jXz/X0B+01/zK3/b3/wC0a+f6ACvv+vgCvv8AoAKKKKACiiigD4AooooAKKKKACvv+vgCvv8AoAKKKKACiiigAooooAKKKKACvgCvv+vgCgAr6A/Zl/5mn/t0/wDa1fP9fQH7Mv8AzNP/AG6f+1qAPf6KKKACiiigAooooAK+AK+/6+AKACiiigAooooA+/6KKKACiiigAr4Ar7/r4AoAKKKKACiiigD7/ooooAKKKKACvgCvv+vgCgAooooAKKKKACiiigAooooAK+/6+AK+/wCgAooooAKKKKAPgCiiigD6A/Zl/wCZp/7dP/a1e/14B+zL/wAzT/26f+1q9/oAKKKKACvAP2mv+ZW/7e//AGjXv9eAftNf8yt/29/+0aAPn+iiigAooooA+gP2Zf8Amaf+3T/2tXv9eAfsy/8AM0/9un/tavf6ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD4AooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACvoD9mX/maf8At0/9rV8/19Afsy/8zT/26f8AtagD3+iiigD4AooooAKKKKACvv8Ar4Ar7/oAKKKKACiiigD4AooooAKKKKACiiigAooooAKKKKACiiigD6A/Zl/5mn/t0/8Aa1e/14B+zL/zNP8A26f+1q9/oAKKKKACvAP2mv8AmVv+3v8A9o17/XgH7TX/ADK3/b3/AO0aAPn+iiigD7/ooooA8A/aa/5lb/t7/wDaNfP9fQH7TX/Mrf8Ab3/7Rr5/oAKKKKACvoD9mX/maf8At0/9rV8/19Afsy/8zT/26f8AtagD3+iiigAooooAKKKKACiiigArwD9pr/mVv+3v/wBo17/XgH7TX/Mrf9vf/tGgD5/ooooAKKKKACiiigAooooAK+gP2Zf+Zp/7dP8A2tXz/X0B+zL/AMzT/wBun/tagD3+iiigAooooA8A/aa/5lb/ALe//aNfP9fQH7TX/Mrf9vf/ALRr5/oAK+/6+AK+/wCgArwD9pr/AJlb/t7/APaNe/14B+01/wAyt/29/wDtGgD5/ooooA+/6KKKAPAP2mv+ZW/7e/8A2jXz/X0B+01/zK3/AG9/+0a+f6ACiiigAooooAKKKKAPv+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAPAP+GZf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ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB//9k="
+                                style="height: 150px; width: 150px;">
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Footer -->
+                <!-- /Footer -->
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+</body>
+</html>
