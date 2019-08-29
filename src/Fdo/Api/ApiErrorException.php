@@ -9,6 +9,6 @@ use DomainException;
 /**
  * API error
  */
-final class ApiRequestException extends DomainException
+final class ApiErrorException extends DomainException
 {
 }

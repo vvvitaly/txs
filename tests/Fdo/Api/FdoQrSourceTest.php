@@ -9,7 +9,7 @@ namespace tests\Fdo\Api;
 use App\Core\Bills\Bill;
 use App\Core\Source\SourceReadException;
 use App\Fdo\Api\ApiClientInterface;
-use App\Fdo\Api\ApiRequestException;
+use App\Fdo\Api\ApiErrorException;
 use App\Fdo\Api\FdoCheque;
 use App\Fdo\Api\FdoChequeItem;
 use App\Fdo\Api\FdoQrSource;
@@ -72,7 +72,7 @@ final class FdoQrSourceTest extends TestCase
         $apiClient = $this->createMock(ApiClientInterface::class);
         $apiClient
             ->method('getCheque')
-            ->willThrowException(new ApiRequestException('test'));
+            ->willThrowException(new ApiErrorException('test'));
 
         $source = new FdoQrSource($requests, $apiClient, 'FdoQrSourceTest');
 

@@ -61,7 +61,7 @@ final class FdoQrSource implements BillSourceInterface
         foreach ($this->requestsList as $request) {
             try {
                 $cheque = $this->apiClient->getCheque($request);
-            } catch (ApiRequestException $exception) {
+            } catch (ApiErrorException $exception) {
                 throw new SourceReadException('Can not perform API request', 0, $exception);
             }
 
