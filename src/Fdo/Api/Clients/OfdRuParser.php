@@ -119,9 +119,10 @@ final class OfdRuParser
 
             if ($container && strpos($container->getAttribute('class'), 'ifw-bill-item') !== false) { // item
                 $item = $this->getTextValue($keyNode);
-                preg_match('/^\s+= (\d+.\d{2})/um', $valueNode->textContent, $matches);
-                if (isset($matches[1])) {
-                    $items[] = [$item, $matches[1]];
+                $value = $xpath->query($this->selector->toXPath('.text-right div:nth-child(3) span:nth-child(2)'),
+                    $container);
+                if ($value->length) {
+                    $items[] = [$item, $value->item(0)->textContent];
                 }
             } else {
                 $chequeAttributes[strtoupper($this->getTextValue($keyNode))] = $this->getTextValue($valueNode);
