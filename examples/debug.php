@@ -4,11 +4,11 @@
 
 declare(strict_types=1);
 
-use App\Core\Bills\Amount;
-use App\Core\Bills\Bill;
-use App\Core\Bills\BillInfo;
-use App\Core\Bills\BillItem;
-use App\Core\Bills\BillsCollection;
+use vvvitaly\txs\Core\Bills\Amount;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Core\Bills\BillInfo;
+use vvvitaly\txs\Core\Bills\BillItem;
+use vvvitaly\txs\Core\Bills\BillsCollection;
 use Webmozart\Assert\Assert;
 
 /**

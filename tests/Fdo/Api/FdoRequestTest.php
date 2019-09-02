@@ -6,11 +6,11 @@ declare(strict_types=1);
 
 namespace tests\Fdo\Api;
 
-use App\Fdo\Api\FdoRequest;
 use DateTimeImmutable;
 use Exception;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use vvvitaly\txs\Fdo\Api\FdoRequest;
 
 final class FdoRequestTest extends TestCase
 {

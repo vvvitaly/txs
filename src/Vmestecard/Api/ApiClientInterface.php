@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Vmestecard\Api;
+namespace vvvitaly\txs\Vmestecard\Api;
 
-use App\Libs\Date\DatesRange;
-use App\Vmestecard\Api\Client\Pagination;
+use vvvitaly\txs\Libs\Date\DatesRange;
+use vvvitaly\txs\Vmestecard\Api\Client\Pagination;
 
 /**
  * Vmestecard API client

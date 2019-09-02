@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Sms\Parsers\Sber;
+namespace vvvitaly\txs\Sms\Parsers\Sber;
 
-use App\Core\Bills\Bill;
-use App\Sms\Message;
-use App\Sms\Parsers\CompositeMessageParser;
-use App\Sms\Parsers\MessageParserInterface;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Sms\Message;
+use vvvitaly\txs\Sms\Parsers\CompositeMessageParser;
+use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 
 /**
  * Composite parser for all Sber parsers

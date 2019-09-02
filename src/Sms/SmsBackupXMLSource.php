@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Sms;
+namespace vvvitaly\txs\Sms;
 
-use App\Core\Bills\BillsCollection;
-use App\Core\Source\BillSourceInterface;
-use App\Core\Source\SourceReadException;
-use App\Libs\Date\DatesRange;
-use App\Sms\Parsers\MessageParserInterface;
 use DateTimeImmutable;
 use DateTimeZone;
 use Exception;
 use SimpleXMLElement;
+use vvvitaly\txs\Core\Bills\BillsCollection;
+use vvvitaly\txs\Core\Source\BillSourceInterface;
+use vvvitaly\txs\Core\Source\SourceReadException;
+use vvvitaly\txs\Libs\Date\DatesRange;
+use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 
 /**
  * Read SMS from XML file created by "SMS Backup & Restore" application (com.riteshsahu.SMSBackupRestore)

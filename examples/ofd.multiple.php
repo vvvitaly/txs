@@ -4,11 +4,6 @@
 
 declare(strict_types=1);
 
-use App\Fdo\Api\CascadeApiClient;
-use App\Fdo\Api\Clients\OfdRuClient;
-use App\Fdo\Api\Clients\TaxcomClient;
-use App\Fdo\Api\FdoQrSource;
-use App\Fdo\Api\FdoRequest;
 use Http\Client\Common\Plugin\ContentLengthPlugin;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 use Http\Client\Common\Plugin\LoggerPlugin;
@@ -18,6 +13,11 @@ use Http\Discovery\MessageFactoryDiscovery;
 use Http\Message\Formatter\FullHttpMessageFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use vvvitaly\txs\Fdo\Api\CascadeApiClient;
+use vvvitaly\txs\Fdo\Api\Clients\OfdRuClient;
+use vvvitaly\txs\Fdo\Api\Clients\TaxcomClient;
+use vvvitaly\txs\Fdo\Api\FdoQrSource;
+use vvvitaly\txs\Fdo\Api\FdoRequest;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/debug.php';

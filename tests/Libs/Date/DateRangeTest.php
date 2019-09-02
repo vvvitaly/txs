@@ -6,9 +6,9 @@ declare(strict_types=1);
 
 namespace tests\Libs\Date;
 
-use App\Libs\Date\DatesRange;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
+use vvvitaly\txs\Libs\Date\DatesRange;
 
 final class DateRangeTest extends TestCase
 {

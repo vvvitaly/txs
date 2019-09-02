@@ -4,9 +4,9 @@
 
 declare(strict_types=1);
 
-use App\Libs\Date\DatesRange;
-use App\Sms\Parsers\Sber\SberParser;
-use App\Sms\SmsBackupXMLSource;
+use vvvitaly\txs\Libs\Date\DatesRange;
+use vvvitaly\txs\Sms\Parsers\Sber\SberParser;
+use vvvitaly\txs\Sms\SmsBackupXMLSource;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/debug.php';

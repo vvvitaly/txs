@@ -4,12 +4,6 @@ declare(strict_types=1);
 
 namespace tests\Vmestecard\Api\Client;
 
-use App\Libs\Date\DatesRange;
-use App\Vmestecard\Api\AccessToken\ApiToken;
-use App\Vmestecard\Api\AccessToken\TokenProviderInterface;
-use App\Vmestecard\Api\ApiErrorException;
-use App\Vmestecard\Api\Client\ApiClient;
-use App\Vmestecard\Api\Client\Pagination;
 use DateTimeImmutable;
 use GuzzleHttp\Psr7\Response;
 use Http\Client\Exception\TransferException;
@@ -17,6 +11,12 @@ use Http\Discovery\MessageFactoryDiscovery;
 use Http\Mock\Client;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
+use vvvitaly\txs\Libs\Date\DatesRange;
+use vvvitaly\txs\Vmestecard\Api\AccessToken\ApiToken;
+use vvvitaly\txs\Vmestecard\Api\AccessToken\TokenProviderInterface;
+use vvvitaly\txs\Vmestecard\Api\ApiErrorException;
+use vvvitaly\txs\Vmestecard\Api\Client\ApiClient;
+use vvvitaly\txs\Vmestecard\Api\Client\Pagination;
 
 /** @noinspection PhpMissingDocCommentInspection */
 

@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Vmestecard\Api\Client;
+namespace vvvitaly\txs\Vmestecard\Api\Client;
 
-use App\Libs\Date\DatesRange;
-use App\Vmestecard\Api\AccessToken\TokenProviderInterface;
-use App\Vmestecard\Api\ApiClientInterface;
-use App\Vmestecard\Api\ApiErrorException;
 use DateTimeImmutable;
 use Exception;
 use Http\Client\Exception\HttpException;
 use Http\Client\HttpClient;
 use Http\Message\RequestFactory;
 use Psr\Http\Client\ClientExceptionInterface;
+use vvvitaly\txs\Libs\Date\DatesRange;
+use vvvitaly\txs\Vmestecard\Api\AccessToken\TokenProviderInterface;
+use vvvitaly\txs\Vmestecard\Api\ApiClientInterface;
+use vvvitaly\txs\Vmestecard\Api\ApiErrorException;
 
 /**
  * API implementation based on HTTP client

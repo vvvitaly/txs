@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Sms\Parsers\Sber;
+namespace vvvitaly\txs\Sms\Parsers\Sber;
 
-use App\Sms\Message;
+use vvvitaly\txs\Sms\Message;
 
 /**
  * Check if SMS is from Sberbank

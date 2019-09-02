@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Sms\Parsers;
+namespace vvvitaly\txs\Sms\Parsers;
 
-use App\Core\Bills\Bill;
-use App\Sms\Message;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Sms\Message;
 
 /**
  * Try to parse SMS with list of parsers. If one of the parsers throws UnknownSmsTypeException, it tries parsing with

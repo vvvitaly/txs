@@ -6,15 +6,15 @@ declare(strict_types=1);
 
 namespace tests\Exporters;
 
-use App\Core\Bills\Amount;
-use App\Core\Bills\Bill;
-use App\Core\Bills\BillsCollection;
-use App\Core\Export\BillExporterInterface;
-use App\Exporters\CollectionExporter;
-use App\Core\Export\Data\Transaction;
-use App\Exporters\CollectionExportException;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
+use vvvitaly\txs\Core\Bills\Amount;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Core\Bills\BillsCollection;
+use vvvitaly\txs\Core\Export\BillExporterInterface;
+use vvvitaly\txs\Core\Export\Data\Transaction;
+use vvvitaly\txs\Exporters\CollectionExporter;
+use vvvitaly\txs\Exporters\CollectionExportException;
 
 final class CollectionExporterTest extends TestCase
 {

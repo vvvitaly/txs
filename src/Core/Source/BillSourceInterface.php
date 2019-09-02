@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Source;
+namespace vvvitaly\txs\Core\Source;
 
-use App\Core\Bills\BillsCollection;
+use vvvitaly\txs\Core\Bills\BillsCollection;
 
 /**
  * Some way for obtaining bills (e.g. SMS, some API, etc.)

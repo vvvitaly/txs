@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Exporters;
+namespace vvvitaly\txs\Exporters;
 
-use App\Core\Bills\Bill;
-use App\Core\Export\Data\Transaction;
-use App\Core\Export\Data\TransactionSplit;
-use App\Core\Export\InvalidBillException;
-use App\Core\Export\BillExporterInterface;
-use App\Exporters\Processors\ProcessorInterface;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Core\Export\BillExporterInterface;
+use vvvitaly\txs\Core\Export\Data\Transaction;
+use vvvitaly\txs\Core\Export\Data\TransactionSplit;
+use vvvitaly\txs\Core\Export\InvalidBillException;
+use vvvitaly\txs\Exporters\Processors\ProcessorInterface;
 
 /**
  * Export the most information from bill to GnuCash-like transactions objects.

@@ -6,10 +6,6 @@ declare(strict_types=1);
 
 namespace tests\Fdo\Api\Clients;
 
-use App\Fdo\Api\ApiErrorException;
-use App\Fdo\Api\Clients\TaxcomClient;
-use App\Fdo\Api\FdoChequeItem;
-use App\Fdo\Api\FdoRequest;
 use DateTimeImmutable;
 use GuzzleHttp\Psr7\Response;
 use Http\Client\Exception\TransferException;
@@ -17,6 +13,10 @@ use Http\Discovery\MessageFactoryDiscovery;
 use Http\Mock\Client;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
+use vvvitaly\txs\Fdo\Api\ApiErrorException;
+use vvvitaly\txs\Fdo\Api\Clients\TaxcomClient;
+use vvvitaly\txs\Fdo\Api\FdoChequeItem;
+use vvvitaly\txs\Fdo\Api\FdoRequest;
 
 final class TaxcomClientTest extends TestCase
 {

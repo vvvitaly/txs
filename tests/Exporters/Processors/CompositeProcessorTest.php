@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace tests\Exporters\Processors;
 
-use App\Core\Export\Data\Transaction;
-use App\Exporters\Processors\CompositeProcessor;
-use App\Exporters\Processors\ProcessorInterface;
 use PHPUnit\Framework\TestCase;
+use vvvitaly\txs\Core\Export\Data\Transaction;
+use vvvitaly\txs\Exporters\Processors\CompositeProcessor;
+use vvvitaly\txs\Exporters\Processors\ProcessorInterface;
 
 /** @noinspection PhpMissingDocCommentInspection */
 

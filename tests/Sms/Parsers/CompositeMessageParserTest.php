@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace tests\Sms\Parsers;
 
-use App\Core\Bills\Amount;
-use App\Core\Bills\Bill;
-use App\Sms\Message;
-use App\Sms\Parsers\CompositeMessageParser;
-use App\Sms\Parsers\MessageParserInterface;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
+use vvvitaly\txs\Core\Bills\Amount;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Sms\Message;
+use vvvitaly\txs\Sms\Parsers\CompositeMessageParser;
+use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 
 /** @noinspection PhpMissingDocCommentInspection */
 

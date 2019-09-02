@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Fdo\Api;
+namespace vvvitaly\txs\Fdo\Api;
 
 /**
  * Obtain bill by the FDO API request.

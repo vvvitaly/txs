@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Libs\Date;
+namespace vvvitaly\txs\Libs\Date;
 
 use DateTimeImmutable;
 use Webmozart\Assert\Assert;

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Fdo\Api\Clients;
+namespace vvvitaly\txs\Fdo\Api\Clients;
 
-use App\Fdo\Api\ApiClientInterface;
-use App\Fdo\Api\ApiErrorException;
-use App\Fdo\Api\FdoCheque;
-use App\Fdo\Api\FdoRequest;
 use Http\Client\Exception\HttpException;
 use Http\Client\HttpClient;
 use Http\Message\RequestFactory;
 use Psr\Http\Client\ClientExceptionInterface;
+use vvvitaly\txs\Fdo\Api\ApiClientInterface;
+use vvvitaly\txs\Fdo\Api\ApiErrorException;
+use vvvitaly\txs\Fdo\Api\FdoCheque;
+use vvvitaly\txs\Fdo\Api\FdoRequest;
 
 /**
  * Get cheque from ofd.ru

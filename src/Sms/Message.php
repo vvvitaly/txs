@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Sms;
+namespace vvvitaly\txs\Sms;
 
 use DateTimeImmutable;
 

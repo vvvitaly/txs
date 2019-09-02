@@ -2,12 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Fdo\Api\Clients;
+namespace vvvitaly\txs\Fdo\Api\Clients;
 
-use App\Fdo\Api\FdoCheque;
-use App\Fdo\Api\FdoChequeItem;
-use App\Libs\Html\DomHelper;
-use App\Libs\Html\DOMLoadingException;
 use DateTimeImmutable;
 use DOMDocument;
 use DOMElement;
@@ -15,6 +11,10 @@ use DOMXPath;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\CssSelector\CssSelectorConverter;
+use vvvitaly\txs\Fdo\Api\FdoCheque;
+use vvvitaly\txs\Fdo\Api\FdoChequeItem;
+use vvvitaly\txs\Libs\Html\DomHelper;
+use vvvitaly\txs\Libs\Html\DOMLoadingException;
 
 /**
  * Default parser implementation (parse HTML)

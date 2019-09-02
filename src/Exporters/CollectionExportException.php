@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Exporters;
+namespace vvvitaly\txs\Exporters;
 
-use App\Core\Bills\Bill;
 use DomainException;
 use Throwable;
+use vvvitaly\txs\Core\Bills\Bill;
 
 /**
  * Occurs if can not parse some bill from collection

@@ -4,12 +4,6 @@
 
 declare(strict_types=1);
 
-use App\Libs\Date\DatesRange;
-use App\Vmestecard\Api\AccessToken\ApiCredentials;
-use App\Vmestecard\Api\AccessToken\ApiTokenProvider;
-use App\Vmestecard\Api\AccessToken\CachedTokenProvider;
-use App\Vmestecard\Api\Client\ApiClient;
-use App\Vmestecard\VmestecardSource;
 use Desarrolla2\Cache\File;
 use Http\Client\Common\Plugin\AddHostPlugin;
 use Http\Client\Common\Plugin\ContentLengthPlugin;
@@ -21,6 +15,12 @@ use Http\Discovery\UriFactoryDiscovery;
 use Http\Message\Formatter\FullHttpMessageFormatter;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use vvvitaly\txs\Libs\Date\DatesRange;
+use vvvitaly\txs\Vmestecard\Api\AccessToken\ApiCredentials;
+use vvvitaly\txs\Vmestecard\Api\AccessToken\ApiTokenProvider;
+use vvvitaly\txs\Vmestecard\Api\AccessToken\CachedTokenProvider;
+use vvvitaly\txs\Vmestecard\Api\Client\ApiClient;
+use vvvitaly\txs\Vmestecard\VmestecardSource;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/debug.php';

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace tests\Vmestecard\Api\AccessToken;
 
-use App\Vmestecard\Api\AccessToken\ApiCredentials;
-use App\Vmestecard\Api\AccessToken\ApiTokenProvider;
-use App\Vmestecard\Api\AccessToken\TokenNotFoundException;
 use GuzzleHttp\Psr7\Response;
 use Http\Client\Exception\TransferException;
 use Http\Discovery\MessageFactoryDiscovery;
 use Http\Mock\Client;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
+use vvvitaly\txs\Vmestecard\Api\AccessToken\ApiCredentials;
+use vvvitaly\txs\Vmestecard\Api\AccessToken\ApiTokenProvider;
+use vvvitaly\txs\Vmestecard\Api\AccessToken\TokenNotFoundException;
 
 /** @noinspection PhpMissingDocCommentInspection */
 

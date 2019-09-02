@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace tests\Sms;
 
-use App\Core\Bills\Amount;
-use App\Core\Bills\Bill;
-use App\Libs\Date\DatesRange;
-use App\Sms\Message;
-use App\Sms\Parsers\MessageParserInterface;
-use App\Sms\SmsBackupXMLSource;
 use DateTimeImmutable;
 use DateTimeZone;
 use PHPUnit\Framework\TestCase;
+use vvvitaly\txs\Core\Bills\Amount;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Libs\Date\DatesRange;
+use vvvitaly\txs\Sms\Message;
+use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
+use vvvitaly\txs\Sms\SmsBackupXMLSource;
 
 /** @noinspection PhpMissingDocCommentInspection */
 

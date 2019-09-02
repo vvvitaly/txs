@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Exporters\Processors;
+namespace vvvitaly\txs\Exporters\Processors;
 
-use App\Core\Export\Data\Transaction;
+use vvvitaly\txs\Core\Export\Data\Transaction;
 
 /**
  * Resolve transactions IDs. It users global counter for all transactions.

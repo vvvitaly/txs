@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Sms\Parsers\Sber;
+namespace vvvitaly\txs\Sms\Parsers\Sber;
 
-use App\Sms\Message;
 use DateTimeImmutable;
+use vvvitaly\txs\Sms\Message;
 
 /**
  * Resolve the correct date based on Sberbank report SMS.

@@ -6,9 +6,9 @@ declare(strict_types=1);
 
 namespace tests\Exporters\Processors;
 
-use App\Core\Export\Data\Transaction;
-use App\Exporters\Processors\AutoIdCounter;
 use PHPUnit\Framework\TestCase;
+use vvvitaly\txs\Core\Export\Data\Transaction;
+use vvvitaly\txs\Exporters\Processors\AutoIdCounter;
 
 final class AutoIdCounterTest extends TestCase
 {

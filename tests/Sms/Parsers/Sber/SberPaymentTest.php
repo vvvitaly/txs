@@ -7,13 +7,13 @@ declare(strict_types=1);
 
 namespace tests\Sms\Parsers\Sber;
 
-use App\Core\Bills\Amount;
-use App\Core\Bills\Bill;
-use App\Core\Bills\BillInfo;
-use App\Sms\Message;
-use App\Sms\Parsers\MessageParserInterface;
-use App\Sms\Parsers\Sber\SberPayment;
 use DateTimeImmutable;
+use vvvitaly\txs\Core\Bills\Amount;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Core\Bills\BillInfo;
+use vvvitaly\txs\Sms\Message;
+use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
+use vvvitaly\txs\Sms\Parsers\Sber\SberPayment;
 
 final class SberPaymentTest extends SberSmsTestCase
 {

@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace tests\Vmestecard;
 
-use App\Core\Bills\Bill;
-use App\Core\Source\SourceReadException;
-use App\Libs\Date\DatesRange;
-use App\Vmestecard\Api\ApiClientInterface;
-use App\Vmestecard\Api\ApiErrorException;
-use App\Vmestecard\Api\Client\Pagination;
-use App\Vmestecard\VmestecardSource;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Core\Source\SourceReadException;
+use vvvitaly\txs\Libs\Date\DatesRange;
+use vvvitaly\txs\Vmestecard\Api\ApiClientInterface;
+use vvvitaly\txs\Vmestecard\Api\ApiErrorException;
+use vvvitaly\txs\Vmestecard\Api\Client\Pagination;
+use vvvitaly\txs\Vmestecard\VmestecardSource;
 
 /** @noinspection PhpMissingDocCommentInspection */
 

@@ -6,13 +6,13 @@ declare(strict_types=1);
 
 namespace tests\Exporters;
 
-use App\Core\Export\Data\TransactionCollection;
-use App\Exporters\CsvWriterConfig;
-use App\Exporters\MultiSplitCsvWriter;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use SplFileObject;
 use tests\Helpers\TransactionHelper;
+use vvvitaly\txs\Core\Export\Data\TransactionCollection;
+use vvvitaly\txs\Exporters\CsvWriterConfig;
+use vvvitaly\txs\Exporters\MultiSplitCsvWriter;
 
 final class MultiSplitCsvWriterTest extends TestCase
 {

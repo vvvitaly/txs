@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Vmestecard\Api\AccessToken;
+namespace vvvitaly\txs\Vmestecard\Api\AccessToken;
 
 use RuntimeException;
 

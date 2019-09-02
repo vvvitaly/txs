@@ -6,10 +6,10 @@ declare(strict_types=1);
 
 namespace tests\Exporters\Processors;
 
-use App\Exporters\Processors\DescriptionAsAccount;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use tests\Helpers\TransactionHelper;
+use vvvitaly\txs\Exporters\Processors\DescriptionAsAccount;
 
 final class DescriptionAsAccountTest extends TestCase
 {

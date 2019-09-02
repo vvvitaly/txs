@@ -4,13 +4,13 @@
 
 declare(strict_types=1);
 
-use App\Exporters\BillExporter;
-use App\Exporters\CollectionExporter;
-use App\Exporters\CsvWriterConfig;
-use App\Exporters\MultiSplitCsvWriter;
-use App\Exporters\Processors\AutoIdCounter;
-use App\Exporters\Processors\CompositeProcessor;
-use App\Exporters\Processors\DescriptionAsAccount;
+use vvvitaly\txs\Exporters\BillExporter;
+use vvvitaly\txs\Exporters\CollectionExporter;
+use vvvitaly\txs\Exporters\CsvWriterConfig;
+use vvvitaly\txs\Exporters\MultiSplitCsvWriter;
+use vvvitaly\txs\Exporters\Processors\AutoIdCounter;
+use vvvitaly\txs\Exporters\Processors\CompositeProcessor;
+use vvvitaly\txs\Exporters\Processors\DescriptionAsAccount;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/debug.php';

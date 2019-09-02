@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Vmestecard;
+namespace vvvitaly\txs\Vmestecard;
 
-use App\Core\Bills\Amount;
-use App\Core\Bills\Bill;
-use App\Core\Bills\BillInfo;
-use App\Core\Bills\BillItem;
-use App\Core\Bills\BillsCollection;
-use App\Core\Source\BillSourceInterface;
-use App\Core\Source\SourceReadException;
-use App\Libs\Date\DatesRange;
-use App\Vmestecard\Api\ApiClientInterface;
-use App\Vmestecard\Api\ApiErrorException;
-use App\Vmestecard\Api\Client\Pagination;
 use DateTimeImmutable;
 use Exception;
+use vvvitaly\txs\Core\Bills\Amount;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Core\Bills\BillInfo;
+use vvvitaly\txs\Core\Bills\BillItem;
+use vvvitaly\txs\Core\Bills\BillsCollection;
+use vvvitaly\txs\Core\Source\BillSourceInterface;
+use vvvitaly\txs\Core\Source\SourceReadException;
+use vvvitaly\txs\Libs\Date\DatesRange;
+use vvvitaly\txs\Vmestecard\Api\ApiClientInterface;
+use vvvitaly\txs\Vmestecard\Api\ApiErrorException;
+use vvvitaly\txs\Vmestecard\Api\Client\Pagination;
 
 /**
  * Parse data from the Vmestecard account (vmestecard.ru). This parser uses their API to obtain list of purchases by

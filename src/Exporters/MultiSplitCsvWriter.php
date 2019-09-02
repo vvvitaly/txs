@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Exporters;
+namespace vvvitaly\txs\Exporters;
 
-use App\Core\Export\Data\TransactionCollection;
 use SplFileObject;
+use vvvitaly\txs\Core\Export\Data\TransactionCollection;
 
 /**
  * Write exported transaction to CSV file (multi-split mode)

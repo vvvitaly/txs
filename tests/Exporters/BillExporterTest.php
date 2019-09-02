@@ -6,15 +6,15 @@ declare(strict_types=1);
 
 namespace tests\Exporters;
 
-use App\Core\Bills\Amount;
-use App\Core\Bills\Bill;
-use App\Core\Bills\BillInfo;
-use App\Core\Bills\BillItem;
-use App\Core\Export\InvalidBillException;
-use App\Exporters\BillExporter;
-use App\Exporters\Processors\ProcessorInterface;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
+use vvvitaly\txs\Core\Bills\Amount;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Core\Bills\BillInfo;
+use vvvitaly\txs\Core\Bills\BillItem;
+use vvvitaly\txs\Core\Export\InvalidBillException;
+use vvvitaly\txs\Exporters\BillExporter;
+use vvvitaly\txs\Exporters\Processors\ProcessorInterface;
 
 final class BillExporterTest extends TestCase
 {

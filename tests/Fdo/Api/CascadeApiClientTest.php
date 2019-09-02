@@ -6,11 +6,11 @@ declare(strict_types=1);
 
 namespace tests\Fdo\Api;
 
-use App\Fdo\Api\ApiClientInterface;
-use App\Fdo\Api\CascadeApiClient;
-use App\Fdo\Api\FdoCheque;
-use App\Fdo\Api\FdoRequest;
 use PHPUnit\Framework\TestCase;
+use vvvitaly\txs\Fdo\Api\ApiClientInterface;
+use vvvitaly\txs\Fdo\Api\CascadeApiClient;
+use vvvitaly\txs\Fdo\Api\FdoCheque;
+use vvvitaly\txs\Fdo\Api\FdoRequest;
 
 final class CascadeApiClientTest extends TestCase
 {

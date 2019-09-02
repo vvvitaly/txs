@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Bills;
+namespace vvvitaly\txs\Core\Bills;
 
 /**
  * Amount of transaction with currency

@@ -8,11 +8,11 @@ declare(strict_types=1);
 
 namespace tests\Sms\Parsers\Sber;
 
-use App\Core\Bills\Bill;
-use App\Sms\Message;
-use App\Sms\Parsers\MessageParserInterface;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Sms\Message;
+use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 
 abstract class SberSmsTestCase extends TestCase
 {

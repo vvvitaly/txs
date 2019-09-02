@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Fdo\Api\Clients;
+namespace vvvitaly\txs\Fdo\Api\Clients;
 
 use RuntimeException;
 

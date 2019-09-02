@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Source;
+namespace vvvitaly\txs\Core\Source;
 
 use RuntimeException;
 

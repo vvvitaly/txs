@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Exporters;
+namespace vvvitaly\txs\Exporters;
 
-use App\Core\Bills\BillsCollection;
-use App\Core\Export\BillExporterInterface;
-use App\Core\Export\Data\TransactionCollection;
 use Exception;
+use vvvitaly\txs\Core\Bills\BillsCollection;
+use vvvitaly\txs\Core\Export\BillExporterInterface;
+use vvvitaly\txs\Core\Export\Data\TransactionCollection;
 
 /**
  * Export batch of bills.

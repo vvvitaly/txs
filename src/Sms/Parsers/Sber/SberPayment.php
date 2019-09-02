@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Sms\Parsers\Sber;
+namespace vvvitaly\txs\Sms\Parsers\Sber;
 
-use App\Core\Bills\Amount;
-use App\Core\Bills\Bill;
-use App\Core\Bills\BillInfo;
-use App\Sms\Message;
-use App\Sms\Parsers\MessageParserInterface;
+use vvvitaly\txs\Core\Bills\Amount;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Core\Bills\BillInfo;
+use vvvitaly\txs\Sms\Message;
+use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 
 /**
  * Try to parse message about payments by card. Such messages have the following format:

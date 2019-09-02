@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace tests\Fdo;
 
-use App\Core\Bills\Bill;
-use App\Fdo\FdoJsonSource;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Fdo\FdoJsonSource;
 
 /** @noinspection PhpMissingDocCommentInspection */
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Export;
+namespace vvvitaly\txs\Core\Export;
 
-use App\Core\Bills\Bill;
-use App\Core\Export\Data\Transaction;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Core\Export\Data\Transaction;
 
 /**
  * Export parsed bill into transaction DTO

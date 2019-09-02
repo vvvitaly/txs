@@ -6,16 +6,16 @@ declare(strict_types=1);
 
 namespace tests\Fdo\Api;
 
-use App\Core\Bills\Bill;
-use App\Core\Source\SourceReadException;
-use App\Fdo\Api\ApiClientInterface;
-use App\Fdo\Api\ApiErrorException;
-use App\Fdo\Api\FdoCheque;
-use App\Fdo\Api\FdoChequeItem;
-use App\Fdo\Api\FdoQrSource;
-use App\Fdo\Api\FdoRequest;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
+use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Core\Source\SourceReadException;
+use vvvitaly\txs\Fdo\Api\ApiClientInterface;
+use vvvitaly\txs\Fdo\Api\ApiErrorException;
+use vvvitaly\txs\Fdo\Api\FdoCheque;
+use vvvitaly\txs\Fdo\Api\FdoChequeItem;
+use vvvitaly\txs\Fdo\Api\FdoQrSource;
+use vvvitaly\txs\Fdo\Api\FdoRequest;
 
 final class FdoQrSourceTest extends TestCase
 {

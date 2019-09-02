@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace tests\Helpers;
 
-use App\Core\Export\Data\Transaction;
-use App\Core\Export\Data\TransactionSplit;
+use vvvitaly\txs\Core\Export\Data\Transaction;
+use vvvitaly\txs\Core\Export\Data\TransactionSplit;
 
 /**
  * Testing utilities for work with transactions
