@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use vvvitaly\txs\Infrastructure\Console\BillsPrinterHelper;
+use vvvitaly\txs\Infrastructure\Console\DatesRangeHelper;
+use vvvitaly\txs\Infrastructure\Console\SmsCommand;
+use vvvitaly\txs\Infrastructure\Factory\ExporterFactory;
+use vvvitaly\txs\Sms\Parsers\CompositeMessageParser;
+use vvvitaly\txs\Sms\Parsers\Sber\SberParser;
+
+$application = new Application('Bills exporter', '0.1.0');
+
+$application->getHelperSet()->set(new DatesRangeHelper());
+$application->getHelperSet()->set(new BillsPrinterHelper());
+
+$application->addCommands([
+    new SmsCommand(
+        new CompositeMessageParser(
+            new SberParser()
+        ),
+        ExporterFactory::getBillsExporter()
+    ),
+]);
+
+$application->run();
