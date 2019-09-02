@@ -33,7 +33,7 @@ final class DatesRange
             'At least one of the dates must be set');
 
         if ($begin && $end) {
-            Assert::true($begin === null || $begin < $end, 'Begin date must be less than end date');
+            Assert::true($begin === null || $begin <= $end, 'Begin date must be less than end date');
         }
 
         $this->begin = $begin;
