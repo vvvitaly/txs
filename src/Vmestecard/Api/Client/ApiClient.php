@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Vmestecard\Api\Client;
 
-use App\Libs\Date\DateRange;
+use App\Libs\Date\DatesRange;
 use App\Vmestecard\Api\AccessToken\TokenProviderInterface;
 use App\Vmestecard\Api\ApiClientInterface;
 use App\Vmestecard\Api\ApiErrorException;
@@ -54,7 +54,7 @@ final class ApiClient implements ApiClientInterface
     /**
      * @inheritDoc
      */
-    public function getHistory(DateRange $dateRange, Pagination $pagination): array
+    public function getHistory(DatesRange $dateRange, Pagination $pagination): array
     {
         $token = $this->tokenProvider->getToken();
         if (!$token->isValid()) {

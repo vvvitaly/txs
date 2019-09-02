@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-use App\Libs\Date\DateRange;
+use App\Libs\Date\DatesRange;
 use App\Sms\Parsers\Sber\SberParser;
 use App\Sms\SmsBackupXMLSource;
 
@@ -18,7 +18,7 @@ if ($argc < 3) {
 
 [, $fileName, $dateFrom] = $argv;
 
-$dates = new DateRange(
+$dates = new DatesRange(
     new DateTimeImmutable($dateFrom)
 );
 $xml = simplexml_load_string(file_get_contents($fileName));

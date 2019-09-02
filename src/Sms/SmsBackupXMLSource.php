@@ -7,7 +7,7 @@ namespace App\Sms;
 use App\Core\Bills\BillsCollection;
 use App\Core\Source\BillSourceInterface;
 use App\Core\Source\SourceReadException;
-use App\Libs\Date\DateRange;
+use App\Libs\Date\DatesRange;
 use App\Sms\Parsers\MessageParserInterface;
 use DateTimeImmutable;
 use DateTimeZone;
@@ -25,7 +25,7 @@ final class SmsBackupXMLSource implements BillSourceInterface
     private $xml;
 
     /**
-     * @var DateRange
+     * @var DatesRange
      */
     private $dateRange;
 
@@ -36,10 +36,10 @@ final class SmsBackupXMLSource implements BillSourceInterface
 
     /**
      * @param SimpleXMLElement $xml
-     * @param DateRange $dateRange
+     * @param DatesRange $dateRange
      * @param MessageParserInterface $smsParser
      */
-    public function __construct(SimpleXMLElement $xml, DateRange $dateRange, MessageParserInterface $smsParser)
+    public function __construct(SimpleXMLElement $xml, DatesRange $dateRange, MessageParserInterface $smsParser)
     {
         $this->xml = $xml;
         $this->dateRange = $dateRange;

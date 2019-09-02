@@ -11,7 +11,7 @@ use App\Core\Bills\BillItem;
 use App\Core\Bills\BillsCollection;
 use App\Core\Source\BillSourceInterface;
 use App\Core\Source\SourceReadException;
-use App\Libs\Date\DateRange;
+use App\Libs\Date\DatesRange;
 use App\Vmestecard\Api\ApiClientInterface;
 use App\Vmestecard\Api\ApiErrorException;
 use App\Vmestecard\Api\Client\Pagination;
@@ -31,7 +31,7 @@ final class VmestecardSource implements BillSourceInterface
     private $apiClient;
 
     /**
-     * @var DateRange
+     * @var DatesRange
      */
     private $dateRange;
 
@@ -42,10 +42,10 @@ final class VmestecardSource implements BillSourceInterface
 
     /**
      * @param ApiClientInterface $apiClient
-     * @param DateRange $dateRange
+     * @param DatesRange $dateRange
      * @param string $defaultAccount
      */
-    public function __construct(ApiClientInterface $apiClient, DateRange $dateRange, string $defaultAccount)
+    public function __construct(ApiClientInterface $apiClient, DatesRange $dateRange, string $defaultAccount)
     {
         $this->apiClient = $apiClient;
         $this->dateRange = $dateRange;

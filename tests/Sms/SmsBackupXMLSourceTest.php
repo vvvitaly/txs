@@ -6,7 +6,7 @@ namespace tests\Sms;
 
 use App\Core\Bills\Amount;
 use App\Core\Bills\Bill;
-use App\Libs\Date\DateRange;
+use App\Libs\Date\DatesRange;
 use App\Sms\Message;
 use App\Sms\Parsers\MessageParserInterface;
 use App\Sms\SmsBackupXMLSource;
@@ -42,7 +42,7 @@ final class SmsBackupXMLSourceTest extends TestCase
   <sms protocol="0" address="1232" date="1526661378815" type="1" subject="null" body="text2" toa="null" sc_toa="null" service_center="+79037011111" read="1" status="-1" locked="0" date_sent="0" sub_id="0" readable_date="18 мая 2018 г. 19:36:18" contact_name="(Unknown)" />  
 </smses>
 XML;
-        $dateRange = new DateRange(new DateTimeImmutable('2000-01-01'));
+        $dateRange = new DatesRange(new DateTimeImmutable('2000-01-01'));
         $bill1 = new Bill(new Amount(1));
         $bill2 = new Bill(new Amount(2));
 
@@ -78,7 +78,7 @@ XML;
 </smses>
 XML;
 
-        $dateRange = new DateRange(
+        $dateRange = new DatesRange(
             new DateTimeImmutable('2018-04-19 00:00:00'),
             new DateTimeImmutable('2018-06-17 00:00:00')
         );
@@ -107,7 +107,7 @@ XML;
   <sms protocol="0" address="1232" date="1526661378815" type="1" subject="null" body="text2" toa="null" sc_toa="null" service_center="+79037011111" read="1" status="-1" locked="0" date_sent="0" sub_id="0" readable_date="18 мая 2018 г. 19:36:18" contact_name="(Unknown)" />  
 </smses>
 XML;
-        $dateRange = new DateRange(new DateTimeImmutable('2000-01-01'));
+        $dateRange = new DatesRange(new DateTimeImmutable('2000-01-01'));
         $bill = new Bill(new Amount(1));
 
         $innerParser = $this->createMock(MessageParserInterface::class);

@@ -6,7 +6,7 @@ declare(strict_types=1);
 
 namespace tests\Libs\Date;
 
-use App\Libs\Date\DateRange;
+use App\Libs\Date\DatesRange;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
@@ -26,7 +26,7 @@ final class DateRangeTest extends TestCase
         ?DateTimeImmutable $end,
         bool $expectedIsIn
     ): void {
-        $range = new DateRange($begin, $end);
+        $range = new DatesRange($begin, $end);
         $this->assertEquals($expectedIsIn, $range->contains($testingDate));
     }
 

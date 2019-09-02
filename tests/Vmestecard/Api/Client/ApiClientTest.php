@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace tests\Vmestecard\Api\Client;
 
-use App\Libs\Date\DateRange;
+use App\Libs\Date\DatesRange;
 use App\Vmestecard\Api\AccessToken\ApiToken;
 use App\Vmestecard\Api\AccessToken\TokenProviderInterface;
 use App\Vmestecard\Api\ApiErrorException;
@@ -24,7 +24,7 @@ final class ApiClientTest extends TestCase
 {
     public function testGetHistory(): void
     {
-        $dates = new DateRange(new DateTimeImmutable('2019-08-01 12:33:44'),
+        $dates = new DatesRange(new DateTimeImmutable('2019-08-01 12:33:44'),
             new DateTimeImmutable('2019-08-12 23:00:12'));
         $pagination = new Pagination(1000);
 
@@ -60,7 +60,7 @@ final class ApiClientTest extends TestCase
 
     public function testGetHistoryWrongResponse(): void
     {
-        $dates = new DateRange(null, new DateTimeImmutable('now'));
+        $dates = new DatesRange(null, new DateTimeImmutable('now'));
         $pagination = new Pagination(1000);
 
         $response = new Response(200, [], self::errorResponse('testGetHistoryWrongResponse'));
@@ -80,7 +80,7 @@ final class ApiClientTest extends TestCase
 
     public function testGetHistoryHttpError(): void
     {
-        $dates = new DateRange(null, new DateTimeImmutable('now'));
+        $dates = new DatesRange(null, new DateTimeImmutable('now'));
         $pagination = new Pagination(1000);
 
         $http = new Client();
@@ -97,7 +97,7 @@ final class ApiClientTest extends TestCase
 
     public function testGetHistoryBadStatus(): void
     {
-        $dates = new DateRange(null, new DateTimeImmutable('now'));
+        $dates = new DatesRange(null, new DateTimeImmutable('now'));
         $pagination = new Pagination(1000);
 
         $response = new Response(403);

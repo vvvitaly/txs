@@ -11,7 +11,7 @@ use Webmozart\Assert\Assert;
  * Work with interval of dates. It's set by the begin and the end dates of this interval. Both dates might be set, or
  * only one of them (begin or date, but not any of them).
  */
-final class DateRange
+final class DatesRange
 {
     /**
      * @var DateTimeImmutable|null

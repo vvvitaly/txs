@@ -4,7 +4,7 @@
 
 declare(strict_types=1);
 
-use App\Libs\Date\DateRange;
+use App\Libs\Date\DatesRange;
 use App\Vmestecard\Api\AccessToken\ApiCredentials;
 use App\Vmestecard\Api\AccessToken\ApiTokenProvider;
 use App\Vmestecard\Api\AccessToken\CachedTokenProvider;
@@ -36,7 +36,7 @@ if ($argc < 5) {
 $credentials = new ApiCredentials($username, $password);
 
 // Source filter
-$dateRange = new DateRange(new DateTimeImmutable($dateFrom));
+$dateRange = new DatesRange(new DateTimeImmutable($dateFrom));
 
 // create HTTP client
 $logger = new Logger('http');

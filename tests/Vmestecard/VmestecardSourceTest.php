@@ -6,7 +6,7 @@ namespace tests\Vmestecard;
 
 use App\Core\Bills\Bill;
 use App\Core\Source\SourceReadException;
-use App\Libs\Date\DateRange;
+use App\Libs\Date\DatesRange;
 use App\Vmestecard\Api\ApiClientInterface;
 use App\Vmestecard\Api\ApiErrorException;
 use App\Vmestecard\Api\Client\Pagination;
@@ -21,7 +21,7 @@ final class VmestecardSourceTest extends TestCase
     public function testParseSuccessfulResponse(): void
     {
         $response = require __DIR__ . '/successful-response.php';
-        $dates = new DateRange(new DateTimeImmutable('-1 year'), null);
+        $dates = new DatesRange(new DateTimeImmutable('-1 year'), null);
         $defaultAccount = 'default';
 
         $client = $this->createMock(ApiClientInterface::class);
@@ -78,7 +78,7 @@ final class VmestecardSourceTest extends TestCase
                 'validationErrors' => null,
             ],
         ];
-        $dates = new DateRange(new DateTimeImmutable('-1 year'), null);
+        $dates = new DatesRange(new DateTimeImmutable('-1 year'), null);
 
         $client = $this->createMock(ApiClientInterface::class);
         $client
@@ -95,7 +95,7 @@ final class VmestecardSourceTest extends TestCase
 
     public function testParseWithError(): void
     {
-        $dates = new DateRange(new DateTimeImmutable('-1 year'), null);
+        $dates = new DatesRange(new DateTimeImmutable('-1 year'), null);
 
         $client = $this->createMock(ApiClientInterface::class);
         $client->expects($this->once())

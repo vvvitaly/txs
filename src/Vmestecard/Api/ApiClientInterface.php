@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Vmestecard\Api;
 
-use App\Libs\Date\DateRange;
+use App\Libs\Date\DatesRange;
 use App\Vmestecard\Api\Client\Pagination;
 
 /**
@@ -15,10 +15,10 @@ interface ApiClientInterface
     /**
      * Load transactions history for the specified date range and page settings.
      *
-     * @param DateRange $dateRange
+     * @param DatesRange $dateRange
      * @param Pagination $pagination
      *
      * @return array
      */
-    public function getHistory(DateRange $dateRange, Pagination $pagination): array;
+    public function getHistory(DatesRange $dateRange, Pagination $pagination): array;
 }
