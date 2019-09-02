@@ -11,7 +11,8 @@ use vvvitaly\txs\Infrastructure\Console\DatesRangeHelper;
 use vvvitaly\txs\Infrastructure\Console\SmsCommand;
 use vvvitaly\txs\Infrastructure\Factory\ExporterFactory;
 use vvvitaly\txs\Sms\Parsers\CompositeMessageParser;
-use vvvitaly\txs\Sms\Parsers\Sber\SberParser;
+
+$config = require __DIR__ . '/../config/config.php';
 
 $application = new Application('Bills exporter', '0.1.0');
 
@@ -21,7 +22,7 @@ $application->getHelperSet()->set(new BillsPrinterHelper());
 $application->addCommands([
     new SmsCommand(
         new CompositeMessageParser(
-            new SberParser()
+            ...$config['sms.parsers']
         ),
         ExporterFactory::getBillsExporter()
     ),
