@@ -1,8 +1,14 @@
 {
     "name": "vvvitaly/txs",
-    "description": "Personal double-entry accounting platform",
+    "description": "Export bills obtained from different sources to gnucash-like CSV file",
+    "keywords": [
+        "php",
+        "bills",
+        "gnucash",
+        "ofd"
+    ],
     "minimum-stability": "dev",
-    "license": "proprietary",
+    "license": "MIT",
     "authors": [
         {
             "name": "Vitaly Volkov",
