@@ -34,7 +34,8 @@
         "php-http/guzzle6-adapter": "^2.0",
         "guzzlehttp/psr7": "^1.6",
         "desarrolla2/cache": "^3.0",
-        "monolog/monolog": "^1.24"
+        "monolog/monolog": "^1.24",
+        "symfony/console": "^4.3"
     },
 
     "require-dev": {
