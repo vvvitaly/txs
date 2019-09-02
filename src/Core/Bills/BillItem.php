@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Bills;
 
+use Webmozart\Assert\Assert;
+
 /**
  * One transaction part
  */
@@ -20,11 +22,13 @@ final class BillItem
     private $amount;
 
     /**
-     * @param string|null $description
+     * @param string $description
      * @param Amount $amount
      */
-    public function __construct(?string $description, Amount $amount)
+    public function __construct(string $description, Amount $amount)
     {
+        Assert::notEmpty($description);
+
         $this->description = $description;
         $this->amount = $amount;
     }
