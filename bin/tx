@@ -8,6 +8,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use Symfony\Component\Console\Application;
 use vvvitaly\txs\Infrastructure\Console\BillsPrinterHelper;
 use vvvitaly\txs\Infrastructure\Console\DatesRangeHelper;
+use vvvitaly\txs\Infrastructure\Console\FdoJsonCommand;
 use vvvitaly\txs\Infrastructure\Console\SmsCommand;
 use vvvitaly\txs\Infrastructure\Console\VmesteCommand;
 use vvvitaly\txs\Infrastructure\Factory\ExporterFactory;
@@ -36,6 +37,8 @@ $application->addCommands([
         $config['vmeste.logger'],
         $config['vmeste.cache']
     ),
+
+    new FdoJsonCommand($billsExporter),
 ]);
 
 $application->run();
