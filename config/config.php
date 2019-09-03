@@ -13,6 +13,9 @@ return array_replace_recursive(
         'vmeste.baseUri' => '',     // API URI
         'vmeste.logger' => null,    // null or Logger instance
         'vmeste.cache' => null,     // null or CacheInterface
+
+        // FDO
+        'fdo.http.logger' => null,  // null or Logger instance
     ],
     is_file(__DIR__ . '/config-local.php') ? require __DIR__ . '/config-local.php' : []
 );
