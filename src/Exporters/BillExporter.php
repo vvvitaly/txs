@@ -91,9 +91,5 @@ final class BillExporter implements BillExporterInterface
         if (!$bill->getAccount()) {
             throw new InvalidBillException('Account is mandatory');
         }
-
-        if (!$bill->getInfo()->getDescription()) {
-            throw new InvalidBillException('Transaction description is mandatory');
-        }
     }
 }
