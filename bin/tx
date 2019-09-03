@@ -9,6 +9,7 @@ use Symfony\Component\Console\Application;
 use vvvitaly\txs\Infrastructure\Console\BillsPrinterHelper;
 use vvvitaly\txs\Infrastructure\Console\DatesRangeHelper;
 use vvvitaly\txs\Infrastructure\Console\SmsCommand;
+use vvvitaly\txs\Infrastructure\Console\VmesteCommand;
 use vvvitaly\txs\Infrastructure\Factory\ExporterFactory;
 use vvvitaly\txs\Sms\Parsers\CompositeMessageParser;
 
@@ -19,12 +20,21 @@ $application = new Application('Bills exporter', '0.1.0');
 $application->getHelperSet()->set(new DatesRangeHelper());
 $application->getHelperSet()->set(new BillsPrinterHelper());
 
+$billsExporter = ExporterFactory::getBillsExporter();
+
 $application->addCommands([
     new SmsCommand(
         new CompositeMessageParser(
             ...$config['sms.parsers']
         ),
-        ExporterFactory::getBillsExporter()
+        $billsExporter
+    ),
+
+    new VmesteCommand(
+        $billsExporter,
+        $config['vmeste.baseUri'],
+        $config['vmeste.logger'],
+        $config['vmeste.cache']
     ),
 ]);
 
