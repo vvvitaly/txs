@@ -6,16 +6,11 @@ namespace vvvitaly\txs\Infrastructure\Console;
 
 use InvalidArgumentException;
 use SimpleXMLElement;
-use SplFileObject;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use vvvitaly\txs\Core\Export\BillExporterInterface;
-use vvvitaly\txs\Exporters\CollectionExporter;
-use vvvitaly\txs\Exporters\CsvWriterConfig;
-use vvvitaly\txs\Exporters\MultiSplitCsvWriter;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 use vvvitaly\txs\Sms\SmsBackupXMLSource;
 
@@ -24,6 +19,8 @@ use vvvitaly\txs\Sms\SmsBackupXMLSource;
  */
 final class SmsCommand extends Command
 {
+    use ExportTrait;
+
     /**
      * @var MessageParserInterface
      */
@@ -59,14 +56,6 @@ final class SmsCommand extends Command
             ->setDefinition([
                 new InputArgument('xml', InputArgument::REQUIRED, 'XML backup path'),
                 new InputArgument('dates', InputArgument::REQUIRED, 'SMS export dates range'),
-                new InputOption(
-                    'csv',
-                    null,
-                    InputOption::VALUE_REQUIRED,
-                    'CSV file to export',
-                    'bills-' . date('Ymd') . '.csv'
-                ),
-                new InputOption('append', null, InputOption::VALUE_OPTIONAL, 'Do not rewrite existing CSV file', true),
             ])
             ->setHelp(
                 <<<EOS
@@ -76,6 +65,8 @@ only messages was received in the given dates range.
 {$datesHelp}
 EOS
             );
+
+        $this->configureCsvOptions($this->getDefinition());
     }
 
     /**
@@ -86,31 +77,9 @@ EOS
         $xml = $this->loadXML($input->getArgument('xml'));
         $datesRange = $this->getHelper('datesRange')->parseDates($input->getArgument('dates'));
 
-        $isAppendTransactions = $input->getOption('append');
-        $fileMode = $isAppendTransactions ? 'ab' : 'wb';
-        $outFileName = $input->getOption('csv') ?: 'bills-' . date('Y-m-d') . '.csv';
-        $outCsv = new SplFileObject($outFileName, $fileMode);
-        if (!$outCsv->isWritable()) {
-            throw new InvalidArgumentException("Can not write to \"{$outFileName}\"");
-        }
-
-        $csvConfig = new CsvWriterConfig();
-        $csvConfig->withHeader = !$outCsv->getSize();
-        $writer = new MultiSplitCsvWriter($outCsv, $csvConfig);
-
         $source = new SmsBackupXMLSource($xml, $datesRange, $this->smsParser);
-        $bills = $source->read();
 
-        if ($output->isVerbose()) {
-            $this->getHelper('bills_printer')->printBills($bills, $output);
-        }
-
-        $exporter = new CollectionExporter($this->billExporter);
-        $transactions = $exporter->export($bills);
-        $writer->write($transactions);
-
-        $resultFile = $outCsv->getRealPath();
-        $output->writeln("Transactions were exported into <info>\"{$resultFile}\"</info>");
+        $this->export($source, $this->billExporter, $input, $output);
 
         return 1;
     }
