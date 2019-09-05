@@ -97,4 +97,16 @@ final class FdoRequest
             $params['fp']
         );
     }
+
+    /**
+     * Convert request to QR content format
+     *
+     * @return string
+     */
+    public function asQr(): string
+    {
+        $date = $this->date->format('Ymd\THi');
+        $amount = number_format($this->amount, 2, '.', '');
+        return "t={$date}&s={$amount}&fn={$this->fiscalDriveNumber}&i={$this->fiscalDocumentNumber}&fp={$this->fiscalSign}&n=1";
+    }
 }

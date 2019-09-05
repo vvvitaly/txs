@@ -7,6 +7,7 @@ namespace vvvitaly\txs\Infrastructure\Console;
 use InvalidArgumentException;
 use SimpleXMLElement;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -80,6 +81,21 @@ EOS
         $source = new SmsBackupXMLSource($xml, $datesRange, $this->smsParser);
 
         $this->export($source, $this->billExporter, $input, $output);
+
+        $skipped = count($source->getSkippedMessages());
+        if ($skipped && $output->isVerbose()) {
+            $output->writeln("<info>These messages weren't parsed:</info>");
+            $table = new Table($output);
+            $table->addRow(['Date', 'From', 'Message']);
+            foreach ($source->getSkippedMessages() as $sms) {
+                $table->addRow([$sms->date->format('Y-m-d H:i:s'), $sms->from, $sms->text]);
+            }
+            $table->setColumnMaxWidth(2, 50);
+            $table->setStyle('borderless');
+            $table->render();
+        } elseif($skipped) {
+            $output->writeln("<info>{$skipped}</info> messages weren't parsed");
+        }
 
         return 1;
     }

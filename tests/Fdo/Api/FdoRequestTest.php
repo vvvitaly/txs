@@ -55,6 +55,13 @@ final class FdoRequestTest extends TestCase
         FdoRequest::fromQr($qr);
     }
 
+    public function testAsQr(): void
+    {
+        $qr = 't=20190811T1139&s=1405.00&fn=9280440300200295&i=14378&fp=3796110719&n=1';
+        $req = FdoRequest::fromQr($qr);
+        $this->assertEquals($qr, $req->asQr());
+    }
+
     public function providerFromQr(): array
     {
         return [

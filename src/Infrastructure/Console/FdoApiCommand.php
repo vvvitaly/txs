@@ -123,6 +123,16 @@ EOS
         $source = new FdoQrSource($requests, $api, $account);
         $this->export($source, $this->billExporter, $input, $output);
 
+        $skipped = count($source->getSkippedRequests());
+        if ($skipped && $output->isVerbose()) {
+            $output->writeln("<info>These requests weren't found:</info>");
+            foreach ($source->getSkippedRequests() as $fdoRequest) {
+                $output->writeln('  ' . $fdoRequest->asQr());
+            }
+        } elseif($skipped) {
+            $output->writeln("<info>{$skipped}</info> requests weren't found");
+        }
+
         return 1;
     }
 
