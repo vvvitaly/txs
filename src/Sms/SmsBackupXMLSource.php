@@ -35,6 +35,11 @@ final class SmsBackupXMLSource implements BillSourceInterface
     private $smsParser;
 
     /**
+     * @var Message[]
+     */
+    private $skipped = [];
+
+    /**
      * @param SimpleXMLElement $xml
      * @param DatesRange $dateRange
      * @param MessageParserInterface $smsParser
@@ -51,6 +56,7 @@ final class SmsBackupXMLSource implements BillSourceInterface
      */
     public function read(): BillsCollection
     {
+        $this->skipped = [];
         $bills = [];
         foreach ($this->xml->sms as $node) {
             $time = floor((int)(string)$node['date'] / 1000);
@@ -73,10 +79,21 @@ final class SmsBackupXMLSource implements BillSourceInterface
             $bill = $this->smsParser->parse($sms);
             if ($bill) {
                 $bills[] = $bill;
+            } else {
+                $this->skipped[] = $sms;
             }
         }
 
         return new BillsCollection(...$bills);
     }
 
+    /**
+     * Get messages were skipped in reading.
+     *
+     * @return Message[]
+     */
+    public function getSkippedMessages(): array
+    {
+        return $this->skipped;
+    }
 }

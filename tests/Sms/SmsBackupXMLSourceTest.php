@@ -110,12 +110,15 @@ XML;
         $dateRange = new DatesRange(new DateTimeImmutable('2000-01-01'));
         $bill = new Bill(new Amount(1));
 
+        $sms1 = new Message('1231', $this->createDate('2018-06-18 19:36:18'), 'text1');
+        $sms2 = new Message('1232', $this->createDate('2018-05-18 19:36:18'), 'text2');
+
         $innerParser = $this->createMock(MessageParserInterface::class);
         $innerParser->expects($this->exactly(2))
             ->method('parse')
             ->withConsecutive(
-                [new Message('1231', $this->createDate('2018-06-18 19:36:18'), 'text1')],
-                [new Message('1232', $this->createDate('2018-05-18 19:36:18'), 'text2')]
+                [$sms1],
+                [$sms2]
             )
             ->willReturnOnConsecutiveCalls(
                 null,
@@ -127,5 +130,9 @@ XML;
 
         $this->assertCount(1, $actualList);
         $this->assertSame($bill, $actualList[0]);
+
+        $skipped = $source->getSkippedMessages();
+        $this->assertCount(1, $skipped);
+        $this->assertEquals($sms1, $skipped[0]);
     }
 }
