@@ -54,7 +54,7 @@ final class TaxcomClientTest extends TestCase
         $this->assertNotNull($cheque);
         $this->assertEquals(new DateTimeImmutable('2019-08-11 11:39:00'), $cheque->date);
         $this->assertSame(1405.0, $cheque->totalAmount);
-        $this->assertSame('SOME', $cheque->place);
+        $this->assertSame('ООО "ОКТОБЛУ"', $cheque->place);
         $this->assertSame('50', $cheque->number);
 
         $this->assertCount(3, $cheque->items);
@@ -77,7 +77,7 @@ final class TaxcomClientTest extends TestCase
         $this->assertNotNull($cheque);
         $this->assertEquals(new DateTimeImmutable('2019-08-03 08:51:00'), $cheque->date);
         $this->assertSame(1712.45, $cheque->totalAmount);
-        $this->assertSame('АЗС N1', $cheque->place);
+        $this->assertSame('ООО "Держава"', $cheque->place);
         $this->assertSame('36', $cheque->number);
 
         $this->assertCount(1, $cheque->items);

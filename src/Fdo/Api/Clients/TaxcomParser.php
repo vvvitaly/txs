@@ -12,7 +12,6 @@ use DOMXPath;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\CssSelector\CssSelectorConverter;
-use Symfony\Component\CssSelector\Exception\ParseException;
 use vvvitaly\txs\Fdo\Api\FdoCheque;
 use vvvitaly\txs\Fdo\Api\FdoChequeItem;
 use vvvitaly\txs\Libs\Html\DomHelper;
@@ -39,7 +38,7 @@ final class TaxcomParser
      * @param ResponseInterface $response
      *
      * @return FdoCheque|null
-     * @throws ParseException
+     * @throws ResponseParseException
      */
     public function parse(ResponseInterface $response): ?FdoCheque
     {
@@ -54,12 +53,11 @@ final class TaxcomParser
 
         $xpath = new DOMXPath($doc);
 
-        $el = $this->find($xpath, '.receipt-company-name span.value');
-        if (!$el[2]) {
+        $el = $this->find($xpath, '.receipt-subtitle b');
+        if (!$el[0]) {
             return null;
         }
-
-        $cheque->place = DomHelper::normalizeText($el[2]->textContent);
+        $cheque->place = DomHelper::normalizeText($el[0]->textContent);
 
         $el = $this->find($xpath, '.receipt-header2 .receipt-col1 .value');
         $cheque->number = DomHelper::normalizeText($el[0]->textContent);
@@ -83,13 +81,13 @@ final class TaxcomParser
 
             $titleEl = $this->find($xpath, 'table:nth-child(1) .value', $rootEl);
             if (!$titleEl->length) {
-                throw new ParseException('Can not parse item title');
+                throw new ResponseParseException('Can not parse item title');
             }
             $name = DomHelper::normalizeText($titleEl[0]->textContent);
 
             $amountEl = $this->find($xpath, 'table:nth-child(2) .receipt-col2 .value', $rootEl);
             if (!$titleEl->length) {
-                throw new ParseException('Can not parse item amount');
+                throw new ResponseParseException('Can not parse item amount');
             }
             $amount = (float)DomHelper::normalizeText($amountEl[0]->textContent);
 
