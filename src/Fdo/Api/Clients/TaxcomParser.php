@@ -12,6 +12,7 @@ use DOMXPath;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\CssSelector\CssSelectorConverter;
+use Symfony\Component\CssSelector\Exception\ParseException;
 use vvvitaly\txs\Fdo\Api\FdoCheque;
 use vvvitaly\txs\Fdo\Api\FdoChequeItem;
 use vvvitaly\txs\Libs\Html\DomHelper;
@@ -35,7 +36,10 @@ final class TaxcomParser
     }
 
     /**
-     * @inheritDoc
+     * @param ResponseInterface $response
+     *
+     * @return FdoCheque|null
+     * @throws ParseException
      */
     public function parse(ResponseInterface $response): ?FdoCheque
     {
@@ -68,17 +72,27 @@ final class TaxcomParser
             throw new ResponseParseException("Can not parse date: \"$date\"", 0, $e);
         }
 
-        $els = iterator_to_array($this->find($xpath, '.receipt-body .items .value'));
+        $el = $this->find($xpath, '.receipt-body .items > table .value');
+        $cheque->totalAmount = (float)DomHelper::normalizeText($el[0]->textContent);
 
-        $last = array_pop($els);
-        $cheque->totalAmount = (float)DomHelper::normalizeText($last->textContent);
+        $els = iterator_to_array($this->find($xpath, '.receipt-body .items .item'));
 
         $items = [];
-        foreach (array_chunk($els, 6) as $chunk) {
-            /** @var DOMElement[] $chunk */
+        foreach ($els as $rootEl) {
+            /** @var DOMElement $rootEl */
 
-            $name = DomHelper::normalizeText($chunk[0]->textContent);
-            $amount = (float)DomHelper::normalizeText($chunk[3]->textContent);
+            $titleEl = $this->find($xpath, 'table:nth-child(1) .value', $rootEl);
+            if (!$titleEl->length) {
+                throw new ParseException('Can not parse item title');
+            }
+            $name = DomHelper::normalizeText($titleEl[0]->textContent);
+
+            $amountEl = $this->find($xpath, 'table:nth-child(2) .receipt-col2 .value', $rootEl);
+            if (!$titleEl->length) {
+                throw new ParseException('Can not parse item amount');
+            }
+            $amount = (float)DomHelper::normalizeText($amountEl[0]->textContent);
+
             $items[] = new FdoChequeItem($name, $amount);
         }
 

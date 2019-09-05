@@ -63,6 +63,27 @@ final class TaxcomClientTest extends TestCase
         $this->assertEquals(new FdoChequeItem('ARTENGO RS 730', 237), $cheque->items[2]);
     }
 
+    public function testGetChequeParseWithComplexItems(): void
+    {
+        $response = new Response(200, [], file_get_contents(__DIR__ . '/taxcom2.html'));
+
+        $http = new Client();
+        $http->addResponse($response);
+
+        $client = new TaxcomClient($http, MessageFactoryDiscovery::find());
+
+        $cheque = $client->getCheque($this->fdoRequest);
+
+        $this->assertNotNull($cheque);
+        $this->assertEquals(new DateTimeImmutable('2019-08-03 08:51:00'), $cheque->date);
+        $this->assertSame(1712.45, $cheque->totalAmount);
+        $this->assertSame('АЗС N1', $cheque->place);
+        $this->assertSame('36', $cheque->number);
+
+        $this->assertCount(1, $cheque->items);
+        $this->assertEquals(new FdoChequeItem('Пост 2: АИ95(Кл-5)', 1712.45), $cheque->items[0]);
+    }
+
     public function testGetChequeWithInvalidContent(): void
     {
         $response = new Response(200, [], file_get_contents(__DIR__ . '/taxcom.invalid.html'));
