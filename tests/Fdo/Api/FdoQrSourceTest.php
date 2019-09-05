@@ -115,5 +115,9 @@ final class FdoQrSourceTest extends TestCase
 
         $this->assertEquals(100, $actual[0]->getAmount()->getValue());
         $this->assertEquals(101, $actual[1]->getAmount()->getValue());
+
+        $skipped = $source->getSkippedRequests();
+        $this->assertCount(1, $skipped);
+        $this->assertSame($requests[1], $skipped[0]);
     }
 }

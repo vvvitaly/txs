@@ -39,6 +39,11 @@ final class FdoQrSource implements BillSourceInterface
     private $defaultAccount;
 
     /**
+     * @var FdoRequest[]
+     */
+    private $skipped = [];
+
+    /**
      * @param FdoRequest[] $requestsList
      * @param ApiClientInterface $apiClient
      * @param string $defaultAccount
@@ -57,6 +62,7 @@ final class FdoQrSource implements BillSourceInterface
      */
     public function read(): BillsCollection
     {
+        $this->skipped = [];
         $bills = [];
         foreach ($this->requestsList as $request) {
             try {
@@ -67,10 +73,22 @@ final class FdoQrSource implements BillSourceInterface
 
             if ($cheque) {
                 $bills[] = $this->parseCheque($cheque);
+            } else {
+                $this->skipped[] = $request;
             }
         }
 
         return new BillsCollection(...$bills);
+    }
+
+    /**
+     * Get QR requests were skipped.
+     *
+     * @return FdoRequest[]
+     */
+    public function getSkippedRequests(): array
+    {
+        return $this->skipped;
     }
 
     /**
