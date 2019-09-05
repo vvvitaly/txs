@@ -10,9 +10,9 @@ use Http\Client\Common\PluginClient;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
 use Http\Message\Formatter\FullHttpMessageFormatter;
+use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -61,7 +61,8 @@ final class FdoApiCommand extends Command
             ->setName('fdo')
             ->setDescription('Export bills from FDO providers by QR codes contents')
             ->setDefinition([
-                new InputArgument('qr', InputArgument::REQUIRED | InputArgument::IS_ARRAY, 'QR codes'),
+                new InputOption('qr', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'QR codes'),
+                new InputOption('from', 'f', InputOption::VALUE_REQUIRED, 'File with QR codes'),
                 new InputOption(
                     'account',
                     null,
@@ -72,8 +73,8 @@ final class FdoApiCommand extends Command
             ])
             ->setHelp(
                 <<<EOS
-The <info>fdo</info> command obtains bills from some FDO providers. It takes a list if QR codes (prints on every bill) 
-and tries to find it in every supported provider.
+The <info>fdo</info> command obtains bills from some FDO providers. It takes a <comment>list if QR codes</comment> (prints on every bill) or
+<comment>file with list of QR codes</comment> and tries to find it in every supported provider.
 EOS
             );
 
@@ -85,7 +86,14 @@ EOS
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $qrs = $input->getArgument('qr');
+        if (($list = $input->getOption('qr')) !== []) {
+            $qrs = $list;
+        } elseif (($fileName = $input->getOption('from')) !== null) {
+            $qrs = $this->loadQrFromFile($fileName);
+        } else {
+            throw new InvalidArgumentException('One of the option "qr" or "file" must be specified. See --help for information');
+        }
+
         $account = $input->getOption('account');
 
         $plugins = [
@@ -104,13 +112,34 @@ EOS
             new TaxcomClient($httpClient, $messageFactory)
         );
 
-        $requests = array_map(function (string $qr) {
-            return FdoRequest::fromQr($qr);
+        $requests = array_map(static function (string $qr) {
+            try {
+                return FdoRequest::fromQr($qr);
+            } catch (InvalidArgumentException $exception) {
+                throw new InvalidArgumentException("Can not parse \"$qr\": " . $exception->getMessage(), 0, $exception);
+            }
         }, $qrs);
 
         $source = new FdoQrSource($requests, $api, $account);
         $this->export($source, $this->billExporter, $input, $output);
 
         return 1;
+    }
+
+    /**
+     * Read the file and load QR content from each line.
+     *
+     * @param string $fileName
+     *
+     * @return array
+     * @throws InvalidArgumentException
+     */
+    private function loadQrFromFile(string $fileName): array
+    {
+        if (!is_readable($fileName)) {
+            throw new InvalidArgumentException("Can not read file \"{$fileName}\"");
+        }
+
+        return array_filter(array_map('trim', file($fileName)));
     }
 }
