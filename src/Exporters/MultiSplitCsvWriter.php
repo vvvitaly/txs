@@ -33,6 +33,14 @@ final class MultiSplitCsvWriter
     }
 
     /**
+     * @return SplFileObject
+     */
+    public function getFile(): SplFileObject
+    {
+        return $this->file;
+    }
+
+    /**
      * Write exported transactions to the given file.
      * The CSV has following format:
      *  "Date","TxID","Bill No","Account","Tx Desc","Amount","Currency","Memo"

@@ -30,6 +30,12 @@ trait ExportTrait
     {
         $definition->addOptions([
             new InputOption(
+                'read',
+                null,
+                InputOption::VALUE_NONE,
+                'Do not write CSV, just read bills from the source'
+            ),
+            new InputOption(
                 'csv',
                 null,
                 InputOption::VALUE_REQUIRED,
@@ -62,6 +68,25 @@ trait ExportTrait
         InputInterface $input,
         OutputInterface $output
     ): void {
+        $isJustRead = $input->getOption('read');
+
+        if ($isJustRead) {
+            $this->exportOutput($source, $output);
+
+            return;
+        }
+
+        $writer = $this->createWriter($input);
+        $this->exportCsv($source, $billExporter, $writer, $output);
+    }
+
+    /**
+     * @param InputInterface $input
+     *
+     * @return MultiSplitCsvWriter
+     */
+    private function createWriter(InputInterface $input): MultiSplitCsvWriter
+    {
         $isAppendTransactions = $input->getOption('append');
         $fileMode = $isAppendTransactions ? 'ab' : 'wb';
         $outFileName = $input->getOption('csv') ?: 'bills-' . date('Y-m-d') . '.csv';
@@ -72,8 +97,22 @@ trait ExportTrait
 
         $csvConfig = new CsvWriterConfig();
         $csvConfig->withHeader = !$isAppendTransactions || !$outCsv->getSize();
-        $writer = new MultiSplitCsvWriter($outCsv, $csvConfig);
 
+        return new MultiSplitCsvWriter($outCsv, $csvConfig);
+    }
+
+    /**
+     * @param BillSourceInterface $source
+     * @param BillExporterInterface $billExporter
+     * @param MultiSplitCsvWriter $writer
+     * @param OutputInterface $output
+     */
+    private function exportCsv(
+        BillSourceInterface $source,
+        BillExporterInterface $billExporter,
+        MultiSplitCsvWriter $writer,
+        OutputInterface $output
+    ): void {
         $bills = $source->read();
 
         if ($output->isVerbose()) {
@@ -84,7 +123,17 @@ trait ExportTrait
         $transactions = $exporter->export($bills);
         $writer->write($transactions);
 
-        $resultFile = $outCsv->getRealPath();
+        $resultFile = $writer->getFile()->getRealPath();
         $output->writeln("Transactions were exported into <info>\"{$resultFile}\"</info>");
+    }
+
+    /**
+     * @param BillSourceInterface $source
+     * @param OutputInterface $output
+     */
+    private function exportOutput(BillSourceInterface $source, OutputInterface $output): void
+    {
+        $bills = $source->read();
+        $this->getHelper('bills_printer')->printBills($bills, $output);
     }
 }
