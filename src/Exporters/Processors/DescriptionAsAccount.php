@@ -37,13 +37,11 @@ final class DescriptionAsAccount implements ProcessorInterface
      */
     public function process(Transaction $transaction): void
     {
-        $isSplit = count($transaction->splits) > 1;
-
         foreach ($transaction->splits as $split) {
             if ($split->account) {
                 continue;
             }
-            $split->account = $isSplit ? $split->memo : $transaction->description;
+            $split->account = $transaction->hasItems ? $split->memo : $transaction->description;
         }
     }
 }

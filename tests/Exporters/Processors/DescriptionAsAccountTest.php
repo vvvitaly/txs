@@ -21,6 +21,7 @@ final class DescriptionAsAccountTest extends TestCase
             'description' => 'credit payment',
             'amount' => -100.12,
             'currency' => 'RUB',
+            'hasItems' => false,
             'splits' => [
                 [
                     'amount' => 100.12,
@@ -41,6 +42,7 @@ final class DescriptionAsAccountTest extends TestCase
             'account' => 'cc',
             'description' => 'credit payment',
             'amount' => -100.12,
+            'hasItems' => false,
             'splits' => [
                 [
                     'amount' => 100.12,
@@ -62,6 +64,7 @@ final class DescriptionAsAccountTest extends TestCase
             'account' => 'cash',
             'description' => 'shopping',
             'amount' => -123.45,
+            'hasItems' => true,
             'splits' => [
                 [
                     'amount' => 40,
@@ -85,5 +88,27 @@ final class DescriptionAsAccountTest extends TestCase
         $this->assertEquals('expense:tomatoes', $splitTx->splits[0]->account);
         $this->assertEquals('apples', $splitTx->splits[1]->account);
         $this->assertEquals('coffee', $splitTx->splits[2]->account);
+    }
+
+    public function testProcessForSplitTransactionWithOneItem(): void
+    {
+        $splitTx = TransactionHelper::createTransaction([
+            'date' => new DateTimeImmutable('2019-08-15'),
+            'account' => 'cash',
+            'description' => 'shopping',
+            'amount' => -60,
+            'hasItems' => true,
+            'splits' => [
+                [
+                    'amount' => 60,
+                    'memo' => 'apples',
+                ],
+            ],
+        ]);
+
+        $processor = new DescriptionAsAccount();
+        $processor->process($splitTx);
+
+        $this->assertEquals('apples', $splitTx->splits[0]->account);
     }
 }
