@@ -124,7 +124,7 @@ EOS
         $this->export($source, $this->billExporter, $input, $output);
 
         $skipped = count($source->getSkippedRequests());
-        if ($skipped && $output->isVerbose()) {
+        if ($skipped && $output->isVeryVerbose()) {
             $output->writeln("<info>These requests weren't found:</info>");
             foreach ($source->getSkippedRequests() as $fdoRequest) {
                 $output->writeln('  ' . $fdoRequest->asQr());

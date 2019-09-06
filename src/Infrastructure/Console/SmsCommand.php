@@ -83,7 +83,7 @@ EOS
         $this->export($source, $this->billExporter, $input, $output);
 
         $skipped = count($source->getSkippedMessages());
-        if ($skipped && $output->isVerbose()) {
+        if ($skipped && $output->isVeryVerbose()) {
             $output->writeln("<info>These messages weren't parsed:</info>");
             $table = new Table($output);
             $table->addRow(['Date', 'From', 'Message']);
