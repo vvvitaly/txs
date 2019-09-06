@@ -20,8 +20,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use vvvitaly\txs\Core\Export\BillExporterInterface;
 use vvvitaly\txs\Fdo\Api\ApiClientInterface;
 use vvvitaly\txs\Fdo\Api\CascadeApiClient;
-use vvvitaly\txs\Fdo\Api\Clients\NalogRuClient;
-use vvvitaly\txs\Fdo\Api\Clients\NalogRuCredentials;
 use vvvitaly\txs\Fdo\Api\Clients\OfdRuClient;
 use vvvitaly\txs\Fdo\Api\Clients\TaxcomClient;
 use vvvitaly\txs\Fdo\Api\FdoQrSource;
@@ -94,7 +92,7 @@ EOS
     {
         $account = $input->getOption('account');
         $requests = $this->createQrRequests($input);
-        $api = $this->buildApiClient($input, $output);
+        $api = $this->buildApiClient();
 
         $source = new FdoQrSource($requests, $api, $account);
         $this->export($source, $this->billExporter, $input, $output);
@@ -155,13 +153,9 @@ EOS
     }
 
     /**
-     * @param InputInterface $input
-     *
-     * @param OutputInterface $output
-     *
      * @return ApiClientInterface
      */
-    private function buildApiClient(InputInterface $input, OutputInterface $output): ApiClientInterface
+    private function buildApiClient(): ApiClientInterface
     {
         $httpClient = $this->buildHttpClient();
         $messageFactory = MessageFactoryDiscovery::find();
@@ -170,18 +164,6 @@ EOS
             new OfdRuClient($httpClient, $messageFactory),
             new TaxcomClient($httpClient, $messageFactory),
         ];
-
-        $nalogRuUser = $input->getOption('user');
-        $nalogRuPassword = $input->getOption('password');
-        if ($nalogRuUser && $nalogRuPassword) {
-            $apis[] = new NalogRuClient(
-                new NalogRuCredentials($nalogRuUser, $nalogRuPassword),
-                $httpClient,
-                $messageFactory
-            );
-        } elseif ($output->isVerbose()) {
-            $output->writeln("<comment>nalog.ru check is skipped, because username/password hasn't specified. See --help for more details.</comment>");
-        }
 
         return new CascadeApiClient(...$apis);
     }
