@@ -61,6 +61,8 @@ final class BillExporter implements BillExporterInterface
      */
     private function splitTransaction(Transaction $transaction, array $billItems): void
     {
+        $transaction->hasItems = (bool)$billItems;
+
         if (!$billItems) {
             $split = new TransactionSplit();
             $split->amount = $transaction->amount * -1;

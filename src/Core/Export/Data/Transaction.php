@@ -47,6 +47,15 @@ final class Transaction
     public $currency;
 
     /**
+     * If transaction has list of items or not.
+     * This flag is needed because transaction always has splits: even if it's simple, without items, the splits array
+     * contains inverse transaction.
+     *
+     * @var bool
+     */
+    public $hasItems = false;
+
+    /**
      * @var TransactionSplit[] Transaction parts
      */
     public $splits = [];

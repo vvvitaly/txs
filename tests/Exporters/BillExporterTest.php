@@ -41,6 +41,8 @@ final class BillExporterTest extends TestCase
         $this->assertEquals(1.2, $tx->splits[0]->amount);
         $this->assertEquals(null, $tx->splits[0]->memo);
         $this->assertEquals(null, $tx->splits[0]->account);
+
+        $this->assertFalse($tx->hasItems);
     }
 
     public function testExportBillWithItems(): void
@@ -74,6 +76,25 @@ final class BillExporterTest extends TestCase
         $this->assertEquals(0.2, $tx->splits[1]->amount);
         $this->assertEquals('buy #2', $tx->splits[1]->memo);
         $this->assertEquals(null, $tx->splits[1]->account);
+
+        $this->assertTrue($tx->hasItems);
+    }
+
+    public function testExportBillWithOneItem(): void
+    {
+        $bill = new Bill(
+            new Amount(1),
+            'cash',
+            new BillInfo(new DateTimeImmutable('2019-08-13'), 'bill #1', '#1'),
+            [
+                new BillItem('buy #1', new Amount(1)),
+            ]
+        );
+
+        $tx = (new BillExporter())->exportBill($bill);
+
+        $this->assertCount(1, $tx->splits);
+        $this->assertTrue($tx->hasItems);
     }
 
     public function testExportBillShouldExceptionIfNoDate(): void
