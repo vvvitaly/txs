@@ -7,6 +7,7 @@ namespace vvvitaly\txs\Infrastructure\Console;
 use Http\Client\Common\Plugin\ContentLengthPlugin;
 use Http\Client\Common\Plugin\LoggerPlugin;
 use Http\Client\Common\PluginClient;
+use Http\Client\HttpClient;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
 use Http\Message\Formatter\FullHttpMessageFormatter;
@@ -17,7 +18,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use vvvitaly\txs\Core\Export\BillExporterInterface;
+use vvvitaly\txs\Fdo\Api\ApiClientInterface;
 use vvvitaly\txs\Fdo\Api\CascadeApiClient;
+use vvvitaly\txs\Fdo\Api\Clients\NalogRuClient;
+use vvvitaly\txs\Fdo\Api\Clients\NalogRuCredentials;
 use vvvitaly\txs\Fdo\Api\Clients\OfdRuClient;
 use vvvitaly\txs\Fdo\Api\Clients\TaxcomClient;
 use vvvitaly\txs\Fdo\Api\FdoQrSource;
@@ -63,6 +67,8 @@ final class FdoApiCommand extends Command
             ->setDefinition([
                 new InputOption('qr', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'QR codes'),
                 new InputOption('from', 'f', InputOption::VALUE_REQUIRED, 'File with QR codes'),
+                new InputOption('user', 'u', InputOption::VALUE_REQUIRED, 'Username for nalog.ru check'),
+                new InputOption('password', 'p', InputOption::VALUE_REQUIRED, 'Password for nalog.ru check'),
                 new InputOption(
                     'account',
                     null,
@@ -86,39 +92,9 @@ EOS
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (($list = $input->getOption('qr')) !== []) {
-            $qrs = $list;
-        } elseif (($fileName = $input->getOption('from')) !== null) {
-            $qrs = $this->loadQrFromFile($fileName);
-        } else {
-            throw new InvalidArgumentException('One of the option "qr" or "file" must be specified. See --help for information');
-        }
-
         $account = $input->getOption('account');
-
-        $plugins = [
-            new ContentLengthPlugin(),
-        ];
-
-        if ($this->logger) {
-            $plugins[] = new LoggerPlugin($this->logger, new FullHttpMessageFormatter());
-        }
-
-        $httpClient = new PluginClient(HttpClientDiscovery::find(), $plugins);
-        $messageFactory = MessageFactoryDiscovery::find();
-
-        $api = new CascadeApiClient(
-            new OfdRuClient($httpClient, $messageFactory),
-            new TaxcomClient($httpClient, $messageFactory)
-        );
-
-        $requests = array_map(static function (string $qr) {
-            try {
-                return FdoRequest::fromQr($qr);
-            } catch (InvalidArgumentException $exception) {
-                throw new InvalidArgumentException("Can not parse \"$qr\": " . $exception->getMessage(), 0, $exception);
-            }
-        }, $qrs);
+        $requests = $this->createQrRequests($input);
+        $api = $this->buildApiClient($input, $output);
 
         $source = new FdoQrSource($requests, $api, $account);
         $this->export($source, $this->billExporter, $input, $output);
@@ -137,6 +113,31 @@ EOS
     }
 
     /**
+     * @param InputInterface $input
+     *
+     * @return FdoRequest[]
+     * @throws InvalidArgumentException
+     */
+    private function createQrRequests(InputInterface $input): array
+    {
+        if (($list = $input->getOption('qr')) !== []) {
+            $qrs = $list;
+        } elseif (($fileName = $input->getOption('from')) !== null) {
+            $qrs = $this->loadQrFromFile($fileName);
+        } else {
+            throw new InvalidArgumentException('One of the option "qr" or "file" must be specified. See --help for information');
+        }
+
+        return array_map(static function (string $qr) {
+            try {
+                return FdoRequest::fromQr($qr);
+            } catch (InvalidArgumentException $exception) {
+                throw new InvalidArgumentException("Can not parse \"$qr\": " . $exception->getMessage(), 0, $exception);
+            }
+        }, $qrs);
+    }
+
+    /**
      * Read the file and load QR content from each line.
      *
      * @param string $fileName
@@ -151,5 +152,53 @@ EOS
         }
 
         return array_filter(array_map('trim', file($fileName)));
+    }
+
+    /**
+     * @param InputInterface $input
+     *
+     * @param OutputInterface $output
+     *
+     * @return ApiClientInterface
+     */
+    private function buildApiClient(InputInterface $input, OutputInterface $output): ApiClientInterface
+    {
+        $httpClient = $this->buildHttpClient();
+        $messageFactory = MessageFactoryDiscovery::find();
+
+        $apis = [
+            new OfdRuClient($httpClient, $messageFactory),
+            new TaxcomClient($httpClient, $messageFactory),
+        ];
+
+        $nalogRuUser = $input->getOption('user');
+        $nalogRuPassword = $input->getOption('password');
+        if ($nalogRuUser && $nalogRuPassword) {
+            $apis[] = new NalogRuClient(
+                new NalogRuCredentials($nalogRuUser, $nalogRuPassword),
+                $httpClient,
+                $messageFactory
+            );
+        } elseif ($output->isVerbose()) {
+            $output->writeln("<comment>nalog.ru check is skipped, because username/password hasn't specified. See --help for more details.</comment>");
+        }
+
+        return new CascadeApiClient(...$apis);
+    }
+
+    /**
+     * @return HttpClient
+     */
+    private function buildHttpClient(): HttpClient
+    {
+        $plugins = [
+            new ContentLengthPlugin(),
+        ];
+
+        if ($this->logger) {
+            $plugins[] = new LoggerPlugin($this->logger, new FullHttpMessageFormatter());
+        }
+
+        return new PluginClient(HttpClientDiscovery::find(), $plugins);
     }
 }
