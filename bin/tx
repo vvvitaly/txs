@@ -34,7 +34,6 @@ $application->addCommands([
 
     new VmesteCommand(
         $billsExporter,
-        $config['vmeste.baseUri'],
         $config['vmeste.logger'],
         $config['vmeste.cache']
     ),

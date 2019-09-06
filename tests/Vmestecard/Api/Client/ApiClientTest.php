@@ -45,7 +45,6 @@ final class ApiClientTest extends TestCase
         /** @var RequestInterface $actualRequest */
         $actualRequest = $http->getLastRequest();
         $this->assertEquals('GET', $actualRequest->getMethod());
-        $this->assertEquals('/api/History', $actualRequest->getUri()->getPath());
         $this->assertEquals('Bearer test.token', $actualRequest->getHeaderLine('Authorization'));
 
         $query = [];

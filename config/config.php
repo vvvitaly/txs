@@ -10,7 +10,6 @@ return array_replace_recursive(
         'sms.parsers' => [],
 
         // Vmeste
-        'vmeste.baseUri' => '',     // API URI
         'vmeste.logger' => null,    // null or Logger instance
         'vmeste.cache' => null,     // null or CacheInterface
 

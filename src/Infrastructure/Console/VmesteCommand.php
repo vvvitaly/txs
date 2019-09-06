@@ -50,19 +50,12 @@ final class VmesteCommand extends Command
     private $logger;
 
     /**
-     * @var string
-     */
-    private $apiUri;
-
-    /**
      * @param BillExporterInterface $billExporter
-     * @param string $apiUri
      * @param LoggerInterface|null $logger
      * @param CacheInterface|null $cache
      */
     public function __construct(
         BillExporterInterface $billExporter,
-        string $apiUri,
         ?LoggerInterface $logger,
         ?CacheInterface $cache
     ) {
@@ -71,7 +64,6 @@ final class VmesteCommand extends Command
         $this->billExporter = $billExporter;
         $this->logger = $logger;
         $this->cache = $cache;
-        $this->apiUri = $apiUri;
     }
 
     /**
@@ -126,7 +118,6 @@ EOS
 
         $plugins = [
             new ContentLengthPlugin(),
-            new AddHostPlugin(UriFactoryDiscovery::find()->createUri($this->apiUri)),
         ];
         if ($this->logger) {
             $plugins[] = new LoggerPlugin($this->logger, new FullHttpMessageFormatter());

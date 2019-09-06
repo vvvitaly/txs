@@ -64,7 +64,7 @@ final class ApiClient implements ApiClientInterface
         $toDate = $dateRange->getEnd() ?? new DateTimeImmutable('now');
         $httpRequest = $this->requestFactory->createRequest(
             'GET',
-            '/api/History?' . http_build_query([
+            'https://api-zhuravli.vmeste32.productions/api/History?' . http_build_query([
                 'filter.count' => $pagination->getLimit(),
                 'filter.from' => $pagination->getOffset(),
                 'filter.fromDate' => $dateRange->getBegin() ? $dateRange->getBegin()->format('Y-m-d\TH:i:s.000\Z') : null,
