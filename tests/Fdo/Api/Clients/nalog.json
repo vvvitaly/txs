@@ -1,0 +1,47 @@
+{
+    "document": {
+        "receipt": {
+            "ecashTotalSum": 23840,
+            "userInn": "3254004420",
+            "items": [
+                {
+                    "quantity": 1,
+                    "sum": 9850,
+                    "name": "XXXXXXXXX",
+                    "price": 9850
+                },
+                {
+                    "quantity": 1,
+                    "sum": 13990,
+                    "name": "YYYYYYYYYYY",
+                    "price": 13990
+                }
+            ],
+            "totalSum": 23840,
+            "fiscalDriveNumber": "9000000000000000",
+            "senderAddress": "ofd@ofd.ru",
+            "operationType": 1,
+            "requestNumber": 177,
+            "receiptCode": 3,
+            "retailPlaceAddress": "AAAAA, ZZZZ 123",
+            "buyerAddress": "",
+            "kktRegId": "0000555555555555",
+            "ndsCalculated10": 0,
+            "fiscalDocumentNumber": 98438,
+            "ndsCalculated18": 0,
+            "shiftNumber": 367,
+            "dateTime": "2019-08-04T20:28:00",
+            "user": "ООО Ритейл",
+            "nds0": 0,
+            "taxationType": 1,
+            "operator": "Вакансия 8",
+            "fiscalSign": 1333333333,
+            "cashTotalSum": 0,
+            "ndsNo": 0,
+            "nds10": 895,
+            "rawData": "dGVzdA==",
+            "nds18": 2332,
+            "addressToCheckFiscalSign": ""
+        }
+    }
+}
