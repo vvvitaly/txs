@@ -10,6 +10,7 @@ use vvvitaly\txs\Exporters\Processors\AutoIdCounter;
 use vvvitaly\txs\Exporters\Processors\CompositeProcessor;
 use vvvitaly\txs\Exporters\Processors\CurrencyNormalizer;
 use vvvitaly\txs\Exporters\Processors\DescriptionAsAccount;
+use vvvitaly\txs\Exporters\Processors\DescriptionNormalizer;
 
 /**
  * Default factory for bills exporter
@@ -38,6 +39,7 @@ final class ExporterFactory
             self::$defaultExporter = new BillExporter(
                 new CompositeProcessor(
                     new AutoIdCounter(),
+                    DescriptionNormalizer::createDefaultNormalizer(),
                     new DescriptionAsAccount(),
                     new CurrencyNormalizer()
                 )
