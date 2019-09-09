@@ -9,7 +9,6 @@ use vvvitaly\txs\Exporters\Processors\Normalizers\BrandsNormalizer;
 use vvvitaly\txs\Exporters\Processors\Normalizers\ContractionsNormalizer;
 use vvvitaly\txs\Exporters\Processors\Normalizers\SpacesNormalizer;
 use vvvitaly\txs\Exporters\Processors\Normalizers\UnitsNormalizer;
-use vvvitaly\txs\Exporters\Processors\Normalizers\WordsNormalizer;
 
 /**
  * Create description normalizer processor
@@ -33,7 +32,6 @@ final class DescriptionNormalizerFactory
                 new UnitsNormalizer(),
                 new BrandsNormalizer(),
                 new ContractionsNormalizer(),
-                new WordsNormalizer(),
                 new SpacesNormalizer(),
             ]);
         }
