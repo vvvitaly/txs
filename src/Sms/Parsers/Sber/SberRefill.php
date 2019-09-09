@@ -69,6 +69,8 @@ final class SberRefill implements MessageParserInterface
             return null;
         }
 
+        $description .= ', ' . $matches['account'];
+
         return new Bill(
             new Amount($amount, $matches['currency']),
             $matches['account'],
