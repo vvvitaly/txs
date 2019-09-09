@@ -47,7 +47,7 @@ final class SberWithdrawalTest extends SberSmsTestCase
                 new Bill(
                     new Amount(150000, 'р'),
                     'VISA1111',
-                    new BillInfo(new DateTimeImmutable('2019-08-01 10:06:00'), 'Выдача OSB 9999 9999')
+                    new BillInfo(new DateTimeImmutable('2019-08-01 10:06:00'), 'Выдача / р, OSB 9999 9999')
                 ),
             ],
             'in bank' => [
@@ -56,7 +56,7 @@ final class SberWithdrawalTest extends SberSmsTestCase
                 new Bill(
                     new Amount(3400, 'р'),
                     'VISA1111',
-                    new BillInfo(new DateTimeImmutable('2019-08-03 11:31:00'), 'Выдача ATM 00000001')
+                    new BillInfo(new DateTimeImmutable('2019-08-03 11:31:00'), 'Выдача / р, ATM 00000001')
                 ),
             ],
             'withdrawal with different date' => [
@@ -65,7 +65,7 @@ final class SberWithdrawalTest extends SberSmsTestCase
                 new Bill(
                     new Amount(3400, 'р'),
                     'VISA1111',
-                    new BillInfo(new DateTimeImmutable('2019-08-01 11:31:00'), 'Выдача ATM 00000001')
+                    new BillInfo(new DateTimeImmutable('2019-08-01 11:31:00'), 'Выдача / р, ATM 00000001')
                 ),
             ],
             'withdrawal, date only' => [
@@ -74,7 +74,7 @@ final class SberWithdrawalTest extends SberSmsTestCase
                 new Bill(
                     new Amount(3400, 'р'),
                     'VISA1111',
-                    new BillInfo(new DateTimeImmutable('2019-08-01 00:00:00'), 'Выдача ATM 00000001')
+                    new BillInfo(new DateTimeImmutable('2019-08-01 00:00:00'), 'Выдача / р, ATM 00000001')
                 ),
             ],
         ];

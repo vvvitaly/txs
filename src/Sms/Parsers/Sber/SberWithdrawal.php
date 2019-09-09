@@ -58,11 +58,12 @@ final class SberWithdrawal implements MessageParserInterface
     private function parseMatches(Message $sms, array $matches): Bill
     {
         $amount = (float)str_replace(',', '.', $matches['amount']);
+        $description = 'Выдача / ' . $matches['currency'] . ', ' . $matches['description'];
 
         return new Bill(
             new Amount($amount, $matches['currency']),
             $matches['account'],
-            new BillInfo($this->resolveDate($sms, $matches['time']), 'Выдача ' . $matches['description'])
+            new BillInfo($this->resolveDate($sms, $matches['time']), $description)
         );
     }
 }
