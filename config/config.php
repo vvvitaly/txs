@@ -15,6 +15,12 @@ return array_replace_recursive(
 
         // FDO
         'fdo.http.logger' => null,  // null or Logger instance
+
+        /**
+         * list of descriptions aliases and replacements
+         * @see \vvvitaly\txs\Exporters\Processors\Normalizers\AliasNormalizer
+         */
+        'export.aliases' => [],
     ],
     is_file(__DIR__ . '/config-local.php') ? require __DIR__ . '/config-local.php' : []
 );

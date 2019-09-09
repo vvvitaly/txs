@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace vvvitaly\txs\Infrastructure\Factory;
+namespace vvvitaly\txs\Infrastructure\Console;
 
 use vvvitaly\txs\Core\Export\BillExporterInterface;
 use vvvitaly\txs\Exporters\BillExporter;
@@ -10,7 +10,6 @@ use vvvitaly\txs\Exporters\Processors\AutoIdCounter;
 use vvvitaly\txs\Exporters\Processors\CompositeProcessor;
 use vvvitaly\txs\Exporters\Processors\CurrencyNormalizer;
 use vvvitaly\txs\Exporters\Processors\DescriptionAsAccount;
-use vvvitaly\txs\Exporters\Processors\DescriptionNormalizer;
 
 /**
  * Default factory for bills exporter
@@ -18,9 +17,22 @@ use vvvitaly\txs\Exporters\Processors\DescriptionNormalizer;
 final class ExporterFactory
 {
     /**
+     * @var DescriptionNormalizerFactory
+     */
+    private $descriptionNormalizerFactory;
+
+    /**
      * @var BillExporterInterface
      */
-    private static $defaultExporter;
+    private $billsExporter;
+
+    /**
+     * @param DescriptionNormalizerFactory $descriptionNormalizerFactory
+     */
+    public function __construct(DescriptionNormalizerFactory $descriptionNormalizerFactory)
+    {
+        $this->descriptionNormalizerFactory = $descriptionNormalizerFactory;
+    }
 
     /**
      * Default exporter implementation. Includes following processors:
@@ -33,19 +45,19 @@ final class ExporterFactory
      * @see AutoIdCounter
      * @see DescriptionAsAccount
      */
-    public static function getBillsExporter(): BillExporterInterface
+    public function getBillsExporter(): BillExporterInterface
     {
-        if (!self::$defaultExporter) {
-            self::$defaultExporter = new BillExporter(
+        if (!$this->billsExporter) {
+            $this->billsExporter = new BillExporter(
                 new CompositeProcessor(
                     new AutoIdCounter(),
-                    DescriptionNormalizer::createDefaultNormalizer(),
+                    $this->descriptionNormalizerFactory->getNormalizer(),
                     new DescriptionAsAccount(),
                     new CurrencyNormalizer()
                 )
             );
         }
 
-        return self::$defaultExporter;
+        return $this->billsExporter;
     }
 }
