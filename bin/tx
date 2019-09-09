@@ -23,8 +23,8 @@ $application = new Application('Bills exporter', '0.1.0');
 $application->getHelperSet()->set(new DatesRangeHelper());
 $application->getHelperSet()->set(new BillsPrinterHelper());
 
-$descriptionNormalizerFactory = new DescriptionNormalizerFactory($config['export.aliases']);
-$billsExporterFactory = new ExporterFactory($descriptionNormalizerFactory);
+$descriptionNormalizerFactory = new DescriptionNormalizerFactory();
+$billsExporterFactory = new ExporterFactory($config['export.aliases'], $descriptionNormalizerFactory);
 $billsExporter = $billsExporterFactory->getBillsExporter();
 
 $application->addCommands([

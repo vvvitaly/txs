@@ -9,6 +9,7 @@ use vvvitaly\txs\Exporters\BillExporter;
 use vvvitaly\txs\Exporters\Processors\AutoIdCounter;
 use vvvitaly\txs\Exporters\Processors\CompositeProcessor;
 use vvvitaly\txs\Exporters\Processors\CurrencyNormalizer;
+use vvvitaly\txs\Exporters\Processors\DescriptionAlias;
 use vvvitaly\txs\Exporters\Processors\DescriptionAsAccount;
 
 /**
@@ -27,10 +28,20 @@ final class ExporterFactory
     private $billsExporter;
 
     /**
+     * @var array
+     */
+    private $aliasesMap;
+
+    /**
+     * @param array $aliasesMap Aliases map for DescriptionAlias processor
      * @param DescriptionNormalizerFactory $descriptionNormalizerFactory
      */
-    public function __construct(DescriptionNormalizerFactory $descriptionNormalizerFactory)
+    public function __construct(
+        array $aliasesMap,
+        DescriptionNormalizerFactory $descriptionNormalizerFactory
+    )
     {
+        $this->aliasesMap = $aliasesMap;
         $this->descriptionNormalizerFactory = $descriptionNormalizerFactory;
     }
 
@@ -52,6 +63,7 @@ final class ExporterFactory
                 new CompositeProcessor(
                     new AutoIdCounter(),
                     $this->descriptionNormalizerFactory->getNormalizer(),
+                    new DescriptionAlias($this->aliasesMap),
                     new DescriptionAsAccount(),
                     new CurrencyNormalizer()
                 )

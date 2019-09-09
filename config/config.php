@@ -18,7 +18,7 @@ return array_replace_recursive(
 
         /**
          * list of descriptions aliases and replacements
-         * @see \vvvitaly\txs\Exporters\Processors\Normalizers\AliasNormalizer
+         * @see \vvvitaly\txs\Exporters\Processors\Normalizers\DescriptionAlias
          */
         'export.aliases' => [],
     ],

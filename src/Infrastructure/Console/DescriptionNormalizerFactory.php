@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace vvvitaly\txs\Infrastructure\Console;
 
 use vvvitaly\txs\Exporters\Processors\DescriptionNormalizer;
-use vvvitaly\txs\Exporters\Processors\Normalizers\AliasNormalizer;
 use vvvitaly\txs\Exporters\Processors\Normalizers\BrandsNormalizer;
 use vvvitaly\txs\Exporters\Processors\Normalizers\ContractionsNormalizer;
 use vvvitaly\txs\Exporters\Processors\Normalizers\SpacesNormalizer;
@@ -15,27 +14,14 @@ use vvvitaly\txs\Exporters\Processors\Normalizers\WordsNormalizer;
 /**
  * Create description normalizer processor
  * @see DescriptionNormalizer
- * @see AliasNormalizer
+ * @see DescriptionAlias
  */
 final class DescriptionNormalizerFactory
 {
     /**
-     * @var array
-     */
-    private $aliasesMap;
-
-    /**
      * @var DescriptionNormalizer
      */
     private $instance;
-
-    /**
-     * @param array $aliasesMap
-     */
-    public function __construct(array $aliasesMap)
-    {
-        $this->aliasesMap = $aliasesMap;
-    }
 
     /**
      * @return DescriptionNormalizer
@@ -44,7 +30,6 @@ final class DescriptionNormalizerFactory
     {
         if (!$this->instance) {
             $this->instance = new DescriptionNormalizer([
-                new AliasNormalizer($this->aliasesMap),
                 new UnitsNormalizer(),
                 new BrandsNormalizer(),
                 new ContractionsNormalizer(),
