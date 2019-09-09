@@ -63,7 +63,9 @@ final class SberRefill implements MessageParserInterface
     private function parseMatches(Message $sms, array $matches): ?Bill
     {
         $amount = (float)str_replace(',', '.', $matches['amount']);
-        $description = $matches['description2'] ?? $matches['description1'];
+        $description = isset($matches['description2'])
+            ? 'Зачисление ' . $matches['description2']
+            : $matches['description1'];
 
         if (strpos($description, 'вклад') !== false) {
             return null;

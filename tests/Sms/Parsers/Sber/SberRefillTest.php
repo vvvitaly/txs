@@ -47,7 +47,8 @@ final class SberRefillTest extends SberSmsTestCase
                 new Bill(
                     new Amount(70292.68, 'р'),
                     'VISA0001',
-                    new BillInfo(new DateTimeImmutable('2019-08-01 10:06:00'), 'VISA MONEY TRANSFER, VISA0001')
+                    new BillInfo(new DateTimeImmutable('2019-08-01 10:06:00'),
+                        'Зачисление VISA MONEY TRANSFER, VISA0001')
                 ),
             ],
             'salary' => [
@@ -75,7 +76,7 @@ final class SberRefillTest extends SberSmsTestCase
                 new Bill(
                     new Amount(1000, 'р'),
                     'VISA0001',
-                    new BillInfo(new DateTimeImmutable('2019-07-29 12:59:00'), 'ATM 60000111, VISA0001')
+                    new BillInfo(new DateTimeImmutable('2019-07-29 12:59:00'), 'Зачисление ATM 60000111, VISA0001')
                 ),
             ],
             'refill with different date' => [
@@ -84,7 +85,7 @@ final class SberRefillTest extends SberSmsTestCase
                 new Bill(
                     new Amount(1000, 'р'),
                     'VISA0001',
-                    new BillInfo(new DateTimeImmutable('2019-07-28 12:59:00'), 'ATM 60000111, VISA0001')
+                    new BillInfo(new DateTimeImmutable('2019-07-28 12:59:00'), 'Зачисление ATM 60000111, VISA0001')
                 ),
             ],
             'refill, date only' => [
@@ -93,7 +94,7 @@ final class SberRefillTest extends SberSmsTestCase
                 new Bill(
                     new Amount(1000, 'р'),
                     'VISA0001',
-                    new BillInfo(new DateTimeImmutable('2019-07-28 00:00:00'), 'ATM 60000111, VISA0001')
+                    new BillInfo(new DateTimeImmutable('2019-07-28 00:00:00'), 'Зачисление ATM 60000111, VISA0001')
                 ),
             ],
         ];
