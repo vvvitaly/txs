@@ -18,8 +18,8 @@ use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
  * - DD.MM.YY
  * - DD.MM.YY HH:MM
  *
- * It seems, that if SMS was sent on the same day when the correspondence transaction was performed, then the "time" format is used.
- * Otherwise it uses the "date" format.
+ * It seems, that if SMS was sent on the same day when the correspondence transaction was performed, then the "time"
+ * format is used. Otherwise it uses the "date" format.
  *
  * For example:
  * - VISA8413 20:46 Покупка 30р ENERGY POINT Баланс: 2261.20р

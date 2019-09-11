@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use vvvitaly\txs\Core\Bills\BillsCollection;
 use vvvitaly\txs\Core\Export\BillExporterInterface;
 use vvvitaly\txs\Core\Source\BillSourceInterface;
 use vvvitaly\txs\Exporters\CollectionExporter;
@@ -81,6 +82,16 @@ trait ExportTrait
     }
 
     /**
+     * @param BillSourceInterface $source
+     * @param OutputInterface $output
+     */
+    private function exportOutput(BillSourceInterface $source, OutputInterface $output): void
+    {
+        $bills = $source->read();
+        $this->printBills($bills, $output);
+    }
+
+    /**
      * @param InputInterface $input
      *
      * @return MultiSplitCsvWriter
@@ -116,7 +127,7 @@ trait ExportTrait
         $bills = $source->read();
 
         if ($output->isVerbose()) {
-            $this->getHelper('bills_printer')->printBills($bills, $output);
+            $this->printBills($bills, $output);
         }
 
         $exporter = new CollectionExporter($billExporter);
@@ -128,12 +139,13 @@ trait ExportTrait
     }
 
     /**
-     * @param BillSourceInterface $source
-     * @param OutputInterface $output
+     * Print bills collection
+     *
+     * @param \vvvitaly\txs\Core\Bills\BillsCollection $bills
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
      */
-    private function exportOutput(BillSourceInterface $source, OutputInterface $output): void
+    private function printBills(BillsCollection $bills, OutputInterface $output)
     {
-        $bills = $source->read();
         $this->getHelper('bills_printer')->printBills($bills, $output);
     }
 }

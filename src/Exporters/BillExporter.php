@@ -54,6 +54,22 @@ final class BillExporter implements BillExporterInterface
     }
 
     /**
+     * Check mandatory fields: date, account and description.
+     *
+     * @param Bill $bill
+     */
+    private function validateBill(Bill $bill): void
+    {
+        if (!$bill->getInfo()->getDate()) {
+            throw new InvalidBillException('Date is mandatory');
+        }
+
+        if (!$bill->getAccount()) {
+            throw new InvalidBillException('Account is mandatory');
+        }
+    }
+
+    /**
      * If the bill has items, then split transaction by this items. Otherwise add inverse transaction as split.
      *
      * @param Transaction $transaction
@@ -76,22 +92,6 @@ final class BillExporter implements BillExporterInterface
             $split->amount = $billItem->getAmount()->getValue();
             $split->memo = $billItem->getDescription();
             $transaction->splits[] = $split;
-        }
-    }
-
-    /**
-     * Check mandatory fields: date, account and description.
-     *
-     * @param Bill $bill
-     */
-    private function validateBill(Bill $bill): void
-    {
-        if (!$bill->getInfo()->getDate()) {
-            throw new InvalidBillException('Date is mandatory');
-        }
-
-        if (!$bill->getAccount()) {
-            throw new InvalidBillException('Account is mandatory');
         }
     }
 }

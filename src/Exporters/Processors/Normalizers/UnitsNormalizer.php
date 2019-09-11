@@ -9,11 +9,6 @@ namespace vvvitaly\txs\Exporters\Processors\Normalizers;
  */
 final class UnitsNormalizer
 {
-    /**
-     * @var string[]
-     */
-    private $units = [];
-
     private static $defaultUnits = [
         'гр?',
         'кг',
@@ -27,6 +22,11 @@ final class UnitsNormalizer
         '%',
         'мкр',
     ];
+
+    /**
+     * @var string[]
+     */
+    private $units = [];
 
     /**
      * @param string[] $units

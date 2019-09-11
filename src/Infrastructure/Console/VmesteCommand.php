@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace vvvitaly\txs\Infrastructure\Console;
 
-use Http\Client\Common\Plugin\AddHostPlugin;
 use Http\Client\Common\Plugin\ContentLengthPlugin;
 use Http\Client\Common\Plugin\LoggerPlugin;
 use Http\Client\Common\PluginClient;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
-use Http\Discovery\UriFactoryDiscovery;
 use Http\Message\Formatter\FullHttpMessageFormatter;
 use InvalidArgumentException;
 use Psr\Log\LoggerInterface;

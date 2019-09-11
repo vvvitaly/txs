@@ -93,7 +93,7 @@ EOS
             $table->setColumnMaxWidth(2, 50);
             $table->setStyle('borderless');
             $table->render();
-        } elseif($skipped) {
+        } elseif ($skipped) {
             $output->writeln("<info>{$skipped}</info> messages weren't parsed");
         }
 

@@ -103,7 +103,7 @@ EOS
             foreach ($source->getSkippedRequests() as $fdoRequest) {
                 $output->writeln('  ' . $fdoRequest->asQr());
             }
-        } elseif($skipped) {
+        } elseif ($skipped) {
             $output->writeln("<info>{$skipped}</info> requests weren't found");
         }
 

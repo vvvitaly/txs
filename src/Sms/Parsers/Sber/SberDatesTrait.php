@@ -19,8 +19,8 @@ trait SberDatesTrait
      * - DD.MM.YY
      * - DD.MM.YY HH:MM
      *
-     * If SMS was sent on the same day when the correspondence transaction was performed, then the "time" format is used.
-     * Otherwise it uses the "date" format.
+     * If SMS was sent on the same day when the correspondence transaction was performed, then the "time" format is
+     * used. Otherwise it uses the "date" format.
      *
      * This method uses the date from SMS metadata and correct it with the time from SMS (in case of "time format"),
      * or, in case of "date" format, it uses the full date from the text.

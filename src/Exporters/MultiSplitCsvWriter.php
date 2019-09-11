@@ -54,7 +54,14 @@ final class MultiSplitCsvWriter
 
         if ($this->config->withHeader) {
             $this->file->fputcsv([
-                'Date', 'TxID', 'Bill No', 'Account', 'Tx Desc', 'Amount', 'Currency', 'Memo'
+                'Date',
+                'TxID',
+                'Bill No',
+                'Account',
+                'Tx Desc',
+                'Amount',
+                'Currency',
+                'Memo',
             ]);
         }
 

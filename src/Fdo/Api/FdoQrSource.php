@@ -82,16 +82,6 @@ final class FdoQrSource implements BillSourceInterface
     }
 
     /**
-     * Get QR requests were skipped.
-     *
-     * @return FdoRequest[]
-     */
-    public function getSkippedRequests(): array
-    {
-        return $this->skipped;
-    }
-
-    /**
      * Create bill instance based on FDO response.
      *
      * @param FdoCheque $cheque
@@ -111,5 +101,15 @@ final class FdoQrSource implements BillSourceInterface
             new BillInfo($cheque->date, $cheque->place, $cheque->number),
             $items
         );
+    }
+
+    /**
+     * Get QR requests were skipped.
+     *
+     * @return FdoRequest[]
+     */
+    public function getSkippedRequests(): array
+    {
+        return $this->skipped;
     }
 }

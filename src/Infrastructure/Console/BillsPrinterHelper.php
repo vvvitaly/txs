@@ -51,20 +51,6 @@ final class BillsPrinterHelper extends Helper
     }
 
     /**
-     * Print one bill
-     *
-     * @param OutputInterface $output
-     * @param Bill $bill
-     */
-    public function printBill(Bill $bill, OutputInterface $output): void
-    {
-        $table = $this->createTable($output);
-        $this->addBillRows($table, $bill);
-
-        $table->render();
-    }
-
-    /**
      * @param OutputInterface $output
      *
      * @return Table
@@ -114,5 +100,19 @@ final class BillsPrinterHelper extends Helper
         if ($separate) {
             $table->addRow(new TableSeparator());
         }
+    }
+
+    /**
+     * Print one bill
+     *
+     * @param OutputInterface $output
+     * @param Bill $bill
+     */
+    public function printBill(Bill $bill, OutputInterface $output): void
+    {
+        $table = $this->createTable($output);
+        $this->addBillRows($table, $bill);
+
+        $table->render();
     }
 }

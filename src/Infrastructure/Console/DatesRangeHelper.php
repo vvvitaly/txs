@@ -16,14 +16,6 @@ use vvvitaly\txs\Libs\Date\DatesRange;
 final class DatesRangeHelper extends Helper
 {
     /**
-     * @inheritDoc
-     */
-    public function getName(): string
-    {
-        return 'datesRange';
-    }
-
-    /**
      * Get common help text for commands configuration
      *
      * @return string
@@ -38,6 +30,14 @@ can be omitted. If the range contains only one day a short form with one date an
     * <comment>2019-01-01:</comment> - dates from "2019-01-01" to today
     * <comment>2019-01-01</comment> - only one date "2019-01-01"
 EOS;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getName(): string
+    {
+        return 'datesRange';
     }
 
     /**

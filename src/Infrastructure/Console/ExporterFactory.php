@@ -39,8 +39,7 @@ final class ExporterFactory
     public function __construct(
         array $aliasesMap,
         DescriptionNormalizerFactory $descriptionNormalizerFactory
-    )
-    {
+    ) {
         $this->aliasesMap = $aliasesMap;
         $this->descriptionNormalizerFactory = $descriptionNormalizerFactory;
     }

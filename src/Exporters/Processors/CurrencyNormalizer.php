@@ -14,6 +14,21 @@ use vvvitaly\txs\Core\Export\Data\Transaction;
 final class CurrencyNormalizer implements ProcessorInterface
 {
     /**
+     * Default replace map
+     * @var array
+     */
+    private static $defaultMap = [
+        'р' => 'RUB',
+        'р.' => 'RUB',
+        'руб' => 'RUB',
+        'руб.' => 'RUB',
+        '₽' => 'RUB',
+        '$' => 'USD',
+        'долл.' => 'USD',
+        '€' => 'EUR',
+    ];
+
+    /**
      * @var array
      */
     private $map;
@@ -50,19 +65,4 @@ final class CurrencyNormalizer implements ProcessorInterface
             $transaction->currency = $this->map[$originCurrency];
         }
     }
-
-    /**
-     * Default replace map
-     * @var array
-     */
-    private static $defaultMap = [
-        'р' => 'RUB',
-        'р.' => 'RUB',
-        'руб' => 'RUB',
-        'руб.' => 'RUB',
-        '₽' => 'RUB',
-        '$' => 'USD',
-        'долл.' => 'USD',
-        '€' => 'EUR',
-    ];
 }

@@ -13,8 +13,8 @@ use vvvitaly\txs\Core\Export\Data\Transaction;
 interface BillExporterInterface
 {
     /**
-     * Export specified bill with items. If bill doesn't have required data, this method throws an `InvalidBillException`
-     * exception.
+     * Export specified bill with items. If bill doesn't have required data, this method throws an
+     * `InvalidBillException` exception.
      *
      * @param Bill $bill
      *

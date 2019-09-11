@@ -44,8 +44,7 @@ final class ApiClient implements ApiClientInterface
         TokenProviderInterface $tokenProvider,
         HttpClient $httpClient,
         RequestFactory $requestFactory = null
-    )
-    {
+    ) {
         $this->httpClient = $httpClient;
         $this->requestFactory = $requestFactory;
         $this->tokenProvider = $tokenProvider;

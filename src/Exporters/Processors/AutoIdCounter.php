@@ -57,6 +57,6 @@ final class AutoIdCounter implements ProcessorInterface
             $this->counter++;
         }
 
-        return  $this->counter;
+        return $this->counter;
     }
 }
