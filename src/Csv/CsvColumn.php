@@ -14,5 +14,5 @@ final class CsvColumn
     public const AMOUNT = 'amount';
     public const CURRENCY = 'currency';
     public const DESCRIPTION = 'description';
-    public const IGNORE = 'skip';
+    public const IGNORE = '-';
 }
