@@ -7,6 +7,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
 use vvvitaly\txs\Infrastructure\Console\BillsPrinterHelper;
+use vvvitaly\txs\Infrastructure\Console\CsvCommand;
 use vvvitaly\txs\Infrastructure\Console\DatesRangeHelper;
 use vvvitaly\txs\Infrastructure\Console\DescriptionNormalizerFactory;
 use vvvitaly\txs\Infrastructure\Console\ExporterFactory;
@@ -44,6 +45,8 @@ $application->addCommands([
     new FdoJsonCommand($billsExporter),
 
     new FdoApiCommand($billsExporter, $config['fdo.http.logger']),
+
+    new CsvCommand($billsExporter, $config['csv.presets']),
 ]);
 
 $application->run();
