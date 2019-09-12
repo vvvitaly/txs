@@ -20,6 +20,7 @@ final class FormatNumbersDecoratorTest extends TestCase
             '1234,23 and text',
             '5000,00',
             '1234,23',
+            '-321,22',
         ];
 
         $inner = $this->createMock(CsvReaderInterface::class);
@@ -36,8 +37,9 @@ final class FormatNumbersDecoratorTest extends TestCase
                 'col1',
                 'text with number 5000,00',
                 '1234,23 and text',
-                5000.00,
-                1234.23,
+                '5000.00',
+                '1234.23',
+                '-321.22',
             ],
             $actual
         );

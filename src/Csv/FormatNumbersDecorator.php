@@ -62,8 +62,8 @@ final class FormatNumbersDecorator implements CsvReaderInterface
     private function format(array $row): array
     {
         $map = static function ($value) {
-            if (preg_match('/^\d+,?\d*$/u', $value) === 1) {
-                return (float)str_replace(',', '.', $value);
+            if (preg_match('/^-?\d+,?\d*$/u', $value) === 1) {
+                return str_replace(',', '.', $value);
             }
 
             return $value;
