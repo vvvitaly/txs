@@ -48,7 +48,7 @@ trait ExportTrait
                 null,
                 InputOption::VALUE_OPTIONAL,
                 'Do not rewrite existing CSV file',
-                true
+                false
             ),
         ]);
     }
