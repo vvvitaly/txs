@@ -20,12 +20,16 @@ final class BrandsNormalizer
             return $text;
         }
 
+        if (strpos($text, 'ООО') !== false) {
+            return $text;
+        }
+
         $patterns = [
-            '/""[^"]+""/iu',
-            '/"[^"]+"/iu',
-            "/''[^']+''/iu",
-            "/'[^']+'/iu",
-            "/\([^\)]+\)/iu",
+            '/(?!ООО\s+)""[^"]+""/iu',
+            '/(?!ООО\s+)"[^"]+"/iu',
+            "/(?!ООО\s+)''[^']+''/iu",
+            "/(?!ООО\s+)'[^']+'/iu",
+            "/(?!ООО\s+)\([^\)]+\)/iu",
         ];
 
         return preg_replace($patterns, '', $text, 1);
