@@ -33,7 +33,10 @@ final class SberTransfer implements MessageParserInterface
 {
     use SberValidationTrait, SberDatesTrait;
 
-    private const REGULAR_REFILL_REGEX = '/^С Ваше(?:й|го) (?:карты|счета) (?<account>.+?) произведен перевод на (?:счет|карту) № (?<description>.+?) на сумму (?<amount>[0-9.,]+) (?<currency>[A-Z]{3}).$/ui';
+    private const TRANSFER_REGEX = [
+        '/^С Ваше(?:й|го) (?:карты|счета) (?<account>.+?) произведен перевод на (?:счет|карту) № (?<description>.+?) на сумму (?<amount>[0-9.,]+) (?<currency>[A-Z]{3}).$/ui',
+        '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?(?:\d{2}:\d{2})?) (?<description1>перевод.*?) (?<amount>[0-9.]+)(?<currency>[а-яa-z]+) (?<description2>.+?) Баланс/ui',
+    ];
 
     /**
      * @inheritDoc
@@ -44,8 +47,10 @@ final class SberTransfer implements MessageParserInterface
             return null;
         }
 
-        if (preg_match(self::REGULAR_REFILL_REGEX, $sms->text, $matches, PREG_UNMATCHED_AS_NULL)) {
-            return $this->parseMatches($sms, $matches);
+        foreach (self::TRANSFER_REGEX as $regex) {
+            if (preg_match($regex, $sms->text, $matches, PREG_UNMATCHED_AS_NULL)) {
+                return $this->parseMatches($sms, $matches);
+            }
         }
 
         return null;
@@ -62,15 +67,23 @@ final class SberTransfer implements MessageParserInterface
     private function parseMatches(Message $sms, array $matches): ?Bill
     {
         $amount = (float)str_replace(',', '.', $matches['amount']);
+        if (isset($matches['description'])) {
+            $description = $matches['description'];
+        } elseif (isset($matches['description1'], $matches['description2'])) {
+            $description = $matches['description2'];
+        }
 
         $nonAccountChars = ['*', ' '];
         $account = str_replace($nonAccountChars, '', $matches['account']);
-        $description = str_replace($nonAccountChars, '', $matches['description']);
+        $description = str_replace($nonAccountChars, '', $description);
+        $date = isset($matches['time'])
+            ? $this->resolveDate($sms, $matches['time'])
+            : $sms->date;
 
         return new Bill(
             new Amount($amount, $matches['currency']),
             $account,
-            new BillInfo($sms->date, 'Перевод на ' . $description)
+            new BillInfo($date, 'Перевод на ' . $description)
         );
     }
 }

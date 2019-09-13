@@ -41,7 +41,7 @@ final class SberTransferTest extends SberSmsTestCase
     public function providerParseRegularMessage(): array
     {
         return [
-            'card => account' => [
+            'card => account'   => [
                 new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
                     'С Вашей карты **** 1234 произведен перевод на счет № 10000000000000000123 на сумму 430,00 RUB.'),
                 new Bill(
@@ -50,7 +50,7 @@ final class SberTransferTest extends SberSmsTestCase
                     new BillInfo(new DateTimeImmutable('2019-08-01 23:01:13'), 'Перевод на 10000000000000000123')
                 ),
             ],
-            'account => card' => [
+            'account => card'   => [
                 new Message('900', new DateTimeImmutable('2019-08-03 12:03:33'),
                     'С Вашего счета 11111111111111111857 произведен перевод на карту № **** 4321 на сумму 19000,00 RUB.'),
                 new Bill(
@@ -59,13 +59,22 @@ final class SberTransferTest extends SberSmsTestCase
                     new BillInfo(new DateTimeImmutable('2019-08-03 12:03:33'), 'Перевод на 4321')
                 ),
             ],
-            'card => card' => [
+            'card => card'      => [
                 new Message('900', new DateTimeImmutable('2019-07-16 13:05:48'),
                     'С Вашей карты **** 7777 произведен перевод на карту № **** 0001 на сумму 6154,33 RUB.'),
                 new Bill(
                     new Amount(6154.33, 'RUB'),
                     '7777',
                     new BillInfo(new DateTimeImmutable('2019-07-16 13:05:48'), 'Перевод на 0001')
+                ),
+            ],
+            'another transfers' => [
+                new Message('900', new DateTimeImmutable('2019-07-16 13:05:48'),
+                    'VISA1234 07:44 перевод 5000р TINKOFF Баланс: 3602.03р'),
+                new Bill(
+                    new Amount(5000, 'р'),
+                    'VISA1234',
+                    new BillInfo(new DateTimeImmutable('2019-07-16 07:44:00'), 'Перевод на TINKOFF')
                 ),
             ],
         ];
