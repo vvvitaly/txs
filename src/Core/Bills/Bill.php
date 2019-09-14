@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace vvvitaly\txs\Core\Bills;
 
-use Webmozart\Assert\Assert;
-
 /**
  * Model of some parsed bill. Bill is a document which proves a purchase. This model represent such document and can be
  * obtained from different sources (text files, bank reports, recognized photos of real bills, some APIs, etc.)
@@ -56,8 +54,6 @@ final class Bill
         ?BillInfo $info = null,
         ?array $items = null
     ) {
-        Assert::true($amount->getValue() > 0, 'Bill amount must be positive');
-
         $this->amount = $amount;
         $this->account = $account;
         $this->info = $info ?? new BillInfo();

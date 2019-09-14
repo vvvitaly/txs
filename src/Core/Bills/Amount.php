@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace vvvitaly\txs\Core\Bills;
 
+use Webmozart\Assert\Assert;
+
 /**
  * Amount of transaction with currency
  */
@@ -25,6 +27,8 @@ final class Amount
      */
     public function __construct(float $value, ?string $currency = null)
     {
+        Assert::true($value > 0, 'Bill amount must be positive');
+
         $this->value = $value;
         $this->currency = $currency;
     }
