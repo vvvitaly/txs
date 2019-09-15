@@ -6,9 +6,9 @@ declare(strict_types=1);
 
 use vvvitaly\txs\Core\Bills\Amount;
 use vvvitaly\txs\Core\Bills\Bill;
-use vvvitaly\txs\Core\Bills\BillInfo;
 use vvvitaly\txs\Core\Bills\BillItem;
 use vvvitaly\txs\Core\Bills\BillsCollection;
+use vvvitaly\txs\Core\Bills\Composer;
 use Webmozart\Assert\Assert;
 
 /**
@@ -128,12 +128,15 @@ function randomBill(): Bill
         }
     }
 
-    return new Bill(
-        new Amount($totalAmount, $randCurrency()),
-        $randAccount(),
-        new BillInfo($date, $randDescription(), '#' . random_int(1111, 2222)),
-        $items
-    );
+    return Composer::newBill()
+        ->setAmount($totalAmount)
+        ->setCurrency($randCurrency())
+        ->setAccount($randAccount())
+        ->setDate($date)
+        ->setDescription($randDescription())
+        ->setBillNumber((string)random_int(1111, 2222))
+        ->setItems($items)
+        ->getBill();
 }
 
 /**

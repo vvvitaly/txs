@@ -6,10 +6,9 @@ namespace vvvitaly\txs\Csv;
 
 use DateTimeImmutable;
 use Exception;
-use vvvitaly\txs\Core\Bills\Amount;
 use vvvitaly\txs\Core\Bills\Bill;
-use vvvitaly\txs\Core\Bills\BillInfo;
 use vvvitaly\txs\Core\Bills\BillsCollection;
+use vvvitaly\txs\Core\Bills\Composer;
 use vvvitaly\txs\Core\Source\BillSourceInterface;
 use vvvitaly\txs\Core\Source\SourceReadException;
 use Webmozart\Assert\Assert;
@@ -102,14 +101,13 @@ final class CsvSource implements BillSourceInterface
             throw new SourceReadException("Can not parse date: \"{$dateValue}\"", 0, $e);
         }
 
-        return new Bill(
-            new Amount(
-                abs((float)$this->extractColumnValue($row, CsvColumn::AMOUNT)),
-                $this->extractColumnValue($row, CsvColumn::CURRENCY)
-            ),
-            $this->extractColumnValue($row, CsvColumn::ACCOUNT),
-            new BillInfo($date, $this->extractColumnValue($row, CsvColumn::DESCRIPTION))
-        );
+        return Composer::newBill()
+            ->setAmount(abs((float)$this->extractColumnValue($row, CsvColumn::AMOUNT)))
+            ->setCurrency($this->extractColumnValue($row, CsvColumn::CURRENCY))
+            ->setAccount($this->extractColumnValue($row, CsvColumn::ACCOUNT))
+            ->setDate($date)
+            ->setDescription($this->extractColumnValue($row, CsvColumn::DESCRIPTION))
+            ->getBill();
     }
 
     /**

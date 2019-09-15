@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace vvvitaly\txs\Sms\Parsers\Sber;
 
-use vvvitaly\txs\Core\Bills\Amount;
 use vvvitaly\txs\Core\Bills\Bill;
-use vvvitaly\txs\Core\Bills\BillInfo;
+use vvvitaly\txs\Core\Bills\Composer;
 use vvvitaly\txs\Sms\Message;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 
@@ -60,10 +59,12 @@ final class SberWithdrawal implements MessageParserInterface
         $amount = (float)str_replace(',', '.', $matches['amount']);
         $description = 'Выдача / ' . $matches['currency'] . ', ' . $matches['description'];
 
-        return new Bill(
-            new Amount($amount, $matches['currency']),
-            $matches['account'],
-            new BillInfo($this->resolveDate($sms, $matches['time']), $description)
-        );
+        return Composer::newBill()
+            ->setAmount($amount)
+            ->setCurrency($matches['currency'])
+            ->setAccount($matches['account'])
+            ->setDescription($description)
+            ->setDate($this->resolveDate($sms, $matches['time']))
+            ->getBill();
     }
 }

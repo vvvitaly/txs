@@ -6,11 +6,9 @@ namespace vvvitaly\txs\Fdo;
 
 use DateTimeImmutable;
 use Exception;
-use vvvitaly\txs\Core\Bills\Amount;
 use vvvitaly\txs\Core\Bills\Bill;
-use vvvitaly\txs\Core\Bills\BillInfo;
-use vvvitaly\txs\Core\Bills\BillItem;
 use vvvitaly\txs\Core\Bills\BillsCollection;
+use vvvitaly\txs\Core\Bills\Composer;
 use vvvitaly\txs\Core\Source\BillSourceInterface;
 use vvvitaly\txs\Core\Source\SourceReadException;
 
@@ -63,24 +61,24 @@ final class FdoJsonSource implements BillSourceInterface
      */
     private function parseReceipt(array $response): Bill
     {
+        $composer = Composer::newBill()
+            ->setAccount($this->defaultAccount)
+            ->setAmount($this->convertAmount($response['totalSum']))
+            ->setDescription($response['user'] ?? '')
+            ->setBillNumber((string)$response['fiscalDocumentNumber']);
+
         try {
             $date = new DateTimeImmutable($response['dateTime']);
         } catch (Exception $e) {
             throw new SourceReadException('Can not read receipt date', 0, $e);
         }
+        $composer->setDate($date);
 
-        $items = [];
         foreach ($response['items'] as $receiptItem) {
-            $items[] = new BillItem($receiptItem['name'], $this->convertAmount($receiptItem['sum']));
+            $composer->addItem($this->convertAmount($receiptItem['sum']), $receiptItem['name']);
         }
 
-
-        return new Bill(
-            $this->convertAmount($response['totalSum']),
-            $this->defaultAccount,
-            new BillInfo($date, $response['user'] ?? '', (string)$response['fiscalDocumentNumber']),
-            $items
-        );
+        return $composer->getBill();
     }
 
     /**
@@ -88,11 +86,10 @@ final class FdoJsonSource implements BillSourceInterface
      *
      * @param int $amount
      *
-     * @return Amount
-     * @see Amount
+     * @return float
      */
-    private function convertAmount(int $amount): Amount
+    private function convertAmount(int $amount): float
     {
-        return new Amount((float)$amount / 100);
+        return (float)$amount / 100;
     }
 }

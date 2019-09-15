@@ -6,11 +6,9 @@ namespace vvvitaly\txs\Vmestecard;
 
 use DateTimeImmutable;
 use Exception;
-use vvvitaly\txs\Core\Bills\Amount;
 use vvvitaly\txs\Core\Bills\Bill;
-use vvvitaly\txs\Core\Bills\BillInfo;
-use vvvitaly\txs\Core\Bills\BillItem;
 use vvvitaly\txs\Core\Bills\BillsCollection;
+use vvvitaly\txs\Core\Bills\Composer;
 use vvvitaly\txs\Core\Source\BillSourceInterface;
 use vvvitaly\txs\Core\Source\SourceReadException;
 use vvvitaly\txs\Libs\Date\DatesRange;
@@ -89,16 +87,16 @@ final class VmestecardSource implements BillSourceInterface
      */
     private function createBill(array $row): Bill
     {
-        $items = [];
+        $composer = Composer::newBill()
+            ->setAccount($this->defaultAccount)
+            ->setAmount((float)$row['data']['amount']['amount'])
+            ->setDate(new DateTimeImmutable($row['dateTime']))
+            ->setBillNumber($row['data']['chequeNumber']);
+
         foreach ($row['data']['chequeItems'] as $chequeItem) {
-            $items[] = new BillItem($chequeItem['description'], new Amount((float)$chequeItem['amount']));
+            $composer->addItem((float)$chequeItem['amount'], $chequeItem['description']);
         }
 
-        return new Bill(
-            new Amount((float)$row['data']['amount']['amount']),
-            $this->defaultAccount,
-            new BillInfo(new DateTimeImmutable($row['dateTime']), null, $row['data']['chequeNumber']),
-            $items
-        );
+        return $composer->getBill();
     }
 }

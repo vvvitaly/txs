@@ -43,10 +43,10 @@ final class Bill
     private $items;
 
     /**
-     * @param Amount $amount
+     * @param \vvvitaly\txs\Core\Bills\Amount $amount
      * @param string|null $account
-     * @param BillInfo|null $info
-     * @param BillItem[] $items
+     * @param \vvvitaly\txs\Core\Bills\BillInfo|null $info
+     * @param \vvvitaly\txs\Core\Bills\BillItem[] $items
      */
     public function __construct(
         Amount $amount,

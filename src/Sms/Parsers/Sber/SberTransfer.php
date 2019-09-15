@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace vvvitaly\txs\Sms\Parsers\Sber;
 
-use vvvitaly\txs\Core\Bills\Amount;
 use vvvitaly\txs\Core\Bills\Bill;
-use vvvitaly\txs\Core\Bills\BillInfo;
+use vvvitaly\txs\Core\Bills\Composer;
 use vvvitaly\txs\Sms\Message;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 
@@ -80,10 +79,12 @@ final class SberTransfer implements MessageParserInterface
             ? $this->resolveDate($sms, $matches['time'])
             : $sms->date;
 
-        return new Bill(
-            new Amount($amount, $matches['currency']),
-            $account,
-            new BillInfo($date, 'Перевод на ' . $description)
-        );
+        return Composer::newBill()
+            ->setAmount($amount)
+            ->setCurrency($matches['currency'])
+            ->setAccount($account)
+            ->setDescription('Перевод на ' . $description)
+            ->setDate($date)
+            ->getBill();
     }
 }

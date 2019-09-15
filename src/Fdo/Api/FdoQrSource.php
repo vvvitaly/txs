@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace vvvitaly\txs\Fdo\Api;
 
-use vvvitaly\txs\Core\Bills\Amount;
 use vvvitaly\txs\Core\Bills\Bill;
-use vvvitaly\txs\Core\Bills\BillInfo;
-use vvvitaly\txs\Core\Bills\BillItem;
 use vvvitaly\txs\Core\Bills\BillsCollection;
+use vvvitaly\txs\Core\Bills\Composer;
 use vvvitaly\txs\Core\Source\BillSourceInterface;
 use vvvitaly\txs\Core\Source\SourceReadException;
 use Webmozart\Assert\Assert;
@@ -90,17 +88,21 @@ final class FdoQrSource implements BillSourceInterface
      */
     private function parseCheque(FdoCheque $cheque): Bill
     {
-        $items = [];
-        foreach ($cheque->items as $item) {
-            $items[] = new BillItem($item->name, new Amount($item->amount));
+        $composer = Composer::newBill()
+            ->setAccount($this->defaultAccount)
+            ->setAmount($cheque->totalAmount)
+            ->setDescription($cheque->place)
+            ->setBillNumber($cheque->number);
+
+        if ($cheque->date) {
+            $composer->setDate($cheque->date);
         }
 
-        return new Bill(
-            new Amount($cheque->totalAmount),
-            $this->defaultAccount,
-            new BillInfo($cheque->date, $cheque->place, $cheque->number),
-            $items
-        );
+        foreach ($cheque->items as $item) {
+            $composer->addItem($item->amount, $item->name);
+        }
+
+        return $composer->getBill();
     }
 
     /**
