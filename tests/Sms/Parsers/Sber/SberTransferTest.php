@@ -11,6 +11,7 @@ use DateTimeImmutable;
 use vvvitaly\txs\Core\Bills\Amount;
 use vvvitaly\txs\Core\Bills\Bill;
 use vvvitaly\txs\Core\Bills\BillInfo;
+use vvvitaly\txs\Core\Bills\BillType;
 use vvvitaly\txs\Sms\Message;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 use vvvitaly\txs\Sms\Parsers\Sber\SberTransfer;
@@ -45,6 +46,7 @@ final class SberTransferTest extends SberSmsTestCase
                 new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
                     'С Вашей карты **** 1234 произведен перевод на счет № 10000000000000000123 на сумму 430,00 RUB.'),
                 new Bill(
+                    BillType::expense(),
                     new Amount(430, 'RUB'),
                     '1234',
                     new BillInfo(new DateTimeImmutable('2019-08-01 23:01:13'), 'Перевод на 10000000000000000123')
@@ -54,6 +56,7 @@ final class SberTransferTest extends SberSmsTestCase
                 new Message('900', new DateTimeImmutable('2019-08-03 12:03:33'),
                     'С Вашего счета 11111111111111111857 произведен перевод на карту № **** 4321 на сумму 19000,00 RUB.'),
                 new Bill(
+                    BillType::expense(),
                     new Amount(19000, 'RUB'),
                     '11111111111111111857',
                     new BillInfo(new DateTimeImmutable('2019-08-03 12:03:33'), 'Перевод на 4321')
@@ -63,6 +66,7 @@ final class SberTransferTest extends SberSmsTestCase
                 new Message('900', new DateTimeImmutable('2019-07-16 13:05:48'),
                     'С Вашей карты **** 7777 произведен перевод на карту № **** 0001 на сумму 6154,33 RUB.'),
                 new Bill(
+                    BillType::expense(),
                     new Amount(6154.33, 'RUB'),
                     '7777',
                     new BillInfo(new DateTimeImmutable('2019-07-16 13:05:48'), 'Перевод на 0001')
@@ -72,6 +76,7 @@ final class SberTransferTest extends SberSmsTestCase
                 new Message('900', new DateTimeImmutable('2019-07-16 13:05:48'),
                     'VISA1234 07:44 перевод 5000р TINKOFF Баланс: 3602.03р'),
                 new Bill(
+                    BillType::expense(),
                     new Amount(5000, 'р'),
                     'VISA1234',
                     new BillInfo(new DateTimeImmutable('2019-07-16 07:44:00'), 'Перевод на TINKOFF')

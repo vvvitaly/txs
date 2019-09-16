@@ -61,7 +61,7 @@ final class FdoJsonSource implements BillSourceInterface
      */
     private function parseReceipt(array $response): Bill
     {
-        $composer = Composer::newBill()
+        $composer = Composer::expenseBill()
             ->setAccount($this->defaultAccount)
             ->setAmount($this->convertAmount($response['totalSum']))
             ->setDescription($response['user'] ?? '')

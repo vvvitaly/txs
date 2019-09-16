@@ -55,6 +55,7 @@ final class CsvSourceTest extends TestCase
         $bills = iterator_to_array($source->read(), false);
 
         $this->assertCount(1, $bills);
+        $this->assertTrue($bills[0]->isExpense());
         $this->assertEquals('test', $bills[0]->getAccount());
         $this->assertEquals(123.456, $bills[0]->getAmount()->getValue());
         $this->assertEquals('USD', $bills[0]->getAmount()->getCurrency());

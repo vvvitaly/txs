@@ -57,7 +57,7 @@ final class SberPurchase implements MessageParserInterface
     {
         $amount = (float)str_replace(',', '.', $matches['amount']);
 
-        return Composer::newBill()
+        return Composer::expenseBill()
             ->setAmount($amount)
             ->setCurrency($matches['currency'])
             ->setAccount($matches['account'])

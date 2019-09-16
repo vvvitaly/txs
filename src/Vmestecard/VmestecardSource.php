@@ -87,7 +87,7 @@ final class VmestecardSource implements BillSourceInterface
      */
     private function createBill(array $row): Bill
     {
-        $composer = Composer::newBill()
+        $composer = Composer::expenseBill()
             ->setAccount($this->defaultAccount)
             ->setAmount((float)$row['data']['amount']['amount'])
             ->setDate(new DateTimeImmutable($row['dateTime']))

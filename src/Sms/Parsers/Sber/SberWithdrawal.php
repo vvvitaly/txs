@@ -59,7 +59,7 @@ final class SberWithdrawal implements MessageParserInterface
         $amount = (float)str_replace(',', '.', $matches['amount']);
         $description = 'Выдача / ' . $matches['currency'] . ', ' . $matches['description'];
 
-        return Composer::newBill()
+        return Composer::expenseBill()
             ->setAmount($amount)
             ->setCurrency($matches['currency'])
             ->setAccount($matches['account'])

@@ -88,7 +88,7 @@ final class FdoQrSource implements BillSourceInterface
      */
     private function parseCheque(FdoCheque $cheque): Bill
     {
-        $composer = Composer::newBill()
+        $composer = Composer::expenseBill()
             ->setAccount($this->defaultAccount)
             ->setAmount($cheque->totalAmount)
             ->setDescription($cheque->place)

@@ -101,7 +101,7 @@ final class CsvSource implements BillSourceInterface
             throw new SourceReadException("Can not parse date: \"{$dateValue}\"", 0, $e);
         }
 
-        return Composer::newBill()
+        return Composer::expenseBill()
             ->setAmount(abs((float)$this->extractColumnValue($row, CsvColumn::AMOUNT)))
             ->setCurrency($this->extractColumnValue($row, CsvColumn::CURRENCY))
             ->setAccount($this->extractColumnValue($row, CsvColumn::ACCOUNT))

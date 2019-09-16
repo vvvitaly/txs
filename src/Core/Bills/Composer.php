@@ -18,6 +18,11 @@ final class Composer
     private $bill;
 
     /**
+     * @var \vvvitaly\txs\Core\Bills\BillType
+     */
+    private $type;
+
+    /**
      * @var float
      */
     private $amount;
@@ -53,11 +58,27 @@ final class Composer
     private $items = [];
 
     /**
+     * @param \vvvitaly\txs\Core\Bills\BillType $type
+     */
+    private function __construct(BillType $type)
+    {
+        $this->type = $type;
+    }
+
+    /**
      * @return \vvvitaly\txs\Core\Bills\Composer
      */
-    public static function newBill(): Composer
+    public static function expenseBill(): Composer
     {
-        return new static();
+        return new static(BillType::expense());
+    }
+
+    /**
+     * @return \vvvitaly\txs\Core\Bills\Composer
+     */
+    public static function incomeBill(): Composer
+    {
+        return new static(BillType::income());
     }
 
     /**
@@ -190,6 +211,7 @@ final class Composer
         $this->validate();
 
         $this->bill = new Bill(
+            $this->type,
             new Amount($this->amount, $this->currency),
             $this->account,
             new BillInfo($this->date, $this->description, $this->billNumber),
@@ -204,6 +226,10 @@ final class Composer
      */
     private function validate(): void
     {
+        if (!$this->type) {
+            throw new InvalidArgumentException('Type is required');
+        }
+
         if (!$this->amount) {
             throw new InvalidArgumentException('Amount is required');
         }

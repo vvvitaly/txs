@@ -81,7 +81,7 @@ final class SberPayment implements MessageParserInterface
         $amount = (float)str_replace(',', '.', $matches['amount']);
         $description = ($addPrefix ? 'Оплата ' : '') . $matches['description'];
 
-        return Composer::newBill()
+        return Composer::expenseBill()
             ->setAmount($amount)
             ->setCurrency($matches['currency'])
             ->setAccount($matches['account'])

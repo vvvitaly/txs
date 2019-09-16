@@ -128,7 +128,7 @@ function randomBill(): Bill
         }
     }
 
-    return Composer::newBill()
+    return Composer::expenseBill()
         ->setAmount($totalAmount)
         ->setCurrency($randCurrency())
         ->setAccount($randAccount())

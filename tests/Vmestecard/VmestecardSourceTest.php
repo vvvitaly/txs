@@ -37,6 +37,7 @@ final class VmestecardSourceTest extends TestCase
 
         $this->assertCount(1, $bills);
 
+        $this->assertTrue($bills[0]->isExpense());
         $this->assertEquals(new DateTimeImmutable('2019-08-03 21:21:41'), $bills[0]->getInfo()->getDate());
         $this->assertEquals($defaultAccount, $bills[0]->getAccount());
         $this->assertEquals(171.9, $bills[0]->getAmount()->getValue());

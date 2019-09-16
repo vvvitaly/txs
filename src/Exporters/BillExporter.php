@@ -41,10 +41,10 @@ final class BillExporter implements BillExporterInterface
         $transaction->num = $billInfo->getNumber();
         $transaction->account = $bill->getAccount();
         $transaction->description = $billInfo->getDescription();
-        $transaction->amount = -1 * $amount->getValue();
+        $transaction->amount = ($bill->isExpense() ? -1 : 1) * $amount->getValue();
         $transaction->currency = $amount->getCurrency();
 
-        $this->splitTransaction($transaction, $bill->getItems());
+        $this->splitTransaction($transaction, $bill);
 
         if ($this->processor) {
             $this->processor->process($transaction);
@@ -73,10 +73,11 @@ final class BillExporter implements BillExporterInterface
      * If the bill has items, then split transaction by this items. Otherwise add inverse transaction as split.
      *
      * @param Transaction $transaction
-     * @param array $billItems
+     * @param \vvvitaly\txs\Core\Bills\Bill $bill
      */
-    private function splitTransaction(Transaction $transaction, array $billItems): void
+    private function splitTransaction(Transaction $transaction, Bill $bill): void
     {
+        $billItems = $bill->getItems();
         $transaction->hasItems = (bool)$billItems;
 
         if (!$billItems) {
@@ -89,7 +90,7 @@ final class BillExporter implements BillExporterInterface
 
         foreach ($billItems as $billItem) {
             $split = new TransactionSplit();
-            $split->amount = $billItem->getAmount()->getValue();
+            $split->amount = ($transaction->amount > 0 ? -1 : 1) * $billItem->getAmount()->getValue();
             $split->memo = $billItem->getDescription();
             $transaction->splits[] = $split;
         }

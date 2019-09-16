@@ -79,7 +79,7 @@ final class SberTransfer implements MessageParserInterface
             ? $this->resolveDate($sms, $matches['time'])
             : $sms->date;
 
-        return Composer::newBill()
+        return Composer::expenseBill()
             ->setAmount($amount)
             ->setCurrency($matches['currency'])
             ->setAccount($account)

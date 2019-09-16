@@ -25,6 +25,7 @@ final class FdoJsonSourceTest extends TestCase
 
         $this->assertCount(1, $bills);
 
+        $this->assertTrue($bills[0]->isExpense());
         $this->assertEquals(new DateTimeImmutable('2019-08-10 10:53:00'), $bills[0]->getInfo()->getDate());
         $this->assertEquals($account, $bills[0]->getAccount());
         $this->assertEquals(618.02, $bills[0]->getAmount()->getValue());

@@ -9,6 +9,7 @@ namespace vvvitaly\txs\Core\Bills;
  * obtained from different sources (text files, bank reports, recognized photos of real bills, some APIs, etc.)
  *
  * Bill has the following attributes:
+ * - type (income or expense)
  * - total spent amount (optional, with currency)
  * - debited account name
  * - date of purchase
@@ -18,6 +19,11 @@ namespace vvvitaly\txs\Core\Bills;
  */
 final class Bill
 {
+    /**
+     * @var \vvvitaly\txs\Core\Bills\BillType
+     */
+    private $type;
+
     /**
      * @var Amount
      */
@@ -43,21 +49,52 @@ final class Bill
     private $items;
 
     /**
+     * @param \vvvitaly\txs\Core\Bills\BillType $type
      * @param \vvvitaly\txs\Core\Bills\Amount $amount
      * @param string|null $account
      * @param \vvvitaly\txs\Core\Bills\BillInfo|null $info
      * @param \vvvitaly\txs\Core\Bills\BillItem[] $items
      */
     public function __construct(
+        BillType $type,
         Amount $amount,
         ?string $account = null,
         ?BillInfo $info = null,
         ?array $items = null
     ) {
+        $this->type = $type;
         $this->amount = $amount;
         $this->account = $account;
         $this->info = $info ?? new BillInfo();
         $this->items = $items ?? [];
+    }
+
+    /**
+     * @return \vvvitaly\txs\Core\Bills\BillType
+     */
+    public function getType(): BillType
+    {
+        return $this->type;
+    }
+
+    /**
+     * Check if this bill is income
+     *
+     * @return bool
+     */
+    public function isIncome(): bool
+    {
+        return BillType::isIncome($this->type);
+    }
+
+    /**
+     * Check if this bill is expense
+     *
+     * @return bool
+     */
+    public function isExpense(): bool
+    {
+        return BillType::isExpense($this->type);
     }
 
     /**

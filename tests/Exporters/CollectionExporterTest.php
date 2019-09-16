@@ -11,6 +11,7 @@ use RuntimeException;
 use vvvitaly\txs\Core\Bills\Amount;
 use vvvitaly\txs\Core\Bills\Bill;
 use vvvitaly\txs\Core\Bills\BillsCollection;
+use vvvitaly\txs\Core\Bills\BillType;
 use vvvitaly\txs\Core\Export\BillExporterInterface;
 use vvvitaly\txs\Core\Export\Data\Transaction;
 use vvvitaly\txs\Exporters\CollectionExporter;
@@ -20,11 +21,11 @@ final class CollectionExporterTest extends TestCase
 {
     public function testExport(): void
     {
-        $bill1 = new Bill(new Amount(1));
+        $bill1 = new Bill(BillType::expense(), new Amount(1));
         $tx1 = new Transaction();
         $tx1->id = 1;
 
-        $bill2 = new Bill(new Amount(2));
+        $bill2 = new Bill(BillType::expense(), new Amount(2));
         $tx2 = new Transaction();
         $tx2->id = 2;
 
@@ -49,7 +50,7 @@ final class CollectionExporterTest extends TestCase
 
     public function testExportShouldStopOnException(): void
     {
-        $bill1 = new Bill(new Amount(1));
+        $bill1 = new Bill(BillType::expense(), new Amount(1));
 
         $inner = $this->createMock(BillExporterInterface::class);
         $inner->expects($this->once())

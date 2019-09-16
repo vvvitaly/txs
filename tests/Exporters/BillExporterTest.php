@@ -12,15 +12,17 @@ use vvvitaly\txs\Core\Bills\Amount;
 use vvvitaly\txs\Core\Bills\Bill;
 use vvvitaly\txs\Core\Bills\BillInfo;
 use vvvitaly\txs\Core\Bills\BillItem;
+use vvvitaly\txs\Core\Bills\BillType;
 use vvvitaly\txs\Core\Export\InvalidBillException;
 use vvvitaly\txs\Exporters\BillExporter;
 use vvvitaly\txs\Exporters\Processors\ProcessorInterface;
 
 final class BillExporterTest extends TestCase
 {
-    public function testExportBill(): void
+    public function testExportExpenseBill(): void
     {
         $bill = new Bill(
+            BillType::expense(),
             new Amount(1.2, 'RUB'),
             'deposit',
             new BillInfo(new DateTimeImmutable('2019-08-13'), 'monthly deposit', '#1')
@@ -45,9 +47,10 @@ final class BillExporterTest extends TestCase
         $this->assertFalse($tx->hasItems);
     }
 
-    public function testExportBillWithItems(): void
+    public function testExportExpenseBillWithItems(): void
     {
         $bill = new Bill(
+            BillType::expense(),
             new Amount(1.2, 'RUB'),
             'cash',
             new BillInfo(new DateTimeImmutable('2019-08-13'), 'bill #1', '#1'),
@@ -80,9 +83,74 @@ final class BillExporterTest extends TestCase
         $this->assertTrue($tx->hasItems);
     }
 
+    public function testExportIncomeBill(): void
+    {
+        $bill = new Bill(
+            BillType::income(),
+            new Amount(1.2, 'RUB'),
+            'salary',
+            new BillInfo(new DateTimeImmutable('2019-08-13'), 'monthly salary', '#1')
+        );
+
+        $tx = (new BillExporter())->exportBill($bill);
+
+        $this->assertEquals(new DateTimeImmutable('2019-08-13'), $tx->date);
+        $this->assertEquals(null, $tx->id);
+        $this->assertEquals('#1', $tx->num);
+        $this->assertEquals('salary', $tx->account);
+        $this->assertEquals('monthly salary', $tx->description);
+        $this->assertEquals(1.2, $tx->amount);
+        $this->assertEquals('RUB', $tx->currency);
+
+        $this->assertCount(1, $tx->splits);
+
+        $this->assertEquals(-1.2, $tx->splits[0]->amount);
+        $this->assertEquals(null, $tx->splits[0]->memo);
+        $this->assertEquals(null, $tx->splits[0]->account);
+
+        $this->assertFalse($tx->hasItems);
+    }
+
+    public function testExportIncomeBillWithItems(): void
+    {
+        $bill = new Bill(
+            BillType::income(),
+            new Amount(1.2, 'RUB'),
+            'cash',
+            new BillInfo(new DateTimeImmutable('2019-08-13'), 'bill #1', '#1'),
+            [
+                new BillItem('buy #1', new Amount(1)),
+                new BillItem('buy #2', new Amount(0.2)),
+            ]
+        );
+
+        $tx = (new BillExporter())->exportBill($bill);
+
+        $this->assertEquals(new DateTimeImmutable('2019-08-13'), $tx->date);
+        $this->assertEquals(null, $tx->id);
+        $this->assertEquals('#1', $tx->num);
+        $this->assertEquals('cash', $tx->account);
+        $this->assertEquals('bill #1', $tx->description);
+        $this->assertEquals(1.2, $tx->amount);
+        $this->assertEquals('RUB', $tx->currency);
+
+        $this->assertCount(2, $tx->splits);
+
+        $this->assertEquals(-1, $tx->splits[0]->amount);
+        $this->assertEquals('buy #1', $tx->splits[0]->memo);
+        $this->assertEquals(null, $tx->splits[0]->account);
+
+        $this->assertEquals(-0.2, $tx->splits[1]->amount);
+        $this->assertEquals('buy #2', $tx->splits[1]->memo);
+        $this->assertEquals(null, $tx->splits[1]->account);
+
+        $this->assertTrue($tx->hasItems);
+    }
+
     public function testExportBillWithOneItem(): void
     {
         $bill = new Bill(
+            BillType::expense(),
             new Amount(1),
             'cash',
             new BillInfo(new DateTimeImmutable('2019-08-13'), 'bill #1', '#1'),
@@ -100,6 +168,7 @@ final class BillExporterTest extends TestCase
     public function testExportBillShouldExceptionIfNoDate(): void
     {
         $bill = new Bill(
+            BillType::expense(),
             new Amount(1.2, 'RUB'),
             'deposit',
             new BillInfo(null, 'monthly deposit', '#1')
@@ -112,6 +181,7 @@ final class BillExporterTest extends TestCase
     public function testExportBillShouldExceptionIfNoAccount(): void
     {
         $bill = new Bill(
+            BillType::expense(),
             new Amount(1.2, 'RUB'),
             null,
             new BillInfo(new DateTimeImmutable('2019-08-13'), 'monthly deposit', '#1')
@@ -124,6 +194,7 @@ final class BillExporterTest extends TestCase
     public function testExportBillShouldExceptionIfNoDescription(): void
     {
         $bill = new Bill(
+            BillType::expense(),
             new Amount(1.2, 'RUB'),
             null,
             new BillInfo(new DateTimeImmutable('2019-08-13'), null, '#1')
@@ -136,6 +207,7 @@ final class BillExporterTest extends TestCase
     public function testExportBillWithProcessors(): void
     {
         $bill = new Bill(
+            BillType::expense(),
             new Amount(1.2, 'RUB'),
             'deposit',
             new BillInfo(new DateTimeImmutable('2019-08-13'), 'monthly deposit', '#1')

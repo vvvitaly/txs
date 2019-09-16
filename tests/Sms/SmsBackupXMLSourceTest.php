@@ -9,6 +9,7 @@ use DateTimeZone;
 use PHPUnit\Framework\TestCase;
 use vvvitaly\txs\Core\Bills\Amount;
 use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Core\Bills\BillType;
 use vvvitaly\txs\Libs\Date\DatesRange;
 use vvvitaly\txs\Sms\Message;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
@@ -43,8 +44,8 @@ final class SmsBackupXMLSourceTest extends TestCase
 </smses>
 XML;
         $dateRange = new DatesRange(new DateTimeImmutable('2000-01-01'));
-        $bill1 = new Bill(new Amount(1));
-        $bill2 = new Bill(new Amount(2));
+        $bill1 = new Bill(BillType::expense(), new Amount(1));
+        $bill2 = new Bill(BillType::expense(), new Amount(2));
 
         $innerParser = $this->createMock(MessageParserInterface::class);
         $innerParser->expects($this->exactly(2))
@@ -82,7 +83,7 @@ XML;
             new DateTimeImmutable('2018-04-19 00:00:00'),
             new DateTimeImmutable('2018-06-17 00:00:00')
         );
-        $bill = new Bill(new Amount(1));
+        $bill = new Bill(BillType::expense(), new Amount(1));
 
         $innerParser = $this->createMock(MessageParserInterface::class);
         $innerParser->expects($this->once())
@@ -108,7 +109,7 @@ XML;
 </smses>
 XML;
         $dateRange = new DatesRange(new DateTimeImmutable('2000-01-01'));
-        $bill = new Bill(new Amount(1));
+        $bill = new Bill(BillType::expense(), new Amount(1));
 
         $sms1 = new Message('1231', $this->createDate('2018-06-18 19:36:18'), 'text1');
         $sms2 = new Message('1232', $this->createDate('2018-05-18 19:36:18'), 'text2');

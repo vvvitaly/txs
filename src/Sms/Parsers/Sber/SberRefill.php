@@ -72,7 +72,7 @@ final class SberRefill implements MessageParserInterface
 
         $description .= ', ' . $matches['account'];
 
-        return Composer::newBill()
+        return Composer::incomeBill()
             ->setAmount($amount)
             ->setCurrency($matches['currency'])
             ->setAccount($matches['account'])

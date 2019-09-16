@@ -8,6 +8,7 @@ use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use vvvitaly\txs\Core\Bills\Amount;
 use vvvitaly\txs\Core\Bills\Bill;
+use vvvitaly\txs\Core\Bills\BillType;
 use vvvitaly\txs\Sms\Message;
 use vvvitaly\txs\Sms\Parsers\CompositeMessageParser;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
@@ -19,7 +20,7 @@ final class CompositeMessageParserTest extends TestCase
     public function testParse(): void
     {
         $sms = new Message('test', new DateTimeImmutable('now'), 'test');
-        $bill = new Bill(new Amount(1));
+        $bill = new Bill(BillType::expense(), new Amount(1));
 
         $inner1 = $this->createMock(MessageParserInterface::class);
         $inner2 = $this->createMock(MessageParserInterface::class);
