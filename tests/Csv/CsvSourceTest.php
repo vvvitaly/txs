@@ -64,6 +64,40 @@ final class CsvSourceTest extends TestCase
         $this->assertCount(0, $bills[0]->getItems());
     }
 
+    public function testReadIncomeOperation(): void
+    {
+        $columns = [
+            CsvColumn::DATE,
+            CsvColumn::ACCOUNT,
+            CsvColumn::AMOUNT,
+        ];
+        $row = [
+            '2019-09-10 23:50:00', // date
+            'test', // account
+            '123.456', // amount
+        ];
+
+        $reader = $this->createMock(CsvReaderInterface::class);
+        $reader->expects($this->once())
+            ->method('open');
+        $reader->expects($this->exactly(2))
+            ->method('readRow')
+            ->willReturnOnConsecutiveCalls(
+                $row,
+                null
+            );
+        $reader->expects($this->once())
+            ->method('close');
+
+        $source = new CsvSource($columns, $reader);
+        /** @var Bill[] $bills */
+        $bills = iterator_to_array($source->read(), false);
+
+        $this->assertCount(1, $bills);
+        $this->assertTrue($bills[0]->isIncome());
+        $this->assertEquals(123.456, $bills[0]->getAmount()->getValue());
+    }
+
     public function testReadShouldSkipEmptyRows(): void
     {
         $columns = [
