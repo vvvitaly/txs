@@ -27,7 +27,7 @@ final class Amount
      */
     public function __construct(float $value, ?string $currency = null)
     {
-        Assert::true($value > 0, 'Bill amount must be positive');
+        Assert::greaterThanEq($value, 0, 'Bill amount must be positive: ' . $value);
 
         $this->value = $value;
         $this->currency = $currency;
