@@ -10,15 +10,12 @@ use vvvitaly\txs\Sms\Message;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 
 /**
- * Try to parse message card refilling in format:
+ * Try to parse messages about refilling in format:
  *  "{account} {time} зачисление {description} {amount}{currency symbol} {description} Баланс: XXXXX"
  * Time might have following formats:
  * - HH:MM
  * - DD.MM.YY
  * - DD.MM.YY HH:MM
- *
- * It seems, that if SMS was sent on the same day when the correspondence transaction was performed, then the "time"
- * format is used. Otherwise it uses the "date" format.
  *
  * For example:
  *  - VISA0001 10:06 зачисление 70292.68р VISA MONEY TRANSFER Баланс: 81692р
@@ -28,6 +25,8 @@ use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
  *
  * This parser skips messages about transfers between own accounts:
  *  - VISA7777 08:34 зачисление 200000р со вклада Баланс: 208892.69р
+ *
+ * @see SberDatesTrait::resolveDate
  */
 final class SberRefill implements MessageParserInterface
 {

@@ -10,7 +10,7 @@ use vvvitaly\txs\Sms\Message;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 
 /**
- * Try to parse message about payments by card. Such messages have the following format:
+ * Try to parse messages about payments by card. Such messages have the following format:
  *  "{account} {time} Оплата {amount}{currency symbol} {description} Баланс: XXXXX"
  * Or some special message:
  *  "{account} {time} оплата годового обслуживания карты {amount}{currency symbol} Баланс: XXXXX"
@@ -20,11 +20,7 @@ use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
  * - DD.MM.YY
  * - DD.MM.YY HH:MM
  *
- * It seems, that if SMS was sent on the same day when the correspondence transaction was performed, then the "time"
- * format is used. Otherwise it uses the "date" format.
- *
  * For example:
- *
  * - VISA1234 02:38 Оплата 100р TELE2 (9001234567) Баланс: 14074.22р
  * - VISA1234 06.04.19 02:38 Оплата 100р TELE2 (9001234567) Баланс: 14074.22р
  * - ECMC4321 03:06 оплата годового обслуживания карты 450р Баланс: 12345.62р
@@ -33,6 +29,8 @@ use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
  * This parser can not parse messages without payment description:
  * - VISA1111 21:56 Оплата 610.10р Баланс: 21237.54р
  * - Пароль для подтверждения платежа - 85596. Оплата 14240,00 RUB с карты **** 1111. Реквизиты: XXXXXX
+ *
+ * @see SberDatesTrait::resolveDate
  */
 final class SberPayment implements MessageParserInterface
 {

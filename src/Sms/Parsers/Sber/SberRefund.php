@@ -17,12 +17,11 @@ use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
  * - DD.MM.YY
  * - DD.MM.YY HH:MM
  *
- * It seems, that if SMS was sent on the same day when the correspondent transaction was performed, then the "time"
- * format is used. Otherwise it uses the "date" format.
- *
  * For example:
- *  - VISA0001 10:06 возврат покупки 123456.68р SHOPTITLE Баланс: 81692р
+ *  - VISA0001 10:06 возврат покупки 123456.68р TITLE Баланс: 81692р
  *  - VISA0001 21.01.19 возврат покупки 1000р XXX Баланс: 10422.87р
+ *
+ * @see SberDatesTrait::resolveDate
  */
 final class SberRefund implements MessageParserInterface
 {

@@ -10,7 +10,7 @@ use vvvitaly\txs\Sms\Parsers\CompositeMessageParser;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 
 /**
- * Composite parser for all Sber parsers
+ * Composite parser for all other parsers
  */
 final class SberParser implements MessageParserInterface
 {

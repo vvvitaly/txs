@@ -10,19 +10,18 @@ use vvvitaly\txs\Sms\Message;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 
 /**
- * Parse messages about withdrawals:
+ * Parse messages about withdrawals in the form:
  *  "{account} {time} Выдача {amount}{currency symbol} {description} Баланс: XXXXXX"
  * Time might have following formats:
  * - HH:MM
  * - DD.MM.YY
  * - DD.MM.YY HH:MM
  *
- * It seems, that if SMS was sent on the same day when the correspondence transaction was performed, then the "time"
- * format is used. Otherwise it uses the "date" format.
- *
  * For example:
  * - VISA1111 10:06 Выдача 150000р OSB 9999 9999 Баланс: 68892.69р
  * - VISA1111 11:31 Выдача 3400р ATM 00000001 Баланс: 16639.63р
+ *
+ * @see SberDatesTrait::resolveDate
  */
 final class SberWithdrawal implements MessageParserInterface
 {

@@ -19,11 +19,10 @@ trait SberDatesTrait
      * - DD.MM.YY
      * - DD.MM.YY HH:MM
      *
-     * If SMS was sent on the same day when the correspondence transaction was performed, then the "time" format is
-     * used. Otherwise it uses the "date" format.
-     *
-     * This method uses the date from SMS metadata and correct it with the time from SMS (in case of "time format"),
-     * or, in case of "date" format, it uses the full date from the text.
+     * If SMS was sent on the same day when the correspondent transaction was performed, then the "time" format is
+     * used (without date). Otherwise the message contains date with time or date only.
+     * If parsed date has only time, this method uses the date from SMS metadata and time from the text. If SMS contains
+     * both date and time, then whole parsed date will be used.
      *
      * @param Message $sms
      * @param string $parsedDate text with date

@@ -7,7 +7,7 @@ namespace vvvitaly\txs\Sms\Parsers\Sber;
 use vvvitaly\txs\Sms\Message;
 
 /**
- * Check if SMS is from Sberbank
+ * Check if SMS was sent from Sberbank
  */
 trait SberValidationTrait
 {

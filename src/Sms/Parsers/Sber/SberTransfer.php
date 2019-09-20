@@ -10,12 +10,11 @@ use vvvitaly\txs\Sms\Message;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 
 /**
- * Try to parse message about transfer between accounts (from card to account or from account to card). Such messages
+ * Try to parse messages about transfers between accounts (from card to account or from account to card). Such messages
  * have the following format:
  *  "С Вашей [карты|счета] {account} произведен перевод на [счет|карту] {description} на сумму {amount} {currency}"
  *
  * For example:
- *
  * - С Вашей карты **** 1234 произведен перевод на счет № 10000000000000000123 на сумму 430,00 RUB.
  * - С Вашего счета 11111111111111111857 произведен перевод на карту № **** 4321 на сумму 19000,00 RUB.
  * - С Вашей карты **** 7777 произведен перевод на карту № **** 0001 на сумму 6154,00 RUB.
@@ -26,7 +25,6 @@ use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
  * - VISA1111 22:50 перевод 5000р Баланс: 14174.22р
  * - Для перевода 4000р получателю SOME PERSON X. на карту VISA4444 с карты VISA7777 отправьте код 49762 на номер 900.
  * Комиссия не взимается. Добавьте сообщение получателю, набрав его после кода. Например, 49762 сообщение получателю.
- *
  */
 final class SberTransfer implements MessageParserInterface
 {
