@@ -62,6 +62,7 @@ abstract class SberSmsTestCase extends TestCase
             'SberTransfer' => 'С Вашей карты **** 1234 произведен перевод на счет № 10000000000000000123 на сумму 430,00 RUB.',
             'SberWithdrawal' => 'VISA1111 11:31 Выдача 3400р ATM 00000001 Баланс: 16639.63р',
             'SberPurchase' => 'VISA1111 20:46 Покупка 1230.22р XXXX YYY Баланс: 2261.20р',
+            'SberRefund' => 'VISA1234 16.07.19 возврат покупки 111.09р XXXXX Баланс: 14867.80р',
         ];
     }
 
