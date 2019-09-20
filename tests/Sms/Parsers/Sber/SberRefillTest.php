@@ -29,16 +29,6 @@ final class SberRefillTest extends SberSmsTestCase
     /**
      * @inheritDoc
      */
-    public function providerParseWrongAddressWithCorrectMessage(): array
-    {
-        return [
-            ['VISA0001 10:06 зачисление 70292.68р VISA MONEY TRANSFER Баланс: 81692р'],
-        ];
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function providerParseRegularMessage(): array
     {
         return [
@@ -112,12 +102,8 @@ final class SberRefillTest extends SberSmsTestCase
      */
     public function providerParseWrongBody(): array
     {
-        return [
-            'purchase sms' => ['VISA8413 20:46 Покупка 30р ENERGY POINT Баланс: 2261.20р'],
-            'payment sms' => ['VISA1111 21:56 Оплата 610.10р Баланс: 21237.54р'],
-            'transfer sms' => ['С Вашей карты **** 1234 произведен перевод на счет № 10000000000000000123 на сумму 430,00 RUB.'],
-            'withdrawal sms' => ['VISA1111 11:31 Выдача 3400р ATM 00000001 Баланс: 16639.63р'],
+        return array_merge(parent::providerParseWrongBody(), [
             'transfer between own accounts' => ['VISA7777 08:34 зачисление 200000р со вклада Баланс: 208892.69р'],
-        ];
+        ]);
     }
 }

@@ -10,6 +10,8 @@ namespace tests\Sms\Parsers\Sber;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
+use RuntimeException;
 use vvvitaly\txs\Core\Bills\Bill;
 use vvvitaly\txs\Sms\Message;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
@@ -17,33 +19,14 @@ use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 abstract class SberSmsTestCase extends TestCase
 {
     /**
-     * @dataProvider providerParseWrongAddressWithCorrectMessage
-     *
-     * @param string $messageBody
+     * @var MessageParserInterface
      */
-    public function testParseWrongAddress(string $messageBody): void
-    {
-        $sms = new Message('0', new DateTimeImmutable('now'), $messageBody);
-        $this->assertNull($this->createParser()->parse($sms));
-    }
+    private $parser;
 
     /**
-     * @dataProvider providerParseWrongBody
-     * @param string $messageBody
+     * @var string
      */
-    public function testParseWrongBody(string $messageBody): void
-    {
-        $sms = new Message('900', new DateTimeImmutable('now'), $messageBody);
-        $this->assertNull($this->createParser()->parse($sms));
-    }
-
-    /**
-     * @dataProvider providerParseRegularMessage
-     */
-    public function testParseRegularMessage(Message $sms, Bill $expectedBill): void
-    {
-        $this->assertEquals($expectedBill, $this->createParser()->parse($sms));
-    }
+    private $parserType;
 
     /**
      * Creates testing parser
@@ -53,27 +36,141 @@ abstract class SberSmsTestCase extends TestCase
     abstract protected function createParser(): MessageParserInterface;
 
     /**
-     * Data provider for testParseWrongAddress. Should provide specific SMS message.
-     *
-     * @return array
-     * @see testParseWrongAddress
-     */
-    abstract public function providerParseWrongAddressWithCorrectMessage(): array;
-
-    /**
-     * Data provider for testParseWrongBody. Should provide specific SMS message that could not be parsed by testing parser.
+     * Data provider for testParseWrongBody.
+     * It provides an instance of Sms class for parsing and instance of Bill class which is expected after parsing.
      *
      * @return array
      * @see testParseWrongBody
      */
     abstract public function providerParseRegularMessage(): array;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $type = $this->getParserType();
+        if (!isset($this->getCorrectMessagesExamples()[$type])) {
+            throw new RuntimeException("Parser \"$type\" is not configured: correct message is not set");
+        }
+    }
+
+    public function getCorrectMessagesExamples(): array
+    {
+        return [
+            'SberPayment' => 'ECMC1234 02:38 Оплата 100р TELE2 Баланс: 14074.22р',
+            'SberRefill' => 'VISA0001 10:06 зачисление 70292.68р VISA MONEY TRANSFER Баланс: 81692р',
+            'SberTransfer' => 'С Вашей карты **** 1234 произведен перевод на счет № 10000000000000000123 на сумму 430,00 RUB.',
+            'SberWithdrawal' => 'VISA1111 11:31 Выдача 3400р ATM 00000001 Баланс: 16639.63р',
+            'SberPurchase' => 'VISA1111 20:46 Покупка 1230.22р XXXX YYY Баланс: 2261.20р',
+        ];
+    }
+
     /**
-     * Data provider for testParseRegularMessage. Should provide an instance of Sms class for parsing and instance
-     * of Bill class which is expected after parsing.
+     * @dataProvider providerParseWrongAddressWithCorrectMessage
+     *
+     * @param string $messageBody
+     */
+    public function testParseWrongAddressWithCorrectMessage(string $messageBody): void
+    {
+        $sms = new Message('0', new DateTimeImmutable('now'), $messageBody);
+        $this->assertNull($this->getParser()->parse($sms));
+    }
+
+    /**
+     * @dataProvider providerParseWrongBody
+     *
+     * @param string $messageBody
+     */
+    public function testParseWrongBody(string $messageBody): void
+    {
+        $sms = new Message('900', new DateTimeImmutable('now'), $messageBody);
+        $this->assertNull($this->getParser()->parse($sms));
+    }
+
+    /**
+     * @dataProvider providerParseRegularMessage
+     */
+    public function testParseRegularMessage(Message $sms, Bill $expectedBill): void
+    {
+        $this->assertEquals($expectedBill, $this->getParser()->parse($sms));
+    }
+
+    /**
+     * Data provider for testParseRegularMessage. It should return examples of messages which are not appropriate for
+     * testing parser.
      *
      * @return array
      * @see testParseRegularMessage
      */
-    abstract public function providerParseWrongBody(): array;
+    public function providerParseWrongBody(): array
+    {
+        $messages = $this->getCorrectMessagesExamples();
+        unset($messages[$this->getParserType()]);
+
+        return $this->arrayToDataProvider($messages);
+    }
+
+    /**
+     * Data provider for testParseWrongAddress. Should provide specific SMS message.
+     *
+     * @return array
+     * @see testParseWrongAddress
+     */
+    public function providerParseWrongAddressWithCorrectMessage(): array
+    {
+        return $this->arrayToDataProvider($this->getCorrectMessagesExamples());
+    }
+
+    /**
+     * @return \vvvitaly\txs\Sms\Parsers\MessageParserInterface
+     */
+    private function getParser(): MessageParserInterface
+    {
+        if ($this->parser === null) {
+            $this->initParser();
+        }
+
+        return $this->parser;
+    }
+
+    /**
+     * @return string
+     */
+    private function getParserType(): string
+    {
+        if ($this->parserType === null) {
+            $this->initParser();
+        }
+
+        return $this->parserType;
+    }
+
+    /**
+     * Create parser and class
+     */
+    private function initParser(): void
+    {
+        $this->parser = $this->createParser();
+
+        /** @noinspection PhpUnhandledExceptionInspection */
+        $reflection = new ReflectionClass($this->parser);
+        $this->parserType = $reflection->getShortName();
+    }
+
+    /**
+     * Convert the given data to the data provider format.
+     *
+     * @param array $data
+     *
+     * @return array
+     */
+    private function arrayToDataProvider(array $data): array
+    {
+        return array_map(
+            static function ($v) {
+                return (array)$v;
+            },
+            $data
+        );
+    }
 }

@@ -29,16 +29,6 @@ final class SberWithdrawalTest extends SberSmsTestCase
     /**
      * @inheritDoc
      */
-    public function providerParseWrongAddressWithCorrectMessage(): array
-    {
-        return [
-            ['VISA1111 11:31 Выдача 3400р ATM 00000001 Баланс: 16639.63р'],
-        ];
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function providerParseRegularMessage(): array
     {
         return [
@@ -82,19 +72,6 @@ final class SberWithdrawalTest extends SberSmsTestCase
                     new BillInfo(new DateTimeImmutable('2019-08-01 00:00:00'), 'Выдача / р, ATM 00000001')
                 ),
             ],
-        ];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function providerParseWrongBody(): array
-    {
-        return [
-            'payment sms' => ['VISA1111 21:56 Оплата 610.10р Баланс: 21237.54р'],
-            'purchase sms' => ['VISA8413 20:46 Покупка 30р ENERGY POINT Баланс: 2261.20р'],
-            'refill sms' => ['VISA0001 10:06 зачисление 70292.68р VISA MONEY TRANSFER Баланс: 81692р'],
-            'transfer sms' => ['С Вашей карты **** 1234 произведен перевод на счет № 10000000000000000123 на сумму 430,00 RUB.'],
         ];
     }
 }

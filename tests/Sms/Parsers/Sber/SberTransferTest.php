@@ -29,16 +29,6 @@ final class SberTransferTest extends SberSmsTestCase
     /**
      * @inheritDoc
      */
-    public function providerParseWrongAddressWithCorrectMessage(): array
-    {
-        return [
-            ['С Вашей карты **** 1234 произведен перевод на счет № 10000000000000000123 на сумму 430,00 RUB.'],
-        ];
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function providerParseRegularMessage(): array
     {
         return [
@@ -90,16 +80,12 @@ final class SberTransferTest extends SberSmsTestCase
      */
     public function providerParseWrongBody(): array
     {
-        return [
+        return array_merge(parent::providerParseWrongBody(), [
             'sms with pin' => ['Проверьте реквизиты перевода: карта списания **** 1234, карта зачисления **** 4321, сумма 5000,00 RUB. Пароль для подтверждения - 10001. Никому не сообщайте пароль.'],
             'transfer without description' => ['VISA1111 22:50 перевод 5000р Баланс: 14174.22р'],
             'confirm sms for transfer' => ['Для перевода 4000р получателю SOME PERSON X. на карту VISA4444 с карты VISA7777 отправьте код 49762 на номер 900. Комиссия не взимается. Добавьте сообщение получателю, набрав его после кода. Например, 49762 сообщение получателю.'],
             'transfer request' => ['Перевод 9000000001 2579'],
             'transfer error' => ['Операция не выполнена. Превышена допустимая сумма перевода для получателя. Повторите операцию через 20 часов 32 минут.'],
-            'payment sms' => ['VISA1111 21:56 Оплата 610.10р Баланс: 21237.54р'],
-            'purchase sms' => ['VISA8413 20:46 Покупка 30р ENERGY POINT Баланс: 2261.20р'],
-            'refill sms' => ['VISA0001 10:06 зачисление 70292.68р VISA MONEY TRANSFER Баланс: 81692р'],
-            'withdrawal sms' => ['VISA1111 11:31 Выдача 3400р ATM 00000001 Баланс: 16639.63р'],
-        ];
+        ]);
     }
 }
