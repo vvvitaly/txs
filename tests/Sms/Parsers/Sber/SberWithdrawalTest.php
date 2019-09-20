@@ -29,7 +29,7 @@ final class SberWithdrawalTest extends SberSmsTestCase
     /**
      * @inheritDoc
      */
-    public function providerParseWrongAddress(): array
+    public function providerParseWrongAddressWithCorrectMessage(): array
     {
         return [
             ['VISA1111 11:31 Выдача 3400р ATM 00000001 Баланс: 16639.63р'],

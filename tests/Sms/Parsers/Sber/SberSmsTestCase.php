@@ -17,7 +17,8 @@ use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 abstract class SberSmsTestCase extends TestCase
 {
     /**
-     * @dataProvider providerParseWrongAddress
+     * @dataProvider providerParseWrongAddressWithCorrectMessage
+     *
      * @param string $messageBody
      */
     public function testParseWrongAddress(string $messageBody): void
@@ -57,7 +58,7 @@ abstract class SberSmsTestCase extends TestCase
      * @return array
      * @see testParseWrongAddress
      */
-    abstract public function providerParseWrongAddress(): array;
+    abstract public function providerParseWrongAddressWithCorrectMessage(): array;
 
     /**
      * Data provider for testParseWrongBody. Should provide specific SMS message that could not be parsed by testing parser.

@@ -29,7 +29,7 @@ final class SberPaymentTest extends SberSmsTestCase
     /**
      * @inheritDoc
      */
-    public function providerParseWrongAddress(): array
+    public function providerParseWrongAddressWithCorrectMessage(): array
     {
         return [
             ['VISA1111 21:56 Оплата 610.10р Баланс: 21237.54р']

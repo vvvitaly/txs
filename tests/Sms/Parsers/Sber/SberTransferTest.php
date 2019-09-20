@@ -29,7 +29,7 @@ final class SberTransferTest extends SberSmsTestCase
     /**
      * @inheritDoc
      */
-    public function providerParseWrongAddress(): array
+    public function providerParseWrongAddressWithCorrectMessage(): array
     {
         return [
             ['С Вашей карты **** 1234 произведен перевод на счет № 10000000000000000123 на сумму 430,00 RUB.'],
