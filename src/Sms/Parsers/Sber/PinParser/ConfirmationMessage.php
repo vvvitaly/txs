@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer;
+namespace vvvitaly\txs\Sms\Parsers\Sber\PinParser;
 
 use DateTimeImmutable;
 use vvvitaly\txs\Sms\Message;
 use Webmozart\Assert\Assert;
 
 /**
- * SMS data about transfer
+ * SMS data about payment confirmation
  */
-final class TransferMessage
+final class ConfirmationMessage
 {
     /**
      * @var DateTimeImmutable SMS receiving date
@@ -19,9 +19,9 @@ final class TransferMessage
     public $receivingDate;
 
     /**
-     * @var DateTimeImmutable real transfer date
+     * @var DateTimeImmutable real operation date (parsed from message)
      */
-    public $transferDate;
+    public $operationDate;
 
     /**
      * @var string
@@ -55,7 +55,7 @@ final class TransferMessage
         $instance = new static();
 
         $instance->receivingDate = $message->date;
-        $instance->transferDate = $textMatches['time'];
+        $instance->operationDate = $textMatches['time'];
         $instance->account = $textMatches['account'];
         $instance->amount = $textMatches['amount'];
 

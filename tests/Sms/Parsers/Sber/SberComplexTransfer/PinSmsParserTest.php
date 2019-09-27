@@ -5,13 +5,13 @@
 
 declare(strict_types=1);
 
-namespace tests\Sms\Parsers\Sber\ComplexTransfer;
+namespace tests\Sms\Parsers\Sber\SberComplexTransfer;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use vvvitaly\txs\Sms\Message;
-use vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\PinSmsParser;
-use vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\TransferPinMessage;
+use vvvitaly\txs\Sms\Parsers\Sber\PinParser\PinMessage;
+use vvvitaly\txs\Sms\Parsers\Sber\SberComplexTransfer\PinSmsParser;
 
 /** @noinspection PhpMissingDocCommentInspection */
 
@@ -67,11 +67,11 @@ final class PinSmsParserTest extends TestCase
 
     /**
      * @param \vvvitaly\txs\Sms\Message $sms
-     * @param \vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\TransferPinMessage|null $expected
+     * @param \vvvitaly\txs\Sms\Parsers\Sber\PinParser\PinMessage|null $expected
      *
      * @dataProvider providerParseSms
      */
-    public function testParseSms(Message $sms, ?TransferPinMessage $expected): void
+    public function testParseSms(Message $sms, ?PinMessage $expected): void
     {
         $parser = new PinSmsParser();
         $this->assertEquals($expected, $parser->parseSms($sms));
@@ -97,7 +97,7 @@ final class PinSmsParserTest extends TestCase
      * @param string $currency
      * @param string $description
      *
-     * @return \vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\TransferPinMessage
+     * @return \vvvitaly\txs\Sms\Parsers\Sber\PinParser\PinMessage
      */
     private static function pin(
         string $date,
@@ -105,8 +105,8 @@ final class PinSmsParserTest extends TestCase
         float $amount,
         string $currency,
         string $description
-    ): TransferPinMessage {
-        $pin = new TransferPinMessage();
+    ): PinMessage {
+        $pin = new PinMessage();
         /** @noinspection PhpUnhandledExceptionInspection */
         $pin->receivingDate = new DateTimeImmutable($date);
         $pin->account = $account;

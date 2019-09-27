@@ -4,22 +4,22 @@
 
 declare(strict_types=1);
 
-namespace tests\Sms\Parsers\Sber\ComplexTransfer;
+namespace tests\Sms\Parsers\Sber\PinParser;
 
 use ArrayObject;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
-use vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\ArrayStorage;
-use vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\TransferMessage;
-use vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\TransferPinMessage;
+use vvvitaly\txs\Sms\Parsers\Sber\PinParser\ArrayStorage;
+use vvvitaly\txs\Sms\Parsers\Sber\PinParser\ConfirmationMessage;
+use vvvitaly\txs\Sms\Parsers\Sber\PinParser\PinMessage;
 
 final class ArrayStorageTest extends TestCase
 {
     public function testSavePinMessage(): void
     {
         $mem = new ArrayObject();
-        $pin1 = new TransferPinMessage();
-        $pin2 = new TransferPinMessage();
+        $pin1 = new PinMessage();
+        $pin2 = new PinMessage();
 
         $storage = new ArrayStorage($mem);
         $storage->savePinMessage($pin1);
@@ -39,7 +39,7 @@ final class ArrayStorageTest extends TestCase
 
         $pins = [];
         for ($i = 0; $i < 3; $i++) {
-            $pin = new TransferPinMessage();
+            $pin = new PinMessage();
             $pin->receivingDate = new DateTimeImmutable();
             $pin->account = 'VISA100' . $i;
             $pin->amount = 100.45 + $i;
@@ -50,9 +50,9 @@ final class ArrayStorageTest extends TestCase
             $pins[$i] = $pin;
         }
 
-        $transfer = new TransferMessage();
+        $transfer = new ConfirmationMessage();
         $transfer->receivingDate = new DateTimeImmutable();
-        $transfer->transferDate = new DateTimeImmutable();
+        $transfer->operationDate = new DateTimeImmutable();
         $transfer->amount = 101.45;
         $transfer->account = 'VISA1001';
 
@@ -66,7 +66,7 @@ final class ArrayStorageTest extends TestCase
         $mem = new ArrayObject();
         $storage = new ArrayStorage($mem);
 
-        $pin = new TransferPinMessage();
+        $pin = new PinMessage();
         $pin->receivingDate = new DateTimeImmutable();
         $pin->account = '1000';
         $pin->amount = 123.45;
@@ -75,9 +75,9 @@ final class ArrayStorageTest extends TestCase
 
         $storage->savePinMessage($pin);
 
-        $transfer = new TransferMessage();
+        $transfer = new ConfirmationMessage();
         $transfer->receivingDate = new DateTimeImmutable();
-        $transfer->transferDate = new DateTimeImmutable();
+        $transfer->operationDate = new DateTimeImmutable();
         $transfer->amount = 123.45;
         $transfer->account = 'VISA1000';
 
@@ -89,7 +89,7 @@ final class ArrayStorageTest extends TestCase
         $mem = new ArrayObject();
         $storage = new ArrayStorage($mem);
 
-        $pin = new TransferPinMessage();
+        $pin = new PinMessage();
         $pin->receivingDate = new DateTimeImmutable();
         $pin->account = 'VISA1000';
         $pin->amount = 123.45;
@@ -98,9 +98,9 @@ final class ArrayStorageTest extends TestCase
 
         $storage->savePinMessage($pin);
 
-        $transfer = new TransferMessage();
+        $transfer = new ConfirmationMessage();
         $transfer->receivingDate = new DateTimeImmutable();
-        $transfer->transferDate = new DateTimeImmutable();
+        $transfer->operationDate = new DateTimeImmutable();
         $transfer->amount = 123.45;
         $transfer->account = 'some-other-account';
 
@@ -112,7 +112,7 @@ final class ArrayStorageTest extends TestCase
         $mem = new ArrayObject();
         $storage = new ArrayStorage($mem);
 
-        $pin = new TransferPinMessage();
+        $pin = new PinMessage();
         $pin->receivingDate = new DateTimeImmutable();
         $pin->account = 'VISA1000';
         $pin->amount = 123.45;
@@ -121,9 +121,9 @@ final class ArrayStorageTest extends TestCase
 
         $storage->savePinMessage($pin);
 
-        $transfer = new TransferMessage();
+        $transfer = new ConfirmationMessage();
         $transfer->receivingDate = new DateTimeImmutable();
-        $transfer->transferDate = new DateTimeImmutable();
+        $transfer->operationDate = new DateTimeImmutable();
         $transfer->amount = 999999;
         $transfer->account = 'VISA1000';
 
@@ -137,7 +137,7 @@ final class ArrayStorageTest extends TestCase
 
         $date = new DateTimeImmutable();
 
-        $pin = new TransferPinMessage();
+        $pin = new PinMessage();
         $pin->receivingDate = $date->modify('-1 year');
         $pin->account = 'VISA1000';
         $pin->amount = 123.45;
@@ -146,9 +146,9 @@ final class ArrayStorageTest extends TestCase
 
         $storage->savePinMessage($pin);
 
-        $transfer = new TransferMessage();
+        $transfer = new ConfirmationMessage();
         $transfer->receivingDate = $date;
-        $transfer->transferDate = new DateTimeImmutable();
+        $transfer->operationDate = new DateTimeImmutable();
         $transfer->amount = 123.45;
         $transfer->account = 'VISA1000';
 

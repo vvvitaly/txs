@@ -4,13 +4,13 @@
 
 declare(strict_types=1);
 
-namespace tests\Sms\Parsers\Sber\ComplexTransfer;
+namespace tests\Sms\Parsers\Sber\SberComplexTransfer;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use vvvitaly\txs\Sms\Message;
-use vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\TransferMessage;
-use vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\TransferSmsParser;
+use vvvitaly\txs\Sms\Parsers\Sber\PinParser\ConfirmationMessage;
+use vvvitaly\txs\Sms\Parsers\Sber\SberComplexTransfer\ConfirmationSmsParser;
 
 /** @noinspection PhpMissingDocCommentInspection */
 
@@ -80,13 +80,13 @@ final class TransferSmsParserTest extends TestCase
 
     /**
      * @param \vvvitaly\txs\Sms\Message $sms
-     * @param \vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\TransferMessage|null $expected
+     * @param \vvvitaly\txs\Sms\Parsers\Sber\PinParser\ConfirmationMessage|null $expected
      *
      * @dataProvider providerParseSms
      */
-    public function testParseSms(Message $sms, ?TransferMessage $expected): void
+    public function testParseSms(Message $sms, ?ConfirmationMessage $expected): void
     {
-        $parser = new TransferSmsParser();
+        $parser = new ConfirmationSmsParser();
         $this->assertEquals($expected, $parser->parseSms($sms));
     }
 
@@ -110,14 +110,19 @@ final class TransferSmsParserTest extends TestCase
      * @param string $account
      * @param float $amount
      *
-     * @return \vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\TransferMessage
+     * @return \vvvitaly\txs\Sms\Parsers\Sber\PinParser\ConfirmationMessage
      * @throws \Exception
      */
-    private static function transfer(string $smsDate, string $realDate, string $account, float $amount): TransferMessage
+    private static function transfer(
+        string $smsDate,
+        string $realDate,
+        string $account,
+        float $amount
+    ): ConfirmationMessage
     {
-        $transfer = new TransferMessage();
+        $transfer = new ConfirmationMessage();
         $transfer->receivingDate = new DateTimeImmutable($smsDate);
-        $transfer->transferDate = new DateTimeImmutable($realDate);
+        $transfer->operationDate = new DateTimeImmutable($realDate);
         $transfer->account = $account;
         $transfer->amount = $amount;
 

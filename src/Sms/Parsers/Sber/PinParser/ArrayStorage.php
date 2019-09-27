@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer;
+namespace vvvitaly\txs\Sms\Parsers\Sber\PinParser;
 
 use ArrayObject;
 
@@ -35,9 +35,9 @@ final class ArrayStorage implements MessagesStorageInterface
     /**
      * @inheritDoc
      */
-    public function findPinMessage(TransferMessage $message): ?TransferPinMessage
+    public function findPinMessage(ConfirmationMessage $message): ?PinMessage
     {
-        /** @var \vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\TransferPinMessage $pin */
+        /** @var \vvvitaly\txs\Sms\Parsers\Sber\PinParser\PinMessage $pin */
         foreach ($this->storage as $pin) {
             if ($this->isPinMatchesTransfer($pin, $message)) {
                 return $pin;
@@ -50,7 +50,7 @@ final class ArrayStorage implements MessagesStorageInterface
     /**
      * @inheritDoc
      */
-    public function savePinMessage(TransferPinMessage $message): void
+    public function savePinMessage(PinMessage $message): void
     {
         $this->storage->append($message);
     }
@@ -58,12 +58,12 @@ final class ArrayStorage implements MessagesStorageInterface
     /**
      * Check if the pin message is corresponds to the given transfer message.
      *
-     * @param \vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\TransferPinMessage $pinMessage
-     * @param \vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\TransferMessage $transferMessage
+     * @param \vvvitaly\txs\Sms\Parsers\Sber\PinParser\PinMessage $pinMessage
+     * @param \vvvitaly\txs\Sms\Parsers\Sber\PinParser\ConfirmationMessage $transferMessage
      *
      * @return bool
      */
-    private function isPinMatchesTransfer(TransferPinMessage $pinMessage, TransferMessage $transferMessage): bool
+    private function isPinMatchesTransfer(PinMessage $pinMessage, ConfirmationMessage $transferMessage): bool
     {
         $transferTime = $transferMessage->receivingDate->getTimestamp();
         $pinTime = $pinMessage->receivingDate->getTimestamp();

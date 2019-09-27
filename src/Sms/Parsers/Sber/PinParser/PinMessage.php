@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer;
+namespace vvvitaly\txs\Sms\Parsers\Sber\PinParser;
 
 use DateTimeImmutable;
 use vvvitaly\txs\Sms\Message;
@@ -11,7 +11,7 @@ use Webmozart\Assert\Assert;
 /**
  * DTO for searching pin messages
  */
-final class TransferPinMessage
+final class PinMessage
 {
     /**
      * @var DateTimeImmutable

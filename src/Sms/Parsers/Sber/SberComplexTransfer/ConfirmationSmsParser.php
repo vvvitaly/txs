@@ -2,16 +2,27 @@
 
 declare(strict_types=1);
 
-namespace vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer;
+namespace vvvitaly\txs\Sms\Parsers\Sber\SberComplexTransfer;
 
 use vvvitaly\txs\Sms\Message;
+use vvvitaly\txs\Sms\Parsers\Sber\PinParser\ConfirmationMessage;
+use vvvitaly\txs\Sms\Parsers\Sber\PinParser\ConfirmationSmsParserInterface;
 use vvvitaly\txs\Sms\Parsers\Sber\RegexParsingTrait;
 use vvvitaly\txs\Sms\Parsers\Sber\SberDatesTrait;
 
 /**
- * Default realization for parsing transfer messages (after pin)
+ * Parse transfer SMS in format:
+ *  - "{account} {time} перевод {amount}{currency symbol} Баланс: XXXXX.YY{currency}"
+ *
+ * Time might have following formats:
+ * - HH:MM
+ * - DD.MM.YY
+ * - DD.MM.YY HH:MM
+ *
+ * For example:
+ *  - "VISA0001 08:17 перевод 455р Баланс: 7673.22р"
  */
-final class TransferSmsParser implements TransferSmsParserInterface
+final class ConfirmationSmsParser implements ConfirmationSmsParserInterface
 {
     use RegexParsingTrait, SberDatesTrait;
 
@@ -22,13 +33,13 @@ final class TransferSmsParser implements TransferSmsParserInterface
     /**
      * @inheritDoc
      */
-    public function parseSms(Message $message): ?TransferMessage
+    public function parseSms(Message $message): ?ConfirmationMessage
     {
         if (($matches = $this->match(self::TRANSFER_REGEX, $message->text)) !== null) {
             $matches['amount'] = (float)str_replace(',', '.', $matches['amount']);
             $matches['time'] = $this->resolveDate($message, $matches['time']);
 
-            return TransferMessage::fromSms($message, $matches);
+            return ConfirmationMessage::fromSms($message, $matches);
         }
 
         return null;
