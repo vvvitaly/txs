@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace vvvitaly\txs\Sms\Parsers\Sber\SberComplexTransfer;
+namespace vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer;
 
 use vvvitaly\txs\Sms\Message;
 use vvvitaly\txs\Sms\Parsers\Sber\PinParser\ConfirmationMessage;

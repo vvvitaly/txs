@@ -7,13 +7,8 @@ namespace vvvitaly\txs\Sms\Parsers\Sber\PinParser;
 use ArrayObject;
 
 /**
- * Default implementation of storage based on array. It searches PIN message by the given confirmation message using
- * specified matcher function.
- * The matcher function has following signature:
- * ```
- *  function (PinMessage $pinMessage, ConfirmationMessage $confirmationMessage): bool
- * ```
- * It should return TRUE if given confirmation message matches the pin message. If this function does not set
+ * Default implementation of storage based on array. It searches PIN message by account, amount and date from transfer
+ * message.
  */
 final class ArrayStorage implements MessagesStorageInterface
 {
@@ -23,18 +18,18 @@ final class ArrayStorage implements MessagesStorageInterface
     private $storage;
 
     /**
-     * @var callable
+     * @var int Maximum time in seconds between receiving PIN message and transfer message
      */
-    private $matcher;
+    private $pinLifetime;
 
     /**
      * @param \ArrayObject $storage
-     * @param callable|null $matcher
+     * @param int $pinLifetime Maximum time in seconds between receiving PIN message and transfer message
      */
-    public function __construct(ArrayObject $storage, callable $matcher)
+    public function __construct(ArrayObject $storage, int $pinLifetime = 600)
     {
         $this->storage = $storage;
-        $this->matcher = $matcher;
+        $this->pinLifetime = $pinLifetime;
     }
 
     /**
@@ -70,8 +65,12 @@ final class ArrayStorage implements MessagesStorageInterface
      */
     private function isPinMatchesTransfer(PinMessage $pinMessage, ConfirmationMessage $transferMessage): bool
     {
-        $fn = $this->matcher;
+        $transferTime = $transferMessage->receivingDate->getTimestamp();
+        $pinTime = $pinMessage->receivingDate->getTimestamp();
 
-        return $fn($pinMessage, $transferMessage);
+        return preg_match("/^[A-Z]*{$pinMessage->account}$/", $transferMessage->account) === 1
+            && $pinMessage->amount === $transferMessage->amount
+            && $transferTime >= $pinTime
+            && ($transferTime - $pinTime <= $this->pinLifetime);
     }
 }

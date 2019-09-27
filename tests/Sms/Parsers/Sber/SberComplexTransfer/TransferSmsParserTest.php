@@ -4,13 +4,13 @@
 
 declare(strict_types=1);
 
-namespace tests\Sms\Parsers\Sber\SberComplexTransfer;
+namespace tests\Sms\Parsers\Sber\ComplexTransfer;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use vvvitaly\txs\Sms\Message;
+use vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\ConfirmationSmsParser;
 use vvvitaly\txs\Sms\Parsers\Sber\PinParser\ConfirmationMessage;
-use vvvitaly\txs\Sms\Parsers\Sber\SberComplexTransfer\ConfirmationSmsParser;
 
 /** @noinspection PhpMissingDocCommentInspection */
 
@@ -122,7 +122,7 @@ final class TransferSmsParserTest extends TestCase
     {
         $transfer = new ConfirmationMessage();
         $transfer->receivingDate = new DateTimeImmutable($smsDate);
-        $transfer->operationDate = new DateTimeImmutable($realDate);
+        $transfer->transferDate = new DateTimeImmutable($realDate);
         $transfer->account = $account;
         $transfer->amount = $amount;
 

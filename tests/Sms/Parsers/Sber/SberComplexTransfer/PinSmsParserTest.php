@@ -5,13 +5,13 @@
 
 declare(strict_types=1);
 
-namespace tests\Sms\Parsers\Sber\SberComplexTransfer;
+namespace tests\Sms\Parsers\Sber\ComplexTransfer;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use vvvitaly\txs\Sms\Message;
+use vvvitaly\txs\Sms\Parsers\Sber\ComplexTransfer\PinSmsParser;
 use vvvitaly\txs\Sms\Parsers\Sber\PinParser\PinMessage;
-use vvvitaly\txs\Sms\Parsers\Sber\SberComplexTransfer\PinSmsParser;
 
 /** @noinspection PhpMissingDocCommentInspection */
 

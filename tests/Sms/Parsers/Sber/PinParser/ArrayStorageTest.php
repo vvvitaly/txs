@@ -21,9 +21,7 @@ final class ArrayStorageTest extends TestCase
         $pin1 = new PinMessage();
         $pin2 = new PinMessage();
 
-        $storage = new ArrayStorage($mem, static function () {
-            return true;
-        });
+        $storage = new ArrayStorage($mem);
         $storage->savePinMessage($pin1);
         $storage->savePinMessage($pin2);
 
@@ -37,11 +35,7 @@ final class ArrayStorageTest extends TestCase
     public function testFindPinMessage(): void
     {
         $mem = new ArrayObject();
-        $matcher = static function (PinMessage $pinMessage): bool {
-            return $pinMessage->account === 'VISA1001';
-        };
-
-        $storage = new ArrayStorage($mem, $matcher);
+        $storage = new ArrayStorage($mem);
 
         $pins = [];
         for ($i = 0; $i < 3; $i++) {
@@ -58,12 +52,106 @@ final class ArrayStorageTest extends TestCase
 
         $transfer = new ConfirmationMessage();
         $transfer->receivingDate = new DateTimeImmutable();
-        $transfer->operationDate = new DateTimeImmutable();
+        $transfer->transferDate = new DateTimeImmutable();
         $transfer->amount = 101.45;
         $transfer->account = 'VISA1001';
 
         $actualPin = $storage->findPinMessage($transfer);
 
         $this->assertSame($pins[1], $actualPin);
+    }
+
+    public function testFindPinMessageByPartialAccount(): void
+    {
+        $mem = new ArrayObject();
+        $storage = new ArrayStorage($mem);
+
+        $pin = new PinMessage();
+        $pin->receivingDate = new DateTimeImmutable();
+        $pin->account = '1000';
+        $pin->amount = 123.45;
+        $pin->currency = 'р';
+        $pin->description = 'test';
+
+        $storage->savePinMessage($pin);
+
+        $transfer = new ConfirmationMessage();
+        $transfer->receivingDate = new DateTimeImmutable();
+        $transfer->transferDate = new DateTimeImmutable();
+        $transfer->amount = 123.45;
+        $transfer->account = 'VISA1000';
+
+        $this->assertSame($pin, $storage->findPinMessage($transfer));
+    }
+
+    public function testFindPinMessageShouldSearchByAccount(): void
+    {
+        $mem = new ArrayObject();
+        $storage = new ArrayStorage($mem);
+
+        $pin = new PinMessage();
+        $pin->receivingDate = new DateTimeImmutable();
+        $pin->account = 'VISA1000';
+        $pin->amount = 123.45;
+        $pin->currency = 'р';
+        $pin->description = 'test';
+
+        $storage->savePinMessage($pin);
+
+        $transfer = new ConfirmationMessage();
+        $transfer->receivingDate = new DateTimeImmutable();
+        $transfer->transferDate = new DateTimeImmutable();
+        $transfer->amount = 123.45;
+        $transfer->account = 'some-other-account';
+
+        $this->assertNull($storage->findPinMessage($transfer));
+    }
+
+    public function testFindPinMessageShouldSearchByAmount(): void
+    {
+        $mem = new ArrayObject();
+        $storage = new ArrayStorage($mem);
+
+        $pin = new PinMessage();
+        $pin->receivingDate = new DateTimeImmutable();
+        $pin->account = 'VISA1000';
+        $pin->amount = 123.45;
+        $pin->currency = 'р';
+        $pin->description = 'test';
+
+        $storage->savePinMessage($pin);
+
+        $transfer = new ConfirmationMessage();
+        $transfer->receivingDate = new DateTimeImmutable();
+        $transfer->transferDate = new DateTimeImmutable();
+        $transfer->amount = 999999;
+        $transfer->account = 'VISA1000';
+
+        $this->assertNull($storage->findPinMessage($transfer));
+    }
+
+    public function testFindPinMessageShouldSearchByReceivingDate(): void
+    {
+        $mem = new ArrayObject();
+        $storage = new ArrayStorage($mem, 600);
+
+        $date = new DateTimeImmutable();
+
+        $pin = new PinMessage();
+        $pin->receivingDate = $date->modify('-1 year');
+        $pin->account = 'VISA1000';
+        $pin->amount = 123.45;
+        $pin->currency = 'р';
+        $pin->description = 'test';
+
+        $storage->savePinMessage($pin);
+
+        $transfer = new ConfirmationMessage();
+        $transfer->receivingDate = $date;
+        $transfer->transferDate = new DateTimeImmutable();
+        $transfer->amount = 123.45;
+        $transfer->account = 'VISA1000';
+
+        $this->assertNull($storage->findPinMessage($transfer));
     }
 }
