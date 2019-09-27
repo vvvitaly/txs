@@ -27,7 +27,7 @@ final class SberRefund implements MessageParserInterface
 {
     use SberValidationTrait, SberDatesTrait, RegexParsingTrait;
 
-    private const REGULAR_REFUND_REGEX = '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?(?:\d{2}:\d{2})?) возврат покупки (?<amount>[0-9.]+)(?<currency>[а-яa-z]+)\s?(?<description>.+?)? Баланс/ui';
+    private const REGULAR_REFUND_REGEX = '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?(?:\d{2}:\d{2})?) возврат покупки (?<amount>[0-9.]+)\s?(?<currency>[а-яa-z]+) (?<description>.+?)? Баланс/ui';
 
     /**
      * @inheritDoc
