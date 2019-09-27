@@ -28,7 +28,7 @@ use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
  */
 final class SberTransfer implements MessageParserInterface
 {
-    use SberValidationTrait, SberDatesTrait;
+    use SberValidationTrait, SberDatesTrait, RegexParsingTrait;
 
     private const TRANSFER_REGEX = [
         '/^С Ваше(?:й|го) (?:карты|счета) (?<account>.+?) произведен перевод на (?:счет|карту) № (?<description>.+?) на сумму (?<amount>[0-9.,]+) (?<currency>[A-Z]{3}).$/ui',
@@ -44,10 +44,9 @@ final class SberTransfer implements MessageParserInterface
             return null;
         }
 
-        foreach (self::TRANSFER_REGEX as $regex) {
-            if (preg_match($regex, $sms->text, $matches, PREG_UNMATCHED_AS_NULL)) {
-                return $this->parseMatches($sms, $matches);
-            }
+        $matches = $this->match(self::TRANSFER_REGEX, $sms->text);
+        if ($matches) {
+            return $this->parseMatches($sms, $matches);
         }
 
         return null;

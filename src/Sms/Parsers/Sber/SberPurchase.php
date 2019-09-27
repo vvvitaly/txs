@@ -24,7 +24,7 @@ use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
  */
 final class SberPurchase implements MessageParserInterface
 {
-    use SberValidationTrait, SberDatesTrait;
+    use SberValidationTrait, SberDatesTrait, RegexParsingTrait;
 
     private const REGULAR_PURCHASE_REGEX = '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?(?:\d{2}:\d{2})?) Покупка (?<amount>[0-9.]+)(?<currency>[а-яa-z]+) (?<description>.*?) Баланс/ui';
 
@@ -37,7 +37,8 @@ final class SberPurchase implements MessageParserInterface
             return null;
         }
 
-        if (preg_match(self::REGULAR_PURCHASE_REGEX, $sms->text, $matches, PREG_UNMATCHED_AS_NULL)) {
+        $matches = $this->match([self::REGULAR_PURCHASE_REGEX], $sms->text);
+        if ($matches) {
             return $this->parseMatches($sms, $matches);
         }
 
