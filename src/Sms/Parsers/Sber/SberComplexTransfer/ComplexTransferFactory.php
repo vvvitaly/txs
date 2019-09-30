@@ -22,7 +22,7 @@ final class ComplexTransferFactory implements PinParserFactoryInterface
      */
     public function getMessagesStorage(): MessagesStorageInterface
     {
-        return new ArrayStorage(new ArrayObject());
+        return new ArrayStorage(new ArrayObject(), new TransferSmsPinMatcher());
     }
 
     /**
