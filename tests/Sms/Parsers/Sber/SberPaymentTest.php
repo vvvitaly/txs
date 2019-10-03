@@ -32,7 +32,7 @@ final class SberPaymentTest extends SberSmsTestCase
     public function providerParseRegularMessage(): array
     {
         return [
-            'normal message' => [
+            'regular payment' => [
                 new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
                     'ECMC1234 02:38 Оплата 100р TELE2 (9001234567) Баланс: 14074.22р'),
                 new Bill(
@@ -42,7 +42,7 @@ final class SberPaymentTest extends SberSmsTestCase
                     new BillInfo(new DateTimeImmutable('2019-08-01 02:38:00'), 'Оплата TELE2 (9001234567)')
                 )
             ],
-            'normal message with different dates' => [
+            'regular payment with full date' => [
                 new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
                     'ECMC1234 31.07.19 02:38 Оплата 100р TELE2 (9001234567) Баланс: 14074.22р'),
                 new Bill(
@@ -52,7 +52,7 @@ final class SberPaymentTest extends SberSmsTestCase
                     new BillInfo(new DateTimeImmutable('2019-07-31 02:38:00'), 'Оплата TELE2 (9001234567)')
                 )
             ],
-            'normal message, date only' => [
+            'regular payment, date only' => [
                 new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
                     'ECMC1234 31.07.19 Оплата 100р TELE2 (9001234567) Баланс: 14074.22р'),
                 new Bill(

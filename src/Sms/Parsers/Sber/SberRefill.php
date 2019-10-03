@@ -8,6 +8,7 @@ use vvvitaly\txs\Core\Bills\Bill;
 use vvvitaly\txs\Core\Bills\Composer;
 use vvvitaly\txs\Sms\Message;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
+use vvvitaly\txs\Sms\Parsers\Regex\PregMatcher;
 
 /**
  * Try to parse messages about refilling in format:
@@ -30,25 +31,18 @@ use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
  */
 final class SberRefill implements MessageParserInterface
 {
-    use SberValidationTrait, SberDatesTrait, RegexParsingTrait;
+    use SberDatesTrait, SberRegexParserTrait;
 
     private const REGULAR_REFILL_REGEX = '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?(?:\d{2}:\d{2})?) (?<description1>[зЗ]ачисление.*?) (?<amount>[0-9.]+)(?<currency>[а-яa-z]+)\s?(?<description2>.+?)? Баланс/ui';
 
     /**
-     * @inheritDoc
      */
-    public function parse(Message $sms): ?Bill
+    public function __construct()
     {
-        if (!$this->isValid($sms)) {
-            return null;
-        }
-
-        $matches = $this->match([self::REGULAR_REFILL_REGEX], $sms->text);
-        if ($matches) {
-            return $this->parseMatches($sms, $matches);
-        }
-
-        return null;
+        $this->setRegularExpression(PregMatcher::matchFirst(self::REGULAR_REFILL_REGEX));
+        $this->setBillsFactory(function (Message $sms, array $matches): ?Bill {
+            return $this->createBill($sms, $matches);
+        });
     }
 
     /**
@@ -59,7 +53,7 @@ final class SberRefill implements MessageParserInterface
      *
      * @return Bill|null
      */
-    private function parseMatches(Message $sms, array $matches): ?Bill
+    private function createBill(Message $sms, array $matches): ?Bill
     {
         $amount = (float)str_replace(',', '.', $matches['amount']);
         $description = isset($matches['description2'])

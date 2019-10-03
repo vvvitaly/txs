@@ -52,7 +52,7 @@ final class SberPurchaseTest extends SberSmsTestCase
                     new BillInfo(new DateTimeImmutable('2019-08-01 19:52:00'), 'XXXXX')
                 ),
             ],
-            'purchase with different dates' => [
+            'purchase with specified dates' => [
                 new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
                     'VISA9009 31.07.19 20:38 Покупка 256.51р XXXXX YY Баланс: 11905.22р'),
                 new Bill(
@@ -62,7 +62,7 @@ final class SberPurchaseTest extends SberSmsTestCase
                     new BillInfo(new DateTimeImmutable('2019-07-31 20:38:00'), 'XXXXX YY')
                 )
             ],
-            'purcahse, date only' => [
+            'purchase, date only' => [
                 new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
                     'VISA9009 31.07.19 Покупка 256.51р XXXXX YY Баланс: 11905.22р'),
                 new Bill(

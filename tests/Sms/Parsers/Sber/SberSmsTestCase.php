@@ -67,17 +67,6 @@ abstract class SberSmsTestCase extends TestCase
     }
 
     /**
-     * @dataProvider providerParseWrongAddressWithCorrectMessage
-     *
-     * @param string $messageBody
-     */
-    public function testParseWrongAddressWithCorrectMessage(string $messageBody): void
-    {
-        $sms = new Message('0', new DateTimeImmutable('now'), $messageBody);
-        $this->assertNull($this->getParser()->parse($sms));
-    }
-
-    /**
      * @dataProvider providerParseWrongBody
      *
      * @param string $messageBody
@@ -109,17 +98,6 @@ abstract class SberSmsTestCase extends TestCase
         unset($messages[$this->getParserType()]);
 
         return $this->arrayToDataProvider($messages);
-    }
-
-    /**
-     * Data provider for testParseWrongAddress. Should provide specific SMS message.
-     *
-     * @return array
-     * @see testParseWrongAddress
-     */
-    public function providerParseWrongAddressWithCorrectMessage(): array
-    {
-        return $this->arrayToDataProvider($this->getCorrectMessagesExamples());
     }
 
     /**

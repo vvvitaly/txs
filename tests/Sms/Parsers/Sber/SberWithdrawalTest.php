@@ -52,7 +52,7 @@ final class SberWithdrawalTest extends SberSmsTestCase
                     new BillInfo(new DateTimeImmutable('2019-08-03 11:31:00'), 'Выдача / р, ATM 00000001')
                 ),
             ],
-            'withdrawal with different date' => [
+            'withdrawal with full date' => [
                 new Message('900', new DateTimeImmutable('2019-08-03 12:03:33'),
                     'VISA1111 01.08.19 11:31 Выдача 3400р ATM 00000001 Баланс: 16639.63р'),
                 new Bill(

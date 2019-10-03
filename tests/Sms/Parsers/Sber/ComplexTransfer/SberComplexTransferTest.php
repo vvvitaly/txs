@@ -23,6 +23,13 @@ use vvvitaly\txs\Sms\Parsers\Sber\PinParser\PinSmsParserInterface;
 
 final class SberComplexTransferTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->markTestIncomplete();
+    }
+
     /**
      * @inheritDoc
      */

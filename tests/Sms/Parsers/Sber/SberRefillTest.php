@@ -74,7 +74,7 @@ final class SberRefillTest extends SberSmsTestCase
                     new BillInfo(new DateTimeImmutable('2019-07-29 12:59:00'), 'Зачисление ATM 60000111, VISA0001')
                 ),
             ],
-            'refill with different date' => [
+            'refill with full date' => [
                 new Message('900', new DateTimeImmutable('2019-07-29 10:10:28'),
                     'VISA0001 28.07.19 12:59 Зачисление 1000р ATM 60000111 Баланс: 10422.87р'),
                 new Bill(

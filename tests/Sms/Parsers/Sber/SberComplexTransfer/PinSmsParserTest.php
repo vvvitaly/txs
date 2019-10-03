@@ -17,6 +17,13 @@ use vvvitaly\txs\Sms\Parsers\Sber\PinParser\PinMessage;
 
 final class PinSmsParserTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->markTestIncomplete();
+    }
+
     /**
      * @return array
      */

@@ -32,7 +32,7 @@ final class SberRefundTest extends SberSmsTestCase
     public function providerParseRegularMessage(): array
     {
         return [
-            'regular' => [
+            'regular refund' => [
                 new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
                     'VISA1234 19:23 возврат покупки 111.09р XXXXX Баланс: 14867.80р'),
                 new Bill(
@@ -42,7 +42,7 @@ final class SberRefundTest extends SberSmsTestCase
                     new BillInfo(new DateTimeImmutable('2019-08-01 19:23:00'), 'Возврат от XXXXX')
                 ),
             ],
-            'refund, different dates' => [
+            'refund, full date' => [
                 new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
                     'VISA9009 31.07.19 20:38 возврат покупки 256.51р XXXXX YY Баланс: 11905.22р'),
                 new Bill(

@@ -8,6 +8,8 @@ use vvvitaly\txs\Core\Bills\Bill;
 use vvvitaly\txs\Core\Bills\Composer;
 use vvvitaly\txs\Sms\Message;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
+use vvvitaly\txs\Sms\Parsers\Regex\PregMatcher;
+use vvvitaly\txs\Sms\Parsers\Regex\RegexList;
 
 /**
  * Try to parse messages about transfers between accounts (from card to account or from account to card). Such messages
@@ -28,28 +30,25 @@ use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
  */
 final class SberTransfer implements MessageParserInterface
 {
-    use SberValidationTrait, SberDatesTrait, RegexParsingTrait;
+    use SberDatesTrait, SberRegexParserTrait;
 
-    private const TRANSFER_REGEX = [
-        '/^С Ваше(?:й|го) (?:карты|счета) (?<account>.+?) произведен перевод на (?:счет|карту) № (?<description>.+?) на сумму (?<amount>[0-9.,]+) (?<currency>[A-Z]{3}).$/ui',
-        '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?(?:\d{2}:\d{2})?) (?<description1>перевод.*?) (?<amount>[0-9.]+)(?<currency>[а-яa-z]+) (?<description2>.+?) Баланс/ui',
-    ];
+    private const TRANSFER_REGEX_ACCOUNT =
+        '/^С Ваше(?:й|го) (?:карты|счета) (?<account>.+?) произведен перевод на (?:счет|карту) № (?<description>.+?) на сумму (?<amount>[0-9.,]+) (?<currency>[A-Z]{3}).$/ui';
+
+    private const TRANSFER_REGEX_REGULAR =
+        '/^(?<account>\S+) (?<time>(?:\d{2}.\d{2}.\d{2})?\s?(?:\d{2}:\d{2})?) (?<description1>перевод.*?) (?<amount>[0-9.]+)(?<currency>[а-яa-z]+) (?<description2>.+?) Баланс/ui';
 
     /**
-     * @inheritDoc
      */
-    public function parse(Message $sms): ?Bill
+    public function __construct()
     {
-        if (!$this->isValid($sms)) {
-            return null;
-        }
-
-        $matches = $this->match(self::TRANSFER_REGEX, $sms->text);
-        if ($matches) {
-            return $this->parseMatches($sms, $matches);
-        }
-
-        return null;
+        $this->setRegularExpression(new RegexList(
+            PregMatcher::matchFirst(self::TRANSFER_REGEX_ACCOUNT),
+            PregMatcher::matchFirst(self::TRANSFER_REGEX_REGULAR)
+        ));
+        $this->setBillsFactory(function (Message $sms, array $matches): ?Bill {
+            return $this->createBill($sms, $matches);
+        });
     }
 
     /**
@@ -60,7 +59,7 @@ final class SberTransfer implements MessageParserInterface
      *
      * @return Bill|null
      */
-    private function parseMatches(Message $sms, array $matches): ?Bill
+    private function createBill(Message $sms, array $matches): ?Bill
     {
         $amount = (float)str_replace(',', '.', $matches['amount']);
         if (isset($matches['description'])) {
