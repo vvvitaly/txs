@@ -19,6 +19,7 @@ return array_replace_recursive(
 
         // FDO
         'fdo.http.logger' => null,  // null or Logger instance
+        'fdo.http.nalogru.logger' => null, // null or Logger instance
 
         /**
          * list of descriptions aliases and replacements

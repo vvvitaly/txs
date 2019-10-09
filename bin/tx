@@ -13,6 +13,7 @@ use vvvitaly\txs\Infrastructure\Console\DescriptionNormalizerFactory;
 use vvvitaly\txs\Infrastructure\Console\ExporterFactory;
 use vvvitaly\txs\Infrastructure\Console\FdoApiCommand;
 use vvvitaly\txs\Infrastructure\Console\FdoJsonCommand;
+use vvvitaly\txs\Infrastructure\Console\FdoNalogRuCommand;
 use vvvitaly\txs\Infrastructure\Console\SmsCommand;
 use vvvitaly\txs\Infrastructure\Console\VmesteCommand;
 use vvvitaly\txs\Sms\Parsers\CompositeMessageParser;
@@ -45,6 +46,8 @@ $application->addCommands([
     new FdoJsonCommand($billsExporter),
 
     new FdoApiCommand($billsExporter, $config['fdo.http.logger']),
+
+    new FdoNalogRuCommand($billsExporter, $config['fdo.http.nalogru.logger']),
 
     new CsvCommand($billsExporter, $config['csv.presets']),
 ]);
