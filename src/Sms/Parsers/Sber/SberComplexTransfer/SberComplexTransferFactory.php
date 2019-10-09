@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace vvvitaly\txs\Sms\Parsers\Sber\SberComplexTransfer;
 
-use vvvitaly\txs\Core\Bills\Bill;
-use vvvitaly\txs\Sms\Message;
-use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
-use vvvitaly\txs\Sms\Parsers\Sber\PinParser\SberPinParser;
+use vvvitaly\txs\Sms\Parsers\Sber\ComplexOperationParser\SberComplexOperationParser;
 
 /**
  * Try to parse messages about transfers from card without description. Such messages are skipped by SberTransfer
@@ -38,27 +35,16 @@ use vvvitaly\txs\Sms\Parsers\Sber\PinParser\SberPinParser;
  *
  * It skips messages about transfers that contains description.
  */
-final class SberComplexTransfer implements MessageParserInterface
+final class SberComplexTransferFactory
 {
     /**
-     * @var \vvvitaly\txs\Sms\Parsers\Sber\PinParser\SberPinParser
+     * @return SberComplexOperationParser
      */
-    private $pinParser;
-
-    /**
-     */
-    public function __construct()
+    public function getParser(): SberComplexOperationParser
     {
-        $this->pinParser = new SberPinParser(
-            new ComplexTransferFactory()
+        return new SberComplexOperationParser(
+            new TransferStepParser(),
+            new BillsFactory()
         );
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function parse(Message $sms): ?Bill
-    {
-        return $this->pinParser->parse($sms);
     }
 }
