@@ -4,12 +4,7 @@ declare(strict_types=1);
 
 namespace vvvitaly\txs\Infrastructure\Console;
 
-use Http\Client\Common\Plugin\ContentLengthPlugin;
-use Http\Client\Common\Plugin\LoggerPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
-use Http\Message\Formatter\FullHttpMessageFormatter;
 use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Psr\SimpleCache\CacheInterface;
@@ -30,7 +25,7 @@ use vvvitaly\txs\Vmestecard\VmestecardSource;
  */
 final class VmesteCommand extends Command
 {
-    use ExportTrait;
+    use ExportTrait, HttpClientTrait;
 
     /**
      * @var BillExporterInterface
@@ -60,8 +55,11 @@ final class VmesteCommand extends Command
         parent::__construct();
 
         $this->billExporter = $billExporter;
-        $this->logger = $logger;
         $this->cache = $cache;
+
+        if ($logger) {
+            $this->setHttpLogger($logger);
+        }
     }
 
     /**
@@ -114,14 +112,7 @@ EOS
 
         $credentials = new ApiCredentials($username, $password);
 
-        $plugins = [
-            new ContentLengthPlugin(),
-        ];
-        if ($this->logger) {
-            $plugins[] = new LoggerPlugin($this->logger, new FullHttpMessageFormatter());
-        }
-
-        $httpClient = new PluginClient(HttpClientDiscovery::find(), $plugins);
+        $httpClient = $this->buildHttpClient();
 
         $messageFactory = MessageFactoryDiscovery::find();
         $tokenProvider = new ApiTokenProvider($credentials, $httpClient, $messageFactory);
