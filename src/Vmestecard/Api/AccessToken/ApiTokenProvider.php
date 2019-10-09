@@ -49,7 +49,7 @@ final class ApiTokenProvider implements TokenProviderInterface
     {
         $httpRequest = $this->requestFactory->createRequest(
             'POST',
-            '/token',
+            'https://api-zhuravli.vmeste32.productions/token',
             [],
             http_build_query([
                 'grant_type' => 'password',
