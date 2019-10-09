@@ -35,7 +35,7 @@ use vvvitaly\txs\Sms\Parsers\Sber\ComplexOperationParser\SberComplexOperationPar
  *
  * It skips messages about transfers that contains description.
  */
-final class SberComplexTransferFactory
+final class SberComplexTransferParserFactory
 {
     /**
      * @return SberComplexOperationParser

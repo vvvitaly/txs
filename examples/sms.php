@@ -5,7 +5,6 @@
 declare(strict_types=1);
 
 use vvvitaly\txs\Libs\Date\DatesRange;
-use vvvitaly\txs\Sms\Parsers\Sber\SberComplexTransfer\SberComplexTransferFactory;
 use vvvitaly\txs\Sms\Parsers\Sber\SberParserFactory;
 use vvvitaly\txs\Sms\SmsBackupXMLSource;
 
@@ -25,7 +24,7 @@ $dates = new DatesRange(
 $xml = simplexml_load_string(file_get_contents($fileName));
 
 // This kind of SMS contains account name that can be associated with GnuCash.
-$source = new SmsBackupXMLSource($xml, $dates, (new SberParserFactory(new SberComplexTransferFactory()))->getParser());
+$source = new SmsBackupXMLSource($xml, $dates, (new SberParserFactory())->getParser());
 
 foreach ($source->read() as $bill) {
     echo dumpBill($bill) . "\n";
