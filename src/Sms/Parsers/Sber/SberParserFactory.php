@@ -7,6 +7,7 @@ namespace vvvitaly\txs\Sms\Parsers\Sber;
 use vvvitaly\txs\Sms\Parsers\CompositeMessageParser;
 use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 use vvvitaly\txs\Sms\Parsers\Sber\SberComplexTransfer\SberComplexTransferFactory;
+use vvvitaly\txs\Sms\Parsers\Sber\SberOrder\SberOrderParserFactory;
 
 /**
  * Composite parser for all other parsers
@@ -19,11 +20,14 @@ final class SberParserFactory
     private $complexTransferFactory;
 
     /**
-     * @param SberComplexTransferFactory $complexTransferFactory
+     * @var SberOrderParserFactory
      */
-    public function __construct(SberComplexTransferFactory $complexTransferFactory)
+    private $orderParserFactory;
+
+    public function __construct()
     {
-        $this->complexTransferFactory = $complexTransferFactory;
+        $this->complexTransferFactory = new SberComplexTransferFactory();
+        $this->orderParserFactory = new SberOrderParserFactory();
     }
 
 
@@ -38,7 +42,8 @@ final class SberParserFactory
             new SberTransfer(),
             $this->complexTransferFactory->getParser(),
             new SberWithdrawal(),
-            new SberRefill()
+            new SberRefill(),
+            $this->orderParserFactory->getParser()
         );
 
         return new SberValidationDecorator($parser);
