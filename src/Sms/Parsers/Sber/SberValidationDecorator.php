@@ -19,7 +19,7 @@ final class SberValidationDecorator implements MessageParserInterface
     private $parser;
 
     /**
-     * @param \vvvitaly\txs\Sms\Parsers\MessageParserInterface $parser
+     * @param MessageParserInterface $parser
      */
     public function __construct(MessageParserInterface $parser)
     {

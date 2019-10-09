@@ -22,7 +22,7 @@ final class CsvConfigPreset
     public $columns = [];
 
     /**
-     * @var \vvvitaly\txs\Csv\CsvControl
+     * @var CsvControl
      * @see \vvvitaly\txs\Csv\CsvSource
      */
     public $control;
@@ -41,7 +41,6 @@ final class CsvConfigPreset
 
     /**
      * @param string $name
-     * @param array $columns
      */
     public function __construct(string $name)
     {
@@ -62,7 +61,7 @@ final class CsvConfigPreset
     }
 
     /**
-     * @param \vvvitaly\txs\Csv\CsvControl $control
+     * @param CsvControl $control
      *
      * @return CsvConfigPreset
      */

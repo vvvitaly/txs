@@ -11,11 +11,11 @@ use vvvitaly\txs\Infrastructure\Console\Csv\CsvConfigPreset;
 return array_replace_recursive(
     [
         // list of used SMS parsers
-        'sms.parsers'     => [],
+        'sms.parsers' => [],
 
         // Vmeste
-        'vmeste.logger'   => null,    // null or Logger instance
-        'vmeste.cache'    => null,     // null or CacheInterface
+        'vmeste.logger' => null,    // null or Logger instance
+        'vmeste.cache' => null,     // null or CacheInterface
 
         // FDO
         'fdo.http.logger' => null,  // null or Logger instance
@@ -24,10 +24,10 @@ return array_replace_recursive(
          * list of descriptions aliases and replacements
          * @see \vvvitaly\txs\Exporters\Processors\Normalizers\DescriptionAlias
          */
-        'export.aliases'  => [],
+        'export.aliases' => [],
 
         // list of configurations for exporting from CSV
-        'csv.presets'     => [
+        'csv.presets' => [
             (new CsvConfigPreset('tinkoff'))
                 ->setColumns([
                     CsvColumn::DATE,        // "Дата операции"

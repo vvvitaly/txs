@@ -13,12 +13,12 @@ use vvvitaly\txs\Csv\Encode\EncodeException;
 final class EncodeDecorator implements CsvReaderInterface
 {
     /**
-     * @var \vvvitaly\txs\Csv\CsvReaderInterface
+     * @var CsvReaderInterface
      */
     private $reader;
 
     /**
-     * @var \vvvitaly\txs\Csv\Encode\CsvEncoderInterface
+     * @var CsvEncoderInterface
      */
     private $encoder;
 
@@ -28,8 +28,8 @@ final class EncodeDecorator implements CsvReaderInterface
     private $documentEncoding;
 
     /**
-     * @param \vvvitaly\txs\Csv\CsvReaderInterface $reader
-     * @param \vvvitaly\txs\Csv\Encode\CsvEncoderInterface $encoder
+     * @param CsvReaderInterface $reader
+     * @param CsvEncoderInterface $encoder
      * @param string $documentEncoding
      */
     public function __construct(
@@ -69,18 +69,10 @@ final class EncodeDecorator implements CsvReaderInterface
     }
 
     /**
-     * @inheritDoc
-     */
-    public function close(): void
-    {
-        $this->reader->close();
-    }
-
-    /**
      * @param array $row
      *
      * @return array
-     * @throws \vvvitaly\txs\Csv\Encode\EncodeException
+     * @throws EncodeException
      */
     private function encode(array $row): array
     {
@@ -92,5 +84,13 @@ final class EncodeDecorator implements CsvReaderInterface
         };
 
         return array_map($map, $row);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function close(): void
+    {
+        $this->reader->close();
     }
 }

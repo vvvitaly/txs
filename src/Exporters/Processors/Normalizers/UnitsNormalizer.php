@@ -26,7 +26,7 @@ final class UnitsNormalizer
     /**
      * @var string[]
      */
-    private $units = [];
+    private $units;
 
     /**
      * @param string[] $units

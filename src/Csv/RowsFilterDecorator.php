@@ -15,7 +15,7 @@ namespace vvvitaly\txs\Csv;
 final class RowsFilterDecorator implements CsvReaderInterface
 {
     /**
-     * @var \vvvitaly\txs\Csv\CsvReaderInterface
+     * @var CsvReaderInterface
      */
     private $reader;
 
@@ -25,7 +25,7 @@ final class RowsFilterDecorator implements CsvReaderInterface
     private $filter;
 
     /**
-     * @param \vvvitaly\txs\Csv\CsvReaderInterface $reader
+     * @param CsvReaderInterface $reader
      * @param callable $filter
      */
     public function __construct(CsvReaderInterface $reader, callable $filter)

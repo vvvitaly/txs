@@ -92,6 +92,17 @@ trait ExportTrait
     }
 
     /**
+     * Print bills collection
+     *
+     * @param BillsCollection $bills
+     * @param OutputInterface $output
+     */
+    private function printBills(BillsCollection $bills, OutputInterface $output): void
+    {
+        $this->getHelper('bills_printer')->printBills($bills, $output);
+    }
+
+    /**
      * @param InputInterface $input
      *
      * @return MultiSplitCsvWriter
@@ -136,16 +147,5 @@ trait ExportTrait
 
         $resultFile = $writer->getFile()->getRealPath();
         $output->writeln("Transactions were exported into <info>\"{$resultFile}\"</info>");
-    }
-
-    /**
-     * Print bills collection
-     *
-     * @param \vvvitaly\txs\Core\Bills\BillsCollection $bills
-     * @param \Symfony\Component\Console\Output\OutputInterface $output
-     */
-    private function printBills(BillsCollection $bills, OutputInterface $output)
-    {
-        $this->getHelper('bills_printer')->printBills($bills, $output);
     }
 }

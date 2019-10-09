@@ -13,12 +13,12 @@ use InvalidArgumentException;
 final class Composer
 {
     /**
-     * @var \vvvitaly\txs\Core\Bills\Bill
+     * @var Bill
      */
     private $bill;
 
     /**
-     * @var \vvvitaly\txs\Core\Bills\BillType
+     * @var BillType
      */
     private $type;
 
@@ -53,12 +53,12 @@ final class Composer
     private $billNumber;
 
     /**
-     * @var \vvvitaly\txs\Core\Bills\BillItem[]
+     * @var BillItem[]
      */
     private $items = [];
 
     /**
-     * @param \vvvitaly\txs\Core\Bills\BillType $type
+     * @param BillType $type
      */
     private function __construct(BillType $type)
     {
@@ -66,7 +66,7 @@ final class Composer
     }
 
     /**
-     * @return \vvvitaly\txs\Core\Bills\Composer
+     * @return Composer
      */
     public static function expenseBill(): Composer
     {
@@ -74,7 +74,7 @@ final class Composer
     }
 
     /**
-     * @return \vvvitaly\txs\Core\Bills\Composer
+     * @return Composer
      */
     public static function incomeBill(): Composer
     {
@@ -118,7 +118,7 @@ final class Composer
     }
 
     /**
-     * @param \DateTimeImmutable $date
+     * @param DateTimeImmutable $date
      *
      * @return Composer
      */
@@ -142,9 +142,9 @@ final class Composer
     }
 
     /**
-     * @param \vvvitaly\txs\Core\Bills\BillInfo $info
+     * @param BillInfo $info
      *
-     * @return \vvvitaly\txs\Core\Bills\Composer
+     * @return Composer
      */
     public function setBillInfo(BillInfo $info): Composer
     {
@@ -168,7 +168,7 @@ final class Composer
     }
 
     /**
-     * @param \vvvitaly\txs\Core\Bills\BillItem[] $items
+     * @param BillItem[] $items
      *
      * @return Composer
      */
@@ -186,7 +186,7 @@ final class Composer
      * @param string|null $description
      * @param string|null $currency
      *
-     * @return \vvvitaly\txs\Core\Bills\Composer
+     * @return Composer
      */
     public function addItem(float $amount, ?string $description, ?string $currency = null): Composer
     {
@@ -199,8 +199,8 @@ final class Composer
     }
 
     /**
-     * @return \vvvitaly\txs\Core\Bills\Bill
-     * @throws \InvalidArgumentException
+     * @return Bill
+     * @throws InvalidArgumentException
      */
     public function getBill(): Bill
     {

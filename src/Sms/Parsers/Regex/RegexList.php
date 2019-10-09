@@ -10,12 +10,12 @@ namespace vvvitaly\txs\Sms\Parsers\Regex;
 final class RegexList implements MatcherInterface
 {
     /**
-     * @var \vvvitaly\txs\Sms\Parsers\Regex\MatcherInterface[]
+     * @var MatcherInterface[]
      */
     private $matchers;
 
     /**
-     * @param \vvvitaly\txs\Sms\Parsers\Regex\MatcherInterface ...$matchers
+     * @param MatcherInterface ...$matchers
      */
     public function __construct(MatcherInterface ...$matchers)
     {

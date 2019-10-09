@@ -40,7 +40,7 @@ final class SberPurchaseTest extends SberSmsTestCase
                     new Amount(30, 'р'),
                     'VISA8413',
                     new BillInfo(new DateTimeImmutable('2019-08-01 20:46:00'), 'ENERGY POINT')
-                )
+                ),
             ],
             'purchase, usd' => [
                 new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
@@ -60,7 +60,7 @@ final class SberPurchaseTest extends SberSmsTestCase
                     new Amount(256.51, 'р'),
                     'VISA9009',
                     new BillInfo(new DateTimeImmutable('2019-07-31 20:38:00'), 'XXXXX YY')
-                )
+                ),
             ],
             'purchase, date only' => [
                 new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
@@ -70,7 +70,7 @@ final class SberPurchaseTest extends SberSmsTestCase
                     new Amount(256.51, 'р'),
                     'VISA9009',
                     new BillInfo(new DateTimeImmutable('2019-07-31 00:00:00'), 'XXXXX YY')
-                )
+                ),
             ],
         ];
     }

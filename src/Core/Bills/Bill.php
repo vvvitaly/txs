@@ -20,7 +20,7 @@ namespace vvvitaly\txs\Core\Bills;
 final class Bill
 {
     /**
-     * @var \vvvitaly\txs\Core\Bills\BillType
+     * @var BillType
      */
     private $type;
 
@@ -49,11 +49,11 @@ final class Bill
     private $items;
 
     /**
-     * @param \vvvitaly\txs\Core\Bills\BillType $type
-     * @param \vvvitaly\txs\Core\Bills\Amount $amount
+     * @param BillType $type
+     * @param Amount $amount
      * @param string|null $account
-     * @param \vvvitaly\txs\Core\Bills\BillInfo|null $info
-     * @param \vvvitaly\txs\Core\Bills\BillItem[] $items
+     * @param BillInfo|null $info
+     * @param BillItem[] $items
      */
     public function __construct(
         BillType $type,
@@ -70,7 +70,7 @@ final class Bill
     }
 
     /**
-     * @return \vvvitaly\txs\Core\Bills\BillType
+     * @return BillType
      */
     public function getType(): BillType
     {

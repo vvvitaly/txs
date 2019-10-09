@@ -57,6 +57,24 @@ final class ApiClientTest extends TestCase
         ], $query);
     }
 
+    /**
+     * @return string
+     */
+    private static function successfulResponse(): string
+    {
+        return json_encode([
+            'data' => [
+                'allCount' => 0,
+                'rows' => [],
+            ],
+            'result' => [
+                'state' => 'Success',
+                'message' => null,
+                'validationErrors' => null,
+            ],
+        ]);
+    }
+
     public function testGetHistoryWrongResponse(): void
     {
         $dates = new DatesRange(null, new DateTimeImmutable('now'));
@@ -75,6 +93,23 @@ final class ApiClientTest extends TestCase
         $this->expectException(ApiErrorException::class);
         $this->expectExceptionMessageMatches('/testGetHistoryWrongResponse/');
         $client->getHistory($dates, $pagination);
+    }
+
+    /**
+     * @param string $message
+     *
+     * @return string
+     */
+    private static function errorResponse(string $message): string
+    {
+        return json_encode([
+            'data' => [],
+            'result' => [
+                'state' => 'Error',
+                'message' => $message,
+                'validationErrors' => null,
+            ],
+        ]);
     }
 
     public function testGetHistoryHttpError(): void
@@ -112,40 +147,5 @@ final class ApiClientTest extends TestCase
         $this->expectException(ApiErrorException::class);
         $this->expectExceptionMessageMatches('/http error/i');
         $client->getHistory($dates, $pagination);
-    }
-
-    /**
-     * @return string
-     */
-    private static function successfulResponse(): string
-    {
-        return json_encode([
-            'data' => [
-                'allCount' => 0,
-                'rows' => [],
-            ],
-            'result' => [
-                'state' => 'Success',
-                'message' => null,
-                'validationErrors' => null,
-            ],
-        ]);
-    }
-
-    /**
-     * @param string $message
-     *
-     * @return string
-     */
-    private static function errorResponse(string $message): string
-    {
-        return json_encode([
-            'data' => [],
-            'result' => [
-                'state' => 'Error',
-                'message' => $message,
-                'validationErrors' => null,
-            ],
-        ]);
     }
 }

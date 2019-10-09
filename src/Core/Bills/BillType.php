@@ -50,7 +50,7 @@ final class BillType
     /**
      * Check if the given bill is income
      *
-     * @param \vvvitaly\txs\Core\Bills\BillType $billType
+     * @param BillType $billType
      *
      * @return bool
      */
@@ -62,7 +62,7 @@ final class BillType
     /**
      * Check if the given bill is expense
      *
-     * @param \vvvitaly\txs\Core\Bills\BillType $billType
+     * @param BillType $billType
      *
      * @return bool
      */

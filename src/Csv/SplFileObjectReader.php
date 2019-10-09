@@ -14,12 +14,12 @@ use SplFileObject;
 final class SplFileObjectReader implements CsvReaderInterface
 {
     /**
-     * @var \SplFileObject
+     * @var SplFileObject
      */
     private $file;
 
     /**
-     * @var \vvvitaly\txs\Csv\CsvControl
+     * @var CsvControl
      */
     private $csvControl;
 
@@ -34,8 +34,8 @@ final class SplFileObjectReader implements CsvReaderInterface
     private $prevFlags;
 
     /**
-     * @param \SplFileObject $file
-     * @param \vvvitaly\txs\Csv\CsvControl $csvControl
+     * @param SplFileObject $file
+     * @param CsvControl $csvControl
      */
     public function __construct(SplFileObject $file, CsvControl $csvControl)
     {

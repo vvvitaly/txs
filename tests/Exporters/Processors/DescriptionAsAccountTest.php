@@ -25,7 +25,7 @@ final class DescriptionAsAccountTest extends TestCase
             'splits' => [
                 [
                     'amount' => 100.12,
-                ]
+                ],
             ],
         ]);
 
@@ -47,7 +47,7 @@ final class DescriptionAsAccountTest extends TestCase
                 [
                     'amount' => 100.12,
                     'account' => 'bank',
-                ]
+                ],
             ],
         ]);
 
@@ -69,16 +69,16 @@ final class DescriptionAsAccountTest extends TestCase
                 [
                     'amount' => 40,
                     'account' => 'expense:tomatoes',
-                    'memo' => 'tomatoes'
+                    'memo' => 'tomatoes',
                 ],
                 [
                     'amount' => 60,
-                    'memo' => 'apples'
+                    'memo' => 'apples',
                 ],
                 [
                     'amount' => 23.45,
                     'memo' => 'coffee',
-                ]
+                ],
             ],
         ]);
 

@@ -34,7 +34,7 @@ final class CsvCommand extends Command
     private $billExporter;
 
     /**
-     * @var \vvvitaly\txs\Infrastructure\Console\Csv\CsvConfigPreset[]
+     * @var CsvConfigPreset[]
      */
     private $presets;
 
@@ -122,9 +122,9 @@ EOS
      * Get CSV reader instance
      *
      * @param string $filename
-     * @param \vvvitaly\txs\Infrastructure\Console\Csv\CsvConfigPreset $preset
+     * @param CsvConfigPreset $preset
      *
-     * @return \vvvitaly\txs\Csv\CsvReaderInterface
+     * @return CsvReaderInterface
      */
     private function buildReader(string $filename, CsvConfigPreset $preset): CsvReaderInterface
     {

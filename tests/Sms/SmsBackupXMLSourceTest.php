@@ -20,19 +20,6 @@ use vvvitaly\txs\Sms\SmsBackupXMLSource;
 final class SmsBackupXMLSourceTest extends TestCase
 {
     /** @noinspection PhpDocMissingThrowsInspection */
-    /**
-     * Create date with default timezone.
-     *
-     * @param string $date
-     *
-     * @return DateTimeImmutable
-     */
-    private function createDate(string $date): DateTimeImmutable
-    {
-        /** @noinspection PhpUnhandledExceptionInspection */
-        return new DateTimeImmutable($date, new DateTimeZone('Europe/Moscow'));
-    }
-
     public function testRead(): void
     {
         $xml = <<<XML
@@ -65,6 +52,19 @@ XML;
         $this->assertCount(2, $actualList);
         $this->assertSame($bill1, $actualList[0]);
         $this->assertSame($bill2, $actualList[1]);
+    }
+
+    /**
+     * Create date with default timezone.
+     *
+     * @param string $date
+     *
+     * @return DateTimeImmutable
+     */
+    private function createDate(string $date): DateTimeImmutable
+    {
+        /** @noinspection PhpUnhandledExceptionInspection */
+        return new DateTimeImmutable($date, new DateTimeZone('Europe/Moscow'));
     }
 
     public function testReadWithDateFilter(): void

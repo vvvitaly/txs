@@ -16,7 +16,7 @@ interface CsvEncoderInterface
      * @param string $text
      *
      * @return string
-     * @throws \vvvitaly\txs\Csv\Encode\EncodeException
+     * @throws EncodeException
      */
     public function encode(string $originEncoding, string $text): string;
 }

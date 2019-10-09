@@ -40,7 +40,7 @@ final class SberPaymentTest extends SberSmsTestCase
                     new Amount(100, 'р'),
                     'ECMC1234',
                     new BillInfo(new DateTimeImmutable('2019-08-01 02:38:00'), 'Оплата TELE2 (9001234567)')
-                )
+                ),
             ],
             'regular payment with full date' => [
                 new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
@@ -50,7 +50,7 @@ final class SberPaymentTest extends SberSmsTestCase
                     new Amount(100, 'р'),
                     'ECMC1234',
                     new BillInfo(new DateTimeImmutable('2019-07-31 02:38:00'), 'Оплата TELE2 (9001234567)')
-                )
+                ),
             ],
             'regular payment, date only' => [
                 new Message('900', new DateTimeImmutable('2019-08-01 23:01:13'),
@@ -60,7 +60,7 @@ final class SberPaymentTest extends SberSmsTestCase
                     new Amount(100, 'р'),
                     'ECMC1234',
                     new BillInfo(new DateTimeImmutable('2019-07-31 00:00:00'), 'Оплата TELE2 (9001234567)')
-                )
+                ),
             ],
             'annual payment' => [
                 new Message('900', new DateTimeImmutable('2019-08-03 12:03:33'),
@@ -70,7 +70,7 @@ final class SberPaymentTest extends SberSmsTestCase
                     new Amount(450.5, 'р'),
                     'VISA4321',
                     new BillInfo(new DateTimeImmutable('2019-08-03 03:06:0'), 'оплата годового обслуживания карты')
-                )
+                ),
             ],
             'mobile bank assistant' => [
                 new Message('900', new DateTimeImmutable('2019-08-03 12:03:33'),
@@ -80,7 +80,7 @@ final class SberPaymentTest extends SberSmsTestCase
                     new Amount(60, 'р'),
                     'VISA2288',
                     new BillInfo(new DateTimeImmutable('2019-08-03 10:10:00'), 'мобильный банк')
-                )
+                ),
             ],
         ];
     }

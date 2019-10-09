@@ -23,14 +23,14 @@ final class BrandsNormalizerTest extends TestCase
     public function providerInvoke(): array
     {
         return [
-            'null'                           => [null, null],
-            'brand in double quotes'         => ['Мыло "что-то"', 'Мыло '],
+            'null' => [null, null],
+            'brand in double quotes' => ['Мыло "что-то"', 'Мыло '],
             'brand in doubled double quotes' => ['Мыло ""что-то""', 'Мыло '],
-            'brand in quotes'                => ["Мыло 'что-то'", 'Мыло '],
-            'brand in doubled quotes'        => ["Мыло ''что-то''", 'Мыло '],
-            'brand in brackets'              => ['Молоко (завод)', 'Молоко '],
-            'only one match'                 => ['Мыло "что-то" и "еще"', 'Мыло  и "еще"'],
-            'ooo'                            => ['ООО "АБЫРВАЛГ"', 'ООО "АБЫРВАЛГ"'],
+            'brand in quotes' => ["Мыло 'что-то'", 'Мыло '],
+            'brand in doubled quotes' => ["Мыло ''что-то''", 'Мыло '],
+            'brand in brackets' => ['Молоко (завод)', 'Молоко '],
+            'only one match' => ['Мыло "что-то" и "еще"', 'Мыло  и "еще"'],
+            'ooo' => ['ООО "АБЫРВАЛГ"', 'ООО "АБЫРВАЛГ"'],
         ];
     }
 }

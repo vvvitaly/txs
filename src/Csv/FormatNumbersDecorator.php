@@ -10,12 +10,12 @@ namespace vvvitaly\txs\Csv;
 final class FormatNumbersDecorator implements CsvReaderInterface
 {
     /**
-     * @var \vvvitaly\txs\Csv\CsvReaderInterface
+     * @var CsvReaderInterface
      */
     private $reader;
 
     /**
-     * @param \vvvitaly\txs\Csv\CsvReaderInterface $reader
+     * @param CsvReaderInterface $reader
      */
     public function __construct(CsvReaderInterface $reader)
     {
@@ -45,14 +45,6 @@ final class FormatNumbersDecorator implements CsvReaderInterface
     }
 
     /**
-     * @inheritDoc
-     */
-    public function close(): void
-    {
-        $this->reader->close();
-    }
-
-    /**
      * Format numbers
      *
      * @param array $row
@@ -70,5 +62,13 @@ final class FormatNumbersDecorator implements CsvReaderInterface
         };
 
         return array_map($map, $row);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function close(): void
+    {
+        $this->reader->close();
     }
 }

@@ -18,7 +18,7 @@ use vvvitaly\txs\Sms\Parsers\MessageParserInterface;
 final class RegexParser implements MessageParserInterface
 {
     /**
-     * @var \vvvitaly\txs\Sms\Parsers\Regex\MatcherInterface
+     * @var MatcherInterface
      */
     private $matcher;
 
@@ -28,7 +28,7 @@ final class RegexParser implements MessageParserInterface
     private $billsFactory;
 
     /**
-     * @param \vvvitaly\txs\Sms\Parsers\Regex\MatcherInterface $matcher
+     * @param MatcherInterface $matcher
      * @param callable $billsFactory
      */
     public function __construct(MatcherInterface $matcher, callable $billsFactory)
@@ -50,10 +50,10 @@ final class RegexParser implements MessageParserInterface
     }
 
     /**
-     * @param \vvvitaly\txs\Sms\Message $sms
+     * @param Message $sms
      * @param array $matches
      *
-     * @return \vvvitaly\txs\Core\Bills\Bill
+     * @return Bill
      */
     private function createBill(Message $sms, array $matches): ?Bill
     {

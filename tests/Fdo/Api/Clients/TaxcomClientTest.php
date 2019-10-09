@@ -25,13 +25,6 @@ final class TaxcomClientTest extends TestCase
      */
     private $fdoRequest;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->fdoRequest = FdoRequest::fromQr('t=20190811T1139&s=1405.33&fn=9280440300200295&i=14378&fp=3796110719&n=1');
-    }
-
     public function testGetCheque(): void
     {
         $response = new Response(200, [], file_get_contents(__DIR__ . '/taxcom.html'));
@@ -129,5 +122,12 @@ final class TaxcomClientTest extends TestCase
         $cheque = $client->getCheque($this->fdoRequest);
 
         $this->assertNull($cheque);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->fdoRequest = FdoRequest::fromQr('t=20190811T1139&s=1405.33&fn=9280440300200295&i=14378&fp=3796110719&n=1');
     }
 }

@@ -73,7 +73,7 @@ final class BillExporter implements BillExporterInterface
      * If the bill has items, then split transaction by this items. Otherwise add inverse transaction as split.
      *
      * @param Transaction $transaction
-     * @param \vvvitaly\txs\Core\Bills\Bill $bill
+     * @param Bill $bill
      */
     private function splitTransaction(Transaction $transaction, Bill $bill): void
     {

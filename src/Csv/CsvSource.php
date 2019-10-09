@@ -126,6 +126,7 @@ final class CsvSource implements BillSourceInterface
         if (!isset($this->columns[$columnName])) {
             return null;
         }
+
         return $row[$this->columns[$columnName]] ?? null;
     }
 }

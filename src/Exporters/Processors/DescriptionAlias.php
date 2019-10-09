@@ -41,7 +41,7 @@ final class DescriptionAlias implements ProcessorInterface
     /**
      * @var array Aliases map
      */
-    private $aliases = [];
+    private $aliases;
 
     /**
      * @var array

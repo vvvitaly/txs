@@ -13,7 +13,7 @@ use vvvitaly\txs\Sms\Parsers\Sber\SberValidationDecorator;
 final class SberValidationDecoratorTest extends TestCase
 {
     /**
-     * @param \vvvitaly\txs\Sms\Message $sms
+     * @param Message $sms
      * @param $expectedValid
      *
      * @dataProvider providerParse

@@ -33,6 +33,19 @@ final class SplFileObjectReaderTest extends TestCase
         $reader->open();
     }
 
+    /**
+     * @return MockObject|SplFileObject
+     */
+    public function mockFile(): MockObject
+    {
+        return $this->getMockBuilder(SplFileObject::class)
+            ->setConstructorArgs(['php://memory'])
+            ->disableOriginalClone()
+            ->disableArgumentCloning()
+            ->disallowMockingUnknownTypes()
+            ->getMock();
+    }
+
     public function testReadRow(): void
     {
         $row = ['col1', 'col2', 'col3'];
@@ -65,18 +78,5 @@ final class SplFileObjectReaderTest extends TestCase
         $actual = $reader->readRow();
 
         $this->assertNull($actual);
-    }
-
-    /**
-     * @return \PHPUnit\Framework\MockObject\MockObject|SplFileObject
-     */
-    public function mockFile(): MockObject
-    {
-        return $this->getMockBuilder(SplFileObject::class)
-            ->setConstructorArgs(['php://memory'])
-            ->disableOriginalClone()
-            ->disableArgumentCloning()
-            ->disallowMockingUnknownTypes()
-            ->getMock();
     }
 }

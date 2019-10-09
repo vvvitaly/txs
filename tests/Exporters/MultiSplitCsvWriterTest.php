@@ -30,7 +30,7 @@ final class MultiSplitCsvWriterTest extends TestCase
                 [
                     'amount' => 100.12,
                     'account' => 'expense:credit',
-                ]
+                ],
             ],
         ]);
 
@@ -45,16 +45,16 @@ final class MultiSplitCsvWriterTest extends TestCase
                 [
                     'amount' => 40,
                     'account' => 'expense:tomatoes',
-                    'memo' => 'tomatoes'
+                    'memo' => 'tomatoes',
                 ],
                 [
                     'amount' => 60,
-                    'memo' => 'apples'
+                    'memo' => 'apples',
                 ],
                 [
                     'amount' => 23.45,
                     'memo' => 'coffee',
-                ]
+                ],
             ],
         ]);
 
@@ -94,7 +94,7 @@ EOS;
                 [
                     'amount' => 100.12,
                     'account' => 'expense:credit',
-                ]
+                ],
             ],
         ]);
 

@@ -26,13 +26,6 @@ final class NalogRuTest extends TestCase
      */
     private $fdoRequest;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->fdoRequest = FdoRequest::fromQr('t=20190811T1139&s=1405.33&fn=9280440300200295&i=14378&fp=3796110719&n=1');
-    }
-
     public function testGetCheque(): void
     {
         $response = new Response(200, [], file_get_contents(__DIR__ . '/nalog.json'));
@@ -88,5 +81,12 @@ final class NalogRuTest extends TestCase
 
         $this->expectException(ApiErrorException::class);
         $client->getCheque($this->fdoRequest);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->fdoRequest = FdoRequest::fromQr('t=20190811T1139&s=1405.33&fn=9280440300200295&i=14378&fp=3796110719&n=1');
     }
 }

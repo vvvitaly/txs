@@ -15,7 +15,7 @@ use vvvitaly\txs\Sms\Parsers\Regex\RegexParser;
 trait SberRegexParserTrait
 {
     /**
-     * @var \vvvitaly\txs\Sms\Parsers\Regex\RegexParser
+     * @var RegexParser
      */
     private $parser;
 
@@ -25,12 +25,35 @@ trait SberRegexParserTrait
     private $billsFactory;
 
     /**
-     * @var \vvvitaly\txs\Sms\Parsers\Regex\MatcherInterface
+     * @var MatcherInterface
      */
     private $regexMatcher;
 
     /**
-     * @param \vvvitaly\txs\Sms\Parsers\Regex\MatcherInterface $matcher
+     * @param Message $sms
+     *
+     * @return Bill|null
+     * @see \vvvitaly\txs\Sms\Parsers\MessageParserInterface::parse()
+     */
+    public function parse(Message $sms): ?Bill
+    {
+        return $this->getRegexParser()->parse($sms);
+    }
+
+    /**
+     * @return RegexParser
+     */
+    private function getRegexParser(): RegexParser
+    {
+        if ($this->parser === null) {
+            $this->parser = new RegexParser($this->regexMatcher, $this->billsFactory);
+        }
+
+        return $this->parser;
+    }
+
+    /**
+     * @param MatcherInterface $matcher
      */
     private function setRegularExpression(MatcherInterface $matcher): void
     {
@@ -43,28 +66,5 @@ trait SberRegexParserTrait
     private function setBillsFactory(callable $factory): void
     {
         $this->billsFactory = $factory;
-    }
-
-    /**
-     * @param \vvvitaly\txs\Sms\Message $sms
-     *
-     * @return \vvvitaly\txs\Core\Bills\Bill|null
-     * @see \vvvitaly\txs\Sms\Parsers\MessageParserInterface::parse()
-     */
-    public function parse(Message $sms): ?Bill
-    {
-        return $this->getRegexParser()->parse($sms);
-    }
-
-    /**
-     * @return \vvvitaly\txs\Sms\Parsers\Regex\RegexParser
-     */
-    private function getRegexParser(): RegexParser
-    {
-        if ($this->parser === null) {
-            $this->parser = new RegexParser($this->regexMatcher, $this->billsFactory);
-        }
-
-        return $this->parser;
     }
 }
