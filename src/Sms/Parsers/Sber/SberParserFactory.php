@@ -40,7 +40,7 @@ final class SberParserFactory
             new SberPayment(),
             new SberPurchase(),
             new SberTransfer(),
-            $this->complexTransferFactory->getParser(),
+//            $this->complexTransferFactory->getParser(),
             new SberWithdrawal(),
             new SberRefill(),
             $this->orderParserFactory->getParser()
