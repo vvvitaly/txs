@@ -8,17 +8,16 @@ use vvvitaly\txs\Core\Export\Data\Transaction;
 use Webmozart\Assert\Assert;
 
 /**
- * Use description alias as account name. It configures with the aliases map:
+ * Replace description with an alias if description contains some key words. It configures with the aliases map:
  *  [
- *      <replacement> => [<alias1>, <alias2>, ],
+ *      <replacement> => [<keyword1>, <keyword2>, ],
  *      ...
  *      // OR
  *      "<alias and replacement>"
  *  ]
  *
- * If any of aliases (as substring) found in description (case insensitive), all description text replaces with
- * corresponding replacement of alias and uses as account name. If two or more aliases are appropriate, the first
- * matched replacement will be used.
+ * If any of keywords (as substring) found in description (case insensitive), all description text replaces with
+ * corresponding replacement. If two or more aliases are appropriate, the first matched replacement will be used.
  * If replacement matches only one alias and they are equals they can be set as one string.
  *
  * For example:
@@ -28,7 +27,7 @@ use Webmozart\Assert\Assert;
  *      'fruits' => 'apples',
  *      'juice'
  *  ]
- * following accounts will be resolved:
+ * these descriptions will be transformed:
  *  - "Some Tomatoes" => "tomatoes"
  *  - "Best Tomato" => "tomatoes"
  *  - "apples and tomatoes" => "tomatoes",
@@ -61,13 +60,10 @@ final class DescriptionAlias implements ProcessorInterface
      */
     public function process(Transaction $transaction): void
     {
-        if (!$transaction->account) {
-            $transaction->account = $this->resolveAccountName($transaction->description);
-        }
+        $transaction->description = $this->findReplacement($transaction->description);
+
         foreach ($transaction->splits as $split) {
-            if (!$split->account) {
-                $split->account = $this->resolveAccountName($split->memo);
-            }
+            $split->memo = $this->findReplacement($split->memo);
         }
     }
 
@@ -76,7 +72,7 @@ final class DescriptionAlias implements ProcessorInterface
      *
      * @return string|null
      */
-    private function resolveAccountName(?string $text): ?string
+    private function findReplacement(?string $text): ?string
     {
         if (!$text) {
             return $text;
